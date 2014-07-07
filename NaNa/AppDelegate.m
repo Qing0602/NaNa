@@ -32,6 +32,7 @@ NSInteger K_WAKE_UP_ID = 0;
 @synthesize rootViewController = _rootViewController;
 //@synthesize navRootController = _navRootController;
 
+
 - (void)dealloc
 {
     [_window release];
