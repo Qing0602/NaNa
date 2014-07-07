@@ -1,0 +1,78 @@
+/* Localized versions of Info.plist keys */
+
+
+
+"ok"            =   "确定";
+"back"          =   "返回";
+"msg"           =   "消息";
+"like"          =   "喜欢";
+"guest"         =   "访客";
+"friend"        =   "好友";
+"myPage"        =   "我的主页";
+"rank"          =   "美拉榜";
+"setting"       =   "设置";
+"chat"          =   "聊天";
+
+// ta的主页-------------------------------
+
+
+// 我的主页-------------------------------
+"album"         =   "相册";
+"info"          =   "资料";
+"private"       =   "隐私";
+"member"        =   "会员";
+"nickname"      =   "昵称";
+"role"          =   "角色";
+"age"           =   "年龄";
+"city"          =   "城市";
+"recordPressed" =   "按住录音";
+"recordRemark"  =   "不想让人看到你\n就让人听到你";
+"userAgreement" =   "用户协议";
+"userAgreementInfo" =   "用户协议用户协议用户协议用户协议用户协议用户协议用户协议用户协议用户协议用户协议";
+"isAgreement"   =   "已阅读并同意用户协议";
+"selectHead"    =   "选择头像";
+"cityList"      =   "城市列表";
+"hot"           =   "热门";
+"location"      =   "正在定位您所在的城市";
+"inputCitySearch"  =   "输入城市名字或首字母查询";
+"inputCityCue"  =   "暂时未开通您要查找的城市\n请输入城市名或首字母";
+"score"         =   "积分";
+"charm"         =   "魅力";
+"updateMember"  =   "升级会员";
+"immediatelyUpdate" =   "立即开通";
+"updateCue"     =   "开通会员，享有更多特权";
+"friendly_prompt"   =   "友情提醒";
+"send_key"      =   "发密钥";
+"touch_head"    =   "摸摸头";
+"send_gift"     =   "送礼物";
+"attention_ta"  =   "关注TA";
+
+
+
+// 美拉榜
+"city"          =   "同城";
+"near"          =   "周边";
+"all"           =   "全部";
+
+//设置
+"notification"  =   "通知设置";
+"lock"          =   "NANA密码锁";
+"black"         =   "我的黑名单";
+"suggestion"    =   "意见反馈";
+"grade"         =   "给NANA评分";
+"logout"        =   "退出登录";
+"login"         =   "登录";
+"redeemcode"    =   "兑换码";
+
+//通知设置
+"messageNotification"       =   "消息通知";
+"visitorNotification"       =   "新访客通知";
+"loveNotification"          =   "新喜欢通知";
+"friendNotification"        =   "新好友通知";
+"soundMode"                 =   "声音提示";
+"rockMode"                  =   "振动提示";
+
+//登录
+"QQ"            =   "QQ";
+"weibo"         =   "微博";
+"weixin"        =   "微信";

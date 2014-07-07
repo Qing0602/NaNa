@@ -1,0 +1,139 @@
+//
+//  MyPageVC.m
+//  NaNa
+//
+//  Created by dengfang on 13-8-10.
+//  Copyright (c) 2013年 dengfang. All rights reserved.
+//
+
+#import "TaPageVC.h"
+#import "UpdateMemberVC.h"
+#import "TaLikeVC.h"
+#import "ChatVC.h"
+#import "TaInfoVC.h"
+#import "UTabbar.h"
+#import "TaPhotoVC.h"
+
+@implementation TaPageVC
+
+
+- (id)initWithURL:(NSString *)taURL {
+    if (self = [super init]) {
+        _url = [[NSURL alloc] initWithString:taURL];
+        
+    }
+    return self;
+}
+
+- (void)loadView {
+    [super loadView];
+    // title
+    self.title = @"Ta";
+    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
+    
+    // webview
+    if (!_myWebView) {
+        _myWebView = [[UIWebView alloc] init];
+        _myWebView.frame = CGRectMake(0,
+                                      0,
+                                      self.defaultView.frame.size.width,
+                                      self.defaultView.frame.size.height - tabBarHeight);
+        _myWebView.backgroundColor = [UIColor clearColor];
+        _myWebView.delegate = self;
+    }
+    [self.defaultView addSubview:_myWebView];
+    
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activityView.hidesWhenStopped = YES;
+        _activityView.center = _myWebView.center;
+    }
+    [_myWebView addSubview:_activityView];
+    _myWebView.scalesPageToFit = YES;
+    [_myWebView loadRequest:[NSURLRequest requestWithURL:_url]];
+    
+    
+    NSArray *titleArray = [NSArray arrayWithObjects:@"相册",@"资料",@"喜欢",@"聊天", nil];
+    NSArray *normalArray = [NSArray arrayWithObjects:@"tabbar_album_normal.png",@"tabbar_info_normal.png",@"tabbar_private_normal.png",@"tabbar_member_normal.png", nil];
+    NSArray *selectArray = [NSArray arrayWithObjects:@"tabbar_album_pressed.png",@"tabbar_info_pressed.png",@"tabbar_private_pressed.png",@"tabbar_member_pressed.png", nil];
+    
+    UTabbar *tab = [[UTabbar alloc] initWithTitleArray:titleArray imageArray:normalArray selectImageArray:selectArray];
+    tab.frame = CGRectMake(0, CGRectGetMaxY(_myWebView.frame), 320, 50);
+    [_defaultView addSubview:tab];
+    [tab setDidSelectTabBlock:^(NSInteger index){
+        [self selectTabbar:index];
+    }];
+    [tab release];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)dealloc {
+    SAFERELEASE(_myWebView)
+    SAFERELEASE(_activityView)
+    SAFERELEASE(_url)
+    [super dealloc];
+}
+
+#pragma mark - ButtonPressed
+- (void)leftItemPressed:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - UITabBarDelegate
+- (void)selectTabbar:(NSInteger)index {
+    switch (index) {
+        case TaPageTabItemAlbum: {
+            ULog(@"TaPageTabItemAlbum");
+            TaPhotoVC *infoVC = [[TaPhotoVC alloc] init];
+            [self.navigationController pushViewController:infoVC animated:YES];
+            [infoVC release];
+            break;
+        }
+        case TaPageTabItemInfo: {
+            ULog(@"TaPageTabItemInfo");
+            TaInfoVC *infoVC = [[TaInfoVC alloc] init];
+            [self.navigationController pushViewController:infoVC animated:YES];
+            [infoVC release];
+            break;
+        }
+        case TaPageTabItemLike: {
+            ULog(@"TaPageTabItemLike");
+            TaLikeVC *taLikeVC  =[[TaLikeVC alloc] init];
+            [self.navigationController pushViewController:taLikeVC animated:YES];
+            [taLikeVC release];
+            break;
+        }
+        case TaPageTabItemChat: {
+            // ULog(@"TaPageTabItemChat");
+            ChatVC *chatVC  =[[ChatVC alloc] init];
+            [self.navigationController pushViewController:chatVC animated:YES];
+            [chatVC release];
+            break;
+        }
+    }
+    // 移除左右菜单栏
+    [self removeSideMenuController];
+}
+
+#pragma mark - WebView
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [_activityView startAnimating];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [_activityView stopAnimating];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [_activityView stopAnimating];
+}
+
+- (UIView * )viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return  nil;
+}
+@end
