@@ -24,7 +24,6 @@
 }
 -(void)loadView
 {
-    _URL=@"";
     [super loadView];
 }
 - (void)viewDidLoad

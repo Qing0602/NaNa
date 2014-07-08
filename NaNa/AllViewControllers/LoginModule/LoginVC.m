@@ -8,7 +8,7 @@
 
 #import "LoginVC.h"
 #import "AppDelegate.h"
-
+#import "WebLoginVC.h"
 @interface LoginVC ()
 
 @end
@@ -67,19 +67,19 @@
                                                              self.defaultView.frame.size.width, 122)];
     [tabbar setBackgroundColor:[UIColor blackColor]];
     UIView * qqLogin=[self AddTabbutton:STRING(@"QQ") NormalImage:@"qq.png" SelectedImage:@"qq_press.png" TAG:1];
-    qqLogin.frame=CGRectMake(10, 0, 100, 110);
+    qqLogin.frame=CGRectMake(40, 0, 100, 110);
     [tabbar addSubview:qqLogin];
     SAFERELEASE(qqLogin);
     
     UIView * weiboLogin=[self AddTabbutton:STRING(@"weibo") NormalImage:@"weibo.png" SelectedImage:@"weibo_press.png" TAG:2];
-    weiboLogin.frame=CGRectMake(110, 0, 100, 110);
+    weiboLogin.frame=CGRectMake(170, 0, 100, 110);
     [tabbar addSubview:weiboLogin];
     SAFERELEASE(weiboLogin);
     
-    UIView * weixinLogin=[self AddTabbutton:STRING(@"weixin") NormalImage:@"weixin.png" SelectedImage:@"weixin_press.png" TAG:3];
-    weixinLogin.frame=CGRectMake(210, 0, 100, 110);
-    [tabbar addSubview:weixinLogin];
-    SAFERELEASE(weixinLogin);
+//    UIView * weixinLogin=[self AddTabbutton:STRING(@"weixin") NormalImage:@"weixin.png" SelectedImage:@"weixin_press.png" TAG:3];
+//    weixinLogin.frame=CGRectMake(210, 0, 100, 110);
+//    [tabbar addSubview:weixinLogin];
+//    SAFERELEASE(weixinLogin);
     [self.defaultView addSubview:_scrollview];
     [self.defaultView addSubview:tabbar];
     
@@ -119,12 +119,21 @@
     int TAG=sender.tag;
     switch (TAG) {
         case 1:
+        {
             ULog(@"qq");
-            
+            //           WebLoginVC *webQQLogin =  [[WebLoginVC alloc] init];
+            //            [webQQLogin setURL:@"http://api.local.ishenran.cn/qqlogin/index.php"];
+            //            [self.navigationController pushViewController:webQQLogin animated:YES];
             [APP_DELEGATE loadMainView];
+        }
             break;
         case 2:
+        {
+            WebLoginVC *webWeiBoLogin =  [[WebLoginVC alloc] init];
+            [webWeiBoLogin setURL:@"http://api.local.ishenran.cn/wblogin/index.php"];
+            [self.navigationController pushViewController:webWeiBoLogin animated:YES];
             ULog(@"weibo");
+        }
             break;
         case 3:
             ULog(@"weixin");
