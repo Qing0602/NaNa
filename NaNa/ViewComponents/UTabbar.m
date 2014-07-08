@@ -30,6 +30,9 @@
         // 创建Buttons
         _tabbarBtnArray = [[NSMutableArray alloc] init];
         self.image = [UIImage imageNamed:@"navbar_bg.png"];
+        
+        
+        
     }
     return self;
 }
