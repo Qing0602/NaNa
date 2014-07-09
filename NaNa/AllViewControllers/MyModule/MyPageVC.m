@@ -12,9 +12,13 @@
 #import "SetPrivateVC.h"
 #import "PhotoManageVC.h"
 #import "UTabbar.h"
-
-@interface MyPageVC ()
-
+#import "PhotoMenuView.h"
+@interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate>
+{
+    PhotoMenuView *_photoMenuView;
+    CGRect              _photoMenuHideRect;     // 头像Menu不显示时的位置
+    CGRect              _photoMenuShowRect;     // 头像Menu显示时的位置
+}
 @end
 
 @implementation MyPageVC
@@ -59,9 +63,33 @@
     _myWebView.scalesPageToFit = YES;
     [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_MY_PAGE,@"userId=5")];
     
+    [self addTapOnWebView];
+    
+    
+    if (!_photoMenuView) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PhotoMenuView" owner:self options:nil];
+        _photoMenuView = [[nib lastObject] retain];
+        
+        _photoMenuHideRect = CGRectMake(0.0,
+                                        self.view.frame.size.height,
+                                        self.view.frame.size.width,
+                                        _photoMenuView.frame.size.height);
+        _photoMenuShowRect = CGRectMake(0.0,
+                                        self.view.frame.size.height - _photoMenuView.frame.size.height,
+                                        _photoMenuView.frame.size.width,
+                                        _photoMenuView.frame.size.height);
+        _photoMenuView.frame = _photoMenuHideRect;
+        _photoMenuView.photoMenuDelegate = self;
+    }
+    [self.view addSubview:_photoMenuView];
+    
+    
     NSArray *titleArray = [NSArray arrayWithObjects:@"相册",@"资料",@"隐私",@"会员", nil];
     NSArray *normalArray = [NSArray arrayWithObjects:@"tabbar_album_normal.png",@"tabbar_info_normal.png",@"tabbar_private_normal.png",@"tabbar_member_normal.png", nil];
     NSArray *selectArray = [NSArray arrayWithObjects:@"tabbar_album_pressed.png",@"tabbar_info_pressed.png",@"tabbar_private_pressed.png",@"tabbar_member_pressed.png", nil];
+    
+    
+    
     
     UTabbar *tab = [[UTabbar alloc] initWithTitleArray:titleArray imageArray:normalArray selectImageArray:selectArray];
     tab.frame = CGRectMake(0, CGRectGetMaxY(_myWebView.frame), 320, 50);
@@ -125,7 +153,118 @@
     // 移除左右菜单栏
     [self removeSideMenuController];
 }
+#pragma mark - HeadCartoonDelegate
+- (void)currentHeadImage:(NSString *)headName {
+//    [_headButton setBackgroundImage:[UIImage imageNamed:headName]
+//                           forState:UIControlStateNormal];
+}
 
+- (void)albumButtonPressed:(UIButton *)btn {
+    [UIView animateWithDuration:default_duration
+                     animations:^{
+                         _photoMenuView.frame = _photoMenuHideRect;
+                     }
+                     completion:^(BOOL finished) {
+                         _defaultView.userInteractionEnabled = YES;
+                         
+                         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                             
+                             UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                             picker.delegate = self;
+                             picker.allowsEditing = YES;
+                             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                             [self presentViewController:picker animated:YES completion:nil];
+                             [picker release];
+                         }
+                     }];
+}
+
+- (void)photoButtonPressed:(UIButton *)btn {
+    [UIView animateWithDuration:default_duration
+                     animations:^{
+                         _photoMenuView.frame = _photoMenuHideRect;
+                     }
+                     completion:^(BOOL finished) {
+                         _defaultView.userInteractionEnabled = YES;
+                         
+                         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                             
+                             UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                             picker.delegate = self;
+                             picker.allowsEditing = YES;
+                             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                             [self presentViewController:picker animated:YES completion:nil];
+                             [picker release];
+                         }
+                     }];
+}
+
+- (void)cartoonButtonPressed:(UIButton *)btn {
+    [UIView animateWithDuration:default_duration
+                     animations:^{
+                         _photoMenuView.frame = _photoMenuHideRect;
+                     }
+                     completion:^(BOOL finished) {
+                         _defaultView.userInteractionEnabled = YES;
+                         
+                         HeadCartoonVC *controller = [[HeadCartoonVC alloc] init];
+                         controller.headCartoonDelegate = self;
+                         [self.navigationController pushViewController:controller animated:YES];
+                         [controller release];
+                     }];
+}
+
+- (void)cancelButtonPressed:(UIButton *)btn {
+    [UIView animateWithDuration:default_duration
+                     animations:^{
+                         _photoMenuView.frame = _photoMenuHideRect;
+                     }
+                     completion:^(BOOL finished) {
+                         _defaultView.userInteractionEnabled = YES;
+                     }];
+}
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker
+		didFinishPickingImage:(UIImage *)image
+                  editingInfo:(NSDictionary *)editingInfo {
+#warning 上传头像 && 刷新webview
+    //[_headButton setBackgroundImage:image forState:UIControlStateNormal];
+    [picker dismissModalViewControllerAnimated:YES];
+}
+#pragma mark- TapGestureRecognizer
+-(void)addTapOnWebView
+{
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [_myWebView addGestureRecognizer:singleTap];
+    singleTap.delegate = self;
+    singleTap.cancelsTouchesInView = NO;
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)sender
+{
+    CGPoint pt = [sender locationInView:_myWebView];
+    NSString *imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x*2, pt.y*2];
+    NSString *urlToSave = [_myWebView stringByEvaluatingJavaScriptFromString:imgURL];
+    NSLog(@"image url=%@", urlToSave);
+    NSString *js = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).tagName", pt.x*2, pt.y*2];
+    NSString *jsClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", pt.x*2, pt.y*2];
+    NSString * tagName = [_myWebView stringByEvaluatingJavaScriptFromString:js];
+    NSString *className = [_myWebView stringByEvaluatingJavaScriptFromString:jsClass];
+    if ([tagName isEqualToString:@"IMG"] && [className isEqualToString:@"avatar"]) {
+        //点击头像
+        [UIView animateWithDuration:default_duration
+                         animations:^{
+                             _photoMenuView.frame = _photoMenuShowRect;
+                         }];
+    }
+    //    if (urlToSave.length > 0) {
+    //        [self showImageURL:urlToSave point:pt];
+    //    }
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
 #pragma mark - WebView
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [_activityView startAnimating];

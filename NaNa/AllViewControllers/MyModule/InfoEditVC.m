@@ -797,9 +797,9 @@ typedef enum {
 #warning 根据是否是第一次登录跳转到首页
     [APP_DELEGATE loadMainView];
     // 提交request请求
-#warning 提交request请求
-    /*
-    NSString *param = [NSString stringWithFormat:@"userId=10&nickname=%@&role=%d&birthday=%@&city_id=%d", _nameTextField.text, roleInt, _birthday, cityId];
+
+    
+    NSString *param = [NSString stringWithFormat:@"userId=%@&nickname=%@&role=%d&birthday=%@&city_id=%d", [self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID],_nameTextField.text, roleInt, _birthday, cityId];
     URequest *request = [[URequest alloc] initWithDomain:K_DOMAIN_NANA
                                                 withPath:k_URL_USER_UPDATE_INFO
                                                withParam:param];
@@ -808,7 +808,7 @@ typedef enum {
     request.delegate = self;
     [URequestManager addCommonRequest:request];
     [request release];
-     */
+     
 }
 
 - (NSString *)getMinutes:(double)second

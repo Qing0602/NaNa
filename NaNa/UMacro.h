@@ -49,6 +49,9 @@
     #define ULog(fmt, ...)
 #endif
 
+//Userdefault Key
+#define accountInfoKey @"AccountInfo"
+
 // 定义界面常用的，像素，颜色等值
 #define statusBarHeight             20
 #define screenWidth                 [UIScreen mainScreen].bounds.size.width //320

@@ -51,8 +51,9 @@
         [NSURLConnection sendSynchronousRequest: neededRequest returningResponse: &response error: nil];
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             NSDictionary *dictionary = [response allHeaderFields];
-            NSString *userID = [dictionary objectForKey:@"user_id"];
-#pragma waring 登录成功后缓存数据
+            [[NSUserDefaults standardUserDefaults] setValue:dictionary forKey:accountInfoKey];
+
+
             InfoEditVC *infoEdit = [[InfoEditVC alloc] init];
             [self.navigationController pushViewController:infoEdit animated:YES];
         }

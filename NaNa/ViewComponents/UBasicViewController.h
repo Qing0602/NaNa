@@ -20,6 +20,11 @@ typedef enum {
     UNavBarBtnTypeSubmit,
 } UNavBarBtnType;
 
+typedef enum {
+    ACCOUNT_INFO_TYPE_USERID = 0 , // userID
+    
+} ACCOUNT_INFO_TYPE;
+
 @interface UBasicViewController : UIViewController {
     UIView              *_navBarView;   // NavBar
     UIButton            *_leftItem;     // Nav左侧按钮
@@ -45,4 +50,7 @@ typedef enum {
 - (void)pushPage:(UBasicViewController *)controller;
 - (void)setSideMenuController;
 - (void)removeSideMenuController;
+
+-(NSString *)getAccountValueByKey : (ACCOUNT_INFO_TYPE)type;
+
 @end
