@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
+		19CB82EA196CC79800DBCBAB /* PalmUIModelCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DD196CC79800DBCBAB /* PalmUIModelCoding.m */; };
+		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
+		19CB82EC196CC79800DBCBAB /* NaNaNetWorkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E1196CC79800DBCBAB /* NaNaNetWorkService.m */; };
+		19CB82ED196CC79800DBCBAB /* NaNaFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E4196CC79800DBCBAB /* NaNaFormDataRequest.m */; };
+		19CB82EE196CC79800DBCBAB /* NaNaHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E6196CC79800DBCBAB /* NaNaHTTPRequest.m */; };
+		19CB82EF196CC79800DBCBAB /* NaNaOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E8196CC79800DBCBAB /* NaNaOperation.m */; };
+		19CB82F2196CCA9800DBCBAB /* NaNaUIManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82F1196CCA9800DBCBAB /* NaNaUIManagement.m */; };
 		3604BFF41856EAD600009BC2 /* GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3604BFF31856EAD600009BC2 /* GuideVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		363591DD18227F3800F7AB67 /* icon_head_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 363591D718227F3800F7AB67 /* icon_head_normal.png */; };
 		363591DE18227F3800F7AB67 /* icon_head_presser.png in Resources */ = {isa = PBXBuildFile; fileRef = 363591D818227F3800F7AB67 /* icon_head_presser.png */; };
@@ -441,6 +449,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
+		19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsiGetRequestModel.m; sourceTree = "<group>"; };
+		19CB82DC196CC79800DBCBAB /* PalmUIModelCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PalmUIModelCoding.h; sourceTree = "<group>"; };
+		19CB82DD196CC79800DBCBAB /* PalmUIModelCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PalmUIModelCoding.m; sourceTree = "<group>"; };
+		19CB82DE196CC79800DBCBAB /* NaNaHttpEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaHttpEngine.h; sourceTree = "<group>"; };
+		19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaHttpEngine.m; sourceTree = "<group>"; };
+		19CB82E0196CC79800DBCBAB /* NaNaNetWorkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaNetWorkService.h; sourceTree = "<group>"; };
+		19CB82E1196CC79800DBCBAB /* NaNaNetWorkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaNetWorkService.m; sourceTree = "<group>"; };
+		19CB82E3196CC79800DBCBAB /* NaNaFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaFormDataRequest.h; sourceTree = "<group>"; };
+		19CB82E4196CC79800DBCBAB /* NaNaFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaFormDataRequest.m; sourceTree = "<group>"; };
+		19CB82E5196CC79800DBCBAB /* NaNaHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaHTTPRequest.h; sourceTree = "<group>"; };
+		19CB82E6196CC79800DBCBAB /* NaNaHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaHTTPRequest.m; sourceTree = "<group>"; };
+		19CB82E7196CC79800DBCBAB /* NaNaOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaOperation.h; sourceTree = "<group>"; };
+		19CB82E8196CC79800DBCBAB /* NaNaOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaOperation.m; sourceTree = "<group>"; };
+		19CB82F0196CCA9800DBCBAB /* NaNaUIManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUIManagement.h; sourceTree = "<group>"; };
+		19CB82F1196CCA9800DBCBAB /* NaNaUIManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUIManagement.m; sourceTree = "<group>"; };
 		3604BFF21856EAD600009BC2 /* GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideVC.h; sourceTree = "<group>"; };
 		3604BFF31856EAD600009BC2 /* GuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideVC.m; sourceTree = "<group>"; };
 		363591D718227F3800F7AB67 /* icon_head_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_head_normal.png; path = LeftMenu/icon_head_normal.png; sourceTree = "<group>"; };
@@ -1015,6 +1039,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19CB82D8196CC79800DBCBAB /* HttpEngine */ = {
+			isa = PBXGroup;
+			children = (
+				19CB82D9196CC79800DBCBAB /* Model */,
+				19CB82DE196CC79800DBCBAB /* NaNaHttpEngine.h */,
+				19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */,
+				19CB82E0196CC79800DBCBAB /* NaNaNetWorkService.h */,
+				19CB82E1196CC79800DBCBAB /* NaNaNetWorkService.m */,
+				19CB82E2196CC79800DBCBAB /* OP */,
+			);
+			path = HttpEngine;
+			sourceTree = "<group>";
+		};
+		19CB82D9196CC79800DBCBAB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */,
+				19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */,
+				19CB82DC196CC79800DBCBAB /* PalmUIModelCoding.h */,
+				19CB82DD196CC79800DBCBAB /* PalmUIModelCoding.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		19CB82E2196CC79800DBCBAB /* OP */ = {
+			isa = PBXGroup;
+			children = (
+				19CB82E3196CC79800DBCBAB /* NaNaFormDataRequest.h */,
+				19CB82E4196CC79800DBCBAB /* NaNaFormDataRequest.m */,
+				19CB82E5196CC79800DBCBAB /* NaNaHTTPRequest.h */,
+				19CB82E6196CC79800DBCBAB /* NaNaHTTPRequest.m */,
+				19CB82E7196CC79800DBCBAB /* NaNaOperation.h */,
+				19CB82E8196CC79800DBCBAB /* NaNaOperation.m */,
+			);
+			path = OP;
+			sourceTree = "<group>";
+		};
 		363591D618227DD100F7AB67 /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1374,6 +1435,7 @@
 		97416C2F177FFDB500865342 /* NaNa */ = {
 			isa = PBXGroup;
 			children = (
+				19CB82D8196CC79800DBCBAB /* HttpEngine */,
 				97416CAA1780052500865342 /* UMacro.h */,
 				97416DE8178015ED00865342 /* NetworkTools */,
 				97416D9F178015ED00865342 /* 3rdPartySupport */,
@@ -1563,6 +1625,8 @@
 		97416DE4178015ED00865342 /* AllViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				19CB82F0196CCA9800DBCBAB /* NaNaUIManagement.h */,
+				19CB82F1196CCA9800DBCBAB /* NaNaUIManagement.m */,
 				97F261CD17B37E310070295E /* LoginModule */,
 				97F261CB17B37E310070295E /* GuideModule */,
 				97F261DE17B37E310070295E /* SignModule */,
@@ -2444,6 +2508,7 @@
 				97416E1F178015ED00865342 /* ASICloudFilesObjectRequest.m in Sources */,
 				97416E20178015ED00865342 /* ASICloudFilesRequest.m in Sources */,
 				97416E21178015ED00865342 /* ASIS3Bucket.m in Sources */,
+				19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */,
 				97416E22178015ED00865342 /* ASIS3BucketObject.m in Sources */,
 				97416E23178015ED00865342 /* ASIS3BucketRequest.m in Sources */,
 				97416E24178015ED00865342 /* ASIS3ObjectRequest.m in Sources */,
@@ -2456,11 +2521,13 @@
 				97416E29178015ED00865342 /* JSONKit.m in Sources */,
 				97416E2A178015ED00865342 /* Reachability.m in Sources */,
 				97416E2B178015ED00865342 /* TTTAttributedLabel.m in Sources */,
+				19CB82EA196CC79800DBCBAB /* PalmUIModelCoding.m in Sources */,
 				97416E2C178015ED00865342 /* UStaticData.m in Sources */,
 				97416E2D178015ED00865342 /* UNetworkStatusCenter.m in Sources */,
 				97416E2E178015ED00865342 /* URequest.m in Sources */,
 				36A45EB018549E1100439944 /* SetPrivateVC.m in Sources */,
 				97416E2F178015ED00865342 /* URequestManager.m in Sources */,
+				19CB82EF196CC79800DBCBAB /* NaNaOperation.m in Sources */,
 				97416E30178015ED00865342 /* MD5.m in Sources */,
 				97416E31178015ED00865342 /* NSData+Base64.m in Sources */,
 				97416E32178015ED00865342 /* NSString+UIColor.m in Sources */,
@@ -2475,6 +2542,7 @@
 				97B7F74A1782A23100E6086B /* SDImageCache.m in Sources */,
 				97B7F74B1782A23100E6086B /* SDWebImageDecoder.m in Sources */,
 				97B7F74C1782A23100E6086B /* SDWebImageDownloader.m in Sources */,
+				19CB82EE196CC79800DBCBAB /* NaNaHTTPRequest.m in Sources */,
 				97B7F74D1782A23100E6086B /* SDWebImageManager.m in Sources */,
 				97B7F74E1782A23100E6086B /* SDWebImagePrefetcher.m in Sources */,
 				97B7F74F1782A23100E6086B /* UIButton+WebCache.m in Sources */,
@@ -2482,6 +2550,7 @@
 				974A6E47178AB85E008864F8 /* UBasicViewController.m in Sources */,
 				97812D6517B0D8A800B81537 /* MMDrawerController.m in Sources */,
 				36FD27DD1839DAC2004EBC51 /* TaPageVC.m in Sources */,
+				19CB82F2196CCA9800DBCBAB /* NaNaUIManagement.m in Sources */,
 				97812D6717B0D8A800B81537 /* UIViewController+MMDrawerController.m in Sources */,
 				97F261E017B37E310070295E /* MenuLeftVC.m in Sources */,
 				97F261E117B37E310070295E /* MenuLeftVCLogic.m in Sources */,
@@ -2503,10 +2572,13 @@
 				97E8435D17E069920009B030 /* pinyin.m in Sources */,
 				9741197C17E1C5FA00406E79 /* URoundButton.m in Sources */,
 				97838F8F17E59324000DC81E /* UpdateMemberVC.m in Sources */,
+				19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */,
 				363591E518228A0500F7AB67 /* MyBlackListVC.m in Sources */,
+				19CB82ED196CC79800DBCBAB /* NaNaFormDataRequest.m in Sources */,
 				363591EA18228A6100F7AB67 /* NotificationSettingVC.m in Sources */,
 				363591EB18228A6100F7AB67 /* SettingVC.m in Sources */,
 				363591EE18228F1000F7AB67 /* SuggestVC.m in Sources */,
+				19CB82EC196CC79800DBCBAB /* NaNaNetWorkService.m in Sources */,
 				36359202182299CE00F7AB67 /* VisitorVC.m in Sources */,
 				36A45EAD1854985100439944 /* PhotoManageVC.m in Sources */,
 				8722BD8518862A2200AA3FF6 /* FaceAndOther.m in Sources */,
