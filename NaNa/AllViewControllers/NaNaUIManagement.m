@@ -7,6 +7,7 @@
 //
 
 #import "NaNaUIManagement.h"
+#import "UploadOperation.h"
 
 @implementation NaNaUIManagement
 static NaNaUIManagement *sharedInstance = nil;
@@ -20,4 +21,9 @@ static NaNaUIManagement *sharedInstance = nil;
     return sharedInstance;
 }
 
+
+-(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (NSString *) userID withDesc : (NSString *) desc{
+    UploadOperation * operation = [[UploadOperation alloc] initUpload:data withUploadType:uploadType withUserID:userID withDesc:desc];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end

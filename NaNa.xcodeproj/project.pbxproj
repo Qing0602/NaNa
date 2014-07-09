@@ -15,6 +15,7 @@
 		19CB82EE196CC79800DBCBAB /* NaNaHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E6196CC79800DBCBAB /* NaNaHTTPRequest.m */; };
 		19CB82EF196CC79800DBCBAB /* NaNaOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E8196CC79800DBCBAB /* NaNaOperation.m */; };
 		19CB82F2196CCA9800DBCBAB /* NaNaUIManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82F1196CCA9800DBCBAB /* NaNaUIManagement.m */; };
+		19CB82F5196D64C300DBCBAB /* UploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82F4196D64C300DBCBAB /* UploadOperation.m */; };
 		3604BFF41856EAD600009BC2 /* GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3604BFF31856EAD600009BC2 /* GuideVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		363591DD18227F3800F7AB67 /* icon_head_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 363591D718227F3800F7AB67 /* icon_head_normal.png */; };
 		363591DE18227F3800F7AB67 /* icon_head_presser.png in Resources */ = {isa = PBXBuildFile; fileRef = 363591D818227F3800F7AB67 /* icon_head_presser.png */; };
@@ -465,6 +466,8 @@
 		19CB82E8196CC79800DBCBAB /* NaNaOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaOperation.m; sourceTree = "<group>"; };
 		19CB82F0196CCA9800DBCBAB /* NaNaUIManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUIManagement.h; sourceTree = "<group>"; };
 		19CB82F1196CCA9800DBCBAB /* NaNaUIManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUIManagement.m; sourceTree = "<group>"; };
+		19CB82F3196D64C300DBCBAB /* UploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadOperation.h; sourceTree = "<group>"; };
+		19CB82F4196D64C300DBCBAB /* UploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadOperation.m; sourceTree = "<group>"; };
 		3604BFF21856EAD600009BC2 /* GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideVC.h; sourceTree = "<group>"; };
 		3604BFF31856EAD600009BC2 /* GuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideVC.m; sourceTree = "<group>"; };
 		363591D718227F3800F7AB67 /* icon_head_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_head_normal.png; path = LeftMenu/icon_head_normal.png; sourceTree = "<group>"; };
@@ -1072,6 +1075,8 @@
 				19CB82E6196CC79800DBCBAB /* NaNaHTTPRequest.m */,
 				19CB82E7196CC79800DBCBAB /* NaNaOperation.h */,
 				19CB82E8196CC79800DBCBAB /* NaNaOperation.m */,
+				19CB82F3196D64C300DBCBAB /* UploadOperation.h */,
+				19CB82F4196D64C300DBCBAB /* UploadOperation.m */,
 			);
 			path = OP;
 			sourceTree = "<group>";
@@ -2568,6 +2573,7 @@
 				97EFE76317C094330043B4BF /* HeadCartoonVC.m in Sources */,
 				97E8435417E069740009B030 /* UCity.m in Sources */,
 				97E8435517E069740009B030 /* UCityVC.m in Sources */,
+				19CB82F5196D64C300DBCBAB /* UploadOperation.m in Sources */,
 				97E8435917E069810009B030 /* CMIndexBar.m in Sources */,
 				97E8435D17E069920009B030 /* pinyin.m in Sources */,
 				9741197C17E1C5FA00406E79 /* URoundButton.m in Sources */,
