@@ -92,7 +92,7 @@
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             NSDictionary *dictionary = [response allHeaderFields];
             NSString *userID = [dictionary objectForKey:@"user_id"];
-#pragma waring 登录成功后缓存数据
+#warning 登录成功后缓存数据
             [APP_DELEGATE loadMainView];
         }
     }

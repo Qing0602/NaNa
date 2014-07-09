@@ -15,6 +15,7 @@
 #import "UAlertView.h"
 #import "URequest.h"
 #import "URequestManager.h"
+#import "AppDelegate.h"
 
 #define kInfoEditCellHeight         40.0
 #define kInfoEditCellShowHeight     30.0
@@ -756,6 +757,7 @@ typedef enum {
 
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
+#pragma waring 如果第一次登录，返回到登录页面
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -787,8 +789,17 @@ typedef enum {
         return;
     }
     
+    //判断用户协议是否勾选
+    if (!_isAgree) {
+        [UAlertView showAlertViewWithMessage:@"请勾选已阅读并同意用户协议" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+        return;
+    }
+#warning 根据是否是第一次登录跳转到首页
+    [APP_DELEGATE loadMainView];
     // 提交request请求
-    NSString *param = [NSString stringWithFormat:@"userId=5&nickname=%@&role=%d&birthday=%@&city_id=%d", _nameTextField.text, roleInt, _birthday, cityId];
+#warning 提交request请求
+    /*
+    NSString *param = [NSString stringWithFormat:@"userId=10&nickname=%@&role=%d&birthday=%@&city_id=%d", _nameTextField.text, roleInt, _birthday, cityId];
     URequest *request = [[URequest alloc] initWithDomain:K_DOMAIN_NANA
                                                 withPath:k_URL_USER_UPDATE_INFO
                                                withParam:param];
@@ -797,6 +808,7 @@ typedef enum {
     request.delegate = self;
     [URequestManager addCommonRequest:request];
     [request release];
+     */
 }
 
 - (NSString *)getMinutes:(double)second
