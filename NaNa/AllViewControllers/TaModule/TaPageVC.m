@@ -132,7 +132,17 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [_activityView stopAnimating];
 }
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        NSURL *url = [request URL];
+        NSString *curUrl= [url absoluteString];
+        
+    } 
 
+
+    return YES;
+}
 - (UIView * )viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return  nil;
 }
