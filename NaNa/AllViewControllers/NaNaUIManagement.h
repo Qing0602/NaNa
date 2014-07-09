@@ -8,18 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import "NaNaNetWorkService.h"
+//#import "UploadOperation.h"
 
 #define TRANSFERVALUE @"TransferValue"
 #define TRANSFERVCFROMCLASS @"TransferFromVCClass"
 #define TRANSFERVCTOCLASS @"TransferToVCClass"
 
+typedef enum{
+    UploadAvatar,
+    UploadPhoto,
+    UploadVoice,
+}UploadType;
+
 @interface NaNaUIManagement : NSObject
 
 +(NaNaUIManagement *) sharedInstance;
+
+@property(nonatomic,strong) NSDictionary *uploadResult;
 
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
 
+
+-(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (NSString *) userID withDesc : (NSString *) desc;
 
 @end

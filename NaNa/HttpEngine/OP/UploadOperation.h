@@ -7,7 +7,9 @@
 //
 
 #import "NaNaOperation.h"
+#import "NaNaUIManagement.h"
+
 
 @interface UploadOperation : NaNaOperation
-
+-(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (NSString *) userID withDesc : (NSString *) desc;
 @end
