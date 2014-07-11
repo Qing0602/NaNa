@@ -50,7 +50,7 @@
         _myWebView.frame = CGRectMake(0,
                                       0,
                                       self.defaultView.frame.size.width,
-                                      self.defaultView.frame.size.height - tabBarHeight-300);
+                                      self.defaultView.frame.size.height - tabBarHeight);
         _myWebView.backgroundColor = [UIColor clearColor];
         _myWebView.delegate = self;
     }
