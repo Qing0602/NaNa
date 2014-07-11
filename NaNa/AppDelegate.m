@@ -42,6 +42,9 @@ NSInteger K_WAKE_UP_ID = 0;
 }
 
 - (void)loadMainView {
+    
+    
+    
     // 初始化左右中间视图
     RankingListVC *centerController = [[[RankingListVC alloc] init] autorelease];
     MenuLeftVC *leftController = [[[MenuLeftVC alloc] init] autorelease];
@@ -78,6 +81,7 @@ NSInteger K_WAKE_UP_ID = 0;
         _navRootController=[_navRootController initWithRootViewController:loginVc];
         _navRootController.navigationBarHidden = YES;
     
+   
     }
     else
     {

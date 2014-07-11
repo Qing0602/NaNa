@@ -38,9 +38,11 @@
 
 - (void)loadView {
     [super loadView];
+    
     // title
     self.title = STRING(@"myPage");
     [self setNavLeftType:UNavBarBtnTypeMenu navRightType:UNavBarBtnTypeTa];
+    
     
     // webview
     if (!_myWebView) {
@@ -48,7 +50,7 @@
         _myWebView.frame = CGRectMake(0,
                                       0,
                                       self.defaultView.frame.size.width,
-                                      self.defaultView.frame.size.height - tabBarHeight);
+                                      self.defaultView.frame.size.height - tabBarHeight-300);
         _myWebView.backgroundColor = [UIColor clearColor];
         _myWebView.delegate = self;
     }
@@ -62,7 +64,7 @@
     [_myWebView addSubview:_activityView];
     _myWebView.scalesPageToFit = YES;
     [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_MY_PAGE,@"userId=5")];
-    
+    //[_myWebView loadRequest:URLREQUEST(@"/wblogin/index.php",@"")];
     [self addTapOnWebView];
     
     
@@ -98,6 +100,9 @@
         [self selectTabbar:index];
     }];
     [tab release];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,6 +132,7 @@
     switch (index) {
         case MyPageTabItemAlbum: {
             ULog(@"MyPageTabItemAlbum");
+            
             PhotoManageVC *controller = [[[PhotoManageVC alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
             break;
@@ -160,6 +166,8 @@
 }
 
 - (void)albumButtonPressed:(UIButton *)btn {
+    
+    
     [UIView animateWithDuration:default_duration
                      animations:^{
                          _photoMenuView.frame = _photoMenuHideRect;
@@ -174,6 +182,7 @@
                              picker.allowsEditing = YES;
                              picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                              [self presentViewController:picker animated:YES completion:nil];
+                             
                              [picker release];
                          }
                      }];
@@ -271,6 +280,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+
     [_activityView stopAnimating];
 }
 

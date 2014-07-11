@@ -22,6 +22,8 @@
 - (void)loadView {
     [super loadView];
     
+    
+    
     _URL = K_WEBVIEW_URL_MY_BLACK_LIST;
     _TITLE = @"相册管理";
     _photosArray = [[NSMutableArray alloc] init];
@@ -64,7 +66,9 @@
         _photoMenuView.photoMenuDelegate = self;
     }
     [_defaultView addSubview:_photoMenuView];
+ 
     
+
 }
 #pragma mark - HeadCartoonDelegate
 
@@ -77,12 +81,14 @@
                          _gridView.userInteractionEnabled = YES;
                          
                          if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-                             
+                            
                              UIImagePickerController *picker = [[UIImagePickerController alloc] init];
                              picker.delegate = self;
                              picker.allowsEditing = YES;
                              picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
                              [self presentViewController:picker animated:YES completion:nil];
+                             
                              [picker release];
                          }
                      }];

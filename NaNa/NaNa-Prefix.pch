@@ -15,4 +15,4 @@
 
 // 添加自定义的宏
 #import "UMacro.h"
-#define NSLog(...)
+//#define NSLog(...)

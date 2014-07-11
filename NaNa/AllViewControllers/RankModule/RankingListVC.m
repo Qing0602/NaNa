@@ -128,6 +128,9 @@
     
     // 选择
     [self tabButtonClick:_leftButton];
+    
+    
+  
 }
 
 - (void)didReceiveMemoryWarning {
