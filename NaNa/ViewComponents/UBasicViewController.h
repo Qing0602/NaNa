@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+MMDrawerController.h"
-
+#import "NaNaUIManagement.h"
 @class TTTAttributedLabel;
 
 typedef enum {
