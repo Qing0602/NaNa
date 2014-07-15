@@ -160,10 +160,6 @@
     [self removeSideMenuController];
 }
 #pragma mark - HeadCartoonDelegate
-- (void)currentHeadImage:(NSString *)headName {
-//    [_headButton setBackgroundImage:[UIImage imageNamed:headName]
-//                           forState:UIControlStateNormal];
-}
 
 - (void)albumButtonPressed:(UIButton *)btn {
     
@@ -236,9 +232,15 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 		didFinishPickingImage:(UIImage *)image
                   editingInfo:(NSDictionary *)editingInfo {
-#warning 上传头像 && 刷新webview
     //[_headButton setBackgroundImage:image forState:UIControlStateNormal];
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 0.5f) withUploadType:UploadAvatar withUserID:[self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID] withDesc:@""];
     [picker dismissModalViewControllerAnimated:YES];
+    
+    [_myWebView reload];
+}
+- (void)currentHeadImage:(NSString *)headName {
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation([UIImage imageNamed:headName], 1.f) withUploadType:UploadAvatar withUserID:[self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID] withDesc:@""];
+    
 }
 #pragma mark- TapGestureRecognizer
 -(void)addTapOnWebView

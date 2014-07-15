@@ -137,6 +137,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 		didFinishPickingImage:(UIImage *)image
                   editingInfo:(NSDictionary *)editingInfo {
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadPhoto withUserID:[self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID] withDesc:@""];
+    
     [picker dismissModalViewControllerAnimated:YES];
     
     [self performSelector:@selector(goChooseVC:) withObject:image afterDelay:0.5];

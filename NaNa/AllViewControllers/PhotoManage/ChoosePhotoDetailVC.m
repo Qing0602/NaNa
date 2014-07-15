@@ -42,13 +42,8 @@
     _scrollView.contentSize = CGSizeMake(320, CGRectGetHeight(_defaultView.frame));
     _scrollView.delegate = self;
     [_defaultView addSubview:_scrollView];
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
-    imageView.image = self.chooseImage;
-    imageView.userInteractionEnabled = YES;
-    [_scrollView addSubview:imageView];
 
-    _textView = [[UITextView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(imageView.frame) + 20, 300, 50)];
+    _textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, 300, 50)];
     _textView.layer.cornerRadius = 5;
     _textView.layer.borderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5].CGColor;
     _textView.layer.borderWidth = 1;
@@ -56,6 +51,13 @@
     [_textView setReturnKeyType:UIReturnKeyDone];
     [_textView becomeFirstResponder];
     [_scrollView addSubview:_textView];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(_textView.frame)+20, 300, 300)];
+    imageView.image = self.chooseImage;
+    imageView.userInteractionEnabled = YES;
+    [_scrollView addSubview:imageView];
+
+
 
     UITapGestureRecognizer *ge = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reveceKeyBoard)];
     [imageView addGestureRecognizer:ge];
@@ -91,7 +93,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    [_scrollView setContentOffset:CGPointMake(0, 130) animated:YES];
+    [_scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
