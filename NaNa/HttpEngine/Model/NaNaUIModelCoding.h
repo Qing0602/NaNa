@@ -14,7 +14,7 @@ typedef enum{
 #define CachePath @"/%@/"
 #import <Foundation/Foundation.h>
 
-@interface PalmUIModelCoding : NSObject<NSCoding>
+@interface NaNaUIModelCoding : NSObject<NSCoding>
 @property BOOL isCache;
 
 -(id) initWithCache : (BOOL) isCache;

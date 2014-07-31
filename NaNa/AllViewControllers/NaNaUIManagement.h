@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NaNaNetWorkService.h"
+#import "NaNaUserAccountModel.h"
 //#import "UploadOperation.h"
 
 #define TRANSFERVALUE @"TransferValue"
@@ -23,6 +24,9 @@ typedef enum{
 @interface NaNaUIManagement : NSObject
 
 +(NaNaUIManagement *) sharedInstance;
+
+// 用户登陆model
+@property(nonatomic,strong) NaNaUserAccountModel *userAccount;
 
 @property(nonatomic,strong) NSDictionary *uploadResult;
 

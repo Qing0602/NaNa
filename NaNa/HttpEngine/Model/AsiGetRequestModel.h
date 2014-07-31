@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 ws. All rights reserved.
 //
 
-#import "PalmUIModelCoding.h"
+#import "NaNaUIModelCoding.h"
 
-@interface AsiGetRequestModel : PalmUIModelCoding
+@interface AsiGetRequestModel : NaNaUIModelCoding
 @property NSUInteger offset;
 @property NSUInteger limit;
 @property (nonatomic,strong) id object;

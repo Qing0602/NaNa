@@ -6,9 +6,10 @@
 //  Copyright (c) 2014年 ws. All rights reserved.
 //
 
-#import "PalmUIModelCoding.h"
+#import "NaNaUIModelCoding.h"
+#import "NaNaUIManagement.h"
 
-@implementation PalmUIModelCoding
+@implementation NaNaUIModelCoding
 -(id) initWithCache:(BOOL)isCache{
     self = [super init];
     if (nil != self) {
@@ -39,7 +40,7 @@
 
 +(BOOL) serializeModel : (id) data withFileName:(NSString *)fileName{
 
-    NSString *userID = @"1";
+    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
@@ -55,7 +56,7 @@
 }
 
 +(id) deserializeModel : (NSString *)fileName{
-    NSString *userID = @"1";
+    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSData *cacheData = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@%@%@",documentsDirectory,[NSString stringWithFormat:CachePath,userID],fileName]];
@@ -70,7 +71,7 @@
 }
 
 +(void) clearCache : (NSString *) fileName{
-    NSString *userID = @"1";
+    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@%@",documentsDirectory,[NSString stringWithFormat:CachePath,userID]]]) {
@@ -84,7 +85,7 @@
 }
 
 +(NSString *) CachePathDir{
-    NSString *userID = @"1";
+    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@%@",documentsDirectory,[NSString stringWithFormat:CachePath,userID]]]) {
