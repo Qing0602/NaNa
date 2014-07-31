@@ -28,6 +28,17 @@ typedef enum{
 // 用户登陆model
 @property(nonatomic,strong) NaNaUserAccountModel *userAccount;
 
+// 新好友数量
+@property(nonatomic,strong) NSNumber *newFriends;
+// 新关注者数量
+@property(nonatomic,strong) NSNumber *newLoved;
+// 未读消息数量
+@property(nonatomic,strong) NSNumber *newMessage;
+// 未查看来访数量
+@property(nonatomic,strong) NSNumber *newVisitor;
+// 积分数量
+@property(nonatomic,strong) NSNumber *point;
+
 @property(nonatomic,strong) NSDictionary *uploadResult;
 
 @property(nonatomic,strong) NSHTTPCookie *php;
