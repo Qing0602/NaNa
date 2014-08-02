@@ -9,6 +9,7 @@
 #import "NaNaHttpEngine.h"
 #import <objc/message.h>
 #import "Reachability.h"
+#import "NaNaUIManagement.h"
 
 @interface NaNaHttpEngine ()
 //转换数据
@@ -63,47 +64,67 @@
     self.hasError = NO;
     self.errorMessage = @"";
     
+    // 获取网络访问Header信息并判断
+    NSDictionary *headers = [request responseHeaders];
+    BOOL status = [headers[@"status"] boolValue];
+    
+    if (status) {
+        /*
+         "charm": 60,        //int       魅力值
+         "newfriend": 0,     //int       新好友数量
+         "newloved": 0,      //int       新关注者数量
+         "newmessage": 0,    //int       未读消息数量
+         "newvisitor": 6,    //int       未查看来访数量
+         "point": 997499,    //int       积分数量
+         */
+        int charm = [headers[@"charm"] intValue];
+        int friendOfNew = [headers[@"newfriend"] intValue];
+        int lovedOfNew = [headers[@"newloved"] intValue];
+        int messageOfNew = [headers[@"newmessage"] intValue];
+        int visitorOfNew = [headers[@"newvisitor"] intValue];
+        int point = [headers[@"point"] intValue];
+        
+        dispatch_block_t updateTagBlock = ^{
+            if([[NaNaUIManagement sharedInstance].charm intValue] != charm){
+                [NaNaUIManagement sharedInstance].charm = [NSNumber numberWithInt:charm];
+            }
+            if([[NaNaUIManagement sharedInstance].friendsOfNew intValue] != friendOfNew){
+                [NaNaUIManagement sharedInstance].friendsOfNew = [NSNumber numberWithInt:friendOfNew];
+            }
+            if([[NaNaUIManagement sharedInstance].lovedOfNew intValue] != lovedOfNew){
+                [NaNaUIManagement sharedInstance].lovedOfNew = [NSNumber numberWithInt:lovedOfNew];
+            }
+            if([[NaNaUIManagement sharedInstance].messageOfNew intValue] != messageOfNew){
+                [NaNaUIManagement sharedInstance].messageOfNew = [NSNumber numberWithInt:messageOfNew];
+            }
+            if([[NaNaUIManagement sharedInstance].visitorOfNew intValue] != visitorOfNew){
+                [NaNaUIManagement sharedInstance].visitorOfNew = [NSNumber numberWithInt:visitorOfNew];
+            }
+            if([[NaNaUIManagement sharedInstance].point intValue] != point){
+                [NaNaUIManagement sharedInstance].point = [NSNumber numberWithInt:point];
+            }
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }
+    
     // 当以文本形式读取返回内容时用这个方法
     NSString *responseString = [request responseString];
     NSDictionary *dic = [self getJSONObject:responseString];
     
-    NSInteger status = 0;
-    status = [[dic valueForKey:@"errno"] integerValue];
-    if (status != 0) {
+    if (!status) {
         self.hasError = YES;
-        self.errorMessage = [dic objectForKey:@"error"];
+        self.errorMessage = headers[@"message"];
     }
     if (!self.hasError) {
         [self sendMsgToAutoCloseProgress:request.clazz];
-    }else{
-        if (3 == status) {
-            self.errorMessage = @"";
-        }
-        [self sendMsgToAutoShowErrorMessage:request.clazz withMsg:self.errorMessage];
-    }
-    // 退出操作
-    if (3 == status ) {
-//        if (![iStationAppDelegate getAppDelegate].logoutFlag) {
-//            [iStationAppDelegate getAppDelegate].logoutFlag = YES;
-//            [[NSNotificationCenter defaultCenter] postNotificationName:Notification_RemindLougout object:nil];
-//        }
-        return;
     }
     
     // 调用委托
     NSDictionary *result = [self configRequestResult:self.hasError withErrorMsg:self.errorMessage withData:dic withContext:request.context];
-    // 用于缓存数据
-    if (request.requestCompletedToCache != nil) {
-        request.requestCompletedToCache(result);
-    }
     
     // 用于KVO回调
     if (request.requestCompleted != nil) {
         request.requestCompleted(result);
-    }
-    
-    if (nil != request.clazz && nil != request.clazzAction&& [request.clazz respondsToSelector:request.clazzAction]) {
-        [self callback:request.clazz withAction:request.clazzAction withResult:result];
     }
 }
 
