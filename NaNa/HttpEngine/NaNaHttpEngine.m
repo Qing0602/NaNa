@@ -77,30 +77,50 @@
          "newvisitor": 6,    //int       未查看来访数量
          "point": 997499,    //int       积分数量
          */
-        int charm = [headers[@"charm"] intValue];
-        int friendOfNew = [headers[@"newfriend"] intValue];
-        int lovedOfNew = [headers[@"newloved"] intValue];
-        int messageOfNew = [headers[@"newmessage"] intValue];
-        int visitorOfNew = [headers[@"newvisitor"] intValue];
-        int point = [headers[@"point"] intValue];
+        int charm = -1;
+        if (headers[@"charm"] != nil) {
+            charm = [headers[@"charm"] intValue];
+        }
+        int friendOfNew = -1;
+        if (headers[@"newfriend"] != nil) {
+            friendOfNew = [headers[@"newfriend"] intValue];
+        }
+        int lovedOfNew = -1;
+        if (headers[@"newloved"] != nil) {
+            lovedOfNew = [headers[@"newloved"] intValue];
+        }
+        int messageOfNew = -1;
+        if (headers[@"newmessage"] != nil) {
+            messageOfNew = [headers[@"newmessage"] intValue];
+        }
+        
+        int visitorOfNew = -1;
+        if (headers[@"newvisitor"] != nil) {
+            visitorOfNew = [headers[@"newvisitor"] intValue];
+        }
+        
+        int point = -1;
+        if (headers[@"point"] != nil) {
+            point = [headers[@"point"] intValue];
+        }
         
         dispatch_block_t updateTagBlock = ^{
-            if([[NaNaUIManagement sharedInstance].charm intValue] != charm){
+            if(charm != -1 && [[NaNaUIManagement sharedInstance].charm intValue] != charm){
                 [NaNaUIManagement sharedInstance].charm = [NSNumber numberWithInt:charm];
             }
-            if([[NaNaUIManagement sharedInstance].friendsOfNew intValue] != friendOfNew){
+            if(friendOfNew != -1 && [[NaNaUIManagement sharedInstance].friendsOfNew intValue] != friendOfNew){
                 [NaNaUIManagement sharedInstance].friendsOfNew = [NSNumber numberWithInt:friendOfNew];
             }
-            if([[NaNaUIManagement sharedInstance].lovedOfNew intValue] != lovedOfNew){
+            if(lovedOfNew != -1 && [[NaNaUIManagement sharedInstance].lovedOfNew intValue] != lovedOfNew){
                 [NaNaUIManagement sharedInstance].lovedOfNew = [NSNumber numberWithInt:lovedOfNew];
             }
-            if([[NaNaUIManagement sharedInstance].messageOfNew intValue] != messageOfNew){
+            if(messageOfNew != -1 && [[NaNaUIManagement sharedInstance].messageOfNew intValue] != messageOfNew){
                 [NaNaUIManagement sharedInstance].messageOfNew = [NSNumber numberWithInt:messageOfNew];
             }
-            if([[NaNaUIManagement sharedInstance].visitorOfNew intValue] != visitorOfNew){
+            if(visitorOfNew != -1 && [[NaNaUIManagement sharedInstance].visitorOfNew intValue] != visitorOfNew){
                 [NaNaUIManagement sharedInstance].visitorOfNew = [NSNumber numberWithInt:visitorOfNew];
             }
-            if([[NaNaUIManagement sharedInstance].point intValue] != point){
+            if(point != -1 && [[NaNaUIManagement sharedInstance].point intValue] != point){
                 [NaNaUIManagement sharedInstance].point = [NSNumber numberWithInt:point];
             }
         };
