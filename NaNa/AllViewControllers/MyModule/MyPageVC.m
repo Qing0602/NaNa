@@ -13,7 +13,7 @@
 #import "PhotoManageVC.h"
 #import "UTabbar.h"
 #import "PhotoMenuView.h"
-@interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate>
+@interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     PhotoMenuView *_photoMenuView;
     CGRect              _photoMenuHideRect;     // 头像Menu不显示时的位置
@@ -267,6 +267,9 @@
                          animations:^{
                              _photoMenuView.frame = _photoMenuShowRect;
                          }];
+    }else if ([tagName isEqualToString:@"IMG"] && [className isEqualToString:@"option-lit"])
+    {
+        NSLog(@"%@",_myWebView.request.URL);
     }
     //    if (urlToSave.length > 0) {
     //        [self showImageURL:urlToSave point:pt];

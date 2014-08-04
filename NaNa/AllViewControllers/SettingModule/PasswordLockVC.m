@@ -52,6 +52,7 @@ UITextField * hiddenInput;
     [textView setTextAlignment:NSTextAlignmentCenter];
     [textView setBackgroundColor:[UIColor clearColor]];
     [textView setText:@"请输入密码"];
+    [textView setEditable:NO];
     [textView setFont:BoldFont(15)];
     [self.defaultView addSubview:textView];
     [textView release];
@@ -61,6 +62,7 @@ UITextField * hiddenInput;
     [_statusTextView setTextAlignment:NSTextAlignmentCenter];
     [_statusTextView setBackgroundColor:[UIColor clearColor]];
     [_statusTextView setText:@"第一次输入"];
+    [_statusTextView setEditable:NO];
     [_statusTextView setFont:NormalFont(15)];
     [self.defaultView addSubview:_statusTextView];
     [_statusTextView release];
@@ -93,6 +95,9 @@ UITextField * hiddenInput;
 
         passInput.tag=i;
         [mpasswordInputs insertObject:passInput atIndex:i];
+        if (i == 0) {
+            [passInput becomeFirstResponder];
+        }
         [self.defaultView addSubview:passInput];
         [passInput release];
     }
@@ -102,6 +107,7 @@ UITextField * hiddenInput;
                             initWithFrame:CGRectMake(0, _statusTextView.frame.origin.y+
                                                         _statusTextView.frame.size.height+
                                                                         50.0+61, 320,80)];
+    [textView2 setEditable:NO];
     [textView2 setTextAlignment:NSTextAlignmentCenter];
     [textView2 setBackgroundColor:[UIColor clearColor]];
     [textView2 setTextColor:@"#d8d8d8".color];
@@ -146,6 +152,14 @@ UITextField * hiddenInput;
     if(passwd.length==4)
     {
         [self Verify:passwd];
+        _statusTextView.text = @"再次输入";
+        for (int i =0; i < self._passwordArray.count; i++) {
+            UITextField *inputTextfield = [self._passwordArray objectAtIndex:i];
+            inputTextfield.text = @"";
+            if (i == 0) {
+                [inputTextfield becomeFirstResponder];
+            }
+        }
     }
 }
 

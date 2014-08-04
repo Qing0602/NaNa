@@ -8,7 +8,7 @@
 
 #import "PhotoManageVC.h"
 #import "ChoosePhotoDetailVC.h"
-
+#import "PhotosModel.h"
 @interface PhotoManageVC ()
 
 @end
@@ -30,6 +30,7 @@
     
     for (int i = 0; i < 29; i++)
     {
+
         UIImage *image = [UIImage imageNamed:@"key_pressed.png"];
         NSString *imageDes = [NSString stringWithFormat:@"后海游玩%d张照片",i];
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:image,@"image",imageDes,@"imageDes", nil];

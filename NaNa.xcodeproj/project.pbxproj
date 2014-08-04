@@ -55,6 +55,8 @@
 		36F00882184F36E000ED43BB /* RedeemcodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F00881184F36E000ED43BB /* RedeemcodeVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36FD27DD1839DAC2004EBC51 /* TaPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DC1839DAC2004EBC51 /* TaPageVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36FD27E0183A155C004EBC51 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DF183A155C004EBC51 /* LoginVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		74F9852A198FCFA400C86A41 /* photoDetailManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */; };
+		74F9852D198FD03800C86A41 /* PhotosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F9852C198FD03800C86A41 /* PhotosModel.m */; };
 		87165D10187EA7A70025B6DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87165D0F187EA7A70025B6DF /* AVFoundation.framework */; };
 		87167D7E188E25EB00263AC6 /* record_light blue_btn_lan.png in Resources */ = {isa = PBXBuildFile; fileRef = 87167D7D188E25EB00263AC6 /* record_light blue_btn_lan.png */; };
 		87167D81188E513900263AC6 /* TaInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87167D80188E513900263AC6 /* TaInfoVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -526,6 +528,10 @@
 		36FD27DC1839DAC2004EBC51 /* TaPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaPageVC.m; sourceTree = "<group>"; };
 		36FD27DE183A155C004EBC51 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		36FD27DF183A155C004EBC51 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		74F98528198FCFA400C86A41 /* photoDetailManagementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoDetailManagementVC.h; sourceTree = "<group>"; };
+		74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoDetailManagementVC.m; sourceTree = "<group>"; };
+		74F9852B198FD03800C86A41 /* PhotosModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosModel.h; sourceTree = "<group>"; };
+		74F9852C198FD03800C86A41 /* PhotosModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosModel.m; sourceTree = "<group>"; };
 		87165D0F187EA7A70025B6DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		87167D7D188E25EB00263AC6 /* record_light blue_btn_lan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light blue_btn_lan.png"; sourceTree = "<group>"; };
 		87167D7F188E513900263AC6 /* TaInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaInfoVC.h; sourceTree = "<group>"; };
@@ -2042,8 +2048,12 @@
 		97F261E817B39A520070295E /* 管理相册 */ = {
 			isa = PBXGroup;
 			children = (
+				74F9852B198FD03800C86A41 /* PhotosModel.h */,
+				74F9852C198FD03800C86A41 /* PhotosModel.m */,
 				36A45EAB1854985100439944 /* PhotoManageVC.h */,
 				36A45EAC1854985100439944 /* PhotoManageVC.m */,
+				74F98528198FCFA400C86A41 /* photoDetailManagementVC.h */,
+				74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */,
 				873BD9CE18BB3EC000D9C868 /* ChoosePhotoDetailVC.h */,
 				873BD9CF18BB3EC000D9C868 /* ChoosePhotoDetailVC.m */,
 			);
@@ -2567,6 +2577,7 @@
 				97F261E117B37E310070295E /* MenuLeftVCLogic.m in Sources */,
 				97F261E217B37E310070295E /* MenuRightVC.m in Sources */,
 				97F261E317B37E310070295E /* MessageInfoData.m in Sources */,
+				74F9852A198FCFA400C86A41 /* photoDetailManagementVC.m in Sources */,
 				97F261E417B37E310070295E /* RankingListVC.m in Sources */,
 				97996F1017B68CF300CA9A06 /* MenuCell.m in Sources */,
 				97996F1317B68CFD00CA9A06 /* MsgCell.m in Sources */,
@@ -2593,6 +2604,7 @@
 				19CB82EC196CC79800DBCBAB /* NaNaNetWorkService.m in Sources */,
 				36359202182299CE00F7AB67 /* VisitorVC.m in Sources */,
 				36A45EAD1854985100439944 /* PhotoManageVC.m in Sources */,
+				74F9852D198FD03800C86A41 /* PhotosModel.m in Sources */,
 				8722BD8518862A2200AA3FF6 /* FaceAndOther.m in Sources */,
 				36412411184720CF002C4329 /* WebLoginVC.m in Sources */,
 				3604BFF41856EAD600009BC2 /* GuideVC.m in Sources */,
