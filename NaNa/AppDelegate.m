@@ -18,7 +18,7 @@
 #import "LoginVC.h"
 #import "SignVC.h"
 #import "PasswordLockVC.h"
-
+#import "NaNaUIManagement.h"
 #pragma mark - Static Variable
 // 用于判断当前是否为iPhone5的屏幕设备
 BOOL isIPhone5Screen =  NO;
@@ -75,22 +75,19 @@ NSInteger K_WAKE_UP_ID = 0;
 -(void)LoadSignView
 {
     UINavigationController * _navRootController = [UINavigationController alloc];
-    if(![UStaticData hasLogin])
+    if(![[NaNaUIManagement sharedInstance].userAccount.seckey isEqualToString:@""])
+    {
+        [self loadMainView];
+    }
+    else
     {
         LoginVC * loginVc=[[LoginVC alloc] init];
         _navRootController=[_navRootController initWithRootViewController:loginVc];
         _navRootController.navigationBarHidden = YES;
-    
-   
+        [self.window setRootViewController:_navRootController];
+        SAFERELEASE(_navRootController);
     }
-    else
-    {
-        SignVC *signVC=[[SignVC alloc] init];
-        _navRootController=[_navRootController initWithRootViewController:signVC];
-        _navRootController.navigationBarHidden = YES;
-    }
-    [self.window setRootViewController:_navRootController];
-    SAFERELEASE(_navRootController);
+
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
