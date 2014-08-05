@@ -11,6 +11,8 @@
 
 @interface UserProfileOperation ()
 -(void) getUserProfile;
+-(void) getUserPrivacySetting;
+-(void) getUserPushSetting;
 @end
 
 @implementation UserProfileOperation
@@ -23,10 +25,48 @@
     return self;
 }
 
+-(UserProfileOperation *) initGetUserPrivacySetting : (NSString *) userID{
+    if ((self = [self initOperation])) {
+        self.type = kGetUserPrivacySetting;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPrivacySetting?userId=%@",userID];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+}
+
+-(UserProfileOperation *) initGetUserPushSetting : (NSString *) userID{
+    if ((self = [self initOperation])) {
+        self.type = kGetUserPushSetting;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPushSetting?userId=%@",userID];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+}
+
 -(void) getUserProfile{
     [self.request setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
             [NaNaUIManagement sharedInstance].userProfile = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
+-(void) getUserPrivacySetting{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].userPrivacySetting = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
+-(void) getUserPushSetting{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].userPushSetting = data;
         };
         dispatch_async(dispatch_get_main_queue(), updateTagBlock);
     }];

@@ -44,6 +44,10 @@ typedef enum{
 
 // 用户资料
 @property(nonatomic,strong) NSDictionary *userProfile;
+// 获取用户隐私设置
+@property(nonatomic,strong) NSDictionary *userPrivacySetting;
+// 获取用户通知设置
+@property(nonatomic,strong) NSDictionary *userPushSetting;
 
 @property(nonatomic,strong) NSDictionary *uploadResult;
 
@@ -53,5 +57,10 @@ typedef enum{
 
 
 -(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (NSString *) userID withDesc : (NSString *) desc;
+// 获取用户资料
 -(void) getUserProfile:(NSString *) userID;
+// 获取用户隐私设置
+-(void) getUserPrivacySetting;
+// 获取用户通知设置
+-(void) getUserPushSetting;
 @end
