@@ -17,6 +17,7 @@ static NaNaUIManagement *sharedInstance = nil;
     @synchronized(sharedInstance){
         if (nil == sharedInstance){
             sharedInstance = [[NaNaUIManagement alloc] init];
+            sharedInstance.userAccount = [NaNaUIModelCoding deserializeModel:@"NaNaUserAccount"];
         }
     }
     return sharedInstance;
