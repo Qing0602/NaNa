@@ -13,7 +13,7 @@ typedef enum{
 }UserProfileType;
 
 @interface UserProfileOperation : NaNaOperation
-@property (nonatomic,strong) UserProfileType type;
+@property (nonatomic) UserProfileType type;
 -(UserProfileOperation *) initGetUserProfile : (NSString *) userID;
 
 @end
