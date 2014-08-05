@@ -11,6 +11,7 @@
 #import "NaNaUserAccountModel.h"
 //#import "UploadOperation.h"
 
+
 #define TRANSFERVALUE @"TransferValue"
 #define TRANSFERVCFROMCLASS @"TransferFromVCClass"
 #define TRANSFERVCTOCLASS @"TransferToVCClass"
@@ -41,6 +42,9 @@ typedef enum{
 // 魅力值
 @property(nonatomic,strong) NSNumber *charm;
 
+// 用户资料
+@property(nonatomic,strong) NSDictionary *userProfile;
+
 @property(nonatomic,strong) NSDictionary *uploadResult;
 
 @property(nonatomic,strong) NSHTTPCookie *php;
@@ -49,5 +53,5 @@ typedef enum{
 
 
 -(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (NSString *) userID withDesc : (NSString *) desc;
-
+-(void) getUserProfile:(NSString *) userID;
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		191427A2198A8CD400F6C1FF /* NaNaUIModelCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */; };
 		191427A5198A8D2200F6C1FF /* NaNaUserAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */; };
+		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
 		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
 		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
 		19CB82EC196CC79800DBCBAB /* NaNaNetWorkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E1196CC79800DBCBAB /* NaNaNetWorkService.m */; };
@@ -457,6 +458,8 @@
 		191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUIModelCoding.m; sourceTree = "<group>"; };
 		191427A3198A8D2200F6C1FF /* NaNaUserAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUserAccountModel.h; sourceTree = "<group>"; };
 		191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUserAccountModel.m; sourceTree = "<group>"; };
+		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
+		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
 		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
 		19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsiGetRequestModel.m; sourceTree = "<group>"; };
 		19CB82DE196CC79800DBCBAB /* NaNaHttpEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaHttpEngine.h; sourceTree = "<group>"; };
@@ -1088,6 +1091,8 @@
 				19CB82E8196CC79800DBCBAB /* NaNaOperation.m */,
 				19CB82F3196D64C300DBCBAB /* UploadOperation.h */,
 				19CB82F4196D64C300DBCBAB /* UploadOperation.m */,
+				19B157EF19912B6A00A979EF /* UserProfileOperation.h */,
+				19B157F019912B6A00A979EF /* UserProfileOperation.m */,
 			);
 			path = OP;
 			sourceTree = "<group>";
@@ -2548,6 +2553,7 @@
 				36A45EB018549E1100439944 /* SetPrivateVC.m in Sources */,
 				97416E2F178015ED00865342 /* URequestManager.m in Sources */,
 				19CB82EF196CC79800DBCBAB /* NaNaOperation.m in Sources */,
+				19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */,
 				97416E30178015ED00865342 /* MD5.m in Sources */,
 				97416E31178015ED00865342 /* NSData+Base64.m in Sources */,
 				97416E32178015ED00865342 /* NSString+UIColor.m in Sources */,
@@ -2688,7 +2694,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ran shen (L5DD52DL4P)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
@@ -2716,7 +2722,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ran shen (L5DD52DL4P)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
