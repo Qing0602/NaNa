@@ -21,6 +21,7 @@
 
 #pragma mark - 工具类宏
 // =========================================== 工具类宏
+#define ScreenHeight ([UIScreen mainScreen].bounds.size.height)
 #define RGBA(r, g, b, a)  [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 //=====================================================
 

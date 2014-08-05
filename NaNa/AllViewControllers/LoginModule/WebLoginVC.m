@@ -11,6 +11,7 @@
 
 #import "AppDelegate.h"
 
+#import "NaNaUserAccountModel.h"
 @interface WebLoginVC ()
 
 @end
@@ -51,8 +52,10 @@
         [NSURLConnection sendSynchronousRequest: neededRequest returningResponse: &response error: nil];
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             NSDictionary *dictionary = [response allHeaderFields];
-            [[NSUserDefaults standardUserDefaults] setValue:dictionary forKey:accountInfoKey];
-
+            //[[NSUserDefaults standardUserDefaults] setValue:dictionary forKey:accountInfoKey];
+            
+            NaNaUserAccountModel *userAccount = [[NaNaUserAccountModel alloc] init];
+            [userAccount convertForDic:dictionary];
 
             InfoEditVC *infoEdit = [[InfoEditVC alloc] init];
             [self.navigationController pushViewController:infoEdit animated:YES];
