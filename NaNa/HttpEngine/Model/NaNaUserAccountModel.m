@@ -21,7 +21,7 @@
         if (dic[@"seckey"] != nil) {
             self.seckey = dic[@"seckey"];
         }
-        return [NaNaUserAccountModel serializeModel:self withFileName:@"NaNaUserAccount"];
+        return YES;
     }
     return NO;
 }

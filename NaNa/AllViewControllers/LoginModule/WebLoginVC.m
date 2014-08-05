@@ -55,7 +55,10 @@
             //[[NSUserDefaults standardUserDefaults] setValue:dictionary forKey:accountInfoKey];
             
             NaNaUserAccountModel *userAccount = [[NaNaUserAccountModel alloc] init];
-            [userAccount convertForDic:dictionary];
+            if ([userAccount convertForDic:dictionary]) {
+                [NaNaUIManagement sharedInstance].userAccount = userAccount;
+                [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
+            }
 
             InfoEditVC *infoEdit = [[InfoEditVC alloc] init];
             [self.navigationController pushViewController:infoEdit animated:YES];
