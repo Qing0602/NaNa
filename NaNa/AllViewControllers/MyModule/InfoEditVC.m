@@ -16,7 +16,7 @@
 #import "URequest.h"
 #import "URequestManager.h"
 #import "AppDelegate.h"
-
+#import "NaNaUIManagement.h"
 #define kInfoEditCellHeight         40.0
 #define kInfoEditCellShowHeight     30.0
 #define kInfoEditCellSildWidth      15.0
@@ -35,11 +35,19 @@ typedef enum {
 
 @implementation InfoEditVC
 @synthesize headButton = _headButton;
-
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"userProfile"]) {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
+        NSLog(@"%@",tempData);
+    }
+}
 - (void)loadView {
     [super loadView];
     self.title = STRING(@"info");
     _defaultView.backgroundColor = [UIColor whiteColor];
+    
+    [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
     
     NSString *recordTime = [UStaticData getObjectForKey:kInfoRecoderTimeKey];
@@ -405,12 +413,14 @@ typedef enum {
 {
     [super viewWillAppear:animated];
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userProfile"];
 }
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag

@@ -75,7 +75,7 @@ NSInteger K_WAKE_UP_ID = 0;
 -(void)LoadSignView
 {
     UINavigationController * _navRootController = [UINavigationController alloc];
-    if(![[NaNaUIManagement sharedInstance].userAccount.seckey isEqualToString:@""])
+    if([[NaNaUIManagement sharedInstance].userAccount.seckey isEqualToString:@""])
     {
         [self loadMainView];
     }
