@@ -121,9 +121,9 @@
         case 1:
         {
             ULog(@"qq");
-            //           WebLoginVC *webQQLogin =  [[WebLoginVC alloc] init];
-            //            [webQQLogin setURL:@"http://api.local.ishenran.cn/qqlogin/index.php"];
-            //            [self.navigationController pushViewController:webQQLogin animated:YES];
+            WebLoginVC *webQQLogin =  [[WebLoginVC alloc] init];
+            [webQQLogin setURL:@"http://api.local.ishenran.cn/qqlogin/index.php"];
+            [self.navigationController pushViewController:webQQLogin animated:YES];
             [APP_DELEGATE loadMainView];
         }
             break;
