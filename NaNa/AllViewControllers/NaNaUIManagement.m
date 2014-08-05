@@ -32,4 +32,14 @@ static NaNaUIManagement *sharedInstance = nil;
     UserProfileOperation *operation = [[UserProfileOperation alloc] initGetUserProfile:userID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
+
+-(void) getUserPrivacySetting{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initGetUserPrivacySetting:self.userAccount.UserID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+-(void) getUserPushSetting{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initGetUserPushSetting:self.userAccount.UserID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end
