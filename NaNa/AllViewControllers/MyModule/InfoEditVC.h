@@ -25,6 +25,11 @@ enum
     ENC_PCM = 6,
 }encodingTypes;
 
+typedef enum
+{
+    TYPE_NORMAL = 1,
+    TYPE_LOGIN = 2,
+}enterType;
 @interface InfoEditVC : UBasicViewController <UITableViewDataSource,
   UITableViewDelegate,
   UITextFieldDelegate,
@@ -81,8 +86,11 @@ enum
     UIView              *_recordingView;
     BOOL                 _isExistRecord;
       
+      NSInteger enterPathType;
+      
 }
 
 @property (nonatomic, retain) UIButton *headButton;
+@property (nonatomic, retain) NSDictionary *infoData;
 
 @end

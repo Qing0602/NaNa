@@ -42,6 +42,13 @@
 //[[UIImage imageNamed:imageName] resizableImageWithCapInsets:UIEdgeInsetsMake(top, left, bottom, right)]:\
 //[[UIImage imageNamed:imageName] stretchableImageWithLeftCapWidth:left topCapHeight:top];
 
+
+//HTTP宏
+#define Http_Has_Error_Key @"hasError"
+#define Http_ErrorMessage_Key @"errorMessage"
+#define Http_Data @"data"
+
+
 // Log宏
 #import "iConsole.h"
 #ifdef USE_ULOG

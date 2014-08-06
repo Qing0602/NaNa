@@ -39,8 +39,34 @@ typedef enum {
 {
     if ([keyPath isEqualToString:@"userProfile"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
-        NSLog(@"%@",tempData);
+        if ([[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            self.infoData = [[NSDictionary alloc] initWithDictionary:[[tempData objectForKey:Http_Data] objectForKey:@"body"]];
+            
+        }else
+        {
+            
+        }
     }
+}
+-(void)setInfoData:(NSDictionary *)infoData
+{
+    if (infoData && infoData.allKeys.count > 0) {
+        _nameTextField.text = infoData[@"nickname"];
+        _roleLabel.text = _roleArray[[infoData[@"role"] integerValue]];
+        _city.cityID = [infoData[@"city_id"] integerValue];
+        _city.cityName = infoData[@"city_name"];
+    }
+    
+    _infoData = infoData;
+
+}
+-(id)initWithType:(enterType)type
+{
+    self = [super init];
+    if (self) {
+        enterPathType = type;
+    }
+    return self;
 }
 - (void)loadView {
     [super loadView];
@@ -469,6 +495,8 @@ typedef enum {
     SAFERELEASE(_recordingView)
     SAFERELEASE(_audioPlayer)
     SAFERELEASE(_recorder)
+    
+    SAFERELEASE(_infoData)
     [super dealloc];
 }
 
@@ -760,6 +788,13 @@ typedef enum {
     }
 
     [UAlertView showAlertViewWithMessage:@"修改成功" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+    if (enterPathType == TYPE_LOGIN) {
+        [APP_DELEGATE loadMainView];
+    }else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 - (void)requestFailed:(URequest *)request {
@@ -769,8 +804,13 @@ typedef enum {
 
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
-#pragma waring 如果第一次登录，返回到登录页面
-    [self.navigationController popViewControllerAnimated:YES];
+    if (enterPathType == TYPE_LOGIN) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 - (void)rightItemPressed:(UIButton *)btn {
@@ -806,12 +846,11 @@ typedef enum {
         [UAlertView showAlertViewWithMessage:@"请勾选已阅读并同意用户协议" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         return;
     }
-#warning 根据是否是第一次登录跳转到首页
-    [APP_DELEGATE loadMainView];
+
     // 提交request请求
 
     
-    NSString *param = [NSString stringWithFormat:@"userId=%@&nickname=%@&role=%d&birthday=%@&city_id=%d", [self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID],_nameTextField.text, roleInt, _birthday, cityId];
+    NSString *param = [NSString stringWithFormat:@"userId=%@&nickname=%@&role=%d&birthday=%@&city_id=%d", [NaNaUIManagement sharedInstance].userAccount.UserID,_nameTextField.text, roleInt, _birthday, cityId];
     URequest *request = [[URequest alloc] initWithDomain:K_DOMAIN_NANA
                                                 withPath:k_URL_USER_UPDATE_INFO
                                                withParam:param];
