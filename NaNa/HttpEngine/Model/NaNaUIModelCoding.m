@@ -56,7 +56,7 @@
 }
 
 +(id) deserializeModel : (NSString *)fileName{
-    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserID"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSData *cacheData = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@%@%@",documentsDirectory,[NSString stringWithFormat:CachePath,userID],fileName]];

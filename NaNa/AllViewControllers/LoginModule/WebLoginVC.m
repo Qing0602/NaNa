@@ -56,6 +56,8 @@
             
             NaNaUserAccountModel *userAccount = [[NaNaUserAccountModel alloc] init];
             if ([userAccount convertForDic:dictionary]) {
+                [[NSUserDefaults standardUserDefaults] setValue:userAccount.UserID forKeyPath:@"UserID"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 [NaNaUIManagement sharedInstance].userAccount = userAccount;
                 [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
             }
