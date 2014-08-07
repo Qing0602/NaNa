@@ -205,11 +205,13 @@ typedef enum{
     if(self.httpType == Http_Get){
         [self.request setTimeOutSeconds:TimeOutSeconds];
         [self.request setUserAgentString:[self GetUserAgent]];
+        [self.request.requestHeaders setObject:[NaNaUIManagement sharedInstance].userAccount.seckey forKey:@"seckey"];
         self.request.clazz = self.delegate;
         self.request.clazzAction = self.action;
     }else if (self.httpType == Http_Post){
         [self.dataRequest setUserAgentString:[self GetUserAgent]];
         [self.dataRequest setTimeOutSeconds:TimeOutSeconds];
+        [self.request.requestHeaders setObject:[NaNaUIManagement sharedInstance].userAccount.seckey forKey:@"seckey"];
         self.dataRequest.clazz = self.delegate;
         self.dataRequest.clazzAction = self.action;
     }

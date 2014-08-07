@@ -10,7 +10,7 @@
 #import "NaNaUIModelCoding.h"
 
 @interface NaNaUserAccountModel : NaNaUIModelCoding
-@property (nonatomic,copy) NSString *UserID;
+@property (nonatomic) int UserID;
 @property (nonatomic,copy) NSString *NaNaID;
 @property (nonatomic,copy) NSString *seckey;
 

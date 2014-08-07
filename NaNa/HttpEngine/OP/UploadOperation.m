@@ -13,7 +13,7 @@
 @end
 
 @implementation UploadOperation
--(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (NSString *) userID  withDesc : (NSString *) desc{
+-(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID  withDesc : (NSString *) desc{
     self = [super initOperation];
     
     if (nil != self) {
@@ -38,7 +38,7 @@
         NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/upload"];
         [self setHttpRequestPostWithUrl:urlStr
                                  params:[NSDictionary dictionaryWithObjectsAndKeys:
-                                         userID,@"userId",
+                                         [NSNumber numberWithInt:userID],@"userId",
                                          type,@"bucket",
                                          desc,@"description",
                                          nil]

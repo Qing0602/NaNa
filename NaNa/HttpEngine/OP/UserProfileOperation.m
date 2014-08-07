@@ -16,28 +16,28 @@
 @end
 
 @implementation UserProfileOperation
--(UserProfileOperation *) initGetUserProfile : (NSString *) userID{
+-(UserProfileOperation *) initGetUserProfile : (int) userID{
     if ((self = [self initOperation])) {
         self.type = kGetUserProfile;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/info?userId=%@",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/info?userId=%d",userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
 }
 
--(UserProfileOperation *) initGetUserPrivacySetting : (NSString *) userID{
+-(UserProfileOperation *) initGetUserPrivacySetting : (int) userID{
     if ((self = [self initOperation])) {
         self.type = kGetUserPrivacySetting;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPrivacySetting?userId=%@",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPrivacySetting?userId=%d",userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
 }
 
--(UserProfileOperation *) initGetUserPushSetting : (NSString *) userID{
+-(UserProfileOperation *) initGetUserPushSetting : (int) userID{
     if ((self = [self initOperation])) {
         self.type = kGetUserPushSetting;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPushSetting?userId=%@",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPushSetting?userId=%d",userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;

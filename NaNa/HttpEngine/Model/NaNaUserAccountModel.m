@@ -16,7 +16,7 @@
             self.NaNaID = dic[@"nana_id"];
         }
         if (dic[@"user_id"] != nil) {
-            self.UserID = dic[@"user_id"];
+            self.UserID = [dic[@"user_id"] integerValue];
         }
         if (dic[@"seckey"] != nil) {
             self.seckey = dic[@"seckey"];
@@ -29,7 +29,7 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder{
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.NaNaID forKey:@"NaNaID"];
-    [aCoder encodeObject:self.UserID forKey:@"UserID"];
+    [aCoder encodeInteger:self.UserID forKey:@"UserID"];
     [aCoder encodeObject:self.seckey forKey:@"seckey"];
 }
 
@@ -37,7 +37,7 @@
     self = [super initWithCoder:aDecoder];
     if (nil != self) {
         self.NaNaID = [aDecoder decodeObjectForKey:@"NaNaID"];
-        self.UserID = [aDecoder decodeObjectForKey:@"UserID"];
+        self.UserID = [aDecoder decodeIntegerForKey:@"UserID"];
         self.seckey = [aDecoder decodeObjectForKey:@"seckey"];
     }
     return self;

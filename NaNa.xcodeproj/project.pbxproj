@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		191427A2198A8CD400F6C1FF /* NaNaUIModelCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */; };
 		191427A5198A8D2200F6C1FF /* NaNaUserAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */; };
+		19A609321993B7BA00F77AA2 /* GiftOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609311993B7BA00F77AA2 /* GiftOperation.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
 		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
 		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
@@ -458,6 +459,8 @@
 		191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUIModelCoding.m; sourceTree = "<group>"; };
 		191427A3198A8D2200F6C1FF /* NaNaUserAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUserAccountModel.h; sourceTree = "<group>"; };
 		191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUserAccountModel.m; sourceTree = "<group>"; };
+		19A609301993B7BA00F77AA2 /* GiftOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftOperation.h; sourceTree = "<group>"; };
+		19A609311993B7BA00F77AA2 /* GiftOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftOperation.m; sourceTree = "<group>"; };
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
 		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
@@ -1093,6 +1096,8 @@
 				19CB82F4196D64C300DBCBAB /* UploadOperation.m */,
 				19B157EF19912B6A00A979EF /* UserProfileOperation.h */,
 				19B157F019912B6A00A979EF /* UserProfileOperation.m */,
+				19A609301993B7BA00F77AA2 /* GiftOperation.h */,
+				19A609311993B7BA00F77AA2 /* GiftOperation.m */,
 			);
 			path = OP;
 			sourceTree = "<group>";
@@ -2586,6 +2591,7 @@
 				74F9852A198FCFA400C86A41 /* photoDetailManagementVC.m in Sources */,
 				97F261E417B37E310070295E /* RankingListVC.m in Sources */,
 				97996F1017B68CF300CA9A06 /* MenuCell.m in Sources */,
+				19A609321993B7BA00F77AA2 /* GiftOperation.m in Sources */,
 				97996F1317B68CFD00CA9A06 /* MsgCell.m in Sources */,
 				97996F1617B68D3C00CA9A06 /* MyPageVC.m in Sources */,
 				97996F1917B68F4600CA9A06 /* InfoEditVC.m in Sources */,

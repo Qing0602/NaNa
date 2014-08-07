@@ -40,7 +40,7 @@
 
 +(BOOL) serializeModel : (id) data withFileName:(NSString *)fileName{
 
-    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
+    int userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
@@ -56,7 +56,7 @@
 }
 
 +(id) deserializeModel : (NSString *)fileName{
-    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserID"];
+    int userID = [[[NSUserDefaults standardUserDefaults] objectForKey:@"UserID"] integerValue];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSData *cacheData = [NSData dataWithContentsOfFile:[NSString stringWithFormat:@"%@%@%@",documentsDirectory,[NSString stringWithFormat:CachePath,userID],fileName]];
@@ -71,7 +71,7 @@
 }
 
 +(void) clearCache : (NSString *) fileName{
-    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
+    int userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@%@",documentsDirectory,[NSString stringWithFormat:CachePath,userID]]]) {
@@ -85,7 +85,7 @@
 }
 
 +(NSString *) CachePathDir{
-    NSString *userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
+    int userID = [NaNaUIManagement sharedInstance].userAccount.UserID;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@%@",documentsDirectory,[NSString stringWithFormat:CachePath,userID]]]) {

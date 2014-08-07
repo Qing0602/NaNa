@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "NaNaNetWorkService.h"
 #import "NaNaUserAccountModel.h"
-//#import "UploadOperation.h"
-
 
 #define TRANSFERVALUE @"TransferValue"
 #define TRANSFERVCFROMCLASS @"TransferFromVCClass"
@@ -49,6 +47,13 @@ typedef enum{
 // 获取用户通知设置
 @property(nonatomic,strong) NSDictionary *userPushSetting;
 
+// 可用于购买的礼物列表
+@property(nonatomic,strong) NSDictionary *giftStoreDic;
+// 获赠礼物列表
+@property(nonatomic,strong) NSDictionary *userGiftListDic;
+// 赠送礼物
+@property(nonatomic,strong) NSDictionary *presentGift;
+
 @property(nonatomic,strong) NSDictionary *uploadResult;
 
 @property(nonatomic,strong) NSHTTPCookie *php;
@@ -56,11 +61,18 @@ typedef enum{
 @property(nonatomic,strong) NSString *imServerIP;
 
 
--(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (NSString *) userID withDesc : (NSString *) desc;
+-(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc;
 // 获取用户资料
--(void) getUserProfile:(NSString *) userID;
+-(void) getUserProfile:(int) userID;
 // 获取用户隐私设置
 -(void) getUserPrivacySetting;
 // 获取用户通知设置
 -(void) getUserPushSetting;
+
+// 获取可用于购买的礼物列表
+-(void) initGetGiftStoreList;
+// 获取获赠礼物列表
+-(void) initGetUserGiftList;
+// 赠送礼物
+-(void) initPresentGift : (int) giftID withTargetID : (int) targetUserID;
 @end

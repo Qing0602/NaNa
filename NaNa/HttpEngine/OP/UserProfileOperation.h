@@ -16,7 +16,7 @@ typedef enum{
 
 @interface UserProfileOperation : NaNaOperation
 @property (nonatomic) UserProfileType type;
--(UserProfileOperation *) initGetUserProfile : (NSString *) userID;
--(UserProfileOperation *) initGetUserPrivacySetting : (NSString *) userID;
--(UserProfileOperation *) initGetUserPushSetting : (NSString *) userID;
+-(UserProfileOperation *) initGetUserProfile : (int) userID;
+-(UserProfileOperation *) initGetUserPrivacySetting : (int) userID;
+-(UserProfileOperation *) initGetUserPushSetting : (int) userID;
 @end
