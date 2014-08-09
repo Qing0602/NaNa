@@ -60,4 +60,23 @@ static NaNaUIManagement *sharedInstance = nil;
     GiftOperation *operation = [[GiftOperation alloc] initPresentGift:giftID withUserID:self.userAccount.UserID withTargetID:targetUserID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
+
+// 修改用户资料
+-(void) updateUserProfile : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initUpdateUserProfile:self.userAccount.UserID withNickName:nickName withRole:role withCityID:cityID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 修改用户接受推送
+-(void) initUpdateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush
+                withCanFriendPush : (BOOL) canFriendPush{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initUpdateUserPushSetting:self.userAccount.UserID withCanMessagePush:canMessagePush withCanVisitPush:canVisitPush withCanLovePush:canLovePush withCanFriendPush:canFriendPush];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 修改隐私设置
+-(void) updateUserPrivacySetting : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initUpdateUserPrivacySetting:self.userAccount.UserID withIsShowPhotoes:isShowPhotoes withIsShowUserInfo:isShowUserInfo withIsShowUserAvatar:isShowUserAvatar withIsShowVoice:isShowVoice];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end

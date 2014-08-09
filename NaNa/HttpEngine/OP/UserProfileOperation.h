@@ -12,6 +12,9 @@ typedef enum{
     kGetUserProfile,
     kGetUserPrivacySetting,
     kGetUserPushSetting,
+    kPostUserProfile,
+    kPostUserPrivacySetting,
+    kPostUserPushSetting,
 }UserProfileType;
 
 @interface UserProfileOperation : NaNaOperation
@@ -19,4 +22,13 @@ typedef enum{
 -(UserProfileOperation *) initGetUserProfile : (int) userID;
 -(UserProfileOperation *) initGetUserPrivacySetting : (int) userID;
 -(UserProfileOperation *) initGetUserPushSetting : (int) userID;
+
+-(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID;
+
+-(UserProfileOperation *) initUpdateUserPushSetting : (int) userID withCanMessagePush : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush
+                                withCanLovePush : (BOOL) canLovePush withCanFriendPush : (BOOL) canFriendPush;
+
+-(UserProfileOperation *) initUpdateUserPrivacySetting : (int) userID withIsShowPhotoes : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo
+                                withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice;
+
 @end

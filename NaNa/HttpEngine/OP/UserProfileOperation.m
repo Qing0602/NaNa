@@ -13,6 +13,9 @@
 -(void) getUserProfile;
 -(void) getUserPrivacySetting;
 -(void) getUserPushSetting;
+-(void) postUserProfile;
+-(void) postUserPrivacySetting;
+-(void) postUserPushSetting;
 @end
 
 @implementation UserProfileOperation
@@ -39,6 +42,55 @@
         self.type = kGetUserPushSetting;
         NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPushSetting?userId=%d",userID];
         [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+}
+
+-(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = kPostUserProfile;
+        NSString *urlStr  = @"http://api.local.ishenran.cn/user/updateInfo";
+        [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      [NSNumber numberWithInt:userID],@"userId",
+                                                      nickName,@"nickname",
+                                                      [NSNumber numberWithInt:cityID],@"city_id",
+                                                      role,@"role",nil]];
+    }
+    return self;
+}
+
+-(UserProfileOperation *) initUpdateUserPushSetting : (int) userID withCanMessagePush : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush
+                                    withCanLovePush : (BOOL) canLovePush withCanFriendPush : (BOOL) canFriendPush{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = kPostUserPushSetting;
+        NSString *urlStr = @"http://api.local.ishenran.cn/user/pushSetting";
+        [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      [NSNumber numberWithInt:userID],@"userId",
+                                                      [NSNumber numberWithBool:canMessagePush],@"messagePush",
+                                                      [NSNumber numberWithBool:canVisitPush],@"visitPush",
+                                                      [NSNumber numberWithBool:canLovePush],@"lovePush",
+                                                      [NSNumber numberWithBool:canFriendPush],@"friendPush",
+                                                       nil]];
+        
+    }
+    return self;
+}
+
+-(UserProfileOperation *) initUpdateUserPrivacySetting : (int) userID withIsShowPhotoes : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo
+                                  withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = kPostUserPrivacySetting;
+        NSString *urlStr = @"http://api.local.ishenran.cn/user/privacySetting";
+        [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      [NSNumber numberWithInt:userID],@"userId",
+                                                      [NSNumber numberWithBool:isShowPhotoes],@"showPhotos",
+                                                      [NSNumber numberWithBool:isShowUserInfo],@"showInfo",
+                                                      [NSNumber numberWithBool:isShowUserAvatar],@"showAvatar",
+                                                      [NSNumber numberWithBool:isShowVoice],@"showVoice",
+                                                       nil]];
     }
     return self;
 }
@@ -73,13 +125,57 @@
     [self startAsynchronous];
 }
 
+-(void) postUserProfile{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].updateUserProfile = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
+-(void) postUserPrivacySetting{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].updateUserPrivacySetting = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
+-(void) postUserPushSetting{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].updateUserPushSetting = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
 -(void) main{
     @autoreleasepool {
         switch (self.type) {
             case kGetUserProfile:
                 [self getUserProfile];
                 break;
-                
+            case kGetUserPrivacySetting:
+                [self getUserPrivacySetting];
+                break;
+            case kGetUserPushSetting:
+                [self getUserPushSetting];
+                break;
+            case kPostUserProfile:
+                [self postUserProfile];
+                break;
+            case kPostUserPrivacySetting:
+                [self postUserPrivacySetting];
+                break;
+            case kPostUserPushSetting:
+                [self postUserPushSetting];
+                break;
             default:
                 break;
         }

@@ -54,6 +54,14 @@ typedef enum{
 // 赠送礼物
 @property(nonatomic,strong) NSDictionary *presentGift;
 
+
+// 修改用户资料结果
+@property(nonatomic,strong) NSDictionary *updateUserProfile;
+// 设置用户接收推送结果
+@property(nonatomic,strong) NSDictionary *updateUserPrivacySetting;
+// 设置隐私设置结果
+@property(nonatomic,strong) NSDictionary *updateUserPushSetting;
+
 @property(nonatomic,strong) NSDictionary *uploadResult;
 
 @property(nonatomic,strong) NSHTTPCookie *php;
@@ -68,6 +76,15 @@ typedef enum{
 -(void) getUserPrivacySetting;
 // 获取用户通知设置
 -(void) getUserPushSetting;
+
+// 修改用户资料
+-(void) updateUserProfile : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID;
+
+// 修改用户接受推送
+-(void) initUpdateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush
+                withCanFriendPush : (BOOL) canFriendPush;
+// 修改隐私设置
+-(void) updateUserPrivacySetting : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice;
 
 // 获取可用于购买的礼物列表
 -(void) initGetGiftStoreList;
