@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190C7CE01996667400D6BE56 /* SystemOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 190C7CDF1996667400D6BE56 /* SystemOperation.m */; };
 		191427A2198A8CD400F6C1FF /* NaNaUIModelCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */; };
 		191427A5198A8D2200F6C1FF /* NaNaUserAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */; };
 		19A609321993B7BA00F77AA2 /* GiftOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609311993B7BA00F77AA2 /* GiftOperation.m */; };
@@ -456,6 +457,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190C7CDE1996667400D6BE56 /* SystemOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemOperation.h; sourceTree = "<group>"; };
+		190C7CDF1996667400D6BE56 /* SystemOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemOperation.m; sourceTree = "<group>"; };
 		191427A0198A8CD400F6C1FF /* NaNaUIModelCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUIModelCoding.h; sourceTree = "<group>"; };
 		191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUIModelCoding.m; sourceTree = "<group>"; };
 		191427A3198A8D2200F6C1FF /* NaNaUserAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUserAccountModel.h; sourceTree = "<group>"; };
@@ -1103,6 +1106,8 @@
 				19A609311993B7BA00F77AA2 /* GiftOperation.m */,
 				19A609331993C19400F77AA2 /* MessageOperation.h */,
 				19A609341993C19400F77AA2 /* MessageOperation.m */,
+				190C7CDE1996667400D6BE56 /* SystemOperation.h */,
+				190C7CDF1996667400D6BE56 /* SystemOperation.m */,
 			);
 			path = OP;
 			sourceTree = "<group>";
@@ -2527,6 +2532,7 @@
 				19A609351993C19400F77AA2 /* MessageOperation.m in Sources */,
 				97416E11178015ED00865342 /* ASIAuthenticationDialog.m in Sources */,
 				97416E12178015ED00865342 /* ASIDataCompressor.m in Sources */,
+				190C7CE01996667400D6BE56 /* SystemOperation.m in Sources */,
 				97416E13178015ED00865342 /* ASIDataDecompressor.m in Sources */,
 				97416E14178015ED00865342 /* ASIDownloadCache.m in Sources */,
 				191427A2198A8CD400F6C1FF /* NaNaUIModelCoding.m in Sources */,

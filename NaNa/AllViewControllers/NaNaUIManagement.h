@@ -64,6 +64,9 @@ typedef enum{
 
 @property(nonatomic,strong) NSDictionary *uploadResult;
 
+// 上传DriverToken结果
+@property(nonatomic,strong) NSDictionary *driverToken;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
