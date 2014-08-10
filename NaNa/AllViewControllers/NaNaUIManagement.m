@@ -46,17 +46,17 @@ static NaNaUIManagement *sharedInstance = nil;
 }
 
 // 获取可用于购买的礼物列表
--(void) initGetGiftStoreList{
+-(void) getGiftStoreList{
     GiftOperation *operation = [[GiftOperation alloc] initGetGiftStoreList];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 // 获取获赠礼物列表
--(void) initGetUserGiftList{
+-(void) getUserGiftList{
     GiftOperation *operation = [[GiftOperation alloc] initGetUserGiftList:self.userAccount.UserID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 // 赠送礼物
--(void) initPresentGift : (int) giftID withTargetID : (int) targetUserID{
+-(void) presentGift : (int) giftID withTargetID : (int) targetUserID{
     GiftOperation *operation = [[GiftOperation alloc] initPresentGift:giftID withUserID:self.userAccount.UserID withTargetID:targetUserID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
@@ -68,7 +68,7 @@ static NaNaUIManagement *sharedInstance = nil;
 }
 
 // 修改用户接受推送
--(void) initUpdateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush
+-(void) updateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush
                 withCanFriendPush : (BOOL) canFriendPush{
     UserProfileOperation *operation = [[UserProfileOperation alloc] initUpdateUserPushSetting:self.userAccount.UserID withCanMessagePush:canMessagePush withCanVisitPush:canVisitPush withCanLovePush:canLovePush withCanFriendPush:canFriendPush];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
@@ -77,6 +77,12 @@ static NaNaUIManagement *sharedInstance = nil;
 // 修改隐私设置
 -(void) updateUserPrivacySetting : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice{
     UserProfileOperation *operation = [[UserProfileOperation alloc] initUpdateUserPrivacySetting:self.userAccount.UserID withIsShowPhotoes:isShowPhotoes withIsShowUserInfo:isShowUserInfo withIsShowUserAvatar:isShowUserAvatar withIsShowVoice:isShowVoice];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 获取用户照片
+-(void) getuserPhotoesList : (int) userID{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initGetuserPhotoesList:userID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 @end

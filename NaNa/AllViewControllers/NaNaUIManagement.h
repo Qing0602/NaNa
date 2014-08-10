@@ -53,7 +53,8 @@ typedef enum{
 @property(nonatomic,strong) NSDictionary *userGiftListDic;
 // 赠送礼物
 @property(nonatomic,strong) NSDictionary *presentGift;
-
+// 获取当前用户的照片列表
+@property(nonatomic,strong) NSDictionary *userPhotoesList;
 
 // 修改用户资料结果
 @property(nonatomic,strong) NSDictionary *updateUserProfile;
@@ -71,7 +72,7 @@ typedef enum{
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
 
-
+// 上传文件
 -(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc;
 // 获取用户资料
 -(void) getUserProfile:(int) userID;
@@ -84,15 +85,17 @@ typedef enum{
 -(void) updateUserProfile : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID;
 
 // 修改用户接受推送
--(void) initUpdateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush
+-(void) updateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush
                 withCanFriendPush : (BOOL) canFriendPush;
 // 修改隐私设置
 -(void) updateUserPrivacySetting : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice;
 
 // 获取可用于购买的礼物列表
--(void) initGetGiftStoreList;
+-(void) getGiftStoreList;
 // 获取获赠礼物列表
--(void) initGetUserGiftList;
+-(void) getUserGiftList;
 // 赠送礼物
--(void) initPresentGift : (int) giftID withTargetID : (int) targetUserID;
+-(void) presentGift : (int) giftID withTargetID : (int) targetUserID;
+// 获取用户照片
+-(void) getuserPhotoesList : (int) userID;
 @end
