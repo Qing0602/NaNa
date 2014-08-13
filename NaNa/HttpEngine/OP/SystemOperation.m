@@ -26,7 +26,7 @@
 }
 
 -(void) postSystemDriverToken{
-    [self.request setRequestCompleted:^(NSDictionary *data){
+    [self.dataRequest setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
             [NaNaUIManagement sharedInstance].driverToken = data;
         };

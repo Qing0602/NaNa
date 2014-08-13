@@ -137,7 +137,7 @@
 }
 
 -(void) postUserProfile{
-    [self.request setRequestCompleted:^(NSDictionary *data){
+    [self.dataRequest setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
             [NaNaUIManagement sharedInstance].updateUserProfile = data;
         };
@@ -147,7 +147,7 @@
 }
 
 -(void) postUserPrivacySetting{
-    [self.request setRequestCompleted:^(NSDictionary *data){
+    [self.dataRequest setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
             [NaNaUIManagement sharedInstance].updateUserPrivacySetting = data;
         };
@@ -157,7 +157,7 @@
 }
 
 -(void) postUserPushSetting{
-    [self.request setRequestCompleted:^(NSDictionary *data){
+    [self.dataRequest setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
             [NaNaUIManagement sharedInstance].updateUserPushSetting = data;
         };
