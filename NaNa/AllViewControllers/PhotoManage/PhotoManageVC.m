@@ -14,7 +14,19 @@
 @end
 
 @implementation PhotoManageVC
-
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"userPhotoesList"]) {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
+        if ([[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            
+            
+        }else
+        {
+            
+        }
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -28,14 +40,14 @@
     _TITLE = @"相册管理";
     _photosArray = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 29; i++)
-    {
-
-        UIImage *image = [UIImage imageNamed:@"key_pressed.png"];
-        NSString *imageDes = [NSString stringWithFormat:@"后海游玩%d张照片",i];
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:image,@"image",imageDes,@"imageDes", nil];
-        [_photosArray addObject:dic];
-    }
+//    for (int i = 0; i < 29; i++)
+//    {
+//
+//        UIImage *image = [UIImage imageNamed:@"key_pressed.png"];
+//        NSString *imageDes = [NSString stringWithFormat:@"后海游玩%d张照片",i];
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:image,@"image",imageDes,@"imageDes", nil];
+//        [_photosArray addObject:dic];
+//    }
     
     
 //    self.title = STRING(@"private");
@@ -68,8 +80,16 @@
     }
     [_defaultView addSubview:_photoMenuView];
  
-    
+    [[NaNaUIManagement sharedInstance] getuserPhotoesList:[NaNaUIManagement sharedInstance].userAccount.UserID];
 
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userPhotoesList" options:0 context:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userPhotoesList"];
 }
 #pragma mark - HeadCartoonDelegate
 

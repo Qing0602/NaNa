@@ -44,7 +44,23 @@ typedef enum {
             
         }else
         {
+
+        }
+    }else if([keyPath isEqualToString:@"updateUserProfile"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].updateUserProfile];
+        if ([[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
             
+            [UAlertView showAlertViewWithMessage:@"修改成功" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+            if (enterPathType == TYPE_LOGIN) {
+                [APP_DELEGATE loadMainView];
+            }else
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }else
+        {
+            [UAlertView showAlertViewWithMessage:@"修改失败,请重新再试" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
     }
 }
@@ -440,6 +456,7 @@ typedef enum {
     [super viewWillAppear:animated];
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"updateUserProfile" options:0 context:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -447,6 +464,7 @@ typedef enum {
     [super viewWillDisappear:animated];
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userProfile"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserProfile"];
 }
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
@@ -847,10 +865,13 @@ typedef enum {
         return;
     }
 
+    
+    
+    /*
     // 提交request请求
 
     
-    NSString *param = [NSString stringWithFormat:@"userId=%@&nickname=%@&role=%d&birthday=%@&city_id=%d", [NaNaUIManagement sharedInstance].userAccount.UserID,_nameTextField.text, roleInt, _birthday, cityId];
+    NSString *param = [NSString stringWithFormat:@"userId=%d&nickname=%@&role=%d&birthday=%@&city_id=%d", [NaNaUIManagement sharedInstance].userAccount.UserID,_nameTextField.text, roleInt, _birthday, cityId];
     URequest *request = [[URequest alloc] initWithDomain:K_DOMAIN_NANA
                                                 withPath:k_URL_USER_UPDATE_INFO
                                                withParam:param];
@@ -859,7 +880,9 @@ typedef enum {
     request.delegate = self;
     [URequestManager addCommonRequest:request];
     [request release];
-     
+     */
+    
+    [[NaNaUIManagement sharedInstance] updateUserProfile:_nameTextField.text withRole:_roleLabel.text withCityID:cityId];
 }
 
 - (NSString *)getMinutes:(double)second
