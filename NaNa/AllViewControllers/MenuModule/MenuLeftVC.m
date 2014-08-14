@@ -41,16 +41,11 @@
         _tableView.separatorColor = [UIColor clearColor];
     }
     [_defaultView addSubview:_tableView];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sideResult" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] getSideMessage];
 }
 
--(void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sideResult" options:0 context:nil];
-}
-
--(void) viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
+-(void) dealloc{
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"sideResult"];
 }
 
