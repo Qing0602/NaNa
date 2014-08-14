@@ -64,11 +64,17 @@
     self.hasError = NO;
     self.errorMessage = @"";
     
-    // 获取网络访问Header信息并判断
-    NSDictionary *headers = [request responseHeaders];
-    BOOL status = [headers[@"status"] boolValue];
     
-    if (status) {
+    // 当以文本形式读取返回内容时用这个方法
+    NSString *responseString = [request responseString];
+    NSDictionary *dic = [self getJSONObject:responseString];
+    
+    // 获取网络访问Header信息并判断
+    NSDictionary *headers = dic[@"header"];
+    
+    int status = [headers[@"status"] intValue];
+    
+    if (status == 1) {
         /*
          "charm": 60,        //int       魅力值
          "newfriend": 0,     //int       新好友数量
@@ -127,9 +133,7 @@
         dispatch_async(dispatch_get_main_queue(), updateTagBlock);
     }
     
-    // 当以文本形式读取返回内容时用这个方法
-    NSString *responseString = [request responseString];
-    NSDictionary *dic = [self getJSONObject:responseString];
+    
     
     if (!status) {
         self.hasError = YES;
@@ -140,7 +144,7 @@
     }
     
     // 调用委托
-    NSDictionary *result = [self configRequestResult:self.hasError withErrorMsg:self.errorMessage withData:dic withContext:request.context];
+    NSDictionary *result = [self configRequestResult:self.hasError withErrorMsg:self.errorMessage withData:dic[@"body"] withContext:request.context];
     
     // 用于KVO回调
     if (request.requestCompleted != nil) {

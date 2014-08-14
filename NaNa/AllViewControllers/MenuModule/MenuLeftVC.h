@@ -25,6 +25,5 @@ typedef enum {
 }
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) MenuLeftVCLogic *menuLeftLogic;
-@property (nonatomic, retain) MenuLeftVCLogic *menuLeftVCLogic;
 
 @end

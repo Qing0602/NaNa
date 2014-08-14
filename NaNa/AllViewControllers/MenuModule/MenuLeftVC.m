@@ -18,6 +18,10 @@
 #define MENU_ROW_HEIGHT     44.0
 #define MSG_ROW_HEIGHT      80.0
 
+@interface MenuLeftVC ()
+@property (nonatomic,strong) NSArray *messages;
+@end
+
 @implementation MenuLeftVC
 
 
@@ -53,7 +57,11 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"sideResult"]) {
         
-        [_tableView reloadData];
+        if (![[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            messageInfoConver *conver = [[messageInfoConver alloc] init];
+            self.messages = [conver createByArray:[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_DATA]];
+            [_tableView reloadData];
+        }
     }
 }
 
@@ -70,7 +78,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return ((section == 0) ? 3 : 10);//_menuLeftVCLogic.messageArray.count);
+    return ((section == 0) ? 3 : [self.messages count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -8,10 +8,7 @@
 
 #import "MessageInfoData.h"
 
-@interface MessageInfoData ()
-// 根据字典，解析当前分类下的数据
-- (MessageInfoData *)createByDictionary:(NSDictionary *)dict;
-@end
+
 
 @implementation MessageInfoData
 
@@ -53,6 +50,17 @@
     return self;
 }
 
+
+@end
+
+
+@interface messageInfoConver ()
+// 根据字典，解析当前分类下的数据
+- (MessageInfoData *)createByDictionary:(NSDictionary *)dict;
+@end
+
+@implementation messageInfoConver
+
 #pragma mark - create
 // 根据字典，解析当前分类下的数据
 - (MessageInfoData *)createByDictionary:(NSDictionary *)dict {
@@ -82,4 +90,5 @@
     }
     return [NSArray arrayWithArray:messageArray];
 }
+
 @end

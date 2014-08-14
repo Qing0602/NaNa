@@ -26,6 +26,11 @@
 
 
 
+
+@end
+
+
+@interface messageInfoConver : NSObject
 // 根据数组，解析当前分类下的数据
 - (NSArray *)createByArray:(NSArray *)array;
 @end
