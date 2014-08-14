@@ -36,12 +36,16 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.backgroundColor = [UIColor colorWithRed:45.0f/255.0f green:46.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.separatorColor = [UIColor clearColor];
     }
     [_defaultView addSubview:_tableView];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sideResult" options:0 context:nil];
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [[NaNaUIManagement sharedInstance] getSideMessage];
 }
 
@@ -85,7 +89,6 @@
         if (cell == nil) {
             cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault
                                     reuseIdentifier:Menukey];
-            cell.contentView.backgroundColor = (indexPath.row%2) ? RGBA(45.0,46.0,50.0,1.0):RGBA(136.0,137.0,139.0,1.0);
         }
         
         switch (indexPath.row) {
@@ -97,7 +100,7 @@
             }
             case MenuLeftRowMyPage: {
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_head_normal.png"];
-                [cell.nameLabel setTextColor:[UIColor grayColor]];
+                [cell.nameLabel setTextColor:[UIColor whiteColor]];
                 cell.nameLabel.text = STRING(@"myPage");
                 break;
             }
@@ -139,12 +142,13 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 1) {
         UIView * header=[[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 20.0f)];
-        header.backgroundColor = RGBA(204.0,204.0,204.0,1.0);
+        header.backgroundColor = RGBA(70.0,71.0,75.0,1.0);
        
-        UILabel * title =  [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 50, 20.0f)];
+        UILabel * title =  [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 50, 20.0f)];
         [title setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
         title.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-        title.font = [UIFont systemFontOfSize:14];
+        title.font = [UIFont boldSystemFontOfSize:13];
+        title.textColor = [UIColor whiteColor];
         title.backgroundColor = [UIColor clearColor];
         
         UIButton * fresh=[[UIButton alloc] initWithFrame:CGRectMake(250, 3, 25, 25)];

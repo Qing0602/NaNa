@@ -17,4 +17,6 @@
 
 @property (nonatomic,strong) UIImageView *unReaderImage;
 @property (nonatomic,strong) UILabel *unReaderCount;
+
+@property (nonatomic,strong) UIImageView *cellLine;
 @end

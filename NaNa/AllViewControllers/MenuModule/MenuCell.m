@@ -16,15 +16,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = RGBA(45.0,46.0,50.0,1.0);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        // 背景
-//        UIView *bgview = [[UIView alloc] init];
-//        bgview.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-//        bgview.backgroundColor = [UIColor blackColor];
-//        [self addSubview:bgview];
-//        [bgview release];
         
         // icon
         _iconImageView = [[UIImageView alloc] init];
@@ -41,7 +34,11 @@
         _nameLabel.backgroundColor = [UIColor clearColor];
         _nameLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _nameLabel.textColor = default_color_light_dark;
-        [self addSubview:_nameLabel]; 
+        [self addSubview:_nameLabel];
+        
+        self.cellLine = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaCellLine"] stretchableImageWithLeftCapWidth:1.0f topCapHeight:1.0f]];
+        self.cellLine.frame = CGRectMake(0.0f, self.frame.size.height - 3.0f, 320.0f, 3.0f);
+        [self addSubview:self.cellLine];
     }
     return self;
 }
@@ -52,9 +49,13 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)dealloc {
-    SAFERELEASE(_iconImageView)
-    SAFERELEASE(_nameLabel)
-    [super dealloc];
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.backgroundColor = RGBA(34.0,35.0,39.0,1.0);
+    }else{
+        self.backgroundColor = RGBA(45.0,46.0,50.0,1.0);
+    }
 }
+
 @end

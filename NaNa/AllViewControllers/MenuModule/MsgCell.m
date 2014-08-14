@@ -50,6 +50,10 @@
         _timeLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _timeLabel.textColor = default_color_light_dark;
         [self.contentView addSubview:_timeLabel];
+        
+        self.cellLine = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaCellLine"] stretchableImageWithLeftCapWidth:1.0f topCapHeight:1.0f]];
+        self.cellLine.frame = CGRectMake(0.0f, self.frame.size.height - 3.0f, 320.0f, 3.0f);
+        [self addSubview:self.cellLine];
     }
     return self;
 }

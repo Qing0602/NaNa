@@ -10,6 +10,7 @@
 		190C7CE01996667400D6BE56 /* SystemOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 190C7CDF1996667400D6BE56 /* SystemOperation.m */; };
 		191427A2198A8CD400F6C1FF /* NaNaUIModelCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */; };
 		191427A5198A8D2200F6C1FF /* NaNaUserAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */; };
+		1922418A199D03C30067C5BA /* NaNaCellLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19224189199D03C30067C5BA /* NaNaCellLine@2x.png */; };
 		19A609321993B7BA00F77AA2 /* GiftOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609311993B7BA00F77AA2 /* GiftOperation.m */; };
 		19A609351993C19400F77AA2 /* MessageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609341993C19400F77AA2 /* MessageOperation.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
@@ -387,7 +388,7 @@
 		97812D6517B0D8A800B81537 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97812D5F17B0D8A800B81537 /* MMDrawerController.m */; };
 		97812D6717B0D8A800B81537 /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97812D6317B0D8A800B81537 /* UIViewController+MMDrawerController.m */; };
 		97838F8F17E59324000DC81E /* UpdateMemberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97838F8E17E59324000DC81E /* UpdateMemberVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		97996F1017B68CF300CA9A06 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F0F17B68CF300CA9A06 /* MenuCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		97996F1017B68CF300CA9A06 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F0F17B68CF300CA9A06 /* MenuCell.m */; };
 		97996F1317B68CFD00CA9A06 /* MsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F1217B68CFD00CA9A06 /* MsgCell.m */; };
 		97996F1617B68D3C00CA9A06 /* MyPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F1517B68D3C00CA9A06 /* MyPageVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		97996F1917B68F4600CA9A06 /* InfoEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F1817B68F4600CA9A06 /* InfoEditVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -470,6 +471,7 @@
 		191427A1198A8CD400F6C1FF /* NaNaUIModelCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUIModelCoding.m; sourceTree = "<group>"; };
 		191427A3198A8D2200F6C1FF /* NaNaUserAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUserAccountModel.h; sourceTree = "<group>"; };
 		191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUserAccountModel.m; sourceTree = "<group>"; };
+		19224189199D03C30067C5BA /* NaNaCellLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NaNaCellLine@2x.png"; path = "LeftMenu/NaNaCellLine@2x.png"; sourceTree = "<group>"; };
 		19A609301993B7BA00F77AA2 /* GiftOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftOperation.h; sourceTree = "<group>"; };
 		19A609311993B7BA00F77AA2 /* GiftOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftOperation.m; sourceTree = "<group>"; };
 		19A609331993C19400F77AA2 /* MessageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageOperation.h; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 		363591D618227DD100F7AB67 /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
+				19224189199D03C30067C5BA /* NaNaCellLine@2x.png */,
 				363591EF182294C600F7AB67 /* btn_fresh_normal.png */,
 				363591F0182294C600F7AB67 /* btn_fresh_pressed.png */,
 				363591D718227F3800F7AB67 /* icon_head_normal.png */,
@@ -2404,6 +2407,7 @@
 				87264C6E188541A900009F69 /* chat_textfield_bg.png in Resources */,
 				8729E97918840034005CAB4F /* 60.png in Resources */,
 				8729E98A18840034005CAB4F /* 68@2x.png in Resources */,
+				1922418A199D03C30067C5BA /* NaNaCellLine@2x.png in Resources */,
 				8729E90618840034005CAB4F /* 102.png in Resources */,
 				97AC1C5817D1C5F400233384 /* navbar_back_pressed.png in Resources */,
 				8729E96018840034005CAB4F /* 49@2x.png in Resources */,
