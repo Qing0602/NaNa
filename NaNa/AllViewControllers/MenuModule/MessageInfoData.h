@@ -24,9 +24,8 @@
 // 发送人ID
 @property (nonatomic) int senderID;
 
-// 根据字典，解析当前分类下的数据
-- (MessageInfoData *)createByDictionary:(NSDictionary *)dict;
+
 
 // 根据数组，解析当前分类下的数据
-- (NSMutableArray *)createByArray:(NSArray *)array;
+- (NSArray *)createByArray:(NSArray *)array;
 @end

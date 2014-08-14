@@ -8,6 +8,11 @@
 
 #import "MessageInfoData.h"
 
+@interface MessageInfoData ()
+// 根据字典，解析当前分类下的数据
+- (MessageInfoData *)createByDictionary:(NSDictionary *)dict;
+@end
+
 @implementation MessageInfoData
 
 /*
@@ -65,7 +70,7 @@
 }
 
 // 根据数组，解析当前分类下的数据
-- (NSMutableArray *)createByArray:(NSArray *)array {
+- (NSArray *)createByArray:(NSArray *)array {
     NSMutableArray *messageArray = [[NSMutableArray alloc] init];
     if ([array isKindOfClass:[NSArray class]]) {
         for (NSDictionary *messageDict in array) {
@@ -75,6 +80,6 @@
             }
         }
     }
-    return messageArray;
+    return [NSArray arrayWithArray:messageArray];
 }
 @end
