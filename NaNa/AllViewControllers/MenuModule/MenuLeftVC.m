@@ -56,9 +56,32 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"sideResult"]) {
         
+        MessageInfoData *messageInfo = [[MessageInfoData alloc] init];
+        messageInfo.avatarUrl = @"aaa";
+        messageInfo.content = @"abcdefg";
+        messageInfo.count = 10;
+        messageInfo.createtime = 0;
+        messageInfo.nickname = @"123";
+        messageInfo.senderID = 5;
+        NSMutableArray *a = [[NSMutableArray alloc] initWithObjects:messageInfo, nil];
+        self.messages = a;
+        
+        [_tableView reloadData];
+        
         if (![[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             messageInfoConver *conver = [[messageInfoConver alloc] init];
             self.messages = [conver createByArray:[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_DATA]];
+            
+            MessageInfoData *messageInfo = [[MessageInfoData alloc] init];
+            messageInfo.avatarUrl = @"aaa";
+            messageInfo.content = @"abcdefg";
+            messageInfo.count = 10;
+            messageInfo.createtime = 0;
+            messageInfo.nickname = @"123";
+            messageInfo.senderID = 5;
+            NSMutableArray *a = [[NSMutableArray alloc] initWithObjects:messageInfo, nil];
+            self.messages = a;
+            
             [_tableView reloadData];
         }
     }
@@ -120,13 +143,14 @@
         if (cell == nil) {
             cell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:Msgkey];
-            
         }
         
         cell.headImageView.image = [UIImage imageNamed:@"icon.png"];
         cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", @"name", @"测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试"];
         cell.timeLabel.text = @"1分钟前";
+        [cell setModel:[self.messages objectAtIndex:indexPath.row]];
         cell.contentView.backgroundColor = RGBA(57.0,56.0,60.0,1.0);
+        cell.cellLine.frame = CGRectMake(0.0f, 80.0f - 3.0f, 320.0f, 3.0f);
         return cell;
     }
 }
@@ -174,7 +198,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return MENU_ROW_HEIGHT;
-        
     } else {
         return MSG_ROW_HEIGHT;
     }

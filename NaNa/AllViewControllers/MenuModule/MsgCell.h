@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MessageInfoData.h"
 
 @interface MsgCell : UITableViewCell {
 }
@@ -19,4 +20,6 @@
 @property (nonatomic,strong) UILabel *unReaderCount;
 
 @property (nonatomic,strong) UIImageView *cellLine;
+
+-(void) setModel : (MessageInfoData *) model;
 @end
