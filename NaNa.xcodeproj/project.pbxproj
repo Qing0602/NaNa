@@ -64,7 +64,7 @@
 		745E8C21199C8532007A8053 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C08199C8532007A8053 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745E8C22199C8532007A8053 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0A199C8532007A8053 /* EGOImageLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745E8C23199C8532007A8053 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0D199C8532007A8053 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		745E8C24199C8532007A8053 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0F199C8532007A8053 /* ImageUtil.m */; };
+		745E8C24199C8532007A8053 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0F199C8532007A8053 /* ImageUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745E8C29199C8532007A8053 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C1B199C8532007A8053 /* UIImage+Resize.m */; };
 		74F9852A198FCFA400C86A41 /* photoDetailManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */; };
 		74F9852D198FD03800C86A41 /* PhotosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F9852C198FD03800C86A41 /* PhotosModel.m */; };
