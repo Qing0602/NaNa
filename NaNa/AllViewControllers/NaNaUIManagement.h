@@ -62,11 +62,14 @@ typedef enum{
 @property(nonatomic,strong) NSDictionary *updateUserPrivacySetting;
 // 设置隐私设置结果
 @property(nonatomic,strong) NSDictionary *updateUserPushSetting;
-
+// 上传结果
 @property(nonatomic,strong) NSDictionary *uploadResult;
 
 // 上传DriverToken结果
 @property(nonatomic,strong) NSDictionary *driverToken;
+
+// 获取侧边栏数据
+@property(nonatomic,strong) NSDictionary *sideResult;
 
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
@@ -98,4 +101,9 @@ typedef enum{
 -(void) presentGift : (int) giftID withTargetID : (int) targetUserID;
 // 获取用户照片
 -(void) getuserPhotoesList : (int) userID;
+
+
+
+// 获取侧边栏消息通知
+-(void) getSideMessage;
 @end

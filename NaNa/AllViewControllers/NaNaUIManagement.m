@@ -10,6 +10,7 @@
 #import "UploadOperation.h"
 #import "UserProfileOperation.h"
 #import "GiftOperation.h"
+#import "MessageOperation.h"
 
 @implementation NaNaUIManagement
 static NaNaUIManagement *sharedInstance = nil;
@@ -83,6 +84,12 @@ static NaNaUIManagement *sharedInstance = nil;
 // 获取用户照片
 -(void) getuserPhotoesList : (int) userID{
     UserProfileOperation *operation = [[UserProfileOperation alloc] initGetuserPhotoesList:userID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 获取侧边栏消息通知
+-(void) getSideMessage{
+    MessageOperation *operation = [[MessageOperation alloc] initGetSideMessageList:[NaNaUIManagement sharedInstance].userAccount.UserID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 @end
