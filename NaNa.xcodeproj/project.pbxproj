@@ -59,6 +59,13 @@
 		36F00882184F36E000ED43BB /* RedeemcodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F00881184F36E000ED43BB /* RedeemcodeVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36FD27DD1839DAC2004EBC51 /* TaPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DC1839DAC2004EBC51 /* TaPageVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36FD27E0183A155C004EBC51 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DF183A155C004EBC51 /* LoginVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		745E8C1D199C8532007A8053 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8BFD199C8532007A8053 /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		745E8C20199C8532007A8053 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C05199C8532007A8053 /* EGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		745E8C21199C8532007A8053 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C08199C8532007A8053 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		745E8C22199C8532007A8053 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0A199C8532007A8053 /* EGOImageLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		745E8C23199C8532007A8053 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0D199C8532007A8053 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		745E8C24199C8532007A8053 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0F199C8532007A8053 /* ImageUtil.m */; };
+		745E8C29199C8532007A8053 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C1B199C8532007A8053 /* UIImage+Resize.m */; };
 		74F9852A198FCFA400C86A41 /* photoDetailManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */; };
 		74F9852D198FD03800C86A41 /* PhotosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F9852C198FD03800C86A41 /* PhotosModel.m */; };
 		87165D10187EA7A70025B6DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87165D0F187EA7A70025B6DF /* AVFoundation.framework */; };
@@ -540,6 +547,20 @@
 		36FD27DC1839DAC2004EBC51 /* TaPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaPageVC.m; sourceTree = "<group>"; };
 		36FD27DE183A155C004EBC51 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		36FD27DF183A155C004EBC51 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		745E8BFC199C8532007A8053 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		745E8BFD199C8532007A8053 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
+		745E8C04199C8532007A8053 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
+		745E8C05199C8532007A8053 /* EGOImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageButton.m; sourceTree = "<group>"; };
+		745E8C07199C8532007A8053 /* EGOImageLoadConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoadConnection.h; sourceTree = "<group>"; };
+		745E8C08199C8532007A8053 /* EGOImageLoadConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoadConnection.m; sourceTree = "<group>"; };
+		745E8C09199C8532007A8053 /* EGOImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoader.h; sourceTree = "<group>"; };
+		745E8C0A199C8532007A8053 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
+		745E8C0C199C8532007A8053 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
+		745E8C0D199C8532007A8053 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
+		745E8C0E199C8532007A8053 /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
+		745E8C0F199C8532007A8053 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
+		745E8C1A199C8532007A8053 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		745E8C1B199C8532007A8053 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		74F98528198FCFA400C86A41 /* photoDetailManagementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoDetailManagementVC.h; sourceTree = "<group>"; };
 		74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoDetailManagementVC.m; sourceTree = "<group>"; };
 		74F9852B198FD03800C86A41 /* PhotosModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosModel.h; sourceTree = "<group>"; };
@@ -1154,6 +1175,59 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		745E8BF7199C8532007A8053 /* EGOImage */ = {
+			isa = PBXGroup;
+			children = (
+				745E8BFB199C8532007A8053 /* EGOCache */,
+				745E8C03199C8532007A8053 /* EGOImageButton */,
+				745E8C06199C8532007A8053 /* EGOImageLoader */,
+				745E8C0B199C8532007A8053 /* EGOImageView */,
+				745E8C0E199C8532007A8053 /* ImageUtil.h */,
+				745E8C0F199C8532007A8053 /* ImageUtil.m */,
+				745E8C1A199C8532007A8053 /* UIImage+Resize.h */,
+				745E8C1B199C8532007A8053 /* UIImage+Resize.m */,
+			);
+			path = EGOImage;
+			sourceTree = "<group>";
+		};
+		745E8BFB199C8532007A8053 /* EGOCache */ = {
+			isa = PBXGroup;
+			children = (
+				745E8BFC199C8532007A8053 /* EGOCache.h */,
+				745E8BFD199C8532007A8053 /* EGOCache.m */,
+			);
+			path = EGOCache;
+			sourceTree = "<group>";
+		};
+		745E8C03199C8532007A8053 /* EGOImageButton */ = {
+			isa = PBXGroup;
+			children = (
+				745E8C04199C8532007A8053 /* EGOImageButton.h */,
+				745E8C05199C8532007A8053 /* EGOImageButton.m */,
+			);
+			path = EGOImageButton;
+			sourceTree = "<group>";
+		};
+		745E8C06199C8532007A8053 /* EGOImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				745E8C07199C8532007A8053 /* EGOImageLoadConnection.h */,
+				745E8C08199C8532007A8053 /* EGOImageLoadConnection.m */,
+				745E8C09199C8532007A8053 /* EGOImageLoader.h */,
+				745E8C0A199C8532007A8053 /* EGOImageLoader.m */,
+			);
+			path = EGOImageLoader;
+			sourceTree = "<group>";
+		};
+		745E8C0B199C8532007A8053 /* EGOImageView */ = {
+			isa = PBXGroup;
+			children = (
+				745E8C0C199C8532007A8053 /* EGOImageView.h */,
+				745E8C0D199C8532007A8053 /* EGOImageView.m */,
+			);
+			path = EGOImageView;
+			sourceTree = "<group>";
+		};
 		8729E82B18840033005CAB4F /* Face */ = {
 			isa = PBXGroup;
 			children = (
@@ -1528,6 +1602,7 @@
 				97416DDE178015ED00865342 /* Reachability */,
 				97416DE1178015ED00865342 /* TTTAttributedLabel */,
 				97812D5B17B0D8A800B81537 /* MMDrawerController */,
+				745E8BF7199C8532007A8053 /* EGOImage */,
 			);
 			path = 3rdPartySupport;
 			sourceTree = "<group>";
@@ -2564,6 +2639,7 @@
 				97416E29178015ED00865342 /* JSONKit.m in Sources */,
 				97416E2A178015ED00865342 /* Reachability.m in Sources */,
 				97416E2B178015ED00865342 /* TTTAttributedLabel.m in Sources */,
+				745E8C23199C8532007A8053 /* EGOImageView.m in Sources */,
 				97416E2C178015ED00865342 /* UStaticData.m in Sources */,
 				97416E2D178015ED00865342 /* UNetworkStatusCenter.m in Sources */,
 				97416E2E178015ED00865342 /* URequest.m in Sources */,
@@ -2577,6 +2653,7 @@
 				8729E8211883CCA4005CAB4F /* ChatVC.m in Sources */,
 				97416E33178015ED00865342 /* UAlertView.m in Sources */,
 				8766C7831890F7D800D83863 /* UTabBtn.m in Sources */,
+				745E8C29199C8532007A8053 /* UIImage+Resize.m in Sources */,
 				97416E34178015ED00865342 /* UIAlertView+Block.m in Sources */,
 				97416E35178015ED00865342 /* UIImage+UIColor.m in Sources */,
 				97416E3A178015ED00865342 /* ULogic.m in Sources */,
@@ -2585,6 +2662,7 @@
 				97B7F74A1782A23100E6086B /* SDImageCache.m in Sources */,
 				97B7F74B1782A23100E6086B /* SDWebImageDecoder.m in Sources */,
 				97B7F74C1782A23100E6086B /* SDWebImageDownloader.m in Sources */,
+				745E8C24199C8532007A8053 /* ImageUtil.m in Sources */,
 				19CB82EE196CC79800DBCBAB /* NaNaHTTPRequest.m in Sources */,
 				97B7F74D1782A23100E6086B /* SDWebImageManager.m in Sources */,
 				97B7F74E1782A23100E6086B /* SDWebImagePrefetcher.m in Sources */,
@@ -2594,6 +2672,7 @@
 				191427A5198A8D2200F6C1FF /* NaNaUserAccountModel.m in Sources */,
 				97812D6517B0D8A800B81537 /* MMDrawerController.m in Sources */,
 				36FD27DD1839DAC2004EBC51 /* TaPageVC.m in Sources */,
+				745E8C20199C8532007A8053 /* EGOImageButton.m in Sources */,
 				19CB82F2196CCA9800DBCBAB /* NaNaUIManagement.m in Sources */,
 				97812D6717B0D8A800B81537 /* UIViewController+MMDrawerController.m in Sources */,
 				97F261E017B37E310070295E /* MenuLeftVC.m in Sources */,
@@ -2619,12 +2698,14 @@
 				97E8435D17E069920009B030 /* pinyin.m in Sources */,
 				9741197C17E1C5FA00406E79 /* URoundButton.m in Sources */,
 				97838F8F17E59324000DC81E /* UpdateMemberVC.m in Sources */,
+				745E8C1D199C8532007A8053 /* EGOCache.m in Sources */,
 				19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */,
 				363591E518228A0500F7AB67 /* MyBlackListVC.m in Sources */,
 				19CB82ED196CC79800DBCBAB /* NaNaFormDataRequest.m in Sources */,
 				363591EA18228A6100F7AB67 /* NotificationSettingVC.m in Sources */,
 				363591EB18228A6100F7AB67 /* SettingVC.m in Sources */,
 				363591EE18228F1000F7AB67 /* SuggestVC.m in Sources */,
+				745E8C22199C8532007A8053 /* EGOImageLoader.m in Sources */,
 				19CB82EC196CC79800DBCBAB /* NaNaNetWorkService.m in Sources */,
 				36359202182299CE00F7AB67 /* VisitorVC.m in Sources */,
 				36A45EAD1854985100439944 /* PhotoManageVC.m in Sources */,
@@ -2637,6 +2718,7 @@
 				366F4BF418264B13002AD7B5 /* UWebViewController.m in Sources */,
 				8766C7821890F7D800D83863 /* UTabbar.m in Sources */,
 				366F4BF718267BA8002AD7B5 /* PasswordLockVC.m in Sources */,
+				745E8C21199C8532007A8053 /* EGOImageLoadConnection.m in Sources */,
 				873BD97F18BAF3F200D9C868 /* TaPhotoVC.m in Sources */,
 				87167D81188E513900263AC6 /* TaInfoVC.m in Sources */,
 			);
