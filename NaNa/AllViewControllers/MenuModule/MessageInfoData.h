@@ -7,24 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NaNaUIModelCoding.h"
 
-@interface MessageInfoData : NSObject <NSCoding>
+@interface MessageInfoData : NaNaUIModelCoding
 
-// 消息id
-@property (nonatomic, copy) NSString *messageId;
-
-// 头像URL
-@property (nonatomic, copy) NSString *iconUrl;
-
-// 用户名称
-@property (nonatomic, copy) NSString *userName;
-
+// 头像
+@property (nonatomic, copy) NSString *avatarUrl;
 // 消息内容
-@property (nonatomic, copy) NSString *message;
-
+@property (nonatomic, copy) NSString *content;
+// 昵称
+@property (nonatomic, copy) NSString *nickname;
+// 未读消息数量
+@property (nonatomic) int count;
 // 消息时间
-@property (nonatomic, copy) NSString *time;
-
+@property (nonatomic) int createtime;
+// 发送人ID
+@property (nonatomic) int senderID;
 
 // 根据字典，解析当前分类下的数据
 - (MessageInfoData *)createByDictionary:(NSDictionary *)dict;

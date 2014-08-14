@@ -19,11 +19,11 @@
 #define MSG_ROW_HEIGHT      80.0
 
 @implementation MenuLeftVC
-@synthesize menuLeftVCLogic = _menuLeftVCLogic;
 
 
-- (void)loadView {
-    [super loadView];
+-(void) viewDidLoad{
+    [super viewDidLoad];
+    
     [self.navBarView removeFromSuperview];
     _defaultView.frame = CGRectMake(0, self.currentDeviceLateriOS7 ? 20 : 0, 320, CGRectGetHeight(self.view.frame) - (self.currentDeviceLateriOS7 ? 20 : 0));
     // table
@@ -37,28 +37,29 @@
         _tableView.separatorColor = [UIColor clearColor];
     }
     [_defaultView addSubview:_tableView];
-    
-    // 数据
-    _menuLeftVCLogic = [[MenuLeftVCLogic alloc] init];
-    
-    
-    // TEST
-    for (int i = 0; i < 5; i++) {
-        NSString *str = [[NSString alloc] initWithFormat:@"message %d", i];
-        [_menuLeftVCLogic.messageArray addObject:str];
-        [str release];
+    [[NaNaUIManagement sharedInstance] getSideMessage];
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sideResult" options:0 context:nil];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"sideResult"];
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"sideResult"]) {
+        
+        [_tableView reloadData];
     }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-    SAFERELEASE(_tableView)
-    SAFERELEASE(_menuLeftVCLogic);
-    [super dealloc];
 }
 
 #pragma mark - Table view data source
@@ -79,8 +80,8 @@
         
         MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:Menukey];
         if (cell == nil) {
-            cell = [[[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                    reuseIdentifier:Menukey] autorelease];
+            cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                    reuseIdentifier:Menukey];
             cell.contentView.backgroundColor = (indexPath.row%2) ? RGBA(45.0,46.0,50.0,1.0):RGBA(136.0,137.0,139.0,1.0);
         }
         
@@ -111,12 +112,11 @@
         
         MsgCell *cell = [tableView dequeueReusableCellWithIdentifier:Msgkey];
         if (cell == nil) {
-            cell = [[[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                   reuseIdentifier:Msgkey] autorelease];
+            cell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                   reuseIdentifier:Msgkey];
             
         }
         
-//        [cell.textLabel setText:[_menuLeftVCLogic.messageArray objectAtIndex:indexPath.row]];
         cell.headImageView.image = [UIImage imageNamed:@"icon.png"];
         cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", @"name", @"测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试"];
         cell.timeLabel.text = @"1分钟前";
@@ -135,7 +135,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        UIView * header=[[[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 20.0f)] autorelease];
+        UIView * header=[[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 20.0f)];
         header.backgroundColor = RGBA(204.0,204.0,204.0,1.0);
        
         UILabel * title =  [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 50, 20.0f)];
@@ -152,8 +152,6 @@
         [fresh addTarget:self action:@selector(refreshMessage) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:title];
         [header addSubview:fresh];
-        [title release];
-        [fresh release];
         return header;
     }
     return nil;
@@ -182,17 +180,17 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case MenuLeftRowRanking: {
-                RankingListVC *controller = [[[RankingListVC alloc] init] autorelease];
+                RankingListVC *controller = [[RankingListVC alloc] init];
                 [self pushPage:controller];
                 break;
             }
             case MenuLeftRowMyPage: {
-                MyPageVC *controller = [[[MyPageVC alloc] init] autorelease];
+                MyPageVC *controller = [[MyPageVC alloc] init];
                 [self pushPage:controller];
                 break;
             }
             case MenuLeftRowSetting: {
-                SettingVC *controller = [[[SettingVC alloc] init] autorelease];
+                SettingVC *controller = [[SettingVC alloc] init];
                 [self pushPage:controller];
                 break;
             }

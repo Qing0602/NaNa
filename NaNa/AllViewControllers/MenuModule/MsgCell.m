@@ -9,9 +9,6 @@
 #import "MsgCell.h"
 
 @implementation MsgCell
-@synthesize headImageView = _headImageView;
-@synthesize msgLabel = _msgLabel;
-@synthesize timeLabel = _timeLabel;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -22,13 +19,6 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.frame = CGRectMake(0.0, 0.0, sideWidth, self.frame.size.height);
         self.contentView.backgroundColor = [UIColor grayColor];
-        
-//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectZero];
-//        bgView.frame = CGRectMake(0.0, 0.0, sideWidth, self.frame.size.height);
-//        self.backgroundColor = [UIColor clearColor];
-//        self.backgroundView = bgView;
-//        self.backgroundView.backgroundColor = [UIColor grayColor];
-//        [bgView release];
         
         // icon
         _headImageView = [[UIImageView alloc] init];
@@ -47,8 +37,6 @@
         _msgLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _msgLabel.textColor = default_color_light_dark;
         _msgLabel.numberOfLines = 2;
-//        float offsetHeight = [_msgLabel textRectForBounds:_msgLabel.frame limitedToNumberOfLines:2].size.height;
-//        _msgLabel.frame = CGRectMake(offsetX, 0, offsetWidth, offsetHeight);
         [self.contentView addSubview:_msgLabel];
         
         // 计算坐标
@@ -68,14 +56,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-}
-
-- (void)dealloc {
-    SAFERELEASE(_headImageView)
-    SAFERELEASE(_msgLabel)
-    SAFERELEASE(_timeLabel)
-    [super dealloc];
 }
 
 

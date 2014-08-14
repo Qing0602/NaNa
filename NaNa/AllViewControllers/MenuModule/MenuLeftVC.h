@@ -21,10 +21,10 @@ typedef enum {
 
 @class MessageInfoData;
 @interface MenuLeftVC : UBasicViewController <UITableViewDataSource,UITableViewDelegate> {
-    UITableView         *_tableView;
-    MenuLeftVCLogic     *_menuLeftVCLogic;
-}
 
+}
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) MenuLeftVCLogic *menuLeftLogic;
 @property (nonatomic, retain) MenuLeftVCLogic *menuLeftVCLogic;
 
 @end

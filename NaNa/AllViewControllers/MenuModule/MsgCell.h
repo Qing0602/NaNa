@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface MsgCell : UITableViewCell {
-    UIImageView     *_headImageView;
-    UILabel         *_msgLabel;
-    UILabel         *_timeLabel;
 }
 
-@property (nonatomic, retain) UIImageView *headImageView;
-@property (nonatomic, retain) UILabel *msgLabel;
-@property (nonatomic, retain) UILabel *timeLabel;
+@property (nonatomic,strong) UIImageView *headImageView;
+@property (nonatomic,strong) UILabel *msgLabel;
+@property (nonatomic,strong) UILabel *timeLabel;
+
+@property (nonatomic,strong) UIImageView *unReaderImage;
+@property (nonatomic,strong) UILabel *unReaderCount;
 @end

@@ -10,34 +10,42 @@
 
 @implementation MessageInfoData
 
-@synthesize messageId, iconUrl, userName, message, time;
+/*
+ // 头像
+ @property (nonatomic, copy) NSString *avatarUrl;
+ // 消息内容
+ @property (nonatomic, copy) NSString *content;
+ // 昵称
+ @property (nonatomic, copy) NSString *nickname;
+ // 未读消息数量
+ @property (nonatomic) int count;
+ // 消息时间
+ @property (nonatomic, copy) NSString *createtime;
+ // 发送人ID
+ @property (nonatomic) int senderID;
+ */
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.messageId forKey:@"messageId"];
-    [aCoder encodeObject:self.iconUrl forKey:@"iconUrl"];
-    [aCoder encodeObject:self.userName forKey:@"userName"];
-    [aCoder encodeObject:self.message forKey:@"message"];
-    [aCoder encodeObject:self.time forKey:@"time"];
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.avatarUrl forKey:@"avatar"];
+    [aCoder encodeObject:self.content forKey:@"content"];
+    [aCoder encodeInt:self.count forKey:@"count"];
+    [aCoder encodeInt:self.createtime forKey:@"createtime"];
+    [aCoder encodeObject:self.nickname forKey:@"nickname"];
+    [aCoder encodeInt:self.senderID forKey:@"senderID"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [self init];
     if (self) {
-        self.messageId = [aDecoder decodeObjectForKey:@"messageId"];
-        self.iconUrl = [aDecoder decodeObjectForKey:@"iconUrl"];
-        self.userName = [aDecoder decodeObjectForKey:@"userName"];
-        self.message = [aDecoder decodeObjectForKey:@"message"];
-        self.time = [aDecoder decodeObjectForKey:@"time"];
+        self.avatarUrl = [aDecoder decodeObjectForKey:@"avatar"];
+        self.content = [aDecoder decodeObjectForKey:@"content"];
+        self.count = [aDecoder decodeIntForKey:@"count"];
+        self.createtime = [aDecoder decodeIntForKey:@"createtime"];
+        self.nickname = [aDecoder decodeObjectForKey:@"nickname"];
+        self.senderID = [aDecoder decodeIntForKey:@"senderID"];
     }
     return self;
-}
-
-- (void)dealloc {
-    self.messageId = nil;
-    self.iconUrl = nil;
-    self.userName = nil;
-    self.message = nil;
-    self.time = nil;
-    [super dealloc];
 }
 
 #pragma mark - create
@@ -45,18 +53,20 @@
 - (MessageInfoData *)createByDictionary:(NSDictionary *)dict {
     MessageInfoData *messageInfo = nil;
     if (dict && [dict isKindOfClass:[NSDictionary class]]) {
-        messageInfo = [[[MessageInfoData alloc] init] autorelease];
-        messageInfo.iconUrl = [dict objectForKey:@"iconUrl"];
-        messageInfo.userName = [dict objectForKey:@"userName"];
-        messageInfo.message = [dict objectForKey:@"message"];
-        messageInfo.time = [dict objectForKey:@"time"];
+        messageInfo = [[MessageInfoData alloc] init];
+        messageInfo.avatarUrl = dict[@"avatar"];
+        messageInfo.content = dict[@"content"];
+        messageInfo.count = [dict[@"count"] intValue];
+        messageInfo.createtime = [dict[@"createtime"] intValue];
+        messageInfo.nickname = dict[@"nickname"];
+        messageInfo.senderID = [dict[@"source_user_id"] intValue];
     }
     return messageInfo;
 }
 
 // 根据数组，解析当前分类下的数据
 - (NSMutableArray *)createByArray:(NSArray *)array {
-    NSMutableArray *messageArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *messageArray = [[NSMutableArray alloc] init];
     if ([array isKindOfClass:[NSArray class]]) {
         for (NSDictionary *messageDict in array) {
             MessageInfoData *messageInfo = [self createByDictionary:messageDict];
