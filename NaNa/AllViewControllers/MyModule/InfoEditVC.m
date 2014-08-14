@@ -783,7 +783,7 @@ typedef enum {
                   editingInfo:(NSDictionary *)editingInfo {
     
     [_headButton setBackgroundImage:image forState:UIControlStateNormal];
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 0.5) withUploadType:UploadAvatar withUserID:[self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID] withDesc:@""];
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 0.5) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
     [picker dismissModalViewControllerAnimated:YES];
 }
 

@@ -86,11 +86,14 @@ typedef enum
     UIView              *_recordingView;
     BOOL                 _isExistRecord;
       
-      NSInteger enterPathType;
+    NSInteger enterPathType;
       
 }
 
 @property (nonatomic, retain) UIButton *headButton;
 @property (nonatomic, retain) NSDictionary *infoData;
+
+
+-(id)initWithType:(enterType)type;
 
 @end

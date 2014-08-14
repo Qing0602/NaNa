@@ -62,7 +62,7 @@
                 [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
             }
 
-            InfoEditVC *infoEdit = [[InfoEditVC alloc] init];
+            InfoEditVC *infoEdit = [[[InfoEditVC alloc] initWithType:TYPE_LOGIN] autorelease];
             [self.navigationController pushViewController:infoEdit animated:YES];
         }
     }

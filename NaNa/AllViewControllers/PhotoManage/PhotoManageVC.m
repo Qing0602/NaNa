@@ -9,6 +9,7 @@
 #import "PhotoManageVC.h"
 #import "ChoosePhotoDetailVC.h"
 #import "PhotosModel.h"
+#import "photoDetailManagementVC.h"
 @interface PhotoManageVC ()
 
 @end
@@ -17,10 +18,17 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"userPhotoesList"]) {
-        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPhotoesList];
         if ([[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            for (NSDictionary *info in tempData[@"body"]) {
+                PhotosModel *model = [[PhotosModel alloc] init];
+                model.imageDes = info[@"description"];
+                model.imagePath = info[@"imageurl"];
+                model.imageID = info[@"id"];
+                [_photosArray addObject:model];
+            }
             
-            
+            [_gridView reloadData];
         }else
         {
             
@@ -158,7 +166,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 		didFinishPickingImage:(UIImage *)image
                   editingInfo:(NSDictionary *)editingInfo {
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadPhoto withUserID:[self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID] withDesc:@""];
+
     
     [picker dismissModalViewControllerAnimated:YES];
     
@@ -174,9 +182,10 @@
     [chooseVC setChoosedImageBlock:^(NSString *imageDes){
         self.completeImageDes = imageDes;
         
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:image,@"image",imageDes,@"imageDes", nil];
-        [_photosArray insertObject:dic atIndex:0];
-        [_gridView reloadData];
+        [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadPhoto withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:imageDes];
+//        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:image,@"image",imageDes,@"imageDes", nil];
+//        [_photosArray insertObject:dic atIndex:0];
+//        [_gridView reloadData];
         
     }];
     [self.navigationController pushViewController:chooseVC animated:YES];
@@ -185,7 +194,7 @@
 
 - (NSUInteger)gridView:(KKGridView *)gridView numberOfItemsInSection:(NSUInteger)section
 {
-    return [_photosArray count];
+    return [_photosArray count]+1;
 }
 
 - (KKGridViewCell *)gridView:(KKGridView *)gridView cellForItemAtIndexPath:(KKIndexPath *)indexPath
@@ -259,6 +268,11 @@
                          animations:^{
                              _photoMenuView.frame = _photoMenuShowRect;
                          }];
+    }else
+    {
+        PhotosModel *model = [_photosArray objectAtIndex:indexPath.index-1];
+        photoDetailManagementVC *photoDetail = [[photoDetailManagementVC alloc] initWithModel:model];
+        [self.navigationController pushViewController:photoDetail animated:YES];
     }
 }
 

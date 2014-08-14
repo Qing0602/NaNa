@@ -139,7 +139,7 @@
         }
         case MyPageTabItemInfoEdit: {
             ULog(@"MyPageTabItemInfoEdit");
-            InfoEditVC *controller = [[[InfoEditVC alloc] init] autorelease];
+            InfoEditVC *controller = [[[InfoEditVC alloc] initWithType:TYPE_NORMAL] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
             break;
         }
