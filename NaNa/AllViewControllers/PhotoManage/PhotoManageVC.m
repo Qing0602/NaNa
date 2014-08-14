@@ -25,6 +25,10 @@
                 model.imageDes = info[@"description"];
                 model.imagePath = info[@"imageurl"];
                 model.imageID = info[@"id"];
+                NSURL *imageUrl = [NSURL URLWithString:info[@"imageurl"]];
+                if (![[EGOImageLoader sharedImageLoader] hasLoadedImageURL:imageUrl] && ![[EGOImageLoader sharedImageLoader] isLoadingImageURL:imageUrl]) {
+                    [[EGOImageLoader sharedImageLoader] loadImageForURL:imageUrl observer:self];
+                }
                 [_photosArray addObject:model];
             }
             
@@ -33,6 +37,16 @@
         {
             
         }
+    }else if ([keyPath isEqualToString:@"uploadResult"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
+        if ([[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            [[NaNaUIManagement sharedInstance] getuserPhotoesList:[NaNaUIManagement sharedInstance].userAccount.UserID];
+        }else
+        {
+            
+        }
+        NSLog(@"tempData==%@",tempData);
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -94,10 +108,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userPhotoesList" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"uploadResult" options:0 context:nil];
+    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userPhotoesList"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"uploadResult"];
 }
 #pragma mark - HeadCartoonDelegate
 
@@ -231,20 +248,29 @@
     }
     else
     {
+        PhotosModel *model = [_photosArray objectAtIndex:indexPath.index-1];
+        
         image.hidden = NO;
         label.hidden = NO;
         addLabel.hidden = YES;
         cell.contentView.layer.borderWidth = 0;
         cell.contentView.layer.borderColor = [UIColor clearColor].CGColor;
-        NSInteger index = indexPath.index - 1;
-        NSDictionary *dic = [_photosArray objectAtIndex:index];
+        //NSInteger index = indexPath.index - 1;
+        //NSDictionary *dic = [_photosArray objectAtIndex:index];
         if (!image) {
             image = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
             image.tag = 0xfd0;
             [cell.contentView addSubview:image];
         }
-        image.image = [dic objectForKey:@"image"];
+        UIImage *tempImage = [[EGOImageLoader sharedImageLoader] imageForURL:[NSURL URLWithString:model.imagePath] shouldLoadWithObserver:self];
+        if (!tempImage) {
+            
+        }else
+        {
+            image.image = tempImage;
+        }
         
+        [tempImage release];
         
         if (!label) {
             label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 100, 100, 20)] autorelease];
@@ -254,7 +280,7 @@
         }
         [cell.contentView addSubview:label];
 //        label.text = [NSString stringWithFormat:@"你好,这是第%d照片",indexPath.index];
-        label.text = [dic objectForKey:@"imageDes"];
+        label.text = model.imageDes;
     }
     return cell;
 }
@@ -275,7 +301,11 @@
         [self.navigationController pushViewController:photoDetail animated:YES];
     }
 }
-
+#pragma mark EgoDelegate
+-(void)imageLoaderDidLoad:(NSNotification *)notification
+{
+    [_gridView reloadData];
+}
 - (void)dealloc {
     [super dealloc];
 }

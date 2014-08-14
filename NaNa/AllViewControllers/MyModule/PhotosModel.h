@@ -14,4 +14,5 @@
 @property (nonatomic, strong)NSString *imageDes;
 @property (nonatomic, strong)NSString *imageID;
 
+
 @end

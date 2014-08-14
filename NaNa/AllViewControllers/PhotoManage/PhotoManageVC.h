@@ -9,7 +9,8 @@
 #import "UWebViewController.h"
 #import "KKGridView.h"
 #import "PhotoMenuView.h"
-@interface PhotoManageVC : UWebViewController<KKGridViewDataSource,KKGridViewDelegate,PhotoMenuDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "EGOImageLoader.h"
+@interface PhotoManageVC : UWebViewController<KKGridViewDataSource,KKGridViewDelegate,PhotoMenuDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,EGOImageLoaderObserver>
 {
     KKGridView          *_gridView;
     PhotoMenuView       *_photoMenuView;        // 修改头像的菜单视图
