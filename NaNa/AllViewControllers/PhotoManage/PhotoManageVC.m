@@ -19,7 +19,7 @@
 {
     if ([keyPath isEqualToString:@"userPhotoesList"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPhotoesList];
-        if ([[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
             for (NSDictionary *info in tempData[@"body"]) {
                 PhotosModel *model = [[PhotosModel alloc] init];
                 model.imageDes = info[@"description"];
@@ -40,7 +40,7 @@
     }else if ([keyPath isEqualToString:@"uploadResult"])
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
-        if ([[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
             [[NaNaUIManagement sharedInstance] getuserPhotoesList:[NaNaUIManagement sharedInstance].userAccount.UserID];
         }else
         {
@@ -108,13 +108,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userPhotoesList" options:0 context:nil];
-    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"uploadResult" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"updateUserPushSetting" options:0 context:nil];
     
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userPhotoesList"];
-    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"uploadResult"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserPushSetting"];
 }
 #pragma mark - HeadCartoonDelegate
 
@@ -270,7 +270,7 @@
             image.image = tempImage;
         }
         
-        [tempImage release];
+        SAFERELEASE(tempImage);
         
         if (!label) {
             label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 100, 100, 20)] autorelease];
