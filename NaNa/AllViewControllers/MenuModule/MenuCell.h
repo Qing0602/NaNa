@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuCell : UITableViewCell {
-    UIImageView     *_iconImageView;
-    UILabel         *_nameLabel;
 }
 
-@property (nonatomic, retain) UIImageView *iconImageView;
-@property (nonatomic, retain) UILabel *nameLabel;
+@property (nonatomic, strong) UIImageView *iconImageView;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic,strong) UIImageView *cellLine;
 @end

@@ -36,12 +36,16 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.backgroundColor = [UIColor colorWithRed:45.0f/255.0f green:46.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.separatorColor = [UIColor clearColor];
     }
     [_defaultView addSubview:_tableView];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sideResult" options:0 context:nil];
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [[NaNaUIManagement sharedInstance] getSideMessage];
 }
 
@@ -52,9 +56,32 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"sideResult"]) {
         
+        MessageInfoData *messageInfo = [[MessageInfoData alloc] init];
+        messageInfo.avatarUrl = @"aaa";
+        messageInfo.content = @"abcdefg";
+        messageInfo.count = 10;
+        messageInfo.createtime = 0;
+        messageInfo.nickname = @"123";
+        messageInfo.senderID = 5;
+        NSMutableArray *a = [[NSMutableArray alloc] initWithObjects:messageInfo, nil];
+        self.messages = a;
+        
+        [_tableView reloadData];
+        
         if (![[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             messageInfoConver *conver = [[messageInfoConver alloc] init];
             self.messages = [conver createByArray:[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_DATA]];
+            
+            MessageInfoData *messageInfo = [[MessageInfoData alloc] init];
+            messageInfo.avatarUrl = @"aaa";
+            messageInfo.content = @"abcdefg";
+            messageInfo.count = 10;
+            messageInfo.createtime = 0;
+            messageInfo.nickname = @"123";
+            messageInfo.senderID = 5;
+            NSMutableArray *a = [[NSMutableArray alloc] initWithObjects:messageInfo, nil];
+            self.messages = a;
+            
             [_tableView reloadData];
         }
     }
@@ -85,7 +112,6 @@
         if (cell == nil) {
             cell = [[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault
                                     reuseIdentifier:Menukey];
-            cell.contentView.backgroundColor = (indexPath.row%2) ? RGBA(45.0,46.0,50.0,1.0):RGBA(136.0,137.0,139.0,1.0);
         }
         
         switch (indexPath.row) {
@@ -97,7 +123,7 @@
             }
             case MenuLeftRowMyPage: {
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_head_normal.png"];
-                [cell.nameLabel setTextColor:[UIColor grayColor]];
+                [cell.nameLabel setTextColor:[UIColor whiteColor]];
                 cell.nameLabel.text = STRING(@"myPage");
                 break;
             }
@@ -117,13 +143,14 @@
         if (cell == nil) {
             cell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:Msgkey];
-            
         }
         
         cell.headImageView.image = [UIImage imageNamed:@"icon.png"];
         cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", @"name", @"测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试"];
         cell.timeLabel.text = @"1分钟前";
+        [cell setModel:[self.messages objectAtIndex:indexPath.row]];
         cell.contentView.backgroundColor = RGBA(57.0,56.0,60.0,1.0);
+        cell.cellLine.frame = CGRectMake(0.0f, 80.0f - 3.0f, 320.0f, 3.0f);
         return cell;
     }
 }
@@ -139,12 +166,13 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 1) {
         UIView * header=[[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 20.0f)];
-        header.backgroundColor = RGBA(204.0,204.0,204.0,1.0);
+        header.backgroundColor = RGBA(70.0,71.0,75.0,1.0);
        
-        UILabel * title =  [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 50, 20.0f)];
+        UILabel * title =  [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 50, 20.0f)];
         [title setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
         title.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-        title.font = [UIFont systemFontOfSize:14];
+        title.font = [UIFont boldSystemFontOfSize:13];
+        title.textColor = [UIColor whiteColor];
         title.backgroundColor = [UIColor clearColor];
         
         UIButton * fresh=[[UIButton alloc] initWithFrame:CGRectMake(250, 3, 25, 25)];
@@ -170,7 +198,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return MENU_ROW_HEIGHT;
-        
     } else {
         return MSG_ROW_HEIGHT;
     }

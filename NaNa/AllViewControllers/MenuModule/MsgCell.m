@@ -32,7 +32,7 @@
         
         // 名称 + 消息
         _msgLabel = [[UILabel alloc] init];
-        _msgLabel.frame = CGRectMake(offsetX, 0, offsetWidth, 45);
+        _msgLabel.frame = CGRectMake(offsetX, 0, offsetWidth - 20.0f, 45);
         _msgLabel.backgroundColor = [UIColor clearColor];
         _msgLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _msgLabel.textColor = default_color_light_dark;
@@ -50,8 +50,33 @@
         _timeLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _timeLabel.textColor = default_color_light_dark;
         [self.contentView addSubview:_timeLabel];
+        
+        self.unReaderImage = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaUnReaderCountBG"] stretchableImageWithLeftCapWidth:16.0f topCapHeight:16.0f]];
+        self.unReaderCount = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 16.0f, 16.0f)];
+        self.unReaderCount.textAlignment = NSTextAlignmentCenter;
+        self.unReaderCount.textColor = [UIColor whiteColor];
+        self.unReaderCount.font = [UIFont boldSystemFontOfSize:11.0f];
+        [self.unReaderImage addSubview:self.unReaderCount];
+        
+        self.cellLine = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaCellLine"] stretchableImageWithLeftCapWidth:1.0f topCapHeight:1.0f]];
+        [self addSubview:self.cellLine];
     }
     return self;
+}
+
+-(void) setModel : (MessageInfoData *) model{
+    if (model.count != 0) {
+        self.unReaderCount.text = [NSString stringWithFormat:@"%d",model.count];
+        [self.unReaderCount sizeToFit];
+        self.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
+        self.unReaderImage.frame = CGRectMake(_msgLabel.frame.origin.x + _msgLabel.frame.size.width, 8.0f, 16.0f, 16.0f);
+        self.unReaderCount.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.unReaderImage];
+        self.unReaderImage.hidden = NO;
+    }else{
+        self.unReaderImage.hidden = YES;
+    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
