@@ -61,6 +61,10 @@
 		36F00882184F36E000ED43BB /* RedeemcodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F00881184F36E000ED43BB /* RedeemcodeVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36FD27DD1839DAC2004EBC51 /* TaPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DC1839DAC2004EBC51 /* TaPageVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36FD27E0183A155C004EBC51 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DF183A155C004EBC51 /* LoginVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		74292D23199E42AD000C2FE6 /* MMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D1D199E42AD000C2FE6 /* MMGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		74292D24199E42AD000C2FE6 /* MMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D1F199E42AD000C2FE6 /* MMGridViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		74292D25199E42AD000C2FE6 /* MMGridViewDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D22199E42AD000C2FE6 /* MMGridViewDefaultCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		74292D28199E436F000C2FE6 /* MyGiftListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D27199E436F000C2FE6 /* MyGiftListViewController.m */; };
 		745E8C1D199C8532007A8053 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8BFD199C8532007A8053 /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745E8C20199C8532007A8053 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C05199C8532007A8053 /* EGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745E8C21199C8532007A8053 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C08199C8532007A8053 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -551,6 +555,15 @@
 		36FD27DC1839DAC2004EBC51 /* TaPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaPageVC.m; sourceTree = "<group>"; };
 		36FD27DE183A155C004EBC51 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		36FD27DF183A155C004EBC51 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		74292D1C199E42AD000C2FE6 /* MMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGridView.h; sourceTree = "<group>"; };
+		74292D1D199E42AD000C2FE6 /* MMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGridView.m; sourceTree = "<group>"; };
+		74292D1E199E42AD000C2FE6 /* MMGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGridViewCell.h; sourceTree = "<group>"; };
+		74292D1F199E42AD000C2FE6 /* MMGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGridViewCell.m; sourceTree = "<group>"; };
+		74292D20199E42AD000C2FE6 /* MMGridView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMGridView-Prefix.pch"; sourceTree = "<group>"; };
+		74292D21199E42AD000C2FE6 /* MMGridViewDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGridViewDefaultCell.h; sourceTree = "<group>"; };
+		74292D22199E42AD000C2FE6 /* MMGridViewDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGridViewDefaultCell.m; sourceTree = "<group>"; };
+		74292D26199E436F000C2FE6 /* MyGiftListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGiftListViewController.h; sourceTree = "<group>"; };
+		74292D27199E436F000C2FE6 /* MyGiftListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGiftListViewController.m; sourceTree = "<group>"; };
 		745E8BFC199C8532007A8053 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		745E8BFD199C8532007A8053 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		745E8C04199C8532007A8053 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
@@ -1181,6 +1194,28 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		74292D1A199E42AD000C2FE6 /* MMGridView */ = {
+			isa = PBXGroup;
+			children = (
+				74292D1B199E42AD000C2FE6 /* Classes */,
+				74292D20199E42AD000C2FE6 /* MMGridView-Prefix.pch */,
+				74292D21199E42AD000C2FE6 /* MMGridViewDefaultCell.h */,
+				74292D22199E42AD000C2FE6 /* MMGridViewDefaultCell.m */,
+			);
+			path = MMGridView;
+			sourceTree = "<group>";
+		};
+		74292D1B199E42AD000C2FE6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				74292D1C199E42AD000C2FE6 /* MMGridView.h */,
+				74292D1D199E42AD000C2FE6 /* MMGridView.m */,
+				74292D1E199E42AD000C2FE6 /* MMGridViewCell.h */,
+				74292D1F199E42AD000C2FE6 /* MMGridViewCell.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		745E8BF7199C8532007A8053 /* EGOImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1598,6 +1633,7 @@
 		97416D9F178015ED00865342 /* 3rdPartySupport */ = {
 			isa = PBXGroup;
 			children = (
+				74292D1A199E42AD000C2FE6 /* MMGridView */,
 				97E8435A17E069920009B030 /* PinYin */,
 				97E8435617E069810009B030 /* CMIndexBar */,
 				97EFE76417C09EF90043B4BF /* KKGridView */,
@@ -2181,6 +2217,8 @@
 			children = (
 				97996F1417B68D3C00CA9A06 /* MyPageVC.h */,
 				97996F1517B68D3C00CA9A06 /* MyPageVC.m */,
+				74292D26199E436F000C2FE6 /* MyGiftListViewController.h */,
+				74292D27199E436F000C2FE6 /* MyGiftListViewController.m */,
 			);
 			name = "我的主页";
 			sourceTree = "<group>";
@@ -2611,6 +2649,7 @@
 			files = (
 				97416C36177FFDB500865342 /* main.m in Sources */,
 				871832451884D4E900EDB399 /* AsyncUdpSocket.m in Sources */,
+				74292D23199E42AD000C2FE6 /* MMGridView.m in Sources */,
 				97416C3A177FFDB500865342 /* AppDelegate.m in Sources */,
 				19A609351993C19400F77AA2 /* MessageOperation.m in Sources */,
 				97416E11178015ED00865342 /* ASIAuthenticationDialog.m in Sources */,
@@ -2632,6 +2671,7 @@
 				3641240B18471FF4002C4329 /* SignVC.m in Sources */,
 				97416E1E178015ED00865342 /* ASICloudFilesObject.m in Sources */,
 				97416E1F178015ED00865342 /* ASICloudFilesObjectRequest.m in Sources */,
+				74292D25199E42AD000C2FE6 /* MMGridViewDefaultCell.m in Sources */,
 				97416E20178015ED00865342 /* ASICloudFilesRequest.m in Sources */,
 				97416E21178015ED00865342 /* ASIS3Bucket.m in Sources */,
 				19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */,
@@ -2642,6 +2682,7 @@
 				97416E26178015ED00865342 /* ASIS3ServiceRequest.m in Sources */,
 				97416E27178015ED00865342 /* GTMStackTrace.m in Sources */,
 				36F00882184F36E000ED43BB /* RedeemcodeVC.m in Sources */,
+				74292D24199E42AD000C2FE6 /* MMGridViewCell.m in Sources */,
 				97201BB51887E074007DDCF8 /* TaLikeVC.m in Sources */,
 				97416E28178015ED00865342 /* iConsole.m in Sources */,
 				97416E29178015ED00865342 /* JSONKit.m in Sources */,
@@ -2726,6 +2767,7 @@
 				366F4BF418264B13002AD7B5 /* UWebViewController.m in Sources */,
 				8766C7821890F7D800D83863 /* UTabbar.m in Sources */,
 				366F4BF718267BA8002AD7B5 /* PasswordLockVC.m in Sources */,
+				74292D28199E436F000C2FE6 /* MyGiftListViewController.m in Sources */,
 				745E8C21199C8532007A8053 /* EGOImageLoadConnection.m in Sources */,
 				873BD97F18BAF3F200D9C868 /* TaPhotoVC.m in Sources */,
 				87167D81188E513900263AC6 /* TaInfoVC.m in Sources */,
