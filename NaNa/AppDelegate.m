@@ -60,6 +60,7 @@ NSInteger K_WAKE_UP_ID = 0;
                                                              rightDrawerViewController:rightContoller];
         
     }
+
     [_rootViewController setMaximumLeftDrawerWidth:sideWidth];
     [_rootViewController setMaximumRightDrawerWidth:sideWidth];
     [_rootViewController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];

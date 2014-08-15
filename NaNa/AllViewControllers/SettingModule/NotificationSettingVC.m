@@ -42,12 +42,91 @@ typedef enum {
     }
     return self;
 }
-
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"userPushSetting"]) {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPushSetting];
+        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            NSDictionary *data = tempData[@"data"];
+            for (int i =0; i < 6; i++) {
+                NSIndexPath *indexPath ;
+                if (i<4) {
+                    indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                }else
+                {
+                    indexPath = [NSIndexPath indexPathForRow:i-4 inSection:1];
+                }
+                UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+                NSInteger switchTag = indexPath.section*1000 + indexPath.row+10;
+                UISwitch *notifySwitch = (UISwitch *)[cell.contentView viewWithTag:switchTag];
+                switch (switchTag) {
+                    case 10:
+                    {
+                        notifySwitch.on = [data[@"message_push"] boolValue];
+                    }
+                        break;
+                    case 11:
+                    {
+                        notifySwitch.on = [data[@"visit_push"] boolValue];
+                    }
+                        break;
+                    case 12:
+                    {
+                        notifySwitch.on = [data[@"love_push"] boolValue];
+                    }
+                        break;
+                    case 13:
+                    {
+                        notifySwitch.on = [data[@"friend_push"] boolValue];
+                    }
+                        break;
+                    case 1014:
+                    {
+                        
+                    }
+                        break;
+                    case 1015:
+                    {
+                        
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+            }
+        }else
+        {
+            
+        }
+    }else if ([keyPath isEqualToString:@"updateUserPushSetting"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].updateUserPushSetting];
+        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            NSLog(@"error == %@",tempData[@"errorMessage"]);
+        }
+    }
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"updateUserPushSetting" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userPushSetting" options:0 context:nil];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserPushSetting"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userPushSetting"];
+}
 - (void)loadView {
     [super loadView];
     // title
     self.title = STRING(@"notification");
-    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
+    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeSubmit];
     
     
     if (!_activityView) {
@@ -70,8 +149,9 @@ typedef enum {
     }
     [_defaultView addSubview:_tableView];
     
-        
     
+    
+    [[NaNaUIManagement sharedInstance] getUserPushSetting];
 }
 
 - (void)viewDidLoad
@@ -219,7 +299,61 @@ typedef enum {
 }
 
 - (void)rightItemPressed:(UIButton *)btn {
-    
+    if (_tableView) {
+        BOOL canMessagePush = NO;
+        BOOL canVisitPush = NO;
+        BOOL canLovePush = NO;
+        BOOL canFriendPush = NO;
+        for (int i =0; i < 6; i++) {
+            NSIndexPath *indexPath ;
+            if (i<4) {
+                indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            }else
+            {
+                indexPath = [NSIndexPath indexPathForRow:i-4 inSection:1];
+            }
+            UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+            NSInteger switchTag = indexPath.section*1000 + indexPath.row+10;
+            UISwitch *notifySwitch = (UISwitch *)[cell.contentView viewWithTag:switchTag];
+            switch (switchTag) {
+                case 10:
+                {
+                    canMessagePush = notifySwitch.on;
+                }
+                    break;
+                case 11:
+                {
+                    canVisitPush = notifySwitch.on;
+                }
+                    break;
+                case 12:
+                {
+                    canLovePush = notifySwitch.on;
+                }
+                    break;
+                case 13:
+                {
+                    canFriendPush = notifySwitch.on;
+                }
+                    break;
+                case 1014:
+                {
+                    
+                }
+                    break;
+                case 1015:
+                {
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }
+        [[NaNaUIManagement sharedInstance] updateUserPushSetting:canMessagePush withCanVisitPush:canVisitPush withCanLovePush:canLovePush withCanFriendPush:canFriendPush];
+    }
 }
 
 - (void)switchNotify:(UISwitch *)sw
