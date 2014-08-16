@@ -9,11 +9,40 @@
 #import "SetPrivateVC.h"
 
 @implementation SetPrivateVC
-
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"userPrivacySetting"]) {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPrivacySetting];
+        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            NSDictionary *data = tempData[@"data"];
+            _photoSwitch.on = [data[@"show_avata"] boolValue];
+            _infoSwitch.on = [data[@"show_info"] boolValue];
+        }else
+        {
+            
+        }
+    }else if ([keyPath isEqualToString:@"updateUserPrivacySetting"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].updateUserPrivacySetting];
+        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            NSLog(@"error == %@",tempData[@"errorMessage"]);
+        }
+    }
+}
 - (void)loadView {
     [super loadView];
     self.title = STRING(@"private");
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
+    
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 60, 7, 60, 30);
+    [btn setTitle:@"完成" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(completeAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.navBarView addSubview:btn];
     
     float offsetX = 15.0;
     float offsetY = 20.0;
@@ -93,6 +122,8 @@
     }
     [_defaultView addSubview:_infoSwitch];
     
+    [[NaNaUIManagement sharedInstance] getUserPrivacySetting];
+    
     // 内存释放
     [bgImageView release];
     [photoLabel release];
@@ -100,7 +131,17 @@
     [detailLabel release];
     [msgLabel release];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userPrivacySetting" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"updateUserPrivacySetting" options:0 context:nil];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userPrivacySetting"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserPrivacySetting"];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -116,7 +157,12 @@
 - (void)leftItemPressed:(UIButton *)btn {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)completeAction
+{
+    
+    
+    [[NaNaUIManagement sharedInstance] updateUserPrivacySetting:_photoSwitch.on withIsShowUserInfo:_infoSwitch.on withIsShowUserAvatar:YES withIsShowVoice:YES];
+}
 #pragma mark - SwitchClick
 - (void)photoSwitchClick:(UISwitch *)theSwitch {
     ULog(@"photoSwitchClick ======= %d", theSwitch.on);
