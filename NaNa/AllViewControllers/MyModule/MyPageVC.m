@@ -13,6 +13,7 @@
 #import "PhotoManageVC.h"
 #import "UTabbar.h"
 #import "PhotoMenuView.h"
+#import "MyGiftListViewController.h"
 @interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     PhotoMenuView *_photoMenuView;
@@ -270,6 +271,11 @@
     }else if ([tagName isEqualToString:@"IMG"] && [className isEqualToString:@"option-lit"])
     {
         NSLog(@"%@",_myWebView.request.URL);
+    }else if ([tagName isEqualToString:@"IMG"] && [className isEqualToString:@"single_gift"])
+    {
+        MyGiftListViewController *giftList = [[MyGiftListViewController  alloc] init];
+        [self.navigationController pushViewController:giftList animated:YES];
+        [giftList release];
     }
     //    if (urlToSave.length > 0) {
     //        [self showImageURL:urlToSave point:pt];

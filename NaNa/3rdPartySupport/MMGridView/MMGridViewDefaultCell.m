@@ -47,6 +47,10 @@
         self.backgroundView.backgroundColor = [UIColor lightGrayColor];
         [self addSubview:self.backgroundView];
         
+        self.imageview = [[[EGOImageView alloc] initWithFrame:CGRectNull] autorelease];
+        [self.imageview setPlaceholderImage:[UIImage imageNamed:@""]];
+        [self addSubview:self.imageview];
+        
         // Label
         self.textLabelBackgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
         self.textLabelBackgroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
@@ -75,6 +79,9 @@
     // Background view
     self.backgroundView.frame = self.bounds;
     self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    self.imageview.frame = self.bounds;
+    self.imageview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     // Layout label
     self.textLabelBackgroundView.frame = CGRectMake(0, 

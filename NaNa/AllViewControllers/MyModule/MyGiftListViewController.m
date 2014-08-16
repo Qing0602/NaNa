@@ -30,7 +30,8 @@
     if ([keyPath isEqualToString:@"userGiftListDic"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userGiftListDic];
         if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
-            
+            self.gridviewData = [[NSArray alloc]initWithArray:tempData[@"data"]];
+            [_gridView reloadData];
         }else
         {
             
@@ -49,9 +50,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
+    _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 60.f, 320.f, [UIScreen mainScreen].bounds.size.height-60.f)];
+   // _gridView.cellMargin = 5;
+    _gridView.numberOfRows = 4;
+    _gridView.numberOfColumns = 3;
+    _gridView.layoutStyle = VerticalLayout;
+    _gridView.delegate = self;
+    _gridView.dataSource = self;
+    [self.view addSubview:_gridView];
     
     [[NaNaUIManagement sharedInstance] getUserGiftList];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -87,15 +99,16 @@
 
 - (NSInteger)numberOfCellsInGridView:(MMGridView *)gridView
 {
-    return 29;
+    return self.gridviewData.count;
 }
 
 
 - (MMGridViewCell *)gridView:(MMGridView *)gridView cellAtIndex:(NSUInteger)index
 {
     MMGridViewDefaultCell *cell = [[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull];
-    cell.textLabel.text = [NSString stringWithFormat:@"Cell %d", index];
-    
+    NSDictionary *data = self.gridviewData[index];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", data[@"source_user_nickname"]];
+    [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];
     return cell;
 }
 
@@ -115,6 +128,9 @@
     
 }
 
-
+#pragma mark - viewController
+- (void)leftItemPressed:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

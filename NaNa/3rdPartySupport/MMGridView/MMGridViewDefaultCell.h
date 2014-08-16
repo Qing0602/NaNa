@@ -21,14 +21,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MMGridViewCell.h"
-
+#import "EGOImageview.h"
 
 @interface MMGridViewDefaultCell : MMGridViewCell 
 {
     UILabel *textLabel;
     UIView *textLabelBackgroundView;
     UIView *backgroundView;
-        
+    
+    
     NSUInteger  labelHeight;
     NSUInteger  labelInset;
 }
@@ -36,5 +37,6 @@
 @property (nonatomic, retain) UILabel *textLabel;
 @property (nonatomic, retain) UIView *textLabelBackgroundView;
 @property (nonatomic, retain) UIView *backgroundView;
+@property (nonatomic, retain) EGOImageView *imageview;
 
 @end
