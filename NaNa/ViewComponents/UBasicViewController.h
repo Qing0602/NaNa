@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+MMDrawerController.h"
 #import "NaNaUIManagement.h"
+#import "MBProgressHUD.h"
+
 @class TTTAttributedLabel;
 
 typedef enum {
@@ -25,7 +27,7 @@ typedef enum {
     
 } ACCOUNT_INFO_TYPE;
 
-@interface UBasicViewController : UIViewController {
+@interface UBasicViewController : UIViewController<MBProgressHUDDelegate> {
     UIView              *_navBarView;   // NavBar
     UIButton            *_leftItem;     // Nav左侧按钮
     UIButton            *_rightItem;    // Nav右侧按钮
@@ -43,7 +45,7 @@ typedef enum {
 @property (nonatomic, retain) UIButton *rightItem;
 @property (nonatomic, retain) TTTAttributedLabel *titleItem;
 @property (nonatomic, assign) BOOL currentDeviceLateriOS7;
-
+@property (nonatomic,strong) MBProgressHUD *progressHUD;
 
 - (void)setTitle:(NSString *)title;
 - (void)setNavLeftType:(UNavBarBtnType)leftType navRightType:(UNavBarBtnType)rightType;
@@ -53,4 +55,23 @@ typedef enum {
 
 -(NSString *)getAccountValueByKey : (ACCOUNT_INFO_TYPE)type;
 
+
+/*! @brief 判断字符串是否是nil或者是@“”
+ *
+ */
+-(BOOL) stringIsNilOrEmpty : (NSString *) str;
+
+#pragma mark -
+#pragma mark MBProgressHUD Methods
+-(void) showProgressWithText : (NSString *) context;
+-(void) showProgressWithText : (NSString *) context dimBackground : (BOOL) isBackground;
+/*
+ AutoCloseInNetwork方法在网络层调用正确时，自动关闭浮层，UI层如果需要显示完成信息的话使用[showProgressWithText:context withDelayTime:sec] 方法
+ 当网络访问出错时，错误浮层自动更换，UI层无需实现，如不须显示错误信息，UI层重写[showProgressWithText:context withDelayTime:sec]方法
+ */
+-(void) showProgressOnwindowsWithText : (NSString *) context withDelayTime : (NSUInteger) sec;
+-(void) showProgressWithText : (NSString *) context withDelayTime : (NSUInteger) sec;
+// 针对于大数据处理、视频处理、及一些及其消耗时间的本地处理等情况
+-(void) showWhileExecuting : (SEL) sel withText : (NSString *) text withDetailText : (NSString *) detailText;
+-(void) closeProgress;
 @end

@@ -14,6 +14,9 @@
 		1922418C199D094A0067C5BA /* NaNaUnReaderCountBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922418B199D094A0067C5BA /* NaNaUnReaderCountBG@2x.png */; };
 		19A609321993B7BA00F77AA2 /* GiftOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609311993B7BA00F77AA2 /* GiftOperation.m */; };
 		19A609351993C19400F77AA2 /* MessageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609341993C19400F77AA2 /* MessageOperation.m */; };
+		19A79146199F514700074E89 /* CircleImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A79143199F514700074E89 /* CircleImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		19A79147199F514700074E89 /* RoundRectEGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A79145199F514700074E89 /* RoundRectEGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7914A199F53B300074E89 /* MBProgressHUD.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
 		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
 		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
@@ -379,7 +382,7 @@
 		97416E411780248600865342 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97416E401780248600865342 /* SystemConfiguration.framework */; };
 		97416E43178024CE00865342 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97416E42178024CE00865342 /* MobileCoreServices.framework */; };
 		97416E45178024FB00865342 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 97416E44178024FB00865342 /* libz.1.2.5.dylib */; };
-		974A6E47178AB85E008864F8 /* UBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 974A6E46178AB85E008864F8 /* UBasicViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		974A6E47178AB85E008864F8 /* UBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 974A6E46178AB85E008864F8 /* UBasicViewController.m */; };
 		977E2DB5178536770058F285 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 977E2DB4178536770058F285 /* icon.png */; };
 		977E2DB7178536820058F285 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 977E2DB6178536820058F285 /* icon@2x.png */; };
 		977E2DB9178536950058F285 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 977E2DB8178536950058F285 /* Default.png */; };
@@ -478,6 +481,12 @@
 		19A609311993B7BA00F77AA2 /* GiftOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftOperation.m; sourceTree = "<group>"; };
 		19A609331993C19400F77AA2 /* MessageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageOperation.h; sourceTree = "<group>"; };
 		19A609341993C19400F77AA2 /* MessageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageOperation.m; sourceTree = "<group>"; };
+		19A79142199F514700074E89 /* CircleImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleImageButton.h; sourceTree = "<group>"; };
+		19A79143199F514700074E89 /* CircleImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleImageButton.m; sourceTree = "<group>"; };
+		19A79144199F514700074E89 /* RoundRectEGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundRectEGOImageButton.h; sourceTree = "<group>"; };
+		19A79145199F514700074E89 /* RoundRectEGOImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundRectEGOImageButton.m; sourceTree = "<group>"; };
+		19A79149199F53B300074E89 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		19A7914A199F53B300074E89 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
 		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
@@ -1088,6 +1097,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19A79141199F514700074E89 /* EGOCircleImageButton */ = {
+			isa = PBXGroup;
+			children = (
+				19A79142199F514700074E89 /* CircleImageButton.h */,
+				19A79143199F514700074E89 /* CircleImageButton.m */,
+				19A79144199F514700074E89 /* RoundRectEGOImageButton.h */,
+				19A79145199F514700074E89 /* RoundRectEGOImageButton.m */,
+			);
+			path = EGOCircleImageButton;
+			sourceTree = "<group>";
+		};
+		19A79148199F53B300074E89 /* MBProgress */ = {
+			isa = PBXGroup;
+			children = (
+				19A79149199F53B300074E89 /* MBProgressHUD.h */,
+				19A7914A199F53B300074E89 /* MBProgressHUD.m */,
+			);
+			path = MBProgress;
+			sourceTree = "<group>";
+		};
 		19CB82D8196CC79800DBCBAB /* HttpEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1184,6 +1213,7 @@
 		745E8BF7199C8532007A8053 /* EGOImage */ = {
 			isa = PBXGroup;
 			children = (
+				19A79141199F514700074E89 /* EGOCircleImageButton */,
 				745E8BFB199C8532007A8053 /* EGOCache */,
 				745E8C03199C8532007A8053 /* EGOImageButton */,
 				745E8C06199C8532007A8053 /* EGOImageLoader */,
@@ -1598,6 +1628,7 @@
 		97416D9F178015ED00865342 /* 3rdPartySupport */ = {
 			isa = PBXGroup;
 			children = (
+				19A79148199F53B300074E89 /* MBProgress */,
 				97E8435A17E069920009B030 /* PinYin */,
 				97E8435617E069810009B030 /* CMIndexBar */,
 				97EFE76417C09EF90043B4BF /* KKGridView */,
@@ -2691,6 +2722,7 @@
 				97F261E417B37E310070295E /* RankingListVC.m in Sources */,
 				97996F1017B68CF300CA9A06 /* MenuCell.m in Sources */,
 				19A609321993B7BA00F77AA2 /* GiftOperation.m in Sources */,
+				19A79147199F514700074E89 /* RoundRectEGOImageButton.m in Sources */,
 				97996F1317B68CFD00CA9A06 /* MsgCell.m in Sources */,
 				97996F1617B68D3C00CA9A06 /* MyPageVC.m in Sources */,
 				97996F1917B68F4600CA9A06 /* InfoEditVC.m in Sources */,
@@ -2726,7 +2758,9 @@
 				366F4BF418264B13002AD7B5 /* UWebViewController.m in Sources */,
 				8766C7821890F7D800D83863 /* UTabbar.m in Sources */,
 				366F4BF718267BA8002AD7B5 /* PasswordLockVC.m in Sources */,
+				19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */,
 				745E8C21199C8532007A8053 /* EGOImageLoadConnection.m in Sources */,
+				19A79146199F514700074E89 /* CircleImageButton.m in Sources */,
 				873BD97F18BAF3F200D9C868 /* TaPhotoVC.m in Sources */,
 				87167D81188E513900263AC6 /* TaInfoVC.m in Sources */,
 			);
