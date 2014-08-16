@@ -11,7 +11,10 @@
 #import "AppDelegate.h"
 
 @interface UBasicViewController ()
-
+#pragma mark -
+#pragma mark private MBProgressHUD Methods
+-(void) showProgress;
+-(void) showProgressAutoWithText : (NSString *) context withDelayTime : (NSUInteger) sec;
 @end
 
 @implementation UBasicViewController
@@ -43,7 +46,6 @@
     UIView *statusbarAidView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.currentDeviceLateriOS7 ? 20 : 0)];
     statusbarAidView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:statusbarAidView];
-    [statusbarAidView release];
     
     // NavBar 标题栏
     if (!_navBarView) {
@@ -129,15 +131,6 @@
 }
 
 
-- (void)dealloc {
-    SAFERELEASE(_navBarView)
-    SAFERELEASE(_titleItem)
-    SAFERELEASE(_leftItem)
-    SAFERELEASE(_rightItem)
-    SAFERELEASE(_defaultView)
-    [super dealloc];
-}
-
 
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
@@ -158,7 +151,7 @@
         CTFontRef titleBoldFont = CTFontCreateWithName((CFStringRef)titleBoldSystemFont.fontName, titleBoldSystemFont.pointSize, NULL);
         if (titleBoldFont) {
             [mutableAttributedString removeAttribute:(NSString *)kCTFontAttributeName range:titleRange];
-            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(id)titleBoldFont range:titleRange];
+            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)titleBoldFont range:titleRange];
             CFRelease(titleBoldFont);
         }
         return mutableAttributedString;
@@ -261,11 +254,11 @@
 - (void)setSideMenuController {
     if (APP_DELEGATE) {
         if (APP_DELEGATE.rootViewController.leftDrawerViewController == nil) {
-            MenuLeftVC *leftController = [[[MenuLeftVC alloc] init] autorelease];
+            MenuLeftVC *leftController = [[MenuLeftVC alloc] init];
             [APP_DELEGATE.rootViewController setLeftDrawerViewController:leftController];
         }
         if (APP_DELEGATE.rootViewController.rightDrawerViewController == nil) {
-            MenuRightVC *rightController = [[[MenuRightVC alloc] init] autorelease];
+            MenuRightVC *rightController = [[MenuRightVC alloc] init];
             [APP_DELEGATE.rootViewController setRightDrawerViewController:rightController];
         }
     }
@@ -280,6 +273,137 @@
             [APP_DELEGATE.rootViewController setRightDrawerViewController:nil];
         }
     }
+}
+
+#pragma mark -
+#pragma mark - MBProgressHUD 进度条
+-(void) showProgressOnWinAutoCloseInNetwork:(NSString *)text{
+    [self showProgressOnWinAutoCloseInNetwork];
+    self.progressHUD.detailsLabelText = text;
+}
+
+-(void) showProgressOnWinAutoCloseInNetwork{
+    [self showProgressOnWin];
+}
+
+#pragma mark -
+#pragma mark MBProgressHUD Methods
+
+-(void) showProgress{
+    if (nil != self.navigationController.view) {
+        self.progressHUD = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        self.progressHUD.delegate = self;
+        self.progressHUD.detailsLabelFont = [UIFont boldSystemFontOfSize:14.0f];
+    }
+}
+
+-(void) showProgressWithText : (NSString *) context withDelayTime : (NSUInteger) sec{
+    
+    if (nil == context || [context isEqualToString:@""]) {
+        return;
+    }
+    
+    if (nil == self.progressHUD) {
+        [self showProgress];
+    }
+    
+    if (sec <= 1) {
+        sec = 2;
+    }
+    self.progressHUD.mode = MBProgressHUDModeText;
+    self.progressHUD.detailsLabelText = context;
+    [self.progressHUD hide:YES afterDelay:sec];
+}
+
+-(void) showProgressOnwindowsWithText : (NSString *) context withDelayTime : (NSUInteger) sec{
+    if (nil == self.progressHUD) {
+        if ( [[[UIApplication sharedApplication] windows] count] >=1) {
+            UIWindow *tempKeyboardWindow = [[[UIApplication sharedApplication] windows] lastObject];
+            self.progressHUD = [[MBProgressHUD alloc] initWithWindow:tempKeyboardWindow];
+            [tempKeyboardWindow addSubview:self.progressHUD];
+            [self.progressHUD show:YES];
+            self.progressHUD.delegate = self;
+        }else{
+            return;
+        }
+    }
+    
+    if (sec <= 1) {
+        sec = 2;
+    }
+    self.progressHUD.mode = MBProgressHUDModeText;
+    self.progressHUD.detailsLabelText = context;
+    [self.progressHUD hide:YES afterDelay:sec];
+}
+-(void) showProgressOnWin{
+    if (nil != self.navigationController.view) {
+        
+        if ( [[[UIApplication sharedApplication] windows] count] > 1) {
+            UIWindow *tempKeyboardWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:1];
+            self.progressHUD = [[MBProgressHUD alloc] initWithWindow:tempKeyboardWindow];
+            [tempKeyboardWindow addSubview:self.progressHUD];
+            [self.progressHUD show:YES];
+            self.progressHUD.delegate = self;
+        }else{
+            [self showProgress];
+        }
+    }
+}
+-(void) showProgressWithText:(NSString *)text{
+    [self showProgress];
+    self.progressHUD.detailsLabelText = text;
+}
+
+-(void) showProgressWithText:(NSString *)text dimBackground:(BOOL)isBackground{
+    [self showProgressWithText:text];
+    self.progressHUD.dimBackground = isBackground;
+}
+
+-(void) showProgressAutoWithText : (NSString *) context withDelayTime : (NSUInteger) sec{
+    [self showProgressWithText:context withDelayTime:sec];
+}
+
+-(void) closeProgress{
+    if (nil != self.progressHUD) {
+        [self.progressHUD hide:YES];
+    }
+}
+
+-(void) showWhileExecuting : (SEL) sel withText : (NSString *) text withDetailText : (NSString *) detailText{
+    if (nil != self.progressHUD) {
+        return;
+    }
+    self.progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:self.progressHUD];
+    self.progressHUD.delegate = self;
+    
+    if ([self stringIsNilOrEmpty:text]) {
+        self.progressHUD.labelText = text;
+    }
+    
+    if ([self stringIsNilOrEmpty:detailText]) {
+        self.progressHUD.detailsLabelText = detailText;
+    }
+    
+	[self.progressHUD showWhileExecuting:sel onTarget:self withObject:nil animated:YES];
+}
+
+#pragma mark -
+#pragma mark Other methods
+-(BOOL) stringIsNilOrEmpty : (NSString *) str{
+    if (nil != str && ![str isEqualToString:@""]) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	[self.progressHUD removeFromSuperview];
+	self.progressHUD = nil;
 }
 
 -(NSString *)getAccountValueByKey : (ACCOUNT_INFO_TYPE)type
