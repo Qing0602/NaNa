@@ -175,7 +175,8 @@ extern NSInteger K_WAKE_UP_ID;
 #define K_WEBVIEW_URL_FRIEND            @"/love"                // 好友
 #define K_WEBVIEW_URL_MY_BLACK_LIST     @"/user/blacklist"      // 我的黑名单
 #define K_WEBVIEW_URL_SUGGEST           @"/user/suggest"        // 意见反馈
-
+//http://api.local.ishenran.cn/interactive?userId=5&targetId=7
+#define K_WEBVIEW_URL_INTERACT @"/interactive" //互动
 
 // 我的主页
 // 修改资料

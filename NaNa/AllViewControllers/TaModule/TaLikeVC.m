@@ -7,14 +7,23 @@
 //
 
 #import "TaLikeVC.h"
-
+#import "PresentGiftViewController.h"
 @interface TaLikeVC ()
-
+{
+    NSInteger targetID;
+}
 @end
 
 @implementation TaLikeVC
 
-
+-(id)initWithUserID:(NSInteger)userID
+{
+    self = [super init];
+    if (self) {
+        targetID = userID;
+    }
+    return self;
+}
 - (void)loadView {
     [super loadView];
     // title
@@ -42,9 +51,12 @@
     }
     [_myWebView addSubview:_activityView];
     _myWebView.scalesPageToFit = YES;
-    [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_LOVE,@"userId=5")];
     
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.local.ishenran.cn/interactive?userId=%d&targetId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID]];
+    //[_myWebView loadRequest:URLREQUEST(, );
+    [_myWebView loadRequest:[NSURLRequest requestWithURL:url]];
     
+    [self addTapOnWebView];
 //    // content
 //    UIImageView *bg = [[UIImageView alloc] init];
 //    bg.frame = CGRectMake(_defaultView.frame.origin.x + 15, 15,
@@ -119,8 +131,44 @@
 - (void)dealloc {
     [super dealloc];
 }
-
-
+#pragma mark - gesture
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+-(void)addTapOnWebView
+{
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [_myWebView addGestureRecognizer:singleTap];
+    singleTap.delegate = self;
+    singleTap.cancelsTouchesInView = NO;
+}
+-(void)handleSingleTap:(UITapGestureRecognizer *)sender
+{
+    CGPoint pt = [sender locationInView:_myWebView];
+    NSString *imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x*2, pt.y*2];
+    NSString *urlToSave = [_myWebView stringByEvaluatingJavaScriptFromString:imgURL];
+    NSLog(@"image url=%@", urlToSave);
+    NSString *js = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).tagName", pt.x*2, pt.y*2];
+    NSString *jsClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", pt.x*2, pt.y*2];
+    NSString *jsText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", pt.x*2, pt.y*2];
+    NSString * tagName = [_myWebView stringByEvaluatingJavaScriptFromString:js];
+    NSString *className = [_myWebView stringByEvaluatingJavaScriptFromString:jsClass];
+    NSString *textName = [_myWebView stringByEvaluatingJavaScriptFromString:jsText];
+    if ([textName isEqualToString:@"送礼物"] && [className isEqualToString:@"list_button"]) {
+        PresentGiftViewController *presentGift = [[PresentGiftViewController alloc] initWithUserID:targetID];
+        [self.navigationController pushViewController:presentGift animated:YES];
+    }
+    //    if (urlToSave.length > 0) {
+    //        [self showImageURL:urlToSave point:pt];
+    //    }
+}
+#pragma mark - WebViewDelegate
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{    
+    
+    return YES;
+}
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
     [self.navigationController popViewControllerAnimated:YES];

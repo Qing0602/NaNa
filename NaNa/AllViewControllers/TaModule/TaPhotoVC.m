@@ -9,7 +9,9 @@
 #import "TaPhotoVC.h"
 
 @interface TaPhotoVC ()
-
+{
+    NSInteger targetID;
+}
 @end
 
 @implementation TaPhotoVC
@@ -22,7 +24,14 @@
     }
     return self;
 }
-
+-(id)initWithUserID:(NSInteger)userID
+{
+    self = [super init];
+    if (self) {
+        targetID = userID;
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

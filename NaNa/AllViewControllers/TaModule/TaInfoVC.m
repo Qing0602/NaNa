@@ -15,7 +15,9 @@
 #define kInfoEditCellNumber         4
 
 @interface TaInfoVC ()
-
+{
+    NSInteger targetID;
+}
 @end
 
 @implementation TaInfoVC
@@ -28,7 +30,14 @@
     }
     return self;
 }
-
+-(id)initWithUserID:(NSInteger)userID
+{
+    self = [super init];
+    if (self) {
+        targetID = userID;
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

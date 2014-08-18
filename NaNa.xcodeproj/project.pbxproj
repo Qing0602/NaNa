@@ -75,6 +75,7 @@
 		745E8C23199C8532007A8053 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0D199C8532007A8053 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745E8C24199C8532007A8053 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C0F199C8532007A8053 /* ImageUtil.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		745E8C29199C8532007A8053 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E8C1B199C8532007A8053 /* UIImage+Resize.m */; };
+		745EFE9619A23487009F1B4D /* PresentGiftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 745EFE9519A23487009F1B4D /* PresentGiftViewController.m */; };
 		74F9852A198FCFA400C86A41 /* photoDetailManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */; };
 		74F9852D198FD03800C86A41 /* PhotosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F9852C198FD03800C86A41 /* PhotosModel.m */; };
 		87165D10187EA7A70025B6DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87165D0F187EA7A70025B6DF /* AVFoundation.framework */; };
@@ -587,6 +588,8 @@
 		745E8C0F199C8532007A8053 /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
 		745E8C1A199C8532007A8053 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		745E8C1B199C8532007A8053 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		745EFE9419A23487009F1B4D /* PresentGiftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentGiftViewController.h; sourceTree = "<group>"; };
+		745EFE9519A23487009F1B4D /* PresentGiftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentGiftViewController.m; sourceTree = "<group>"; };
 		74F98528198FCFA400C86A41 /* photoDetailManagementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoDetailManagementVC.h; sourceTree = "<group>"; };
 		74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoDetailManagementVC.m; sourceTree = "<group>"; };
 		74F9852B198FD03800C86A41 /* PhotosModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosModel.h; sourceTree = "<group>"; };
@@ -2175,6 +2178,8 @@
 				36FD27DC1839DAC2004EBC51 /* TaPageVC.m */,
 				97201BB31887E074007DDCF8 /* TaLikeVC.h */,
 				97201BB41887E074007DDCF8 /* TaLikeVC.m */,
+				745EFE9419A23487009F1B4D /* PresentGiftViewController.h */,
+				745EFE9519A23487009F1B4D /* PresentGiftViewController.m */,
 				87167D7F188E513900263AC6 /* TaInfoVC.h */,
 				87167D80188E513900263AC6 /* TaInfoVC.m */,
 			);
@@ -2774,6 +2779,7 @@
 				97EFE76317C094330043B4BF /* HeadCartoonVC.m in Sources */,
 				97E8435417E069740009B030 /* UCity.m in Sources */,
 				97E8435517E069740009B030 /* UCityVC.m in Sources */,
+				745EFE9619A23487009F1B4D /* PresentGiftViewController.m in Sources */,
 				19CB82F5196D64C300DBCBAB /* UploadOperation.m in Sources */,
 				97E8435917E069810009B030 /* CMIndexBar.m in Sources */,
 				97E8435D17E069920009B030 /* pinyin.m in Sources */,

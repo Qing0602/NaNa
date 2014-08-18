@@ -20,6 +20,8 @@
 - (id)initWithURL:(NSString *)taURL {
     if (self = [super init]) {
         _url = [[NSURL alloc] initWithString:taURL];
+        NSRange range = [taURL rangeOfString:@"targetId="];
+        targetID = [[taURL substringFromIndex:range.location+range.length] integerValue];
         
     }
     return self;
@@ -53,7 +55,7 @@
     [_myWebView loadRequest:[NSURLRequest requestWithURL:_url]];
     
     
-    NSArray *titleArray = [NSArray arrayWithObjects:@"相册",@"资料",@"喜欢",@"聊天", nil];
+    NSArray *titleArray = [NSArray arrayWithObjects:@"相册",@"资料",@"互动",@"聊天", nil];
     NSArray *normalArray = [NSArray arrayWithObjects:@"tabbar_album_normal.png",@"tabbar_info_normal.png",@"tabbar_private_normal.png",@"tabbar_member_normal.png", nil];
     NSArray *selectArray = [NSArray arrayWithObjects:@"tabbar_album_pressed.png",@"tabbar_info_pressed.png",@"tabbar_private_pressed.png",@"tabbar_member_pressed.png", nil];
     
@@ -89,21 +91,21 @@
     switch (index) {
         case TaPageTabItemAlbum: {
             ULog(@"TaPageTabItemAlbum");
-            TaPhotoVC *infoVC = [[TaPhotoVC alloc] init];
+            TaPhotoVC *infoVC = [[TaPhotoVC alloc] initWithUserID:targetID];
             [self.navigationController pushViewController:infoVC animated:YES];
             [infoVC release];
             break;
         }
         case TaPageTabItemInfo: {
             ULog(@"TaPageTabItemInfo");
-            TaInfoVC *infoVC = [[TaInfoVC alloc] init];
+            TaInfoVC *infoVC = [[TaInfoVC alloc] initWithUserID:targetID];
             [self.navigationController pushViewController:infoVC animated:YES];
             [infoVC release];
             break;
         }
         case TaPageTabItemLike: {
             ULog(@"TaPageTabItemLike");
-            TaLikeVC *taLikeVC  =[[TaLikeVC alloc] init];
+            TaLikeVC *taLikeVC  =[[TaLikeVC alloc] initWithUserID:targetID];
             [self.navigationController pushViewController:taLikeVC animated:YES];
             [taLikeVC release];
             break;

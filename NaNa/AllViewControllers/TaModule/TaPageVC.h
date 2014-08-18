@@ -21,6 +21,7 @@ typedef enum {
     UIWebView                   *_myWebView;
     UIActivityIndicatorView     *_activityView;
     NSURL                       *_url;
+    NSInteger targetID;
 }
 
 - (id)initWithURL:(NSString *)url;

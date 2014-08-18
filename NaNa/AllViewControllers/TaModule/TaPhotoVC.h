@@ -13,6 +13,7 @@
 {
     KKGridView *_gridView;
 }
+-(id)initWithUserID:(NSInteger)userID;
 @end
 
 

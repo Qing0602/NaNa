@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UBasicViewController.h"
 
-@interface TaLikeVC : UBasicViewController<UIWebViewDelegate>
+@interface TaLikeVC : UBasicViewController<UIWebViewDelegate,UIGestureRecognizerDelegate>
 {
     UIWebView                   *_myWebView;
     UIActivityIndicatorView     *_activityView;
 }
-
+-(id)initWithUserID:(NSInteger)userID;
 @end

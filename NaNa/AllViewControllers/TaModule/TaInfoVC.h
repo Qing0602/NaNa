@@ -26,4 +26,5 @@ UITableViewDelegate>
     UILabel             *_roleLabel;      // 角色
     UILabel             *_cityLabel;      // 城市
 }
+-(id)initWithUserID:(NSInteger)userID;
 @end
