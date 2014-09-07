@@ -12,11 +12,19 @@
 @interface MessageOperation ()
 @property(nonatomic) MessageType type;
 
+-(void) sendMessage;
 -(void) getSideMessageList;
+
 @end
 
 @implementation MessageOperation
--(MessageOperation *) initSendMessage : (NSString *) content withUserID : (int) userID withTarGetID : (int) targetID{
+-(MessageOperation *) initSendMessage : (NSString *) content withTarGetID : (int) targetID{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = kSendMessage;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/send?userId=%d&targetId=%d&content=%@",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,content];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
     return self;
 }
 
@@ -32,6 +40,16 @@
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
+}
+
+-(void) sendMessage{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].sendMessageResult = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
 }
 
 -(void) getSideMessageList{

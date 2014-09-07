@@ -87,6 +87,12 @@ static NaNaUIManagement *sharedInstance = nil;
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 
+// 发送消息
+-(void) sendMessage : (NSString *) content withTarGetID : (int) targetID{
+    MessageOperation *operation = [[MessageOperation alloc] initSendMessage:content withTarGetID:targetID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
 // 获取侧边栏消息通知
 -(void) getSideMessage{
     MessageOperation *operation = [[MessageOperation alloc] initGetSideMessageList:[NaNaUIManagement sharedInstance].userAccount.UserID];

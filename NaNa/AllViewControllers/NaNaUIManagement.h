@@ -71,6 +71,9 @@ typedef enum{
 // 获取侧边栏数据
 @property(nonatomic,strong) NSDictionary *sideResult;
 
+// 发送消息
+@property(nonatomic,strong) NSDictionary *sendMessageResult;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
@@ -103,7 +106,8 @@ typedef enum{
 -(void) getuserPhotoesList : (int) userID;
 
 
-
+// 发送消息
+-(void) sendMessage : (NSString *) content withTarGetID : (int) targetID;
 // 获取侧边栏消息通知
 -(void) getSideMessage;
 @end
