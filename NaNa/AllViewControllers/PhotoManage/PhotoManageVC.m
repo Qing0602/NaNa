@@ -19,8 +19,8 @@
 {
     if ([keyPath isEqualToString:@"userPhotoesList"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPhotoesList];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
-            for (NSDictionary *info in tempData[@"body"]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            for (NSDictionary *info in tempData[ASI_REQUEST_DATA]) {
                 PhotosModel *model = [[PhotosModel alloc] init];
                 model.imageDes = info[@"description"];
                 model.imagePath = info[@"imageurl"];

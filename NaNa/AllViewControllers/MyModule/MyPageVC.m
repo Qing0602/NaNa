@@ -14,6 +14,9 @@
 #import "UTabbar.h"
 #import "PhotoMenuView.h"
 #import "MyGiftListViewController.h"
+#import "NaNaUIManagement.h"
+#import "NaNaUserAccountModel.h"
+
 @interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     PhotoMenuView *_photoMenuView;
@@ -64,7 +67,8 @@
     }
     [_myWebView addSubview:_activityView];
     _myWebView.scalesPageToFit = YES;
-    [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_MY_PAGE,@"userId=5")];
+    NSString *p =[NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+    [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_MY_PAGE,p)];
     //[_myWebView loadRequest:URLREQUEST(@"/wblogin/index.php",@"")];
     [self addTapOnWebView];
     

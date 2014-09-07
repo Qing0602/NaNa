@@ -43,7 +43,7 @@
                                          desc,@"description",
                                          nil]
                             imgDataDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                         data,@"image",
+                                         data,@"file",
                                          nil]];
     }
     return self;

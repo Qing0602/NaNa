@@ -90,7 +90,7 @@ typedef enum{
 // 修改用户接受推送
 -(void) updateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush
                 withCanFriendPush : (BOOL) canFriendPush;
-// 修改隐私设置
+// 修改隐私设置 -- 此接口仅仅使用ShowUserInfo参数和ShowPhotoes参数
 -(void) updateUserPrivacySetting : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice;
 
 // 获取可用于购买的礼物列表
