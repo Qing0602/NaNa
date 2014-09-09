@@ -299,6 +299,7 @@
         PhotosModel *model = [_photosArray objectAtIndex:indexPath.index-1];
         photoDetailManagementVC *photoDetail = [[photoDetailManagementVC alloc] initWithModel:model];
         [self.navigationController pushViewController:photoDetail animated:YES];
+        [photoDetail release];
     }
 }
 #pragma mark EgoDelegate

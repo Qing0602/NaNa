@@ -18,7 +18,7 @@
 #define kSettingEditCellShowWidth       320.0
 #define kSettingEditCellTypeNumber      4
 #define kSettingEditCellModeNumber      2
-#define kSettingEditSectionNumber       2
+#define kSettingEditSectionNumber       1
 
 typedef enum {
     SettingEditRowMessage     = 0,

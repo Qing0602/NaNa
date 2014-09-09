@@ -30,23 +30,24 @@
         // Custom initialization
         self.photoModel = model;
         
-        [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 60, 7, 60, 30);
-        [btn setTitle:@"修改" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(imageAction) forControlEvents:UIControlEventTouchUpInside];
-        [self.navBarView addSubview:btn];
+
     }
     return self;
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImageView *imageview = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:self.photoModel.imagePath]];
-    CGRect frame = imageview.frame;
-    frame.origin = CGPointMake(0.f, ScreenHeight/2-frame.size.height/2);
-    imageview.frame = frame;
+    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 60, 7, 60, 30);
+    [btn setTitle:@"修改" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(imageAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.navBarView addSubview:btn];
+    
+    EGOImageView  *imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, ScreenHeight-44.f)];
+    imageview.delegate = self;
+    [imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
     [self.view addSubview:imageview];
     
     
@@ -63,7 +64,7 @@
 }
 -(void)imageAction
 {
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相册",@"拍照",@"删除", nil];
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除", nil];
     [action showInView:self.view];
 }
 #pragma mark ActionSheetDelegate
@@ -72,50 +73,6 @@
     switch (buttonIndex) {
         case 0:
         {
-            [UIView animateWithDuration:default_duration
-                             animations:^{
-                                 
-                             }
-                             completion:^(BOOL finished) {
-                                 
-                                 if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-                                     
-                                     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                                     picker.delegate = self;
-                                     picker.allowsEditing = YES;
-                                     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                                     
-                                     [self presentViewController:picker animated:YES completion:nil];
-                                     
-
-                                 }
-                             }];
-        }
-            break;
-        case 1:
-        {
-            [UIView animateWithDuration:default_duration
-                             animations:^{
-
-                             }
-                             completion:^(BOOL finished) {
-
-                                 
-                                 if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                                     
-                                     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                                     picker.delegate = self;
-                                     picker.allowsEditing = YES;
-                                     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                     [self presentViewController:picker animated:YES completion:nil];
-
-                                 }
-                             }];
-        }
-            break;
-        case 2:
-        {
-            
         }
             break;
             
@@ -123,12 +80,12 @@
             break;
     }
 }
-- (void)imagePickerController:(UIImagePickerController *)picker
-		didFinishPickingImage:(UIImage *)image
-                  editingInfo:(NSDictionary *)editingInfo {
-    
-    
-    [picker dismissModalViewControllerAnimated:YES];
+#pragma mark - EGOImageview
+-(void)imageViewLoadedImage:(EGOImageView *)imageView
+{
+    CGRect frame = imageView.frame;
+    frame.origin = CGPointMake(0.f, ScreenHeight/2-frame.size.height/2);
+    imageView.frame = frame;
 }
 /*
 #pragma mark - Navigation

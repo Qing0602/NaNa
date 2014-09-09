@@ -8,7 +8,8 @@
 
 #import "UBasicViewController.h"
 #import "PhotosModel.h"
-@interface photoDetailManagementVC : UBasicViewController <UIActionSheetDelegate,UIImagePickerControllerDelegate>
+#import "EGOImageView.h"
+@interface photoDetailManagementVC : UBasicViewController <UIActionSheetDelegate,EGOImageViewDelegate>
 
 -(id)initWithModel:(PhotosModel *)model;
 

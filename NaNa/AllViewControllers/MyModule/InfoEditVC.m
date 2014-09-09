@@ -60,7 +60,8 @@ typedef enum {
             }
         }else
         {
-            [UAlertView showAlertViewWithMessage:@"修改失败,请重新再试" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+            
+            [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
     }
 }
