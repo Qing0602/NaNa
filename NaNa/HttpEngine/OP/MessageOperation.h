@@ -11,10 +11,13 @@ typedef enum{
     kSendMessage,
     kGetNewMessage,
     kGetSideMessageList,
+    kGetHistoryMessage,
 }MessageType;
 
 @interface MessageOperation : NaNaOperation
 -(MessageOperation *) initSendMessage : (NSString *) content withTarGetID : (int) targetID;
--(MessageOperation *) initGetNewMessage : (int) userID withTargetID : (int) targetID withPage : (int) page;
+-(MessageOperation *) initGetNewMessageWithTargetID : (int) targetID;
 -(MessageOperation *) initGetSideMessageList : (int) userID;
+
+-(MessageOperation *) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
 @end

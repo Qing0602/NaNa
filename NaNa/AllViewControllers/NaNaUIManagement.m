@@ -98,4 +98,16 @@ static NaNaUIManagement *sharedInstance = nil;
     MessageOperation *operation = [[MessageOperation alloc] initGetSideMessageList:[NaNaUIManagement sharedInstance].userAccount.UserID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
+
+// 获取新消息
+-(void) initGetNewMessageWithTargetID : (int) targetID{
+    MessageOperation *operation = [[MessageOperation alloc] initGetNewMessageWithTargetID:targetID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 获取历史消息
+-(void) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp{
+    MessageOperation *operation = [[MessageOperation alloc] initGetHistoryMessageWithTargetID:targetID withTimeStemp:timeStemp];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end

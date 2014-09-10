@@ -74,6 +74,12 @@ typedef enum{
 // 发送消息
 @property(nonatomic,strong) NSDictionary *sendMessageResult;
 
+// 历史消息
+@property(nonatomic,strong) NSDictionary *historyMessage;
+
+// 新消息
+@property(nonatomic,strong) NSDictionary *messagesDic;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
@@ -110,4 +116,8 @@ typedef enum{
 -(void) sendMessage : (NSString *) content withTarGetID : (int) targetID;
 // 获取侧边栏消息通知
 -(void) getSideMessage;
+// 获取新消息
+-(void) initGetNewMessageWithTargetID : (int) targetID;
+// 获取历史消息
+-(void) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
 @end
