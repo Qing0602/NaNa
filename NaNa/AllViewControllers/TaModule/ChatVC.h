@@ -33,7 +33,7 @@
 @property (nonatomic, retain) NSDate                 *lastTime;
 @property (nonatomic, retain) AsyncUdpSocket         *udpSocket;
 
-
+-(void) initChatVC : (NSString *)
 -(void)openUDPServer;
 -(void)sendMassage:(NSString *)message;
 -(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf;
