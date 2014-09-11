@@ -223,12 +223,14 @@
         cell = [[[MyPhotoCell alloc] initWithFrame:CGRectMake(0, 0, 100, 120) reuseIdentifier:identifier] autorelease];
     }
     
-    cell.contentView.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
+    //cell.contentView.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
     
     UIImageView *image = (UIImageView *)[cell.contentView viewWithTag:0xfd0];
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:0xfd1];
     UILabel *addLabel = (UILabel *)[cell.contentView viewWithTag:0xfd2];
     if (indexPath.index == 0) {
+        cell.contentView.backgroundColor = [UIColor blackColor];
+        
         cell.contentView.layer.borderWidth = 5;
         cell.contentView.layer.borderColor = [UIColor blackColor].CGColor;
         image.hidden = YES;
@@ -270,7 +272,7 @@
             image.image = tempImage;
         }
         
-        SAFERELEASE(tempImage);
+        //SAFERELEASE(tempImage);
         
         if (!label) {
             label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 100, 100, 20)] autorelease];
