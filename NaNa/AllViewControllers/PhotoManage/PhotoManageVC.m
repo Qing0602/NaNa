@@ -270,7 +270,7 @@
             image.image = tempImage;
         }
         
-        SAFERELEASE(tempImage);
+        //SAFERELEASE(tempImage);
         
         if (!label) {
             label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 100, 100, 20)] autorelease];
