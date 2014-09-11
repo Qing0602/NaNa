@@ -22,7 +22,7 @@
 #define END_FLAG @"]"
 
 @interface ChatVC (Private)
-
+@property (nonatomic,strong) NaNaUserProfileModel *otherProfile;
 @end
 
 @implementation ChatVC
@@ -34,18 +34,17 @@
 @synthesize phraseString = _phraseString;
 @synthesize lastTime = _lastTime;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
-    {
+
+-(ChatVC *) initChatVC : (NaNaUserProfileModel *)otherProfileModel{
+    self = [self init];
+    if (self) {
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         self.chatArray = tempArray;
-        [tempArray release];
         
         NSDate *tempDate = [[NSDate alloc] init];
         self.lastTime = tempDate;
-        [tempDate release];
         
+        self.otherProfile = otherProfileModel;
         [self registerNotification];
     }
     return self;
@@ -88,7 +87,7 @@
     
     [super viewDidLoad];
     
-    self.title = @"西门吹雪";
+    self.title = self.otherProfile.userNickName;
     
     _defaultView.backgroundColor = [UIColor colorWithRed:240/255.0 green:245/255.0 blue:255/255.0 alpha:1.0f];
     
@@ -117,7 +116,6 @@
         UIImageView *bgv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         bgv.image = [UIImage imageNamed:@"chat_toolbar_bg.png"];
         [_toolbar addSubview:bgv];
-        [bgv release];
     }
     [_defaultView addSubview:_toolbar];
 
@@ -125,7 +123,6 @@
     UIImageView *textFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(8, 7, 222, 30)];
     textFieldBg.image = [UIImage imageNamed:@"chat_textfield_bg.png"];
     [_toolbar addSubview:textFieldBg];
-    [textFieldBg release];
     
     if (!_messageTextField)
     {
@@ -169,7 +166,6 @@
 	//初始化udp
 	AsyncUdpSocket *tempSocket=[[AsyncUdpSocket alloc] initWithDelegate:self];
 	self.udpSocket=tempSocket;
-	[tempSocket release];
 	//绑定端口
 	NSError *error = nil;
 	[self.udpSocket bindToPort:4333 error:&error];
@@ -383,7 +379,7 @@
     ULog(@"host---->%@",host);
     [self.udpSocket receiveWithTimeout:-1 tag:0];
    	//接收到数据回调，用泡泡VIEW显示出来
-	NSString *info=[[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding] autorelease];
+	NSString *info=[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
     UIView *chatView = [self bubbleView:[NSString stringWithFormat:@"%@:%@",@"西门吹雪", info]
 								   from:NO];
 	[self.chatArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:info, @"text", @"other", @"speaker", chatView, @"view", nil]];
@@ -444,7 +440,7 @@
     {
         if (!dateCell)
         {
-            dateCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:dateCellIdentifier] autorelease];
+            dateCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:dateCellIdentifier];
             dateCell.selectionStyle = UITableViewCellSelectionStyleNone;
             dateCell.backgroundColor = [UIColor clearColor];
         }
@@ -453,7 +449,7 @@
         UILabel *dateL = (UILabel *)[cell.contentView viewWithTag:0xFB];
         if (!dateL)
         {
-            dateL = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+            dateL = [[UILabel alloc] initWithFrame:CGRectZero];
             dateL.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
             dateL.font = [UIFont systemFontOfSize:12];
             dateL.textAlignment = NSTextAlignmentCenter;
@@ -463,7 +459,6 @@
 		NSDateFormatter  *formatter = [[NSDateFormatter alloc] init];
 		[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 		NSMutableString *timeString = [NSMutableString stringWithFormat:@"%@",[formatter stringFromDate:[self.chatArray objectAtIndex:[indexPath row]]]];
-		[formatter release];
         [dateL setText:timeString];
         dateL.frame = CGRectMake((320-[timeString sizeWithFont:dateL.font].width)/2-5, 5, [timeString sizeWithFont:dateL.font].width+10, 20);
         dateL.layer.cornerRadius = 5;
@@ -472,7 +467,7 @@
     {
         if (!chatCell)
         {
-            chatCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier] autorelease];
+            chatCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier];
             chatCell.selectionStyle = UITableViewCellSelectionStyleNone;
             chatCell.backgroundColor = [UIColor clearColor];
         }
@@ -483,7 +478,7 @@
         chatView = nil;
         if (!chatView)
         {
-            chatView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+            chatView = [[UIView alloc] initWithFrame:CGRectZero];
             chatView.tag = 0xFD;
             [cell.contentView addSubview:chatView];
         }
@@ -578,11 +573,8 @@
     [cellView addSubview:bubbleImageView];
     [cellView addSubview:headImageView];
     [cellView addSubview:returnView];
-    [bubbleImageView release];
-    [returnView release];
-    [headImageView release];
     
-	return [cellView autorelease];
+	return cellView;
 }
 
 //图文混排
@@ -626,8 +618,8 @@
 {
     CGFloat contentWidth = 0;
     CGFloat contentHeight = 0;
-    NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
-    NSMutableArray *subViewAndLabelArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableArray *subViewAndLabelArray = [[NSMutableArray alloc] init];
     [self getImageRange:message tempArray:array];
     UIView *returnView = [[UIView alloc] initWithFrame:CGRectZero];
     returnView.backgroundColor = [UIColor clearColor];
@@ -651,7 +643,6 @@
                 UIImageView *img=[[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
                 img.frame = CGRectMake(upX, upY, KFacialSizeWidth, KFacialSizeHeight);
                 [returnView addSubview:img];
-                [img release];
                 upX=KFacialSizeWidth+upX;
                 contentWidth = MAX(upX, contentWidth);
                 [subViewAndLabelArray addObject:img];
@@ -671,7 +662,6 @@
                     //la.backgroundColor = [UIColor colorWithRed:random()%255/255.0 green:random()%255/255.0 blue:random()%255/255.0 alpha:1.0f];
                     la.backgroundColor = [UIColor clearColor];
                     [returnView addSubview:la];
-                    [la release];
                     upX= upX + size.width;
                     contentWidth = MAX(upX, contentWidth);
                     [subViewAndLabelArray addObject:la];
@@ -685,17 +675,5 @@
     return returnView;
 }
 
-- (void)dealloc
-{
-	[_lastTime release];
-	[_phraseString release];
-	[_udpSocket release];
-	[_messageTextField release];
-	[_chatArray release];
-	[_chatTableView release];
-    [_faceAndeOtherView release];
-    [_toolbar release];
-    [super dealloc];
-}
 @end
 

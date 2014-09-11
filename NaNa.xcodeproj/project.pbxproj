@@ -104,7 +104,7 @@
 		87264C6E188541A900009F69 /* chat_textfield_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 87264C6D188541A900009F69 /* chat_textfield_bg.png */; };
 		87264C711885484900009F69 /* chat_face_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 87264C6F1885484900009F69 /* chat_face_btn.png */; };
 		87264C721885484900009F69 /* chat_photo_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 87264C701885484900009F69 /* chat_photo_btn.png */; };
-		8729E8211883CCA4005CAB4F /* ChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E8201883CCA4005CAB4F /* ChatVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8729E8211883CCA4005CAB4F /* ChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8729E8201883CCA4005CAB4F /* ChatVC.m */; };
 		8729E8FE18840034005CAB4F /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 8729E82C18840033005CAB4F /* 0.png */; };
 		8729E8FF18840034005CAB4F /* 0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8729E82D18840033005CAB4F /* 0@2x.png */; };
 		8729E90018840034005CAB4F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8729E82E18840033005CAB4F /* 1.png */; };
