@@ -18,7 +18,6 @@
         
         self.backgroundColor = RGBA(45.0,46.0,50.0,1.0);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         // icon
         _iconImageView = [[UIImageView alloc] init];
         float iconHeight = self.frame.size.height - 20;

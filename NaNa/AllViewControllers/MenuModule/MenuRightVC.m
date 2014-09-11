@@ -28,7 +28,7 @@ typedef enum {
         _tableView = [[UITableView alloc] initWithFrame:_defaultView.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.backgroundColor = [UIColor colorWithRed:45.0f/255.0f green:46.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _tableView.separatorColor = [UIColor clearColor];
     }
@@ -58,7 +58,7 @@ typedef enum {
     if (cell == nil) {
         cell = [[[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault
                                 reuseIdentifier:CellIdentifier] autorelease];
-        cell.contentView.backgroundColor = (indexPath.row%2) ? [UIColor blackColor]:[UIColor grayColor];
+//        cell.contentView.backgroundColor = (indexPath.row%2) ? [UIColor blackColor]:[UIColor grayColor];
     }
     
     if(indexPath.row == 0) {

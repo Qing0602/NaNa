@@ -56,25 +56,13 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"sideResult"]) {
         
-        MessageInfoData *messageInfo = [[MessageInfoData alloc] init];
-        messageInfo.avatarUrl = @"aaa";
-        messageInfo.content = @"abcdefg";
-        messageInfo.count = 10;
-        messageInfo.createtime = 0;
-        messageInfo.nickname = @"123";
-        messageInfo.senderID = 5;
-        NSMutableArray *a = [[NSMutableArray alloc] initWithObjects:messageInfo, nil];
-        self.messages = a;
-        
-        [_tableView reloadData];
-        
         if (![[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             messageInfoConver *conver = [[messageInfoConver alloc] init];
             self.messages = [conver createByArray:[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_DATA]];
             
             MessageInfoData *messageInfo = [[MessageInfoData alloc] init];
             messageInfo.avatarUrl = @"aaa";
-            messageInfo.content = @"abcdefg";
+            messageInfo.content = @"abcdefgksfksi但是覅未付i换肤会烦死额外";
             messageInfo.count = 10;
             messageInfo.createtime = 0;
             messageInfo.nickname = @"123";
@@ -144,13 +132,28 @@
             cell = [[MsgCell alloc] initWithStyle:UITableViewCellStyleDefault
                                    reuseIdentifier:Msgkey];
         }
-        
+        MessageInfoData *msg = self.messages[indexPath.row];
         cell.headImageView.image = [UIImage imageNamed:@"icon.png"];
-        cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", @"name", @"测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试， 测试测试"];
+        cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", msg.nickname, msg.content];
         cell.timeLabel.text = @"1分钟前";
-        [cell setModel:[self.messages objectAtIndex:indexPath.row]];
+        [cell setModel:msg];
         cell.contentView.backgroundColor = RGBA(57.0,56.0,60.0,1.0);
-        cell.cellLine.frame = CGRectMake(0.0f, 80.0f - 3.0f, 320.0f, 3.0f);
+        
+        CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:default_font_size_14]];
+        if (size.width < 201.0f) {
+            cell.msgLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y, cell.msgLabel.frame.size.width, 25.0f);
+            float offsetY = cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + margin_small;
+            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, offsetY,
+                                          cell.msgLabel.frame.size.width, 25);
+            cell.cellLine.frame = CGRectMake(0.0f, 60.0f - 3.0f, 320.0f, 3.0f);
+        }else{
+            cell.msgLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y, cell.msgLabel.frame.size.width, 45.0f);
+            float offsetY = cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + margin_small;
+            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, offsetY,
+                                              cell.msgLabel.frame.size.width, 25);
+            cell.cellLine.frame = CGRectMake(0.0f, 80.0f - 3.0f, 320.0f, 3.0f);
+        }
+        
         return cell;
     }
 }
@@ -199,7 +202,13 @@
     if (indexPath.section == 0) {
         return MENU_ROW_HEIGHT;
     } else {
-        return MSG_ROW_HEIGHT;
+        MessageInfoData *msg = self.messages[indexPath.row];
+        CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:default_font_size_14]];
+        int height = 20.0f;
+        if (size.width > 201.0f) {
+            height = 40.0f;
+        }
+        return height + 40.0f;
     }
 }
 
