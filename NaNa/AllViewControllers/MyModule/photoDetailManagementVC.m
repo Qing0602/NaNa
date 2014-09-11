@@ -44,11 +44,11 @@
     [btn setTitle:@"修改" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(imageAction) forControlEvents:UIControlEventTouchUpInside];
     [self.navBarView addSubview:btn];
-    
-    EGOImageView  *imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, ScreenHeight-44.f)];
-    imageview.delegate = self;
-    [imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
-    [self.view addSubview:imageview];
+//
+//    EGOImageView  *imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, ScreenHeight-44.f)];
+//    imageview.delegate = self;
+//    [imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
+//    [self.view addSubview:imageview];
     
     
     // Do any additional setup after loading the view.
