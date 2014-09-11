@@ -235,6 +235,11 @@ typedef enum {
         _nameTextField.returnKeyType = UIReturnKeyDone;
     }
     
+    // 角色picker里的数据
+    if (!_roleArray) {
+        _roleArray = [[NSArray alloc] initWithObjects:@"P", @"T", @"H", nil];
+    }
+    
     // role
     if (!_roleLabel) {
         _roleLabel = [[UILabel alloc] init];
@@ -242,7 +247,7 @@ typedef enum {
         _roleLabel.textColor = default_color_dark;
         _roleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _roleLabel.backgroundColor = [UIColor clearColor];
-        _roleLabel.text = STRING(@"role");
+        _roleLabel.text = _roleArray[0];
     }
     
     // age
@@ -400,10 +405,7 @@ typedef enum {
     }
     [_ageBottomView addSubview:_ageDatePicker];
     
-    // 角色picker里的数据
-    if (!_roleArray) {
-        _roleArray = [[NSArray alloc] initWithObjects:@"P", @"T", @"H", nil];
-    }
+
     
     // 修改头像的菜单视图
     if (!_photoMenuView) {
@@ -581,13 +583,16 @@ typedef enum {
     [titleLabel release];
     
     // 箭头
-    UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-    arrow.frame = CGRectMake(_nameTextField.frame.origin.x + _nameTextField.frame.size.width + margin_small,
-                             (kInfoEditCellShowHeight - 14.0) / 2,
-                             14.0, 14.0);
-    
-    [cell.contentView addSubview:arrow];
-    [arrow release];
+    if (indexPath.row != 0) {
+        UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+        arrow.frame = CGRectMake(_nameTextField.frame.origin.x + _nameTextField.frame.size.width + margin_small,
+                                 (kInfoEditCellShowHeight - 14.0) / 2,
+                                 14.0, 14.0);
+        
+        [cell.contentView addSubview:arrow];
+        [arrow release];
+    }
+
     
     return cell;
 }
