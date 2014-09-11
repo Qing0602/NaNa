@@ -110,4 +110,10 @@ static NaNaUIManagement *sharedInstance = nil;
     MessageOperation *operation = [[MessageOperation alloc] initGetHistoryMessageWithTargetID:targetID withTimeStemp:timeStemp];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
+
+// 移除用户相册照片
+-(void) initRemoveUserPhoto : (int) photoID{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initRemoveUserPhoto:self.userAccount.UserID withPhotoID:photoID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end

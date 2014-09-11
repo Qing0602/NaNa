@@ -17,6 +17,7 @@
 -(void) postUserPrivacySetting;
 -(void) postUserPushSetting;
 -(void) getUserPhotoesList;
+-(void) removeUserPhoto;
 @end
 
 @implementation UserProfileOperation
@@ -106,6 +107,16 @@
     return self;
 }
 
+-(UserProfileOperation *) initRemoveUserPhoto :(int) userID withPhotoID : (int) photoID{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = kRemoveUserPhoto;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/photo/rm?userId=%d&id=%d",userID,photoID];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+}
+
 -(void) getUserProfile{
     [self.request setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
@@ -176,6 +187,16 @@
     [self startAsynchronous];
 }
 
+-(void) removeUserPhoto{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].removeUserPhotoDic = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
 -(void) main{
     @autoreleasepool {
         switch (self.type) {
@@ -199,6 +220,9 @@
                 break;
             case kGetUserPhotoesList:
                 [self getUserPhotoesList];
+                break;
+            case kRemoveUserPhoto:
+                [self removeUserPhoto];
                 break;
             default:
                 break;

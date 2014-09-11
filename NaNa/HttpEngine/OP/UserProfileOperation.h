@@ -16,6 +16,7 @@ typedef enum{
     kPostUserPrivacySetting,
     kPostUserPushSetting,
     kGetUserPhotoesList,
+    kRemoveUserPhoto,
 }UserProfileType;
 
 @interface UserProfileOperation : NaNaOperation
@@ -32,4 +33,6 @@ typedef enum{
 -(UserProfileOperation *) initUpdateUserPrivacySetting : (int) userID withIsShowPhotoes : (BOOL) isShowPhotoes withIsShowUserInfo : (BOOL) isShowUserInfo
                                 withIsShowUserAvatar : (BOOL) isShowUserAvatar withIsShowVoice : (BOOL) isShowVoice;
 -(UserProfileOperation *) initGetuserPhotoesList : (int) userID;
+
+-(UserProfileOperation *) initRemoveUserPhoto :(int) userID withPhotoID : (int) photoID;
 @end

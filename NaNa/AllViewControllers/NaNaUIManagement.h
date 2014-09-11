@@ -80,6 +80,9 @@ typedef enum{
 // 新消息
 @property(nonatomic,strong) NSDictionary *messagesDic;
 
+// 移除用户相册图片
+@property(nonatomic,strong) NSDictionary *removeUserPhotoDic;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
@@ -120,4 +123,6 @@ typedef enum{
 -(void) initGetNewMessageWithTargetID : (int) targetID;
 // 获取历史消息
 -(void) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
+// 移除用户相册照片
+-(void) initRemoveUserPhoto : (int) photoID;
 @end
