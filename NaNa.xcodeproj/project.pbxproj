@@ -18,6 +18,7 @@
 		19A79146199F514700074E89 /* CircleImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A79143199F514700074E89 /* CircleImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19A79147199F514700074E89 /* RoundRectEGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A79145199F514700074E89 /* RoundRectEGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7914A199F53B300074E89 /* MBProgressHUD.m */; };
+		19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
 		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
 		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
@@ -496,6 +497,8 @@
 		19A79145199F514700074E89 /* RoundRectEGOImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundRectEGOImageButton.m; sourceTree = "<group>"; };
 		19A79149199F53B300074E89 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		19A7914A199F53B300074E89 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		19B07B4819C1F0AC006ADEFA /* NaNaMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaMessageModel.h; sourceTree = "<group>"; };
+		19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaMessageModel.m; sourceTree = "<group>"; };
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
 		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
@@ -1163,6 +1166,8 @@
 				191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */,
 				194121DD19C16124000C2ABD /* NaNaUserProfileModel.h */,
 				194121DE19C16124000C2ABD /* NaNaUserProfileModel.m */,
+				19B07B4819C1F0AC006ADEFA /* NaNaMessageModel.h */,
+				19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2793,6 +2798,7 @@
 				745EFE9619A23487009F1B4D /* PresentGiftViewController.m in Sources */,
 				746719A719C1E92E005CF968 /* MyBackgroundListViewController.m in Sources */,
 				19CB82F5196D64C300DBCBAB /* UploadOperation.m in Sources */,
+				19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */,
 				97E8435917E069810009B030 /* CMIndexBar.m in Sources */,
 				97E8435D17E069920009B030 /* pinyin.m in Sources */,
 				9741197C17E1C5FA00406E79 /* URoundButton.m in Sources */,
