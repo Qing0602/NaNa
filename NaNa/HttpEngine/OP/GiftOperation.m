@@ -69,7 +69,7 @@
 }
 
 -(void) postPresentGift{
-    [self.dataRequest setRequestCompleted:^(NSDictionary *data){
+    [self.request setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
             [NaNaUIManagement sharedInstance].presentGift = data;
         };
