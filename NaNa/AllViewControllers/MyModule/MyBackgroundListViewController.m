@@ -61,7 +61,7 @@
     _gridView.dataSource = self;
     [self.view addSubview:_gridView];
     
-    [[NaNaUIManagement sharedInstance] initGetUserBackGround];
+    [[NaNaUIManagement sharedInstance] getUserBackGround];
     
     
     // Do any additional setup after loading the view.
