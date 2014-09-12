@@ -97,7 +97,7 @@
     switch (buttonIndex) {
         case 0:
         {
-            [[NaNaUIManagement sharedInstance] initRemoveUserPhoto:[self.photoModel.imageID intValue]];
+            [[NaNaUIManagement sharedInstance] removeUserPhoto:[self.photoModel.imageID intValue]];
         }
             break;
             
