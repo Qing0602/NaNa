@@ -19,6 +19,7 @@
 -(void) getUserPhotoesList;
 -(void) removeUserPhoto;
 -(void) getUserBackGround;
+-(void) buyBackGround;
 @end
 
 @implementation UserProfileOperation
@@ -56,7 +57,15 @@
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
+}
 
+-(UserProfileOperation *) initBuyBackGround :(int) userID withBackGroundID : (int) backgroundID{
+    if ((self = [self initOperation])) {
+        self.type = kBuyBackGround;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/background/buyBackground?userId=%d&backgroundId=%d",userID,backgroundID];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
 }
 
 -(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID{
@@ -218,6 +227,16 @@
     [self startAsynchronous];
 }
 
+-(void) buyBackGround{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].buyBackGroundDic = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
 -(void) main{
     @autoreleasepool {
         switch (self.type) {
@@ -247,6 +266,9 @@
                 break;
             case kGetBackGround:
                 [self getUserBackGround];
+                break;
+            case kBuyBackGround:
+                [self buyBackGround];
                 break;
             default:
                 break;

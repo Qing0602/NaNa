@@ -18,6 +18,7 @@ typedef enum{
     kGetUserPhotoesList,
     kRemoveUserPhoto,
     kGetBackGround,
+    kBuyBackGround,
 }UserProfileType;
 
 @interface UserProfileOperation : NaNaOperation
@@ -37,4 +38,5 @@ typedef enum{
 
 -(UserProfileOperation *) initRemoveUserPhoto :(int) userID withPhotoID : (int) photoID;
 -(UserProfileOperation *) initGetUserBackGround : (int) userID;
+-(UserProfileOperation *) initBuyBackGround :(int) userID withBackGroundID : (int) backgroundID;
 @end

@@ -33,7 +33,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetNewMessage;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/getList?userId=%d",targetID];
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/getNew?userId=%d&targetId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -53,7 +53,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetHistoryMessage;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/getList?userId=%d&a=%d&t=%d",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,timeStemp];
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/get?userId=%d&targetId=%d&time=%d",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,timeStemp];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
