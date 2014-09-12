@@ -83,6 +83,9 @@ typedef enum{
 // 移除用户相册图片
 @property(nonatomic,strong) NSDictionary *removeUserPhotoDic;
 
+// 获取用户可购买背景
+@property(nonatomic,strong) NSDictionary *userBackGroundDic;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
@@ -125,4 +128,6 @@ typedef enum{
 -(void) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
 // 移除用户相册照片
 -(void) initRemoveUserPhoto : (int) photoID;
+// 获取用户可购买背景
+-(void) initGetUserBackGround;
 @end

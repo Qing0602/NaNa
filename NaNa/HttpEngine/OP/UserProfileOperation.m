@@ -18,6 +18,7 @@
 -(void) postUserPushSetting;
 -(void) getUserPhotoesList;
 -(void) removeUserPhoto;
+-(void) getUserBackGround;
 @end
 
 @implementation UserProfileOperation
@@ -46,6 +47,16 @@
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
+}
+
+-(UserProfileOperation *) initGetUserBackGround : (int) userID{
+    if ((self = [self initOperation])) {
+        self.type = kGetBackGround;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/background/lists?userId=%d",userID];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+
 }
 
 -(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID{
@@ -197,6 +208,16 @@
     [self startAsynchronous];
 }
 
+-(void) getUserBackGround{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].userBackGroundDic = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
 -(void) main{
     @autoreleasepool {
         switch (self.type) {
@@ -223,6 +244,9 @@
                 break;
             case kRemoveUserPhoto:
                 [self removeUserPhoto];
+                break;
+            case kGetBackGround:
+                [self getUserBackGround];
                 break;
             default:
                 break;

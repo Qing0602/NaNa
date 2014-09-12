@@ -116,4 +116,10 @@ static NaNaUIManagement *sharedInstance = nil;
     UserProfileOperation *operation = [[UserProfileOperation alloc] initRemoveUserPhoto:self.userAccount.UserID withPhotoID:photoID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
+
+// 获取用户可购买背景
+-(void) initGetUserBackGround{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initGetUserBackGround:[NaNaUIManagement sharedInstance].userAccount.UserID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end

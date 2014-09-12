@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UAlertView.h"
 #import "FaceAndOther.h"
+#import "NaNaUIManagement.h"
 
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
