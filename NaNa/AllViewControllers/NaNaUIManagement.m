@@ -100,26 +100,32 @@ static NaNaUIManagement *sharedInstance = nil;
 }
 
 // 获取新消息
--(void) initGetNewMessageWithTargetID : (int) targetID{
+-(void) getNewMessageWithTargetID : (int) targetID{
     MessageOperation *operation = [[MessageOperation alloc] initGetNewMessageWithTargetID:targetID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 
 // 获取历史消息
--(void) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp{
+-(void) getHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp{
     MessageOperation *operation = [[MessageOperation alloc] initGetHistoryMessageWithTargetID:targetID withTimeStemp:timeStemp];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 
 // 移除用户相册照片
--(void) initRemoveUserPhoto : (int) photoID{
+-(void) removeUserPhoto : (int) photoID{
     UserProfileOperation *operation = [[UserProfileOperation alloc] initRemoveUserPhoto:self.userAccount.UserID withPhotoID:photoID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 
 // 获取用户可购买背景
--(void) initGetUserBackGround{
+-(void) getUserBackGround{
     UserProfileOperation *operation = [[UserProfileOperation alloc] initGetUserBackGround:[NaNaUIManagement sharedInstance].userAccount.UserID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 购买背景
+-(void) buyBackGround : (int) backgroundID{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initBuyBackGround:[NaNaUIManagement sharedInstance].userAccount.UserID withBackGroundID:backgroundID];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 @end

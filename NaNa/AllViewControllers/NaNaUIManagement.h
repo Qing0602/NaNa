@@ -85,6 +85,8 @@ typedef enum{
 
 // 获取用户可购买背景
 @property(nonatomic,strong) NSDictionary *userBackGroundDic;
+// 用户购买背景结果
+@property(nonatomic,strong) NSDictionary *buyBackGroundDic;
 
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
@@ -123,11 +125,13 @@ typedef enum{
 // 获取侧边栏消息通知
 -(void) getSideMessage;
 // 获取新消息
--(void) initGetNewMessageWithTargetID : (int) targetID;
+-(void) getNewMessageWithTargetID : (int) targetID;
 // 获取历史消息
--(void) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
+-(void) getHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
 // 移除用户相册照片
--(void) initRemoveUserPhoto : (int) photoID;
+-(void) removeUserPhoto : (int) photoID;
 // 获取用户可购买背景
--(void) initGetUserBackGround;
+-(void) getUserBackGround;
+// 购买背景
+-(void) buyBackGround : (int) backgroundID;
 @end
