@@ -29,7 +29,7 @@
 {
     if ([keyPath isEqualToString:@"giftStoreDic"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].giftStoreDic];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             self.gridviewData = [[NSArray alloc]initWithArray:tempData[@"data"]];
             [_gridView reloadData];
         }else
@@ -39,7 +39,7 @@
     }else if ([keyPath isEqualToString:@"presentGift"])
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].presentGift];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             self.gridviewData = [[NSArray alloc]initWithArray:tempData[@"data"]];
             [_gridView reloadData];
         }else

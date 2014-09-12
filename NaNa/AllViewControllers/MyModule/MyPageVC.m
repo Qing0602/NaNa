@@ -16,7 +16,7 @@
 #import "MyGiftListViewController.h"
 #import "NaNaUIManagement.h"
 #import "NaNaUserAccountModel.h"
-
+#import "MyBackgroundListViewController.h"
 @interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     PhotoMenuView *_photoMenuView;
@@ -275,6 +275,9 @@
     }else if ([tagName isEqualToString:@"IMG"] && [className isEqualToString:@"option-lit"])
     {
         NSLog(@"%@",_myWebView.request.URL);
+        MyBackgroundListViewController *backgroundList = [[MyBackgroundListViewController alloc] init];
+        [self.navigationController pushViewController:backgroundList animated:YES];
+        [backgroundList release];
     }else if ([tagName isEqualToString:@"IMG"] && [className isEqualToString:@"single_gift"])
     {
         MyGiftListViewController *giftList = [[MyGiftListViewController  alloc] init];

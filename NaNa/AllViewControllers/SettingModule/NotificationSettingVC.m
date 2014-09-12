@@ -46,7 +46,7 @@ typedef enum {
 {
     if ([keyPath isEqualToString:@"userPushSetting"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPushSetting];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             NSDictionary *data = tempData[@"data"];
             for (int i =0; i < 6; i++) {
                 NSIndexPath *indexPath ;
@@ -103,7 +103,7 @@ typedef enum {
     }else if ([keyPath isEqualToString:@"updateUserPushSetting"])
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].updateUserPushSetting];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             [self.navigationController popViewControllerAnimated:YES];
         }else
         {

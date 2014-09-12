@@ -21,7 +21,30 @@
 @end
 
 @implementation TaInfoVC
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userProfile"];
+}
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"userProfile"]) {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            self.infoData = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
+            
+        }else
+        {
+            
+        }
+    }
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -127,6 +150,7 @@
         _cityLabel.backgroundColor = [UIColor clearColor];
         _cityLabel.text = STRING(@"city");
     }
+    [[NaNaUIManagement sharedInstance] getUserProfile:targetID];
 }
 
 - (void)leftItemPressed:(UIButton *)btn {
@@ -195,7 +219,20 @@
     
     return cell;
 }
-
+-(void)setInfoData:(NSDictionary *)infoData
+{
+    if (infoData && infoData.allKeys.count > 0) {
+        _nameTextField.text = infoData[@"nickname"];
+        NSArray *roleArray = [[NSArray alloc] initWithObjects:@"P", @"T", @"H", nil];
+        _roleLabel.text = roleArray[[infoData[@"role"] integerValue]];
+        _cityLabel.text = infoData[@"city_name"];
+        
+        [roleArray release];
+    }
+    
+    _infoData = infoData;
+    
+}
 - (void)playTaSound
 {
     ULog(@"播放");

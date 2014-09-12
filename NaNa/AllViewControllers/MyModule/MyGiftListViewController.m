@@ -29,7 +29,7 @@
 {
     if ([keyPath isEqualToString:@"userGiftListDic"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userGiftListDic];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             self.gridviewData = [[NSArray alloc]initWithArray:tempData[@"data"]];
             [_gridView reloadData];
         }else
