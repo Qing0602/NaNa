@@ -13,7 +13,7 @@
 {
     if ([keyPath isEqualToString:@"userPrivacySetting"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPrivacySetting];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             NSDictionary *data = tempData[@"data"];
             _photoSwitch.on = [data[@"show_avata"] boolValue];
             _infoSwitch.on = [data[@"show_info"] boolValue];
@@ -24,7 +24,7 @@
     }else if ([keyPath isEqualToString:@"updateUserPrivacySetting"])
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].updateUserPrivacySetting];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             [self.navigationController popViewControllerAnimated:YES];
         }else
         {

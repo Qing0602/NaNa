@@ -18,7 +18,7 @@
 {
     if ([keyPath isEqualToString:@"removeUserPhotoDic"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].removeUserPhotoDic];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             [UAlertView showAlertViewWithMessage:@"删除成功" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }else

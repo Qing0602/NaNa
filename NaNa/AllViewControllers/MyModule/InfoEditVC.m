@@ -39,8 +39,8 @@ typedef enum {
 {
     if ([keyPath isEqualToString:@"userProfile"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
-            self.infoData = [[NSDictionary alloc] initWithDictionary:[[tempData objectForKey:Http_Data] objectForKey:@"body"]];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            self.infoData = [[NSDictionary alloc] initWithDictionary:[[tempData objectForKey:ASI_REQUEST_DATA] objectForKey:@"body"]];
             
         }else
         {
@@ -49,7 +49,7 @@ typedef enum {
     }else if([keyPath isEqualToString:@"updateUserProfile"])
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].updateUserProfile];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             
             [UAlertView showAlertViewWithMessage:@"修改成功" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
             if (enterPathType == TYPE_LOGIN) {

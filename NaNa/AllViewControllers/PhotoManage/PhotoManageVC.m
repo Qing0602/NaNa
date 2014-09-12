@@ -40,7 +40,7 @@
     }else if ([keyPath isEqualToString:@"uploadResult"])
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
-        if (![[tempData objectForKey:Http_Has_Error_Key] boolValue]) {
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             [[NaNaUIManagement sharedInstance] getuserPhotoesList:[NaNaUIManagement sharedInstance].userAccount.UserID];
         }else
         {
@@ -102,7 +102,7 @@
     }
     [_defaultView addSubview:_photoMenuView];
  
-    [[NaNaUIManagement sharedInstance] getuserPhotoesList:[NaNaUIManagement sharedInstance].userAccount.UserID];
+    
 
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -115,6 +115,10 @@
 {
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userPhotoesList"];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserPushSetting"];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [[NaNaUIManagement sharedInstance] getuserPhotoesList:[NaNaUIManagement sharedInstance].userAccount.UserID];
 }
 #pragma mark - HeadCartoonDelegate
 

@@ -6,8 +6,9 @@
 //  Copyright (c) 2014年 dengfang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UBasicViewController.h"
+#import "MMGridView.h"
 
-@interface MyBackgroundListViewController : UIViewController
+@interface MyBackgroundListViewController : UBasicViewController <MMGridViewDataSource,MMGridViewDelegate,UIAlertViewDelegate>
 
 @end

@@ -26,5 +26,8 @@ UITableViewDelegate>
     UILabel             *_roleLabel;      // 角色
     UILabel             *_cityLabel;      // 城市
 }
+@property (nonatomic, retain) NSDictionary *infoData;
+
 -(id)initWithUserID:(NSInteger)userID;
+
 @end
