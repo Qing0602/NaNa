@@ -36,6 +36,15 @@
         {
             
         }
+    }else if ([keyPath isEqualToString:@"buyBackGroundDic"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].buyBackGroundDic];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            
+        }
     }
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,7 +70,7 @@
     _gridView.dataSource = self;
     [self.view addSubview:_gridView];
     
-    [[NaNaUIManagement sharedInstance] initGetUserBackGround];
+    [[NaNaUIManagement sharedInstance] getUserBackGround];
     
     
     // Do any additional setup after loading the view.
@@ -75,13 +84,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userBackGroundDic" options:0 context:nil];
-    
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"buyBackGroundDic" options:0 context:nil];
     
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userBackGroundDic"];
-    
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"buyBackGroundDic"];
 }
 /*
  #pragma mark - Navigation
@@ -140,7 +149,7 @@
 {
     if (buttonIndex == 1) {
         [self showProgressWithText:@"正在购买"];
-        
+        [[NaNaUIManagement sharedInstance] buyBackGround:tempBackgroundID];
     }
 }
 @end
