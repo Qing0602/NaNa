@@ -11,6 +11,7 @@
 #import "UAlertView.h"
 #import "FaceAndOther.h"
 #import "NaNaUIManagement.h"
+#import "NaNaMessageModel.h"
 
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
@@ -24,6 +25,7 @@
 
 @interface ChatVC (Private)
 @property (nonatomic,strong) NaNaUserProfileModel *otherProfile;
+@property (nonatomic,strong) NSArray *messageArray;
 @end
 
 @implementation ChatVC
@@ -148,7 +150,25 @@
     otherButton.frame = CGRectMake(CGRectGetMaxX(facialButton.frame) + 10, 5, 34, 34);
     [otherButton addTarget:self action:@selector(otherAction:) forControlEvents:UIControlEventTouchUpInside];
     [_toolbar addSubview:otherButton];
+    
+    [[NaNaUIManagement sharedInstance] getNewMessageWithTargetID:self.otherProfile.userID];
 
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"messagesDic"]) {
+        if (![NaNaUIManagement sharedInstance].messagesDic[ASI_REQUEST_HAS_ERROR]) {
+            NSArray *messagesOfJson = [NaNaUIManagement sharedInstance].messagesDic[ASI_REQUEST_DATA];
+            NSMutableArray *msgArray = [[NSMutableArray alloc] initWithArray:self.messageArray];
+            for (int i = 0; i<[messagesOfJson count]; i++) {
+                NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
+                [msg coverJson:messagesOfJson[i]];
+                [msgArray addObject:msg];
+            }
+            self.messageArray = [[NSArray alloc] initWithArray:msgArray];
+            [self.chatTableView reloadData];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{

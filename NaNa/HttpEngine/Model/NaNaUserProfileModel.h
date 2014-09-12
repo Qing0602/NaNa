@@ -32,7 +32,7 @@
 @property (nonatomic) int userCityID;
 @property (nonatomic,strong) NSString *userCityName;
 @property (nonatomic) int userID;
-@property (nonatomic) NSString *userNickName;
+@property (nonatomic,strong) NSString *userNickName;
 
 -(NaNaUserProfileModel *) converJson : (NSDictionary *) json;
 @end
