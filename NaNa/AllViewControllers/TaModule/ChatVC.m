@@ -11,7 +11,7 @@
 #import "UAlertView.h"
 #import "FaceAndOther.h"
 #import "NaNaUIManagement.h"
-#import "NaNaMessageModel.h"
+
 
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
@@ -23,9 +23,10 @@
 #define BEGIN_FLAG @"[/"
 #define END_FLAG @"]"
 
-@interface ChatVC (Private)
+@interface ChatVC ()
 @property (nonatomic,strong) NaNaUserProfileModel *otherProfile;
 @property (nonatomic,strong) NSArray *messageArray;
+@property (nonatomic,strong) NSArray *sendingMessageArray;
 @end
 
 @implementation ChatVC
@@ -53,12 +54,19 @@
     return self;
 }
 
-- (void)registerNotification
-{
+- (void)registerNotification{
     //监听键盘高度的变换
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     // 键盘高度变化通知，ios5.0新增的
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"messagesDic" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sendMessageResult" options:0 context:nil];
+}
+
+-(void) dealloc{
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"messagesDic"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"sendMessageResult"];
 }
 
 - (void)move:(BOOL)isMove toolbarHeight:(float)height
@@ -91,6 +99,9 @@
     [super viewDidLoad];
     
     self.title = self.otherProfile.userNickName;
+    
+    self.messageArray = [[NSArray alloc] init];
+    self.sendingMessageArray = [[NSArray alloc] init];
     
     _defaultView.backgroundColor = [UIColor colorWithRed:240/255.0 green:245/255.0 blue:255/255.0 alpha:1.0f];
     
@@ -167,6 +178,32 @@
             }
             self.messageArray = [[NSArray alloc] initWithArray:msgArray];
             [self.chatTableView reloadData];
+        }
+    }else if ([keyPath isEqualToString:@"sendMessageResult"]){
+        if (![[NaNaUIManagement sharedInstance].sendMessageResult[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NaNaMessageModel *removeModel = nil;
+            for (NaNaMessageModel *model in self.sendingMessageArray) {
+                if ([model.content isEqualToString:@"1"]) {
+                    NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
+                    msg.content = model.content;
+                    msg.creattime = model.creattime;
+                    msg.isBlongMe = model.isBlongMe;
+                    msg.height = model.height;
+                    msg.state = kSend;
+                    removeModel = model;
+                    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:self.messageArray];
+                    [temp addObject:msg];
+                    self.messageArray = [[NSArray alloc] initWithArray:temp];
+                }
+            }
+            NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:self.sendingMessageArray];
+            [temp removeObject:removeModel];
+            self.sendingMessageArray = [[NSArray alloc] initWithArray:temp];
+            
+            [self.chatTableView reloadData];
+            [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+                                      atScrollPosition:UITableViewScrollPositionBottom
+                                              animated:YES];
         }
     }
 }
@@ -293,8 +330,19 @@
 }
 
 //通过UDP,发送消息
--(void)sendMassage:(NSString *)message
-{
+-(void)sendMassage:(NSString *)message{
+    [[NaNaUIManagement sharedInstance] sendMessage:message withTarGetID:self.otherProfile.userID];
+    NaNaMessageModel *model = [[NaNaMessageModel alloc] init];
+    model.content = message;
+    model.creattime = 0;
+    model.isBlongMe = YES;
+    model.state = kSending;
+    UIView *returnView =  [self assembleMessageAtIndex:message from:YES];
+    model.height = returnView.frame.size.height + 80.0f;
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:self.sendingMessageArray];
+    [temp addObject:model];
+    self.sendingMessageArray = [[NSArray alloc] initWithArray:temp];
+    /*
 	NSDate *nowTime = [NSDate date];
 	NSMutableString *sendString=[NSMutableString stringWithCapacity:100];
 	[sendString appendString:message];
@@ -331,6 +379,7 @@
 	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
 							  atScrollPosition:UITableViewScrollPositionBottom
 									  animated:YES];
+     */
 }
 
 - (void)didSelectSendMessage
@@ -397,18 +446,18 @@
 #pragma mark - UDP Delegate Methods
 - (BOOL)onUdpSocket:(AsyncUdpSocket *)sock didReceiveData:(NSData *)data withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port
 {
-    ULog(@"host---->%@",host);
-    [self.udpSocket receiveWithTimeout:-1 tag:0];
-   	//接收到数据回调，用泡泡VIEW显示出来
-	NSString *info=[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
-    UIView *chatView = [self bubbleView:[NSString stringWithFormat:@"%@:%@",@"西门吹雪", info]
-								   from:NO];
-	[self.chatArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:info, @"text", @"other", @"speaker", chatView, @"view", nil]];
-	[self.chatTableView reloadData];
-	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
-							  atScrollPosition: UITableViewScrollPositionBottom
-									  animated:YES];
-	//已经处理完毕
+//    ULog(@"host---->%@",host);
+//    [self.udpSocket receiveWithTimeout:-1 tag:0];
+//   	//接收到数据回调，用泡泡VIEW显示出来
+//	NSString *info=[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
+//    UIView *chatView = [self bubbleView:[NSString stringWithFormat:@"%@:%@",@"西门吹雪", info]
+//								   from:NO];
+//	[self.chatArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:info, @"text", @"other", @"speaker", chatView, @"view", nil]];
+//	[self.chatTableView reloadData];
+//	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
+//							  atScrollPosition: UITableViewScrollPositionBottom
+//									  animated:YES];
+//	//已经处理完毕
 	return YES;
 }
 
@@ -430,22 +479,27 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.chatArray count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    int i = 0;
+//    for (NaNaMessageModel *model in self.messageArray) {
+//        if (model.state == kSend) {
+//            i++;
+//        }
+//    }
+    return [self.messageArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	
-	if ([[self.chatArray objectAtIndex:[indexPath row]] isKindOfClass:[NSDate class]])
-    {
+	if ([[self.messageArray objectAtIndex:[indexPath row]] isKindOfClass:[NSDate class]]){
 		return 30;
 	}
-    else
-    {
-		UIView *chatView = [[self.chatArray objectAtIndex:[indexPath row]] objectForKey:@"view"];
-		return chatView.frame.size.height + 10;
+    else{
+        NaNaMessageModel *model = self.messageArray[indexPath.row];
+        return model.height + 10.0f;
+//		UIView *chatView = [[self.chatArray objectAtIndex:[indexPath row]] objectForKey:@"view"];
+//		return chatView.frame.size.height + 10;
 	}
 }
 
@@ -457,10 +511,8 @@
     UITableViewCell *dateCell = [tableView dequeueReusableCellWithIdentifier:dateCellIdentifier];
     UITableViewCell *cell = nil;
     
-    if ([[self.chatArray objectAtIndex:[indexPath row]] isKindOfClass:[NSDate class]])
-    {
-        if (!dateCell)
-        {
+    if ([[self.messageArray objectAtIndex:[indexPath row]] isKindOfClass:[NSDate class]]){
+        if (!dateCell){
             dateCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:dateCellIdentifier];
             dateCell.selectionStyle = UITableViewCellSelectionStyleNone;
             dateCell.backgroundColor = [UIColor clearColor];
@@ -468,8 +520,7 @@
         cell = dateCell;
         
         UILabel *dateL = (UILabel *)[cell.contentView viewWithTag:0xFB];
-        if (!dateL)
-        {
+        if (!dateL){
             dateL = [[UILabel alloc] initWithFrame:CGRectZero];
             dateL.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
             dateL.font = [UIFont systemFontOfSize:12];
@@ -484,10 +535,8 @@
         dateL.frame = CGRectMake((320-[timeString sizeWithFont:dateL.font].width)/2-5, 5, [timeString sizeWithFont:dateL.font].width+10, 20);
         dateL.layer.cornerRadius = 5;
 
-	}else
-    {
-        if (!chatCell)
-        {
+	}else{
+        if (!chatCell){
             chatCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier];
             chatCell.selectionStyle = UITableViewCellSelectionStyleNone;
             chatCell.backgroundColor = [UIColor clearColor];
@@ -497,16 +546,15 @@
         UIView *chatView = [cell.contentView viewWithTag:0xFD];
         [chatView removeFromSuperview];
         chatView = nil;
-        if (!chatView)
-        {
+        if (!chatView){
             chatView = [[UIView alloc] initWithFrame:CGRectZero];
             chatView.tag = 0xFD;
             [cell.contentView addSubview:chatView];
         }
         
 		// Set up the cell...
-		NSDictionary *chatInfo = [self.chatArray objectAtIndex:[indexPath row]];
-		UIView *chatV = [chatInfo objectForKey:@"view"];
+        NaNaMessageModel *model = self.messageArray[indexPath.row];
+		UIView *chatV = [self bubbleView:model];
         [chatView setFrame:CGRectMake(0, 0, 320, CGRectGetHeight(chatV.frame))];
         [chatView addSubview:chatV];
 	}
@@ -551,8 +599,10 @@
  */
 #pragma mark -
 #pragma mark Table view methods
-- (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf
-{
+//- (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf
+-(UIView *)bubbleView : (NaNaMessageModel *)messageModel{
+    NSString *text = messageModel.content;
+    BOOL fromSelf = messageModel.isBlongMe;
 	
     // 聊天内容view
     UIView *returnView =  [self assembleMessageAtIndex:text from:fromSelf];
