@@ -11,7 +11,7 @@
 #import "UAlertView.h"
 #import "FaceAndOther.h"
 #import "NaNaUIManagement.h"
-
+#import "SVPullToRefresh.h"
 
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
@@ -27,6 +27,9 @@
 @property (nonatomic,strong) NaNaUserProfileModel *otherProfile;
 @property (nonatomic,strong) NSArray *messageArray;
 @property (nonatomic,strong) NSArray *sendingMessageArray;
+@property (nonatomic) BOOL isMore;
+@property (nonatomic,strong) NSTimer *timer;
+-(void) handleTimerGetNewMessage :(NSTimer *)theTimer;
 @end
 
 @implementation ChatVC
@@ -62,11 +65,13 @@
     
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"messagesDic" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sendMessageResult" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"historyMessage" options:0 context:nil];
 }
 
 -(void) dealloc{
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"messagesDic"];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"sendMessageResult"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"historyMessage"];
 }
 
 - (void)move:(BOOL)isMove toolbarHeight:(float)height
@@ -99,10 +104,11 @@
     [super viewDidLoad];
     
     self.title = self.otherProfile.userNickName;
-    
+    self.isMore = YES;
     self.messageArray = [[NSArray alloc] init];
     self.sendingMessageArray = [[NSArray alloc] init];
-    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:8.0f target:self selector:@selector(handleTimerGetNewMessage:) userInfo:nil repeats:YES];
+    [self.timer fire];
     _defaultView.backgroundColor = [UIColor colorWithRed:240/255.0 green:245/255.0 blue:255/255.0 alpha:1.0f];
     
     if (!_faceAndeOtherView)
@@ -122,6 +128,14 @@
         _chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     [_defaultView addSubview:_chatTableView];
+    __weak ChatVC *weakSelf = self;
+    
+    // 下拉刷新
+    [self.chatTableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refreshMeetData];
+    }];
+    
+    self.chatTableView.showsInfiniteScrolling = NO;
     
     if (!_toolbar)
     {
@@ -161,9 +175,23 @@
     otherButton.frame = CGRectMake(CGRectGetMaxX(facialButton.frame) + 10, 5, 34, 34);
     [otherButton addTarget:self action:@selector(otherAction:) forControlEvents:UIControlEventTouchUpInside];
     [_toolbar addSubview:otherButton];
-    
-    [[NaNaUIManagement sharedInstance] getNewMessageWithTargetID:self.otherProfile.userID];
+}
 
+-(void) handleTimerGetNewMessage :(NSTimer *)theTimer{
+    [[NaNaUIManagement sharedInstance] getNewMessageWithTargetID:self.otherProfile.userID];
+}
+
+-(void) refreshMeetData{
+    __weak ChatVC *weakSelf = self;
+    if (weakSelf.messageArray != nil && [weakSelf.messageArray count] != 0) {
+        NaNaMessageModel *model = weakSelf.messageArray[0];
+        [[NaNaUIManagement sharedInstance] getHistoryMessageWithTargetID:weakSelf.otherProfile.userID withTimeStemp:model.creattime];
+    }else{
+        if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
+            self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
+            [self.chatTableView.pullToRefreshView stopAnimating];
+        }
+    }
 }
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
@@ -178,6 +206,9 @@
             }
             self.messageArray = [[NSArray alloc] initWithArray:msgArray];
             [self.chatTableView reloadData];
+            [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+                                      atScrollPosition:UITableViewScrollPositionBottom
+                                              animated:YES];
         }
     }else if ([keyPath isEqualToString:@"sendMessageResult"]){
         if (![[NaNaUIManagement sharedInstance].sendMessageResult[ASI_REQUEST_HAS_ERROR] boolValue]) {
@@ -204,6 +235,25 @@
             [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
                                       atScrollPosition:UITableViewScrollPositionBottom
                                               animated:YES];
+        }else if ([keyPath isEqualToString:@"historyMessage"]){
+            if (![[NaNaUIManagement sharedInstance].historyMessage[ASI_REQUEST_HAS_ERROR] boolValue]) {
+                NSDictionary *dic = [NaNaUIManagement sharedInstance].historyMessage[ASI_REQUEST_DATA];
+                NSArray *msg = dic[@"message"];
+                NSMutableArray *temp = [[NSMutableArray alloc] init];
+                for (NSDictionary *m in msg) {
+                    NaNaMessageModel *model = [[NaNaMessageModel alloc] init];
+                    [model coverJson:m];
+                    [temp addObject:model];
+                }
+                [temp addObjectsFromArray:self.messageArray];
+                self.messageArray = [[NSArray alloc] initWithArray:temp];
+                self.isMore = [dic[@"more"] boolValue];
+                [self.chatTableView reloadData];
+            }
+            if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
+                self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
+                [self.chatTableView.pullToRefreshView stopAnimating];
+            }
         }
     }
 }
@@ -216,6 +266,9 @@
 
 - (void)leftItemPressed:(UIButton *)btn
 {
+    [self.timer invalidate];
+    self.timer = nil;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
