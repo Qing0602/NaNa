@@ -196,7 +196,7 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"messagesDic"]) {
-        if (![NaNaUIManagement sharedInstance].messagesDic[ASI_REQUEST_HAS_ERROR]) {
+        if (![[NaNaUIManagement sharedInstance].messagesDic[ASI_REQUEST_HAS_ERROR] boolValue]) {
             NSArray *messagesOfJson = [NaNaUIManagement sharedInstance].messagesDic[ASI_REQUEST_DATA];
             NSMutableArray *msgArray = [[NSMutableArray alloc] initWithArray:self.messageArray];
             for (int i = 0; i<[messagesOfJson count]; i++) {
