@@ -14,7 +14,7 @@
 //#import "URoundButton.h"
 #import "UCity.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "CircleImageButton.h"
 enum
 {
     ENC_AAC = 1,
@@ -42,7 +42,7 @@ typedef enum
   AVAudioRecorderDelegate,
   AVAudioPlayerDelegate> {
     
-    UIButton            *_headButton;           // 头像
+    CircleImageButton            *_headButton;           // 头像
     UILabel             *_timeLabel;            // 录音时间
 //    UIImageView         *_recordImageView;      // 录音小喇叭
     UIButton            *_recordImageView;      // 录音小喇叭

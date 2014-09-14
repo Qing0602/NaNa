@@ -20,6 +20,7 @@
     if ([keyPath isEqualToString:@"userPhotoesList"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userPhotoesList];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            [_photosArray removeAllObjects];
             for (NSDictionary *info in tempData[ASI_REQUEST_DATA]) {
                 PhotosModel *model = [[PhotosModel alloc] init];
                 model.imageDes = info[@"description"];
@@ -76,7 +77,7 @@
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     _gridView = [[KKGridView alloc] initWithFrame:_defaultView.bounds];
     _gridView.backgroundColor = [UIColor clearColor];
-    _gridView.cellSize = CGSizeMake(100, 120);
+    _gridView.cellSize = CGSizeMake(100, 100);
     _gridView.cellPadding = CGSizeMake(5, 5);
     _gridView.delegate = self;
     _gridView.dataSource = self;
@@ -279,10 +280,12 @@
         //SAFERELEASE(tempImage);
         
         if (!label) {
-            label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 100, 100, 20)] autorelease];
+            label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 80, 100, 20)] autorelease];
             label.tag =  0xfd1;
             label.font = [UIFont systemFontOfSize:12];
-            label.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
+            //label.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
+            label.backgroundColor = [UIColor blackColor];
+            label.textColor = [UIColor whiteColor];
         }
         [cell.contentView addSubview:label];
 //        label.text = [NSString stringWithFormat:@"你好,这是第%d照片",indexPath.index];
