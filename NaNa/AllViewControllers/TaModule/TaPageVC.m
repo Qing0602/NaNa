@@ -13,6 +13,7 @@
 #import "TaInfoVC.h"
 #import "UTabbar.h"
 #import "TaPhotoVC.h"
+#import "NaNaUserProfileModel.h"
 
 @implementation TaPageVC
 
@@ -112,7 +113,10 @@
         }
         case TaPageTabItemChat: {
             // ULog(@"TaPageTabItemChat");
-            ChatVC *chatVC  =[[ChatVC alloc] init];
+            NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] autorelease];
+            model.userID = targetID;
+            model.userNickName = @"少代码";
+            ChatVC *chatVC  =[[ChatVC alloc] initChatVC:model];
             [self.navigationController pushViewController:chatVC animated:YES];
             [chatVC release];
             break;

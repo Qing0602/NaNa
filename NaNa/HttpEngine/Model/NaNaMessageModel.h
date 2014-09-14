@@ -8,6 +8,13 @@
 
 #import "NaNaUIModelCoding.h"
 
+typedef enum{
+    kNone,
+    kSending,
+    kSend,
+    kFail,
+}MessageState;
+
 @interface NaNaMessageModel : NaNaUIModelCoding
 /*
  "content": "\u4f60\u597d",//string会话内容
@@ -18,6 +25,8 @@
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic) int creattime;
 @property (nonatomic) BOOL isBlongMe;
+@property (nonatomic) int height;
+@property (nonatomic) int state;
 
 -(void) coverJson : (NSDictionary *) json;
 @end

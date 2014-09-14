@@ -10,6 +10,7 @@
 #import "AsyncUdpSocket.h"
 #import "FaceAndOther.h"
 #import "NaNaUserProfileModel.h"
+#import "NaNaMessageModel.h"
 
 @interface ChatVC : UBasicViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,FaceAndOtherDelegate>
 {
@@ -37,7 +38,8 @@
 -(ChatVC *) initChatVC : (NaNaUserProfileModel *)otherProfileModel;
 -(void)openUDPServer;
 -(void)sendMassage:(NSString *)message;
--(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf;
+//-(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf;
+-(UIView *)bubbleView : (NaNaMessageModel *)messageModel;
 -(void)getImageRange:(NSString*)message tempArray:(NSMutableArray*)array;
 -(UIView *)assembleMessageAtIndex:(NSString *)message from:(BOOL)fromself;
 

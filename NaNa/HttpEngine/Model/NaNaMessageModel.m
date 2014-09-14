@@ -33,6 +33,8 @@
             self.isBlongMe = YES;
         }
     }
+    self.height = 0.0f;
+    self.state = kNone;
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder{
@@ -40,6 +42,7 @@
     [aCoder encodeObject:self.content forKey:@"content"];
     [aCoder encodeInteger:self.creattime forKey:@"creattime"];
     [aCoder encodeBool:self.isBlongMe forKey:@"isBlongMe"];
+    [aCoder encodeInteger:self.height forKey:@"height"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
@@ -48,6 +51,7 @@
         self.content = [aDecoder decodeObjectForKey:@"content"];
         self.creattime = [aDecoder decodeIntegerForKey:@"creattime"];
         self.isBlongMe = [aDecoder decodeBoolForKey:@"isBlongMe"];
+        self.height = [aDecoder decodeIntegerForKey:@"height"];
     }
     return self;
 }
