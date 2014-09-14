@@ -8,6 +8,7 @@
 
 #import "MyBackgroundListViewController.h"
 #import "MMGridViewDefaultCell.h"
+#import "UAlertView.h"
 @interface MyBackgroundListViewController ()
 {
     MMGridView *_gridView;
@@ -36,6 +37,16 @@
         {
             
         }
+    }else if ([keyPath isEqualToString:@"buyBackGroundDic"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].buyBackGroundDic];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            [UAlertView showAlertViewWithMessage:tempData[ASI_REQUEST_ERROR_MESSAGE] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+        }
+        [self closeProgress];
     }
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -75,13 +86,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userBackGroundDic" options:0 context:nil];
-    
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"buyBackGroundDic" options:0 context:nil];
     
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userBackGroundDic"];
-    
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"buyBackGroundDic"];
 }
 /*
  #pragma mark - Navigation
@@ -140,7 +151,7 @@
 {
     if (buttonIndex == 1) {
         [self showProgressWithText:@"正在购买"];
-        
+        [[NaNaUIManagement sharedInstance] buyBackGround:tempBackgroundID];
     }
 }
 @end
