@@ -8,6 +8,12 @@
 
 #import "NaNaUIModelCoding.h"
 
+typedef enum{
+    kP,
+    kT,
+    kH,
+}UserRole;
+
 @interface NaNaUserProfileModel : NaNaUIModelCoding
 /*
  "avatar": "47848305cd654f1a10c58c5dab99759d",//string头像地址
@@ -33,6 +39,6 @@
 @property (nonatomic,strong) NSString *userCityName;
 @property (nonatomic) int userID;
 @property (nonatomic,strong) NSString *userNickName;
-
+@property (nonatomic) int role;
 -(NaNaUserProfileModel *) converJson : (NSDictionary *) json;
 @end

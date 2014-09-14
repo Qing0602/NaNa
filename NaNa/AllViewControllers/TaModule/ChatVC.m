@@ -107,7 +107,7 @@
     self.isMore = YES;
     self.messageArray = [[NSArray alloc] init];
     self.sendingMessageArray = [[NSArray alloc] init];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:8.0f target:self selector:@selector(handleTimerGetNewMessage:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(handleTimerGetNewMessage:) userInfo:nil repeats:YES];
     [self.timer fire];
     _defaultView.backgroundColor = [UIColor colorWithRed:240/255.0 green:245/255.0 blue:255/255.0 alpha:1.0f];
     
@@ -183,6 +183,7 @@
 
 -(void) refreshMeetData{
     __weak ChatVC *weakSelf = self;
+    // 如果有历史聊天数据，但是当前设备获取不到timestamp如何处理？
     if (weakSelf.messageArray != nil && [weakSelf.messageArray count] != 0) {
         NaNaMessageModel *model = weakSelf.messageArray[0];
         [[NaNaUIManagement sharedInstance] getHistoryMessageWithTargetID:weakSelf.otherProfile.userID withTimeStemp:model.creattime];
@@ -198,10 +199,15 @@
     if ([keyPath isEqualToString:@"messagesDic"]) {
         if (![[NaNaUIManagement sharedInstance].messagesDic[ASI_REQUEST_HAS_ERROR] boolValue]) {
             NSArray *messagesOfJson = [NaNaUIManagement sharedInstance].messagesDic[ASI_REQUEST_DATA];
+            if ([messagesOfJson count] == 0) {
+                return;
+            }
             NSMutableArray *msgArray = [[NSMutableArray alloc] initWithArray:self.messageArray];
             for (int i = 0; i<[messagesOfJson count]; i++) {
                 NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                 [msg coverJson:messagesOfJson[i]];
+                UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
+                msg.height = returnView.frame.size.height + 80.0f;
                 [msgArray addObject:msg];
             }
             self.messageArray = [[NSArray alloc] initWithArray:msgArray];
@@ -212,9 +218,10 @@
         }
     }else if ([keyPath isEqualToString:@"sendMessageResult"]){
         if (![[NaNaUIManagement sharedInstance].sendMessageResult[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSDictionary *data = [NaNaUIManagement sharedInstance].sendMessageResult[ASI_REQUEST_DATA];
             NaNaMessageModel *removeModel = nil;
             for (NaNaMessageModel *model in self.sendingMessageArray) {
-                if ([model.content isEqualToString:@"1"]) {
+                if ([model.content isEqualToString:data[@"content"]]) {
                     NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                     msg.content = model.content;
                     msg.creattime = model.creattime;
