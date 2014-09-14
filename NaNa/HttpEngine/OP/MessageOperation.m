@@ -23,8 +23,11 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kSendMessage;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/send?userId=%d&targetId=%d&content=%@",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,content];
-        [self setHttpRequestGetWithUrl:urlStr];
+        NSString *urlStr = @"http://api.local.ishenran.cn/message/send";
+        [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [NSNumber numberWithInt:[NaNaUIManagement sharedInstance].userAccount.UserID],@"userId",
+                                                       [NSNumber numberWithInt:targetID],@"targetId",
+                                                       content,@"content",nil]];
     }
     return self;
 }
@@ -60,7 +63,7 @@
 }
 
 -(void) sendMessage{
-    [self.request setRequestCompleted:^(NSDictionary *data){
+    [self.dataRequest setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
             [NaNaUIManagement sharedInstance].sendMessageResult = data;
         };
