@@ -34,4 +34,22 @@
         }
     }
 }
+
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.content forKey:@"content"];
+    [aCoder encodeInteger:self.creattime forKey:@"creattime"];
+    [aCoder encodeBool:self.isBlongMe forKey:@"isBlongMe"];
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (nil != self) {
+        self.content = [aDecoder decodeObjectForKey:@"content"];
+        self.creattime = [aDecoder decodeIntegerForKey:@"creattime"];
+        self.isBlongMe = [aDecoder decodeBoolForKey:@"isBlongMe"];
+    }
+    return self;
+}
+
 @end

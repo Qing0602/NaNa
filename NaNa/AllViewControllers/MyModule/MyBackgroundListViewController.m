@@ -8,6 +8,7 @@
 
 #import "MyBackgroundListViewController.h"
 #import "MMGridViewDefaultCell.h"
+#import "UAlertView.h"
 @interface MyBackgroundListViewController ()
 {
     MMGridView *_gridView;
@@ -43,8 +44,9 @@
             [self.navigationController popViewControllerAnimated:YES];
         }else
         {
-            
+            [UAlertView showAlertViewWithMessage:tempData[ASI_REQUEST_ERROR_MESSAGE] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
+        [self closeProgress];
     }
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

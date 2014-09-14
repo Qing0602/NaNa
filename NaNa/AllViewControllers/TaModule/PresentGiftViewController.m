@@ -8,6 +8,7 @@
 
 #import "PresentGiftViewController.h"
 #import "MMGridViewDefaultCell.h"
+#import "UAlertView.h"
 @interface PresentGiftViewController ()
 {
     MMGridView *_gridView;
@@ -40,11 +41,10 @@
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].presentGift];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
-            self.gridviewData = [[NSArray alloc]initWithArray:tempData[@"data"]];
-            [_gridView reloadData];
+            [self.navigationController popViewControllerAnimated:YES];
         }else
         {
-            
+            [UAlertView showAlertViewWithMessage:tempData[ASI_REQUEST_ERROR_MESSAGE] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
     }
 }
@@ -136,6 +136,7 @@
 - (void)gridView:(MMGridView *)gridView didSelectCell:(MMGridViewCell *)cell atIndex:(NSUInteger)index
 {
     NSDictionary *tempData = self.gridviewData[index];
+    [self showProgressWithText:@"正在赠送"];
     [[NaNaUIManagement sharedInstance] presentGift:[tempData[@"id"] integerValue] withTargetID:targetID];
 }
 
