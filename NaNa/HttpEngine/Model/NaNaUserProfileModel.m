@@ -51,6 +51,9 @@
     if (json[@"nickname"]!= [NSNull null] && json[@"nickname"] != nil) {
         self.userNickName = json[@"nickname"];
     }
+    if (json[@"voice"] != [NSNull null] && json[@"voice"] != nil) {
+        self.voiceURL = json[@"voice"];
+    }
     return model;
 }
 @end

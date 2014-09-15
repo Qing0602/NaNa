@@ -40,5 +40,6 @@ typedef enum{
 @property (nonatomic) int userID;
 @property (nonatomic,strong) NSString *userNickName;
 @property (nonatomic) int role;
+@property (nonatomic,strong) NSString *voiceURL;
 -(NaNaUserProfileModel *) converJson : (NSDictionary *) json;
 @end

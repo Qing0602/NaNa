@@ -30,6 +30,7 @@
 @property (nonatomic) BOOL isMore;
 @property (nonatomic,strong) NSTimer *timer;
 -(void) handleTimerGetNewMessage :(NSTimer *)theTimer;
+-(void) messageBuffer;
 @end
 
 @implementation ChatVC
@@ -106,6 +107,7 @@
     self.title = self.otherProfile.userNickName;
     self.isMore = YES;
     self.messageArray = [[NSArray alloc] init];
+    self.messageArray = [NaNaMessageModel deserializeModel:[NSString stringWithFormat: @"%d.msg",self.otherProfile.userID]];
     self.sendingMessageArray = [[NSArray alloc] init];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(handleTimerGetNewMessage:) userInfo:nil repeats:YES];
     [self.timer fire];
@@ -215,6 +217,7 @@
             [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
                                       atScrollPosition:UITableViewScrollPositionBottom
                                               animated:YES];
+            [self messageBuffer];
         }
     }else if ([keyPath isEqualToString:@"sendMessageResult"]){
         if (![[NaNaUIManagement sharedInstance].sendMessageResult[ASI_REQUEST_HAS_ERROR] boolValue]) {
@@ -242,25 +245,42 @@
             [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
                                       atScrollPosition:UITableViewScrollPositionBottom
                                               animated:YES];
-        }else if ([keyPath isEqualToString:@"historyMessage"]){
-            if (![[NaNaUIManagement sharedInstance].historyMessage[ASI_REQUEST_HAS_ERROR] boolValue]) {
-                NSDictionary *dic = [NaNaUIManagement sharedInstance].historyMessage[ASI_REQUEST_DATA];
-                NSArray *msg = dic[@"message"];
-                NSMutableArray *temp = [[NSMutableArray alloc] init];
-                for (NSDictionary *m in msg) {
-                    NaNaMessageModel *model = [[NaNaMessageModel alloc] init];
-                    [model coverJson:m];
-                    [temp addObject:model];
-                }
-                [temp addObjectsFromArray:self.messageArray];
-                self.messageArray = [[NSArray alloc] initWithArray:temp];
-                self.isMore = [dic[@"more"] boolValue];
-                [self.chatTableView reloadData];
+            [self messageBuffer];
+        }
+    }else if ([keyPath isEqualToString:@"historyMessage"]){
+        if (![[NaNaUIManagement sharedInstance].historyMessage[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSDictionary *dic = [NaNaUIManagement sharedInstance].historyMessage[ASI_REQUEST_DATA];
+            NSArray *msg = dic[@"message"];
+            NSMutableArray *temp = [[NSMutableArray alloc] init];
+            for (NSDictionary *m in msg) {
+                NaNaMessageModel *model = [[NaNaMessageModel alloc] init];
+                [model coverJson:m];
+                [temp addObject:model];
             }
-            if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
-                self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
-                [self.chatTableView.pullToRefreshView stopAnimating];
+            [temp addObjectsFromArray:self.messageArray];
+            self.messageArray = [[NSArray alloc] initWithArray:temp];
+            self.isMore = [dic[@"more"] boolValue];
+            [self.chatTableView reloadData];
+        }
+        if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
+            self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
+            [self.chatTableView.pullToRefreshView stopAnimating];
+        }
+    }
+}
+
+
+-(void) messageBuffer{
+    if (nil != self.messageArray && [self.messageArray count] != 0) {
+        if ([self.messageArray count]<=5) {
+            [NaNaMessageModel serializeModel:self.messageArray withFileName:[NSString stringWithFormat:@"%d.msg",self.otherProfile.userID]];
+        }else{
+            int count = [self.messageArray count];
+            NSMutableArray *buffer = [[NSMutableArray alloc] init];
+            for (int i = count - 5; i<count; i++) {
+                [buffer addObject:self.messageArray[i]];
             }
+            [NaNaMessageModel serializeModel:buffer withFileName:[NSString stringWithFormat:@"%d.msg",self.otherProfile.userID]];
         }
     }
 }
