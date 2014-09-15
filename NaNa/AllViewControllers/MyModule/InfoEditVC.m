@@ -17,6 +17,7 @@
 #import "URequestManager.h"
 #import "AppDelegate.h"
 #import "NaNaUIManagement.h"
+#import "NaNaUserProfileModel.h"
 #define kInfoEditCellHeight         40.0
 #define kInfoEditCellShowHeight     30.0
 #define kInfoEditCellSildWidth      15.0
@@ -68,10 +69,13 @@ typedef enum {
 -(void)setInfoData:(NSDictionary *)infoData
 {
     if (infoData && infoData.allKeys.count > 0) {
-        _nameTextField.text = infoData[@"nickname"];
+        NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] converJson:infoData];
+        _nameTextField.text = model.userNickName;
         _roleLabel.text = _roleArray[[infoData[@"role"] integerValue]];
-        _city.cityID = [infoData[@"city_id"] integerValue];
-        _city.cityName = infoData[@"city_name"];
+        _city.cityID = model.userCityID;
+        _city.cityName = model.userCityName;
+        [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
+        
     }
     
     _infoData = infoData;
@@ -105,7 +109,8 @@ typedef enum {
     // 头像
     if (!_headButton) {
         // 圆形按钮
-        _headButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
+        //_headButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
+        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"DefineHeader.png"] withFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
         [_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
         [_headButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [_headButton addTarget:self
@@ -299,7 +304,7 @@ typedef enum {
                           action:@selector(agreeCheckButtonClick:)
                 forControlEvents:UIControlEventTouchUpInside];
     }
-    [_defaultView addSubview:_agreeCheckButton];
+    //[_defaultView addSubview:_agreeCheckButton];
     
     // 同意用户协议文案
     if (!_agreeLabel) {
@@ -320,7 +325,7 @@ typedef enum {
             return mutableAttributedString;
         }];
     }
-    [_defaultView addSubview:_agreeLabel];
+    //[_defaultView addSubview:_agreeLabel];
     
     // 进入用户协议按钮
     if (!_agreeButton) {
@@ -334,7 +339,7 @@ typedef enum {
                          action:@selector(agreeButtonClick:)
                forControlEvents:UIControlEventTouchUpInside];
     }
-    [_defaultView addSubview:_agreeButton];
+    //[_defaultView addSubview:_agreeButton];
     
     // 更改角色、更改年龄的picker -------------------------------------------------------------------
     // 角色的底部VIEW
@@ -574,7 +579,7 @@ typedef enum {
             break;
         }
         case InfoEditRowCity: {
-            [titleLabel setText:STRING(@"city")];
+            [titleLabel setText:STRING(@"infoCity")];
             [cell.contentView addSubview:_cityLabel];
             break;
         }
@@ -592,7 +597,8 @@ typedef enum {
         [cell.contentView addSubview:arrow];
         [arrow release];
     }
-
+     NSString *urlStr = @"aaa";
+    NSString *unicodeStr = [NSString stringWithCString:[urlStr UTF8String] encoding:NSUnicodeStringEncoding];
     
     return cell;
 }

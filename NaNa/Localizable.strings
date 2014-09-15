@@ -8,7 +8,7 @@
 "like"          =   "互动";
 "guest"         =   "访客";
 "friend"        =   "好友";
-"myPage"        =   "我的主页";
+"myPage"        =   "我的空间";
 "rank"          =   "美拉榜";
 "setting"       =   "设置";
 "chat"          =   "聊天";
@@ -24,7 +24,7 @@
 "nickname"      =   "昵称";
 "role"          =   "角色";
 "age"           =   "年龄";
-"city"          =   "城市";
+"infoCity"          =   "城市";
 "recordPressed" =   "按住录音";
 "recordRemark"  =   "不想让人看到你\n就让人听到你";
 "userAgreement" =   "用户协议";

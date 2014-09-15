@@ -140,11 +140,18 @@
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        NSURL *url = [request URL];
-        NSString *curUrl= [url absoluteString];
-        
-    } 
+
+        NSURL *reqUrl = [request URL];
+        NSString *curUrl= [reqUrl absoluteString];
+        NSURL *url = [NSURL URLWithString:curUrl];
+        NSURLRequest *neededRequest = [NSURLRequest requestWithURL: url];
+        NSHTTPURLResponse *response;
+        [NSURLConnection sendSynchronousRequest: neededRequest returningResponse: &response error: nil];
+        if ([response respondsToSelector:@selector(allHeaderFields)]) {
+            NSDictionary *dictionary = [response allHeaderFields];
+            NSLog(@"%@",dictionary);
+        }
+
 
 
     return YES;
