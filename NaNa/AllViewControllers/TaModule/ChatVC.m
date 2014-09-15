@@ -224,7 +224,7 @@
                 if ([model.content isEqualToString:data[@"content"]]) {
                     NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                     msg.content = model.content;
-                    msg.creattime = model.creattime;
+                    msg.creattime = [data[@"creattime"] integerValue];
                     msg.isBlongMe = model.isBlongMe;
                     msg.height = model.height;
                     msg.state = kSend;
