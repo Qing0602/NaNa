@@ -22,6 +22,7 @@ typedef enum {
     UIActivityIndicatorView     *_activityView;
     NSURL                       *_url;
     NSInteger targetID;
+    NSString *_taNickName;
 }
 
 - (id)initWithURL:(NSString *)url;

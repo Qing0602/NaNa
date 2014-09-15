@@ -13,7 +13,30 @@
 @end
 
 @implementation UpdateMemberVC
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"userProfile"]) {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
+            _userNameLabel.text = dic[@"nickname"];
+        }else
+        {
+            
+        }
+    }
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userProfile"];
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -25,6 +48,7 @@
 - (void)loadView {
     [super loadView];
     self.title = STRING(@"updateMember");
+    [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
     // 用户名称
@@ -34,7 +58,7 @@
         _userNameLabel.textColor = default_color_dark;
         _userNameLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _userNameLabel.backgroundColor = [UIColor clearColor];
-        _userNameLabel.text = @"临时用户名称";
+        //_userNameLabel.text = [NaNaUIManagement sharedInstance].userAccount.NaNaID;
         _userNameLabel.textAlignment = NSTextAlignmentLeft;
     }
     [_defaultView addSubview:_userNameLabel];
