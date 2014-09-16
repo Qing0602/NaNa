@@ -55,21 +55,9 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"sideResult"]) {
-        
         if (![[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             messageInfoConver *conver = [[messageInfoConver alloc] init];
             self.messages = [conver createByArray:[[NaNaUIManagement sharedInstance].sideResult objectForKey:ASI_REQUEST_DATA]];
-            
-            MessageInfoData *messageInfo = [[MessageInfoData alloc] init];
-            messageInfo.avatarUrl = @"aaa";
-            messageInfo.content = @"abcdefgksfksi但是覅未付i换肤会烦死额外";
-            messageInfo.count = 10;
-            messageInfo.createtime = 0;
-            messageInfo.nickname = @"123";
-            messageInfo.senderID = 5;
-            NSMutableArray *a = [[NSMutableArray alloc] initWithObjects:messageInfo, nil];
-            self.messages = a;
-            
             [_tableView reloadData];
         }
     }
