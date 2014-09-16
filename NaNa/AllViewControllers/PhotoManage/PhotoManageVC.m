@@ -225,7 +225,7 @@
     MyPhotoCell *cell = (MyPhotoCell *)[gridView dequeueReusableCellWithIdentifier:identifier];
     if (!cell)
     {
-        cell = [[[MyPhotoCell alloc] initWithFrame:CGRectMake(0, 0, 100, 120) reuseIdentifier:identifier] autorelease];
+        cell = [[[MyPhotoCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100) reuseIdentifier:identifier] autorelease];
     }
     
     //cell.contentView.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
@@ -306,7 +306,7 @@
     }else
     {
         PhotosModel *model = [_photosArray objectAtIndex:indexPath.index-1];
-        photoDetailManagementVC *photoDetail = [[photoDetailManagementVC alloc] initWithModel:model];
+        photoDetailManagementVC *photoDetail = [[photoDetailManagementVC alloc] initWithModel:model andIsMyPhoto:YES];
         [self.navigationController pushViewController:photoDetail animated:YES];
         [photoDetail release];
     }
@@ -318,6 +318,7 @@
 }
 - (void)dealloc {
     [super dealloc];
+    [_photosArray release];
 }
 
 @end

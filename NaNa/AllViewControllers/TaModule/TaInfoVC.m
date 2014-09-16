@@ -7,7 +7,7 @@
 //
 
 #import "TaInfoVC.h"
-
+#import "NaNaUserProfileModel.h"
 #define kInfoEditCellHeight         40.0
 #define kInfoEditCellShowHeight     30.0
 #define kInfoEditCellSildWidth      15.0
@@ -68,16 +68,20 @@
     _defaultView.backgroundColor = [UIColor whiteColor];
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     // 头像
-    if (!_headView) {
+    if (!_headButton) {
         // 圆形按钮
-        _headView = [[UIImageView alloc] initWithFrame:CGRectMake(105.0, 15.0, 110.0, 110.0)];
+        //_headButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
+        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"DefineHeader.png"] withFrame:CGRectMake(105.0, 15.0, 110.0, 110.0)];
+        [_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
+        [_headButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        _headButton.layer.cornerRadius = 55;
+        _headButton.clipsToBounds = YES;
     }
-    _headView.image = [UIImage imageNamed:@"head_bg.png"];
-    [_defaultView addSubview:_headView];
+    [_defaultView addSubview:_headButton];
     
     if (!_playButton)
     {
-        _playButton = [[UIButton alloc] initWithFrame:CGRectMake(105.0, CGRectGetMaxY(_headView.frame) + 10.0, 110.0, 30.0)];
+        _playButton = [[UIButton alloc] initWithFrame:CGRectMake(105.0, CGRectGetMaxY(_headButton.frame) + 10.0, 110.0, 30.0)];
         [_playButton setBackgroundImage:[UIImage imageNamed:@"record_light blue_btn_lan.png"] forState:UIControlStateNormal];
         [_playButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(playTaSound) forControlEvents:UIControlEventTouchUpInside];
@@ -222,11 +226,13 @@
 -(void)setInfoData:(NSDictionary *)infoData
 {
     if (infoData && infoData.allKeys.count > 0) {
-        _nameTextField.text = infoData[@"nickname"];
+        NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] converJson:infoData];
+        _nameTextField.text = model.userNickName;
         NSArray *roleArray = [[NSArray alloc] initWithObjects:@"P", @"T", @"H", nil];
-        _roleLabel.text = roleArray[[infoData[@"role"] integerValue]];
-        _cityLabel.text = infoData[@"city_name"];
-        
+        _roleLabel.text = roleArray[model.role];
+        //_city.cityID = model.userCityID;
+        _cityLabel.text = model.userCityName;
+        [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
         [roleArray release];
     }
     
@@ -246,7 +252,7 @@
 
 - (void)dealloc
 {
-    SAFERELEASE(_headView)
+    SAFERELEASE(_headButton)
     SAFERELEASE(_playButton)
     SAFERELEASE(_tableView)
     SAFERELEASE(_nameTextField)

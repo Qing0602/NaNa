@@ -8,10 +8,11 @@
 
 #import "UBasicViewController.h"
 #import "KKGridView.h"
-
-@interface TaPhotoVC : UBasicViewController<KKGridViewDataSource,KKGridViewDelegate>
+#import "EGOImageLoader.h"
+@interface TaPhotoVC : UBasicViewController<KKGridViewDataSource,KKGridViewDelegate,EGOImageLoaderObserver>
 {
     KKGridView *_gridView;
+    NSMutableArray  *_photosArray;
 }
 -(id)initWithUserID:(NSInteger)userID;
 @end
