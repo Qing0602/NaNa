@@ -17,6 +17,7 @@
 
 #define MENU_ROW_HEIGHT     44.0
 #define MSG_ROW_HEIGHT      80.0
+#define ONE_DAY_TIMEINTERVAL 24*60*60
 
 @interface MenuLeftVC ()
 @property (nonatomic,strong) NSArray *messages;
@@ -123,7 +124,7 @@
         MessageInfoData *msg = self.messages[indexPath.row];
         cell.headImageView.image = [UIImage imageNamed:@"icon.png"];
         cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", msg.nickname, msg.content];
-        cell.timeLabel.text = @"1分钟前";
+        cell.timeLabel.text = [self compareDate:msg.createtime];
         [cell setModel:msg];
         cell.contentView.backgroundColor = RGBA(57.0,56.0,60.0,1.0);
         
@@ -224,6 +225,26 @@
             default:
                 break;
         }
+    }
+}
+
+-(NSString *)compareDate:(NSTimeInterval)timeDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *dateNow = [NSDate date];
+    NSTimeInterval timeNow = [dateNow timeIntervalSince1970];
+    
+    if (timeNow - timeDate < ONE_DAY_TIMEINTERVAL) {
+        return @"今天";
+    }else if (timeNow - timeDate >= ONE_DAY_TIMEINTERVAL && timeNow - timeDate < ONE_DAY_TIMEINTERVAL*2.0 ){
+        return @"昨天";
+    }else if (timeNow - timeDate < ONE_DAY_TIMEINTERVAL*7.0 && timeNow - timeDate >= ONE_DAY_TIMEINTERVAL*2.0){
+        return @"一周前";
+    }else if (timeNow - timeDate < ONE_DAY_TIMEINTERVAL*30.0 && timeNow - timeDate >= ONE_DAY_TIMEINTERVAL*7.0 ){
+        return @"一月前";
+    }else {
+        return @"好久不联系";
     }
 }
 
