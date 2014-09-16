@@ -41,7 +41,7 @@ typedef enum {
     if ([keyPath isEqualToString:@"userProfile"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
-            self.infoData = [[NSDictionary alloc] initWithDictionary:[[tempData objectForKey:ASI_REQUEST_DATA] objectForKey:@"body"]];
+            self.infoData = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
             
         }else
         {
@@ -795,7 +795,7 @@ typedef enum {
                   editingInfo:(NSDictionary *)editingInfo {
     
     [_headButton setBackgroundImage:image forState:UIControlStateNormal];
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 0.5) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
     [picker dismissModalViewControllerAnimated:YES];
 }
 

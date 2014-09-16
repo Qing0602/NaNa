@@ -25,7 +25,7 @@
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].updateUserPrivacySetting];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
-            [self.navigationController popViewControllerAnimated:YES];
+            //[self.navigationController popViewControllerAnimated:YES];
         }else
         {
             NSLog(@"error == %@",tempData[@"errorMessage"]);
@@ -38,11 +38,11 @@
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 60, 7, 60, 30);
-    [btn setTitle:@"完成" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(completeAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.navBarView addSubview:btn];
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 60, 7, 60, 30);
+//    [btn setTitle:@"完成" forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(completeAction) forControlEvents:UIControlEventTouchUpInside];
+//    [self.navBarView addSubview:btn];
     
     float offsetX = 15.0;
     float offsetY = 20.0;
@@ -134,13 +134,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userPrivacySetting" options:0 context:nil];
-    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"updateUserPrivacySetting" options:0 context:nil];
+    //[[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"updateUserPrivacySetting" options:0 context:nil];
     
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userPrivacySetting"];
-    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserPrivacySetting"];
+    //[[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserPrivacySetting"];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -159,17 +159,17 @@
 }
 -(void)completeAction
 {
-    
-    
-    [[NaNaUIManagement sharedInstance] updateUserPrivacySetting:_photoSwitch.on withIsShowUserInfo:_infoSwitch.on withIsShowUserAvatar:YES withIsShowVoice:YES];
+
 }
 #pragma mark - SwitchClick
 - (void)photoSwitchClick:(UISwitch *)theSwitch {
     ULog(@"photoSwitchClick ======= %d", theSwitch.on);
+    [[NaNaUIManagement sharedInstance] updateUserPrivacySetting:_photoSwitch.on withIsShowUserInfo:_infoSwitch.on withIsShowUserAvatar:YES withIsShowVoice:YES];
 }
 
 - (void)infoSwitchClick:(UISwitch *)theSwitch {
     ULog(@"infoSwitchClick ======= %d", theSwitch.on);
+    [[NaNaUIManagement sharedInstance] updateUserPrivacySetting:_photoSwitch.on withIsShowUserInfo:_infoSwitch.on withIsShowUserAvatar:YES withIsShowVoice:YES];
 }
 
 @end

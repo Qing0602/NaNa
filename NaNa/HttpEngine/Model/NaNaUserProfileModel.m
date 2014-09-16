@@ -10,7 +10,7 @@
 
 @implementation NaNaUserProfileModel
 -(NaNaUserProfileModel *) converJson : (NSDictionary *) json{
-    NaNaUserProfileModel *model = [[NaNaUserProfileModel alloc] init];
+    //NaNaUserProfileModel *model = [[NaNaUserProfileModel alloc] init];
     /*
      "avatar": "47848305cd654f1a10c58c5dab99759d",//string头像地址
      "background": "47848305cd654f1a10c58c5dab99759d",//string背景地址
@@ -54,6 +54,6 @@
     if (json[@"voice"] != [NSNull null] && json[@"voice"] != nil) {
         self.voiceURL = json[@"voice"];
     }
-    return model;
+    return self;
 }
 @end

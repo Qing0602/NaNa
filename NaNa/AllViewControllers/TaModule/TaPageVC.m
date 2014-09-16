@@ -31,7 +31,10 @@
 - (void)loadView {
     [super loadView];
     // title
-    self.title = @"Ta";
+    self.title = @"她的空间";
+    
+    _taNickName = @"";
+    
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
     // webview
@@ -115,7 +118,7 @@
             // ULog(@"TaPageTabItemChat");
             NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] autorelease];
             model.userID = targetID;
-            model.userNickName = @"少代码";
+            model.userNickName = _taNickName;
             ChatVC *chatVC  =[[ChatVC alloc] initChatVC:model];
             [self.navigationController pushViewController:chatVC animated:YES];
             [chatVC release];
@@ -150,6 +153,11 @@
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             NSDictionary *dictionary = [response allHeaderFields];
             NSLog(@"%@",dictionary);
+            NSString *tempNickName = dictionary[@"nickname"];
+            if (![tempNickName isEqualToString:@""]) {
+                _taNickName = tempNickName;
+            }
+            
         }
 
 
