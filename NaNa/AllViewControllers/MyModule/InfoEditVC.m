@@ -71,7 +71,7 @@ typedef enum {
     if (infoData && infoData.allKeys.count > 0) {
         NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] converJson:infoData];
         _nameTextField.text = model.userNickName;
-        _roleLabel.text = _roleArray[[infoData[@"role"] integerValue]];
+        _roleLabel.text = _roleArray[model.role];
         _city.cityID = model.userCityID;
         _city.cityName = model.userCityName;
         [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];

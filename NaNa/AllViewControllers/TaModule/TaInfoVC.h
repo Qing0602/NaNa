@@ -7,7 +7,7 @@
 //
 
 #import "UBasicViewController.h"
-
+#import "CircleImageButton.h"
 typedef enum {
     InfoEditRowName     = 0,
     InfoEditRowRole     = 1,
@@ -18,7 +18,7 @@ typedef enum {
 @interface TaInfoVC : UBasicViewController<UITableViewDataSource,
 UITableViewDelegate>
 {
-    UIImageView         *_headView;     // 头像
+    CircleImageButton            *_headButton;           // 头像
     UIButton            *_playButton;     // 播放
     UITableView         *_tableView;      // 信息
     UITextField         *_nameTextField;  // 名称

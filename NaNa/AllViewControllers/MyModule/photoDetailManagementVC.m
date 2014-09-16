@@ -36,13 +36,13 @@
     }
     return self;
 }
--(id)initWithModel:(PhotosModel *)model
+-(id)initWithModel:(PhotosModel *)model andIsMyPhoto:(BOOL)isMine;
 {
     self = [super init];
     if (self) {
         // Custom initialization
         self.photoModel = model;
-        
+        _isMyPhoto = isMine;
 
     }
     return self;
@@ -52,11 +52,14 @@
     [super viewDidLoad];
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 60, 7, 60, 30);
-    [btn setTitle:@"修改" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(imageAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.navBarView addSubview:btn];
+    if (_isMyPhoto) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 60, 7, 60, 30);
+        [btn setTitle:@"修改" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(imageAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.navBarView addSubview:btn];
+    }
+
 //
     EGOImageView  *imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, CGRectGetHeight(self.navBarView.frame), 320.f, ScreenHeight-CGRectGetHeight(self.navBarView.frame))];
     imageview.delegate = self;
