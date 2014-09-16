@@ -106,7 +106,7 @@ static NaNaUIManagement *sharedInstance = nil;
 }
 
 // 获取历史消息
--(void) getHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp{
+-(void) getHistoryMessageWithTargetID : (int) targetID withTimeStemp : (long long) timeStemp{
     MessageOperation *operation = [[MessageOperation alloc] initGetHistoryMessageWithTargetID:targetID withTimeStemp:timeStemp];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }

@@ -52,11 +52,11 @@
     return self;
 }
 
--(MessageOperation *) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;{
+-(MessageOperation *) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (long long) timeStemp;{
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetHistoryMessage;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/get?userId=%d&targetId=%d&time=%d",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,timeStemp];
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/get?userId=%d&targetId=%d&time=%lld",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,timeStemp];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;

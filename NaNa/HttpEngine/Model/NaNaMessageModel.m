@@ -33,6 +33,11 @@
             self.isBlongMe = YES;
         }
     }
+    
+    if (json[@"createmicrotime"] != [NSNull null]) {
+        self.createmicrotime = [json[@"createmicrotime"] longLongValue];
+    }
+    
     self.height = 0.0f;
     self.state = kNone;
 }
@@ -43,6 +48,7 @@
     [aCoder encodeInteger:self.creattime forKey:@"creattime"];
     [aCoder encodeBool:self.isBlongMe forKey:@"isBlongMe"];
     [aCoder encodeInteger:self.height forKey:@"height"];
+    [aCoder encodeInt64:self.createmicrotime forKey:@"createmicrotime"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
@@ -52,6 +58,7 @@
         self.creattime = [aDecoder decodeIntegerForKey:@"creattime"];
         self.isBlongMe = [aDecoder decodeBoolForKey:@"isBlongMe"];
         self.height = [aDecoder decodeIntegerForKey:@"height"];
+        self.createmicrotime = [aDecoder decodeInt64ForKey:@"createmicrotime"];
     }
     return self;
 }

@@ -127,7 +127,7 @@ typedef enum{
 // 获取新消息
 -(void) getNewMessageWithTargetID : (int) targetID;
 // 获取历史消息
--(void) getHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
+-(void) getHistoryMessageWithTargetID : (int) targetID withTimeStemp : (long long) timeStemp;
 // 移除用户相册照片
 -(void) removeUserPhoto : (int) photoID;
 // 获取用户可购买背景

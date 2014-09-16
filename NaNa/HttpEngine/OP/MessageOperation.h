@@ -19,5 +19,5 @@ typedef enum{
 -(MessageOperation *) initGetNewMessageWithTargetID : (int) targetID;
 -(MessageOperation *) initGetSideMessageList : (int) userID;
 
--(MessageOperation *) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (int) timeStemp;
+-(MessageOperation *) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (long long) timeStemp;
 @end
