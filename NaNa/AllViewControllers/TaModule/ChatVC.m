@@ -107,7 +107,7 @@
     self.title = self.otherProfile.userNickName;
     self.isMore = YES;
     self.messageArray = [[NSArray alloc] init];
-    self.messageArray = [NaNaMessageModel deserializeModel:[NSString stringWithFormat: @"%d.msg",self.otherProfile.userID]];
+//    self.messageArray = [NaNaMessageModel deserializeModel:[NSString stringWithFormat: @"%d.msg",self.otherProfile.userID]];
     self.sendingMessageArray = [[NSArray alloc] init];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(handleTimerGetNewMessage:) userInfo:nil repeats:YES];
     [self.timer fire];
@@ -228,6 +228,7 @@
                     NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                     msg.content = model.content;
                     msg.creattime = [data[@"creattime"] integerValue];
+                    msg.createmicrotime = [data[@"createmicrotime"] longLongValue];
                     msg.isBlongMe = model.isBlongMe;
                     msg.height = model.height;
                     msg.state = kSend;

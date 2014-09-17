@@ -26,7 +26,7 @@
     return self;
 }
 
-- (id)initWithPlaceholderImage:(UIImage*)anImage withFrame:(CGRect) frame FaceType:(Face_Type)_type {
+- (id)initWithPlaceholderImage:(UIImage*)anImage withFrame:(CGRect) frame {
 	if((self = [self initWithFrame:frame])) {
         
         UIImage *resizedImage = nil;
@@ -38,13 +38,7 @@
 		self.delegate = nil;
         [self setImage:resizedImage forState:UIControlStateNormal];
         
-        
-        type = _type;
-        if (type!=0) {
-//            faceView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 25, 25)];
-//            faceView.image = [UIImage imageNamed:[NSString stringWithFormat:@"face%d",_type]];            
-        }
-	}
+    }
 	return self;
 }
 

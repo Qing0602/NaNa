@@ -21,9 +21,8 @@
         self.contentView.backgroundColor = [UIColor grayColor];
         
         // icon
-        _headImageView = [[UIImageView alloc] init];
         float headHeight = self.frame.size.height - margin_middle;
-        _headImageView.frame = CGRectMake(margin_middle, margin_middle, headHeight, headHeight);
+        _headImageView = [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];
         [self.contentView addSubview:_headImageView];
         
         // 计算坐标

@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MessageInfoData.h"
+#import "RoundRectEGOImageButton.h"
 
 @interface MsgCell : UITableViewCell {
 }
 
-@property (nonatomic,strong) UIImageView *headImageView;
+@property (nonatomic,strong) RoundRectEGOImageButton *headImageView;
 @property (nonatomic,strong) UILabel *msgLabel;
 @property (nonatomic,strong) UILabel *timeLabel;
 

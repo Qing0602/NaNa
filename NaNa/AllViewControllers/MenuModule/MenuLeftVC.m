@@ -122,7 +122,7 @@
                                    reuseIdentifier:Msgkey];
         }
         MessageInfoData *msg = self.messages[indexPath.row];
-        cell.headImageView.image = [UIImage imageNamed:@"icon.png"];
+        [cell.headImageView setImageURL:[NSURL URLWithString:msg.avatarUrl]];
         cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", msg.nickname, msg.content];
         cell.timeLabel.text = [self compareDate:msg.createtime];
         [cell setModel:msg];

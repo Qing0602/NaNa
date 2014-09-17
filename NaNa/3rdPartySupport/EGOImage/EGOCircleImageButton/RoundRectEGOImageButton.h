@@ -9,21 +9,11 @@
 #import "EGOImageButton.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImage+Resize.h"
-typedef enum Face_Type
-{
-    FaceNone=0,
-    Face1,
-    Face2,
-    Face3,
-    Face4,
-    Face5
-    
-}Face_Type;
 
 
 @interface RoundRectEGOImageButton : EGOImageButton
 {
    int type;
 }
-- (id)initWithPlaceholderImage:(UIImage*)anImage withFrame:(CGRect) frame FaceType:(Face_Type)_type;
+- (id)initWithPlaceholderImage:(UIImage*)anImage withFrame:(CGRect) frame;
 @end
