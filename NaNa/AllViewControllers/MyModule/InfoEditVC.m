@@ -38,6 +38,7 @@ typedef enum {
 @synthesize headButton = _headButton;
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    [self closeProgress];
     if ([keyPath isEqualToString:@"userProfile"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
@@ -74,12 +75,26 @@ typedef enum {
         _roleLabel.text = _roleArray[model.role];
         _city.cityID = model.userCityID;
         _city.cityName = model.userCityName;
-        [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
+        _cityLabel.text = model.userCityName;
+        if ([model.userCityName isEqualToString:@""]) {
+            [_city getCurrentCity];
+        }
+        _ageLabel.text = [self transformIntToAge:model.userBirthday];
         
+        [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
+        [model release];
     }
     
     _infoData = infoData;
+}
+-(NSString *)transformIntToAge:(int)birthday
+{
+    _sinceNowTime = birthday;
+    int age = trunc(birthday / (60 * 60 * 24)) / 365 * (-1);
 
+    
+    return  [NSString stringWithFormat:@"%d", age];
+    
 }
 -(id)initWithType:(enterType)type
 {
@@ -93,8 +108,7 @@ typedef enum {
     [super loadView];
     self.title = STRING(@"info");
     _defaultView.backgroundColor = [UIColor whiteColor];
-    
-    [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
+
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
     
     NSString *recordTime = [UStaticData getObjectForKey:kInfoRecoderTimeKey];
@@ -275,7 +289,7 @@ typedef enum {
         _cityLabel.textColor = default_color_dark;
         _cityLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _cityLabel.backgroundColor = [UIColor clearColor];
-        _cityLabel.text = STRING(@"city");
+        _cityLabel.text = @"未定位";
     }
     
     if (!_city) {
@@ -451,12 +465,18 @@ typedef enum {
         [_recordingView addSubview:label];
         [label release];
     }
-    
+    [self showProgressWithText:@"正在加载"];
+    [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
     // 城市
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(uGetCityFinishedNotify:)
                                                  name:UGetSelectedCityFinishedNotify
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uGetCityNameFinished:)
+                                                 name:    UGetCurrentCityFinishedNotify
+                                               object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -597,8 +617,7 @@ typedef enum {
         [cell.contentView addSubview:arrow];
         [arrow release];
     }
-     NSString *urlStr = @"aaa";
-    NSString *unicodeStr = [NSString stringWithCString:[urlStr UTF8String] encoding:NSUnicodeStringEncoding];
+
     
     return cell;
 }
@@ -633,6 +652,7 @@ typedef enum {
         case InfoEditRowAge: {
             ULog(@"age");
             [self textFieldResignFirstResponder];
+            [_ageDatePicker setDate:[NSDate dateWithTimeIntervalSinceNow:_sinceNowTime]];
             _defaultView.userInteractionEnabled = NO;
             [UIView animateWithDuration:default_duration
                              animations:^{
@@ -702,6 +722,7 @@ typedef enum {
 - (void)agePickerValueChanged:(UIDatePicker *)picker {
     // 计算年龄
     NSTimeInterval selectDate = [picker.date timeIntervalSinceNow];
+    _sinceNowTime = selectDate;
     int age = trunc(selectDate / (60 * 60 * 24)) / 365 * (-1);
     _ageLabel.text = [NSString stringWithFormat:@"%d", age];
     ULog(@"agePickerValueChanged ========= %d", age);
@@ -808,7 +829,11 @@ typedef enum {
         ULog(@"City.CityName is %@", _city.cityName);
     }
 }
-
+- (void)uGetCityNameFinished:(NSNotification *)notify {
+    if (notify.object) {
+        _cityLabel.text = notify.object;
+    }
+}
 #pragma mark - Resquest
 - (void)requestFinished:(URequest *)request {
     ULog(@"requestFinished ------- %@", request.parsedDict);
@@ -893,7 +918,7 @@ typedef enum {
     [URequestManager addCommonRequest:request];
     [request release];
      */
-    
+    [self showProgressWithText:@"正在提交"];
     [[NaNaUIManagement sharedInstance] updateUserProfile:_nameTextField.text withRole:_roleLabel.text withCityID:cityId];
 }
 

@@ -34,6 +34,7 @@
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    [self closeProgress];
     if ([keyPath isEqualToString:@"userProfile"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
@@ -154,6 +155,7 @@
         _cityLabel.backgroundColor = [UIColor clearColor];
         _cityLabel.text = STRING(@"city");
     }
+    [self showProgressWithText:@"正在加载"];
     [[NaNaUIManagement sharedInstance] getUserProfile:targetID];
 }
 
@@ -232,11 +234,20 @@
         _roleLabel.text = roleArray[model.role];
         //_city.cityID = model.userCityID;
         _cityLabel.text = model.userCityName;
+        _ageLabel.text = [self transformIntToAge:model.userBirthday];
         [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
         [roleArray release];
     }
     
     _infoData = infoData;
+    
+}
+-(NSString *)transformIntToAge:(int)birthday
+{
+    int age = trunc(birthday / (60 * 60 * 24)) / 365 * (-1);
+    
+    
+    return  [NSString stringWithFormat:@"%d", age];
     
 }
 - (void)playTaSound

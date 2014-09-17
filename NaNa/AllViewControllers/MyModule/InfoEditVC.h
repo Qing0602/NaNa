@@ -87,7 +87,7 @@ typedef enum
     BOOL                 _isExistRecord;
       
     NSInteger enterPathType;
-      
+    NSTimeInterval _sinceNowTime;
 }
 
 @property (nonatomic, retain) UIButton *headButton;
