@@ -21,7 +21,7 @@
         self.content = json[@"content"];
     }
     
-    if (json[@"createtime"] != [NSNull null]) {
+    if (json[@"createtime"] != [NSNull null] || json[@"createtime"] != nil) {
         self.creattime = [json[@"createtime"] integerValue];
     }
     
@@ -34,7 +34,7 @@
         }
     }
     
-    if (json[@"createmicrotime"] != [NSNull null]) {
+    if (json[@"createmicrotime"] != [NSNull null] || json[@"createmicrotime"] != nil) {
         self.createmicrotime = [json[@"createmicrotime"] longLongValue];
     }
     

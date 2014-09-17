@@ -107,7 +107,7 @@
     self.title = self.otherProfile.userNickName;
     self.isMore = YES;
     self.messageArray = [[NSArray alloc] init];
-//    self.messageArray = [NaNaMessageModel deserializeModel:[NSString stringWithFormat: @"%d.msg",self.otherProfile.userID]];
+    self.messageArray = [NaNaMessageModel deserializeModel:[NSString stringWithFormat: @"%d.msg",self.otherProfile.userID]];
     self.sendingMessageArray = [[NSArray alloc] init];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(handleTimerGetNewMessage:) userInfo:nil repeats:YES];
     [self.timer fire];
@@ -184,6 +184,10 @@
 }
 
 -(void) refreshMeetData{
+    if(!self.isMore){
+        return;
+    }
+
     __weak ChatVC *weakSelf = self;
     // 如果有历史聊天数据，但是当前设备获取不到timestamp如何处理？
     if (weakSelf.messageArray != nil && [weakSelf.messageArray count] != 0) {
