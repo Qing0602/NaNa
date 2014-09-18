@@ -290,9 +290,24 @@
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+ 
     return YES;
 }
 #pragma mark - WebView
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString* rurl=[[request URL] absoluteString];
+    if ([rurl rangeOfString:@"my-background" options:NSCaseInsensitiveSearch].length > 0) {
+        return NO;
+    }else if ([rurl rangeOfString:@"my-photos" options:NSCaseInsensitiveSearch].length > 0)
+    {
+        PhotoManageVC *controller = [[[PhotoManageVC alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+        return NO;
+    }
+    
+    return YES;
+}
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [_activityView startAnimating];
 }

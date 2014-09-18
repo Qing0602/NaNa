@@ -146,6 +146,15 @@
 
         NSURL *reqUrl = [request URL];
         NSString *curUrl= [reqUrl absoluteString];
+        if ([curUrl rangeOfString:@"my-photos" options:NSCaseInsensitiveSearch].length > 0)
+        {
+            TaPhotoVC *infoVC = [[TaPhotoVC alloc] initWithUserID:targetID];
+            [self.navigationController pushViewController:infoVC animated:YES];
+            [infoVC release];
+            return NO;
+        }
+    
+    
         NSURL *url = [NSURL URLWithString:curUrl];
         NSURLRequest *neededRequest = [NSURLRequest requestWithURL: url];
         NSHTTPURLResponse *response;
@@ -159,6 +168,7 @@
             }
             
         }
+
 
 
 
