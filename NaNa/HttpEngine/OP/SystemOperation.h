@@ -15,5 +15,4 @@ typedef enum{
 @interface SystemOperation : NaNaOperation
 
 -(SystemOperation *) initPostSystemDriverToken : (int) userID withDriverToken : (NSString *) token;
-
 @end
