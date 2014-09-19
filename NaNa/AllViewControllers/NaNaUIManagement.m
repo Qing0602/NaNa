@@ -11,6 +11,7 @@
 #import "UserProfileOperation.h"
 #import "GiftOperation.h"
 #import "MessageOperation.h"
+#import "SystemOperation.h"
 
 @implementation NaNaUIManagement
 static NaNaUIManagement *sharedInstance = nil;
@@ -126,6 +127,12 @@ static NaNaUIManagement *sharedInstance = nil;
 // 购买背景
 -(void) buyBackGround : (int) backgroundID{
     UserProfileOperation *operation = [[UserProfileOperation alloc] initBuyBackGround:[NaNaUIManagement sharedInstance].userAccount.UserID withBackGroundID:backgroundID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+//发送push token
+-(void) postPushToken : (NSString *) pushToken{
+    SystemOperation *operation = [[SystemOperation alloc] initPostSystemDriverToken:[NaNaUIManagement sharedInstance].userAccount.UserID withDriverToken:pushToken];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 @end

@@ -133,6 +133,10 @@
   
 }
 
+-(void) viewDidLoad{
+    [[NaNaUIManagement sharedInstance] postPushToken:[UStaticData getObjectForKey:DEVICE_TOKEN]];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

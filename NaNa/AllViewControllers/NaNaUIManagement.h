@@ -134,4 +134,7 @@ typedef enum{
 -(void) getUserBackGround;
 // 购买背景
 -(void) buyBackGround : (int) backgroundID;
+
+//发送push token
+-(void) postPushToken : (NSString *) pushToken;
 @end
