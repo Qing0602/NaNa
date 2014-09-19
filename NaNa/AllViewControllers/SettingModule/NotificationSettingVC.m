@@ -126,7 +126,7 @@ typedef enum {
     [super loadView];
     // title
     self.title = STRING(@"notification");
-    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeSubmit];
+    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
     self.view.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:254/255.f alpha:1.f];
     
@@ -306,6 +306,62 @@ typedef enum {
 }
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
+    if (_tableView) {
+        BOOL canMessagePush = NO;
+        BOOL canVisitPush = NO;
+        BOOL canLovePush = NO;
+        BOOL canFriendPush = NO;
+        for (int i =0; i < 6; i++) {
+            NSIndexPath *indexPath ;
+            if (i<4) {
+                indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            }else
+            {
+                indexPath = [NSIndexPath indexPathForRow:i-4 inSection:1];
+            }
+            UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+            NSInteger switchTag = indexPath.section*1000 + indexPath.row+10;
+            UISwitch *notifySwitch = (UISwitch *)[cell.contentView viewWithTag:switchTag];
+            switch (switchTag) {
+                case 10:
+                {
+                    canMessagePush = notifySwitch.on;
+                }
+                    break;
+                case 11:
+                {
+                    canVisitPush = notifySwitch.on;
+                }
+                    break;
+                case 12:
+                {
+                    canLovePush = notifySwitch.on;
+                }
+                    break;
+                case 13:
+                {
+                    canFriendPush = notifySwitch.on;
+                }
+                    break;
+                case 1014:
+                {
+                    
+                }
+                    break;
+                case 1015:
+                {
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }
+        [[NaNaUIManagement sharedInstance] updateUserPushSetting:canMessagePush withCanVisitPush:canVisitPush withCanLovePush:canLovePush withCanFriendPush:canFriendPush];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
