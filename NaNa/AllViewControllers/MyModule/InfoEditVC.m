@@ -740,7 +740,7 @@ typedef enum {
 
 #pragma mark - HeadCartoonDelegate
 - (void)currentHeadImage:(NSString *)headName {
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation([UIImage imageNamed:headName], 1.f) withUploadType:UploadAvatar withUserID:[self getAccountValueByKey:ACCOUNT_INFO_TYPE_USERID] withDesc:@""];
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation([UIImage imageNamed:headName], 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
     [_headButton setBackgroundImage:[UIImage imageNamed:headName]
                            forState:UIControlStateNormal];
 }
@@ -896,11 +896,11 @@ typedef enum {
         return;
     }
     
-    //判断用户协议是否勾选
-    if (!_isAgree) {
-        [UAlertView showAlertViewWithMessage:@"请勾选已阅读并同意用户协议" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
-        return;
-    }
+//    //判断用户协议是否勾选
+//    if (!_isAgree) {
+//        [UAlertView showAlertViewWithMessage:@"请勾选已阅读并同意用户协议" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+//        return;
+//    }
 
     
     

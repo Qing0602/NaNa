@@ -128,6 +128,7 @@ typedef enum {
     self.title = STRING(@"notification");
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeSubmit];
     
+    self.view.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:254/255.f alpha:1.f];
     
     if (!_activityView) {
         _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -136,16 +137,19 @@ typedef enum {
     // 填充资料的tableView
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0,
-                                                                   0.0f,
-                                                                   self.defaultView.frame.size.width,
+                                                                   20.0f,
+                                                                   self.defaultView.frame.size.width-10.f,
                                                                    self.defaultView.frame.size.height)
-                                                  style:UITableViewStyleGrouped];
+                                                  style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.scrollEnabled = NO;
+        UIView *footVIew = [[UIView alloc] initWithFrame:CGRectZero];
+        _tableView.tableFooterView = footVIew;
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  
+        [footVIew release];
     }
     [_defaultView addSubview:_tableView];
     
@@ -194,7 +198,7 @@ typedef enum {
 {
     switch (section) {
         case 0:
-            return 25.0;
+            return 0;
             break;
             
         case 1:
@@ -220,6 +224,13 @@ typedef enum {
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
         [cell autorelease];
         
+        // 背景
+        UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
+        bgImageView.backgroundColor = [UIColor clearColor];
+        bgImageView.frame = CGRectMake(kSettingEditCellSildWidth-5, 0.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
+        bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
+        [cell.contentView addSubview:bgImageView];
+        bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
     }
     
     if (![cell.contentView viewWithTag:100+indexPath.row])
