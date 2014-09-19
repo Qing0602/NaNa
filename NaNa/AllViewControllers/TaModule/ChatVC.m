@@ -12,6 +12,7 @@
 #import "FaceAndOther.h"
 #import "NaNaUIManagement.h"
 #import "SVPullToRefresh.h"
+#import "RoundRectEGOImageButton.h"
 
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
@@ -699,10 +700,10 @@
 	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"bubble_self":@"bubble_friend" ofType:@"png"]];
 	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:20 topCapHeight:14]];
     // 头像
-    UIImageView *headImageView = [[UIImageView alloc] init];
+    RoundRectEGOImageButton *headImageView = [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"]];
+//    [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];
     
-    if(fromSelf)
-    {
+    if(fromSelf){
         // 内容
         returnView.frame= CGRectMake(15.0f, 15.0f, returnView.frame.size.width, returnView.frame.size.height);
         // 气泡
@@ -710,11 +711,9 @@
         // 所有内容
         cellView.frame = CGRectMake(265.0f-bubbleImageView.frame.size.width, 0.0f,bubbleImageView.frame.size.width + 50.0f, bubbleImageView.frame.size.height+30.0f);
         // 头像
-        [headImageView setImage:[UIImage imageNamed:@"one_self_icon.png"]];
         headImageView.frame = CGRectMake(bubbleImageView.frame.size.width, 0.0f, 50.0f, 50.0f);
-    }
-	else
-    {
+        [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
+    }else{
         // 内容
         returnView.frame= CGRectMake(65.0f, 15.0f, returnView.frame.size.width, returnView.frame.size.height);
         // 气泡
@@ -722,8 +721,8 @@
 		// 所有内容
         cellView.frame = CGRectMake(0.0f, 0.0f, bubbleImageView.frame.size.width + 50.0f,bubbleImageView.frame.size.height + 30.0f);
         // 头像
-        [headImageView setImage:[UIImage imageNamed:@"friends_icon.png"]];
         headImageView.frame = CGRectMake(0.0f,0.0f, 50.0f, 50.0f);
+        [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
     }
     
     [cellView addSubview:bubbleImageView];

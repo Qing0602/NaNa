@@ -38,6 +38,10 @@
         self.createmicrotime = [json[@"createmicrotime"] longLongValue];
     }
     
+    if (json[@"avatar"] != [NSNull null] || json[@"avatar"] != nil) {
+        self.avatar = json[@"avatar"];
+    }
+    
     self.height = 0.0f;
     self.state = kNone;
 }
@@ -49,6 +53,7 @@
     [aCoder encodeBool:self.isBlongMe forKey:@"isBlongMe"];
     [aCoder encodeInteger:self.height forKey:@"height"];
     [aCoder encodeInt64:self.createmicrotime forKey:@"createmicrotime"];
+    [aCoder encodeObject:self.avatar forKey:@"avatar"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
@@ -59,6 +64,7 @@
         self.isBlongMe = [aDecoder decodeBoolForKey:@"isBlongMe"];
         self.height = [aDecoder decodeIntegerForKey:@"height"];
         self.createmicrotime = [aDecoder decodeInt64ForKey:@"createmicrotime"];
+        self.avatar = [aDecoder decodeObjectForKey:@"avatar"];
     }
     return self;
 }

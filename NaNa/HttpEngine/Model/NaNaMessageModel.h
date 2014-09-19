@@ -24,6 +24,7 @@ typedef enum{
  "source": "HER"//string发送消息者，如果是本人为MINE，如果为对方为HER
  */
 @property (nonatomic,strong) NSString *content;
+@property (nonatomic,strong) NSString *avatar;
 @property (nonatomic) int creattime;
 @property (nonatomic) BOOL isBlongMe;
 @property (nonatomic) int height;
