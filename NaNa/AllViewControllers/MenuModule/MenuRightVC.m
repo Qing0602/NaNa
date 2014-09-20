@@ -18,11 +18,20 @@ typedef enum {
     SettingEditRowFriend      = 2,
 } SettingEditRow;
 
+@interface MenuRightVC ()
+@property (nonatomic) NSUInteger guestCount;
+@property (nonatomic) NSUInteger likeCount;
+@property (nonatomic) NSUInteger friendCount;
+@end
+
 @implementation MenuRightVC
 
 - (void)loadView {
     [super loadView];
     [self.navBarView removeFromSuperview];
+    self.friendCount = 1;
+    self.likeCount = 1;
+    self.guestCount = 1;
     _defaultView.frame = CGRectMake(0, self.currentDeviceLateriOS7 ? 20 : 0, 320, CGRectGetHeight(self.view.frame) - (self.currentDeviceLateriOS7 ? 20 : 0));
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:_defaultView.bounds style:UITableViewStylePlain];
@@ -40,9 +49,32 @@ typedef enum {
     // Dispose of any resources that can be recreated.
 }
 
+-(void) viewDidLoad{
+    [super viewDidLoad];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"friendsOfNew" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"lovedOfNew" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"visitorOfNew" options:0 context:nil];
+}
+
 - (void)dealloc {
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"friendsOfNew"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"lovedOfNew"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"visitorOfNew"];
     SAFERELEASE(_tableView)
     [super dealloc];
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"friendsOfNew"]) {
+        self.friendCount = [[NaNaUIManagement sharedInstance].friendsOfNew integerValue];
+        [_tableView reloadData];
+    }else if ([keyPath isEqualToString:@"lovedOfNew"]){
+        self.likeCount = [[NaNaUIManagement sharedInstance].lovedOfNew integerValue];
+        [_tableView reloadData];
+    }else if ([keyPath isEqualToString:@"visitorOfNew"]){
+        self.guestCount = [[NaNaUIManagement sharedInstance].visitorOfNew integerValue];
+        [_tableView reloadData];
+    }
 }
 
 #pragma mark - Table view data source
@@ -58,22 +90,52 @@ typedef enum {
     if (cell == nil) {
         cell = [[[MenuCell alloc] initWithStyle:UITableViewCellStyleDefault
                                 reuseIdentifier:CellIdentifier] autorelease];
-//        cell.contentView.backgroundColor = (indexPath.row%2) ? [UIColor blackColor]:[UIColor grayColor];
     }
     
     if(indexPath.row == 0) {
         cell.iconImageView.image = [UIImage imageNamed:@"icon_visitor_normal.png"];
         cell.nameLabel.text = STRING(@"guest");
+        if (self.guestCount != 0) {
+            cell.unReaderCount.text = [NSString stringWithFormat:@"%d",self.guestCount];
+            [cell.unReaderCount sizeToFit];
+            cell.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
+            cell.unReaderImage.frame = CGRectMake(300.0f, 8.0f, 16.0f, 16.0f);
+            cell.unReaderCount.backgroundColor = [UIColor clearColor];
+            [cell addSubview:cell.unReaderImage];
+            cell.unReaderImage.hidden = NO;
+        }else{
+            cell.unReaderImage.hidden = YES;
+        }
         
     } else if(indexPath.row == 1) {
         cell.iconImageView.image = [UIImage imageNamed:@"icon_like_normal.png"];
         cell.nameLabel.text = STRING(@"like");
-        
+        if (self.likeCount != 0) {
+            cell.unReaderCount.text = [NSString stringWithFormat:@"%d",self.likeCount];
+            [cell.unReaderCount sizeToFit];
+            cell.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
+            cell.unReaderImage.frame = CGRectMake(300.0f, 8.0f, 16.0f, 16.0f);
+            cell.unReaderCount.backgroundColor = [UIColor clearColor];
+            [cell addSubview:cell.unReaderImage];
+            cell.unReaderImage.hidden = NO;
+        }else{
+            cell.unReaderImage.hidden = YES;
+        }
     } else {
         cell.iconImageView.image = [UIImage imageNamed:@"icon_friend_normal.png"];
         cell.nameLabel.text = STRING(@"friend");
+        if (self.friendCount != 0) {
+            cell.unReaderCount.text = [NSString stringWithFormat:@"%d",self.friendCount];
+            [cell.unReaderCount sizeToFit];
+            cell.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
+            cell.unReaderImage.frame = CGRectMake(300.0f, 8.0f, 16.0f, 16.0f);
+            cell.unReaderCount.backgroundColor = [UIColor clearColor];
+            [cell addSubview:cell.unReaderImage];
+            cell.unReaderImage.hidden = NO;
+        }else{
+            cell.unReaderImage.hidden = YES;
+        }
     }
-    
     return cell;
 }
 
