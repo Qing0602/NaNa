@@ -35,12 +35,18 @@
         _nameLabel.textColor = default_color_light_dark;
         [self addSubview:_nameLabel];
         
-        self.unReaderImage = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaUnReaderCountBG"] stretchableImageWithLeftCapWidth:16.0f topCapHeight:16.0f]];
+        
         self.unReaderCount = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 16.0f, 16.0f)];
         self.unReaderCount.textAlignment = NSTextAlignmentCenter;
         self.unReaderCount.textColor = [UIColor whiteColor];
         self.unReaderCount.font = [UIFont boldSystemFontOfSize:11.0f];
+        self.unReaderCount.backgroundColor = [UIColor clearColor];
+        
+        self.unReaderImage = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaUnReaderCountBG"] stretchableImageWithLeftCapWidth:16.0f topCapHeight:16.0f]];
+        self.unReaderImage.frame = CGRectMake(250.0f, 8.0f, 16.0f, 16.0f);
         [self.unReaderImage addSubview:self.unReaderCount];
+        self.unReaderImage.hidden = NO;
+        [self addSubview:self.unReaderImage];
         
         self.cellLine = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaCellLine"] stretchableImageWithLeftCapWidth:1.0f topCapHeight:1.0f]];
         self.cellLine.frame = CGRectMake(0.0f, self.frame.size.height - 3.0f, 320.0f, 3.0f);

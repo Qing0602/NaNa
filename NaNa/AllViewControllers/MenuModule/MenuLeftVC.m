@@ -96,18 +96,21 @@
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_meila_normal.png"];
                 cell.nameLabel.text = STRING(@"rank");
                 [cell.nameLabel setTextColor:[UIColor whiteColor]];
+                cell.unReaderImage.hidden = YES;
                 break;
             }
             case MenuLeftRowMyPage: {
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_head_normal.png"];
                 [cell.nameLabel setTextColor:[UIColor whiteColor]];
                 cell.nameLabel.text = STRING(@"myPage");
+                cell.unReaderImage.hidden = YES;
                 break;
             }
             case MenuLeftRowSetting: {
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_setting_normal.png"];
                 [cell.nameLabel setTextColor:[UIColor whiteColor]];
                 cell.nameLabel.text = STRING(@"setting");
+                cell.unReaderImage.hidden = YES;
                 break;
             }
         }

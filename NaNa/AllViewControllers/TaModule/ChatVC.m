@@ -186,6 +186,10 @@
 
 -(void) refreshMeetData{
     if(!self.isMore){
+        if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
+            self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
+            [self.chatTableView.pullToRefreshView stopAnimating];
+        }
         return;
     }
 
@@ -261,6 +265,8 @@
             for (NSDictionary *m in msg) {
                 NaNaMessageModel *model = [[NaNaMessageModel alloc] init];
                 [model coverJson:m];
+                UIView *returnView =  [self assembleMessageAtIndex:model.content from:model.isBlongMe];
+                model.height = returnView.frame.size.height + 80.0f;
                 [temp addObject:model];
             }
             [temp addObjectsFromArray:self.messageArray];

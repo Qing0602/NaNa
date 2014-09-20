@@ -29,9 +29,6 @@ typedef enum {
 - (void)loadView {
     [super loadView];
     [self.navBarView removeFromSuperview];
-    self.friendCount = 1;
-    self.likeCount = 1;
-    self.guestCount = 1;
     _defaultView.frame = CGRectMake(0, self.currentDeviceLateriOS7 ? 20 : 0, 320, CGRectGetHeight(self.view.frame) - (self.currentDeviceLateriOS7 ? 20 : 0));
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:_defaultView.bounds style:UITableViewStylePlain];
@@ -99,9 +96,6 @@ typedef enum {
             cell.unReaderCount.text = [NSString stringWithFormat:@"%d",self.guestCount];
             [cell.unReaderCount sizeToFit];
             cell.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
-            cell.unReaderImage.frame = CGRectMake(300.0f, 8.0f, 16.0f, 16.0f);
-            cell.unReaderCount.backgroundColor = [UIColor clearColor];
-            [cell addSubview:cell.unReaderImage];
             cell.unReaderImage.hidden = NO;
         }else{
             cell.unReaderImage.hidden = YES;
@@ -114,9 +108,6 @@ typedef enum {
             cell.unReaderCount.text = [NSString stringWithFormat:@"%d",self.likeCount];
             [cell.unReaderCount sizeToFit];
             cell.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
-            cell.unReaderImage.frame = CGRectMake(300.0f, 8.0f, 16.0f, 16.0f);
-            cell.unReaderCount.backgroundColor = [UIColor clearColor];
-            [cell addSubview:cell.unReaderImage];
             cell.unReaderImage.hidden = NO;
         }else{
             cell.unReaderImage.hidden = YES;
@@ -128,9 +119,6 @@ typedef enum {
             cell.unReaderCount.text = [NSString stringWithFormat:@"%d",self.friendCount];
             [cell.unReaderCount sizeToFit];
             cell.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
-            cell.unReaderImage.frame = CGRectMake(300.0f, 8.0f, 16.0f, 16.0f);
-            cell.unReaderCount.backgroundColor = [UIColor clearColor];
-            [cell addSubview:cell.unReaderImage];
             cell.unReaderImage.hidden = NO;
         }else{
             cell.unReaderImage.hidden = YES;
