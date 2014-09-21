@@ -142,7 +142,7 @@
 	UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
     self.networkImage = [self resizedImage:anImage];
     [self setBackgroundImage:self.networkImage forState:UIControlStateNormal];
-	[self setNeedsDisplay]; 
+	[self setNeedsDisplay];
 	
 	if([self.delegate respondsToSelector:@selector(circleImageButtonLoadedImage:)]) {
 		[self.delegate circleImageButtonLoadedImage:self];

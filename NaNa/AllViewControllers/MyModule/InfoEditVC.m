@@ -82,7 +82,6 @@ typedef enum {
         _ageLabel.text = [self transformIntToAge:model.userBirthday];
         
         [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
-        [model release];
     }
     
     _infoData = infoData;
@@ -359,7 +358,7 @@ typedef enum {
     // 角色的底部VIEW
     if (!_roleBottomView) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UBottomView" owner:self options:nil];
-        _roleBottomView = [[nib lastObject] retain];
+        _roleBottomView = [nib lastObject];
         _roleBottomView.backgroundColor = [UIColor whiteColor];
         _roleBottomView.frame = CGRectMake(0.0,
                                            CGRectGetHeight(self.view.frame),
@@ -387,7 +386,7 @@ typedef enum {
     // 年龄的底部View
     if (!_ageBottomView) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UBottomView" owner:self options:nil];
-        _ageBottomView = [[nib lastObject] retain];
+        _ageBottomView = [nib lastObject];
         _ageBottomView.backgroundColor = [UIColor whiteColor];
         _ageBottomView.frame = CGRectMake(0.0,
                                           CGRectGetHeight(self.view.frame),
@@ -420,7 +419,6 @@ typedef enum {
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         [_birthday setString:[dateFormatter stringFromDate:[NSDate date]]];
         ULog(@"_birthday ======= %@", _birthday);
-        [dateFormatter release];
     }
     [_ageBottomView addSubview:_ageDatePicker];
     
@@ -429,7 +427,7 @@ typedef enum {
     // 修改头像的菜单视图
     if (!_photoMenuView) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PhotoMenuView" owner:self options:nil];
-        _photoMenuView = [[nib lastObject] retain];
+        _photoMenuView = [nib lastObject];
         
         _photoMenuHideRect = CGRectMake(0.0,
                                         self.view.frame.size.height,
@@ -455,7 +453,6 @@ typedef enum {
         UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(75, 65, 50, 50)];
         record.image = [UIImage imageNamed:@"record.png"];
         [_recordingView addSubview:record];
-        [record release];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, 200, 20)];
         label.backgroundColor = [UIColor clearColor];
@@ -463,7 +460,6 @@ typedef enum {
         label.textAlignment = NSTextAlignmentCenter;
         label.text = @"录音中...";
         [_recordingView addSubview:label];
-        [label release];
     }
     [self showProgressWithText:@"正在加载"];
     [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
@@ -509,42 +505,6 @@ typedef enum {
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    SAFERELEASE(_headButton)
-    SAFERELEASE(_timeLabel)
-    SAFERELEASE(_recordImageView)
-    SAFERELEASE(_recordButton)
-    SAFERELEASE(_recordButtonLabel)
-    SAFERELEASE(_recordButtonImageView)
-    SAFERELEASE(_remarkLabel)
-    SAFERELEASE(_tableView)
-    SAFERELEASE(_infoArray)
-    
-    SAFERELEASE(_nameTextField)
-    SAFERELEASE(_ageLabel)
-    SAFERELEASE(_birthday)
-    SAFERELEASE(_roleLabel)
-    SAFERELEASE(_cityLabel)
-    SAFERELEASE(_city)
-    
-    SAFERELEASE(_agreeCheckButton)
-    SAFERELEASE(_agreeLabel)
-    SAFERELEASE(_agreeButton)
-    
-    SAFERELEASE(_roleBottomView)
-    SAFERELEASE(_rolePickerView)
-    SAFERELEASE(_ageBottomView)
-    SAFERELEASE(_ageDatePicker)
-    SAFERELEASE(_roleArray)
-    
-    SAFERELEASE(_photoMenuView)
-    SAFERELEASE(_recordingView)
-    SAFERELEASE(_audioPlayer)
-    SAFERELEASE(_recorder)
-    
-    SAFERELEASE(_infoData)
-    [super dealloc];
-}
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -561,13 +521,12 @@ typedef enum {
         cell.contentView.backgroundColor = [UIColor clearColor];
         
         //被选中cell容器
-        cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
-        [cell autorelease];
     }
 
     // 背景
-    UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
+    UIImageView *bgImageView = [[UIImageView alloc] init];
     bgImageView.backgroundColor = [UIColor clearColor];
     bgImageView.frame = CGRectMake(kInfoEditCellSildWidth, 0.0, kInfoEditCellShowWidth, kInfoEditCellShowHeight);
     bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
@@ -605,7 +564,6 @@ typedef enum {
         }
     }
     [cell.contentView addSubview:titleLabel];
-    [titleLabel release];
     
     // 箭头
     if (indexPath.row != 0) {
@@ -615,7 +573,6 @@ typedef enum {
                                  14.0, 14.0);
         
         [cell.contentView addSubview:arrow];
-        [arrow release];
     }
 
     
@@ -670,7 +627,6 @@ typedef enum {
             // select city
             UCityVC * uCityVC = [[UCityVC alloc] init];
             [self.navigationController pushViewController:uCityVC animated:YES];
-            [uCityVC release];
             break;
         }
     }
@@ -760,7 +716,6 @@ typedef enum {
                              picker.allowsEditing = YES;
                              picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                              [self presentViewController:picker animated:YES completion:nil];
-                             [picker release];
                          }
                      }];
 }
@@ -780,7 +735,6 @@ typedef enum {
                              picker.allowsEditing = YES;
                              picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                              [self presentViewController:picker animated:YES completion:nil];
-                             [picker release];
                          }
                      }];
 }
@@ -796,7 +750,6 @@ typedef enum {
                          HeadCartoonVC *controller = [[HeadCartoonVC alloc] init];
                          controller.headCartoonDelegate = self;
                          [self.navigationController pushViewController:controller animated:YES];
-                         [controller release];
                      }];
 }
 
@@ -919,7 +872,8 @@ typedef enum {
     [request release];
      */
     [self showProgressWithText:@"正在提交"];
-    [[NaNaUIManagement sharedInstance] updateUserProfile:_nameTextField.text withRole:_roleLabel.text withCityID:cityId];
+    NSString *nickName = _nameTextField.text;
+    [[NaNaUIManagement sharedInstance] updateUserProfile:nickName withRole:_roleLabel.text withCityID:cityId];
 }
 
 - (NSString *)getMinutes:(double)second
@@ -952,7 +906,6 @@ typedef enum {
 
 - (void)playRecord:(UIButton *)btn
 {
-    [_audioPlayer release];
     _audioPlayer = nil;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
@@ -1000,7 +953,6 @@ typedef enum {
 - (void)beginRecord:(UIButton *)btn
 {
     _recordButtonLabel.text = @"松开完成";
-    [_recorder release];
     _recorder = nil;
     
     NSError *audioSessionError = nil;
@@ -1045,7 +997,7 @@ typedef enum {
 
 - (void)agreeButtonClick:(UIButton *)btn {
     ULog(@"agreeButtonClick");
-    UserAgreementVC *controller = [[[UserAgreementVC alloc] init] autorelease];
+    UserAgreementVC *controller = [[UserAgreementVC alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

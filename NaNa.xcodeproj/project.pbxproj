@@ -405,7 +405,7 @@
 		97996F1017B68CF300CA9A06 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F0F17B68CF300CA9A06 /* MenuCell.m */; };
 		97996F1317B68CFD00CA9A06 /* MsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F1217B68CFD00CA9A06 /* MsgCell.m */; };
 		97996F1617B68D3C00CA9A06 /* MyPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F1517B68D3C00CA9A06 /* MyPageVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		97996F1917B68F4600CA9A06 /* InfoEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F1817B68F4600CA9A06 /* InfoEditVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		97996F1917B68F4600CA9A06 /* InfoEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97996F1817B68F4600CA9A06 /* InfoEditVC.m */; };
 		979AE65F17B78C8500A6C136 /* UserAgreementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 979AE65E17B78C8500A6C136 /* UserAgreementVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		979C09C217E2E6B8008E2F16 /* face_sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C09C117E2E6B8008E2F16 /* face_sad.png */; };
 		979C09C517E2E6C8008E2F16 /* cell_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 979C09C317E2E6C8008E2F16 /* cell_line.png */; };
