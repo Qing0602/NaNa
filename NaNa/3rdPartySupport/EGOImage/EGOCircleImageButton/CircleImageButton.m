@@ -142,7 +142,7 @@
 	UIImage* anImage = [[notification userInfo] objectForKey:@"image"];
     self.networkImage = [self resizedImage:anImage];
     [self setBackgroundImage:self.networkImage forState:UIControlStateNormal];
-	[self setNeedsDisplay];
+	[self setNeedsDisplay]; 
 	
 	if([self.delegate respondsToSelector:@selector(circleImageButtonLoadedImage:)]) {
 		[self.delegate circleImageButtonLoadedImage:self];
@@ -160,9 +160,9 @@
 #pragma mark -
 - (void)dealloc {
 	[[EGOImageLoader sharedImageLoader] removeObserver:self];
-	self.imageURL = nil;
-	self.placeholderImage = nil;
-    self.networkImage = nil;
+//	self.imageURL = nil;
+//	self.placeholderImage = nil;
+//    self.networkImage = nil;
     [super dealloc];
 }
 
