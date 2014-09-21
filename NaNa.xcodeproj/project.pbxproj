@@ -86,7 +86,6 @@
 		87165D10187EA7A70025B6DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87165D0F187EA7A70025B6DF /* AVFoundation.framework */; };
 		87167D7E188E25EB00263AC6 /* record_light blue_btn_lan.png in Resources */ = {isa = PBXBuildFile; fileRef = 87167D7D188E25EB00263AC6 /* record_light blue_btn_lan.png */; };
 		87167D81188E513900263AC6 /* TaInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87167D80188E513900263AC6 /* TaInfoVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		871832451884D4E900EDB399 /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 871832441884D4E900EDB399 /* AsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8718324A1884DF6600EDB399 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 871832461884DF6600EDB399 /* bubble.png */; };
 		8718324B1884DF6600EDB399 /* bubbleSelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 871832471884DF6600EDB399 /* bubbleSelf.png */; };
 		8718325818852F8C00EDB399 /* friends_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8718325618852F8C00EDB399 /* friends_icon.png */; };
@@ -614,8 +613,6 @@
 		87167D7D188E25EB00263AC6 /* record_light blue_btn_lan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_light blue_btn_lan.png"; sourceTree = "<group>"; };
 		87167D7F188E513900263AC6 /* TaInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaInfoVC.h; sourceTree = "<group>"; };
 		87167D80188E513900263AC6 /* TaInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaInfoVC.m; sourceTree = "<group>"; };
-		871832431884D4E900EDB399 /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncUdpSocket.h; path = ../TaModule/AsyncUdpSocket.h; sourceTree = "<group>"; };
-		871832441884D4E900EDB399 /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncUdpSocket.m; path = ../TaModule/AsyncUdpSocket.m; sourceTree = "<group>"; };
 		871832461884DF6600EDB399 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		871832471884DF6600EDB399 /* bubbleSelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSelf.png; sourceTree = "<group>"; };
 		8718325618852F8C00EDB399 /* friends_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends_icon.png; sourceTree = "<group>"; };
@@ -2145,8 +2142,6 @@
 			children = (
 				8729E81F1883CCA4005CAB4F /* ChatVC.h */,
 				8729E8201883CCA4005CAB4F /* ChatVC.m */,
-				871832431884D4E900EDB399 /* AsyncUdpSocket.h */,
-				871832441884D4E900EDB399 /* AsyncUdpSocket.m */,
 				8722BD8318862A2200AA3FF6 /* FaceAndOther.h */,
 				8722BD8418862A2200AA3FF6 /* FaceAndOther.m */,
 			);
@@ -2719,7 +2714,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				97416C36177FFDB500865342 /* main.m in Sources */,
-				871832451884D4E900EDB399 /* AsyncUdpSocket.m in Sources */,
 				194121DF19C16124000C2ABD /* NaNaUserProfileModel.m in Sources */,
 				74292D23199E42AD000C2FE6 /* MMGridView.m in Sources */,
 				97416C3A177FFDB500865342 /* AppDelegate.m in Sources */,

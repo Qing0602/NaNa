@@ -39,7 +39,6 @@
 @synthesize chatArray = _chatArray;
 @synthesize chatTableView = _chatTableView;
 @synthesize messageTextField = _messageTextField;
-@synthesize udpSocket = _udpSocket;
 @synthesize phraseString = _phraseString;
 @synthesize lastTime = _lastTime;
 
@@ -299,7 +298,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:YES];
-	[self openUDPServer];
 	[self.chatTableView reloadData];
 }
 
@@ -311,20 +309,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//建立基于UDP的Socket连接
--(void)openUDPServer{
-	//初始化udp
-	AsyncUdpSocket *tempSocket=[[AsyncUdpSocket alloc] initWithDelegate:self];
-	self.udpSocket=tempSocket;
-	//绑定端口
-	NSError *error = nil;
-	[self.udpSocket bindToPort:4333 error:&error];
-    [self.udpSocket joinMulticastGroup:@"224.0.0.1" error:&error];
-    
-   	//启动接收线程
-	[self.udpSocket receiveWithTimeout:-1 tag:0];
-    
-}
 
 - (NSInteger )getCurrentKeyboardStatus
 {
@@ -533,35 +517,6 @@
         default:
             break;
     }
-}
-
-#pragma mark - UDP Delegate Methods
-- (BOOL)onUdpSocket:(AsyncUdpSocket *)sock didReceiveData:(NSData *)data withTag:(long)tag fromHost:(NSString *)host port:(UInt16)port
-{
-//    ULog(@"host---->%@",host);
-//    [self.udpSocket receiveWithTimeout:-1 tag:0];
-//   	//接收到数据回调，用泡泡VIEW显示出来
-//	NSString *info=[[NSString alloc] initWithData:data encoding: NSUTF8StringEncoding];
-//    UIView *chatView = [self bubbleView:[NSString stringWithFormat:@"%@:%@",@"西门吹雪", info]
-//								   from:NO];
-//	[self.chatArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:info, @"text", @"other", @"speaker", chatView, @"view", nil]];
-//	[self.chatTableView reloadData];
-//	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
-//							  atScrollPosition: UITableViewScrollPositionBottom
-//									  animated:YES];
-//	//已经处理完毕
-	return YES;
-}
-
-- (void)onUdpSocket:(AsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error
-{
-	//无法发送时,返回的异常提示信息
-    [UAlertView showAlertViewWithMessage:[error description] delegate:nil cancelButton:@"确定" defaultButton:nil];
-}
-- (void)onUdpSocket:(AsyncUdpSocket *)sock didNotReceiveDataWithTag:(long)tag dueToError:(NSError *)error
-{
-	//无法接收时，返回异常提示信息
-    [UAlertView showAlertViewWithMessage:[error description] delegate:nil cancelButton:@"确定" defaultButton:nil];
 }
 
 #pragma mark -

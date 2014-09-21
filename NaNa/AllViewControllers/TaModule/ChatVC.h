@@ -7,7 +7,6 @@
 //
 #import <UIKit/UIKit.h>
 #import "UBasicViewController.h"
-#import "AsyncUdpSocket.h"
 #import "FaceAndOther.h"
 #import "NaNaUserProfileModel.h"
 #import "NaNaMessageModel.h"
@@ -20,7 +19,6 @@
 	UITableView                *_chatTableView;
 	UITextField                *_messageTextField;
     
-	AsyncUdpSocket             *_udpSocket;
 	NSDate                     *_lastTime;
     UIView                     *_toolbar;
     
@@ -33,10 +31,8 @@
 @property (nonatomic, retain) NSString               *titleString;
 @property (nonatomic, retain) NSMutableArray		 *chatArray;
 @property (nonatomic, retain) NSDate                 *lastTime;
-@property (nonatomic, retain) AsyncUdpSocket         *udpSocket;
 
 -(ChatVC *) initChatVC : (NaNaUserProfileModel *)otherProfileModel;
--(void)openUDPServer;
 -(void)sendMassage:(NSString *)message;
 //-(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf;
 -(UIView *)bubbleView : (NaNaMessageModel *)messageModel;
