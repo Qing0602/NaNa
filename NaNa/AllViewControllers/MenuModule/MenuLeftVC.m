@@ -13,7 +13,8 @@
 #import "SettingVC.h"
 #import "MenuCell.h"
 #import "MsgCell.h"
-
+#import "NaNaUserProfileModel.h"
+#import "ChatVC.h"
 
 #define MENU_ROW_HEIGHT     44.0
 #define MSG_ROW_HEIGHT      80.0
@@ -228,6 +229,13 @@
             default:
                 break;
         }
+    }else{
+        MessageInfoData *msg = self.messages[indexPath.row];
+        NaNaUserProfileModel *model = [[NaNaUserProfileModel alloc] init];
+        model.userID = msg.senderID;
+        model.userNickName = msg.nickname;
+        ChatVC *chatVC  =[[ChatVC alloc] initChatVC:model];
+        [self pushPage:chatVC];
     }
 }
 
