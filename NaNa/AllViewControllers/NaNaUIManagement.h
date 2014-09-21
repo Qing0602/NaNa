@@ -102,7 +102,7 @@ typedef enum{
 -(void) getUserPushSetting;
 
 // 修改用户资料
--(void) updateUserProfile : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID;
+-(void) updateUserProfile : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID withBirthday : (NSString *) birthday;
 
 // 修改用户接受推送
 -(void) updateUserPushSetting : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush withCanLovePush : (BOOL) canLovePush

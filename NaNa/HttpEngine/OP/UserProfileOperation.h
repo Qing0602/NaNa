@@ -27,7 +27,7 @@ typedef enum{
 -(UserProfileOperation *) initGetUserPrivacySetting : (int) userID;
 -(UserProfileOperation *) initGetUserPushSetting : (int) userID;
 
--(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID;
+-(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID withBirthday : (NSString *) birthday;
 
 -(UserProfileOperation *) initUpdateUserPushSetting : (int) userID withCanMessagePush : (BOOL) canMessagePush withCanVisitPush : (BOOL) canVisitPush
                                 withCanLovePush : (BOOL) canLovePush withCanFriendPush : (BOOL) canFriendPush;

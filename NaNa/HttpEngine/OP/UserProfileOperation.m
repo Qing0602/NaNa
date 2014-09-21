@@ -68,7 +68,7 @@
     return self;
 }
 
--(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID{
+-(UserProfileOperation *) initUpdateUserProfile : (int) userID withNickName : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID withBirthday : (NSString *) birthday{
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostUserProfile;
@@ -77,6 +77,7 @@
                                                       [NSNumber numberWithInt:userID],@"userId",
                                                       nickName,@"nickname",
                                                       [NSNumber numberWithInt:cityID],@"city_id",
+                                                      birthday,@"birthday",
                                                       role,@"role",nil]];
     }
     return self;

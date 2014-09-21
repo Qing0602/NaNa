@@ -681,6 +681,10 @@ typedef enum {
     _sinceNowTime = selectDate;
     int age = trunc(selectDate / (60 * 60 * 24)) / 365 * (-1);
     _ageLabel.text = [NSString stringWithFormat:@"%d", age];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    self.birthdayPicker = [dateFormatter stringFromDate:picker.date];
     ULog(@"agePickerValueChanged ========= %d", age);
 }
 
@@ -873,7 +877,7 @@ typedef enum {
      */
     [self showProgressWithText:@"正在提交"];
     NSString *nickName = _nameTextField.text;
-    [[NaNaUIManagement sharedInstance] updateUserProfile:nickName withRole:_roleLabel.text withCityID:cityId];
+    [[NaNaUIManagement sharedInstance] updateUserProfile:nickName withRole:_roleLabel.text withCityID:cityId withBirthday:self.birthdayPicker];
 }
 
 - (NSString *)getMinutes:(double)second

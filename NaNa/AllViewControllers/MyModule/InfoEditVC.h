@@ -92,8 +92,7 @@ typedef enum
 
 @property (nonatomic, retain) UIButton *headButton;
 @property (nonatomic, retain) NSDictionary *infoData;
-
-
+@property (nonatomic,strong) NSString *birthdayPicker;
 -(id)initWithType:(enterType)type;
 
 @end

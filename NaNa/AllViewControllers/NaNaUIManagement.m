@@ -64,8 +64,8 @@ static NaNaUIManagement *sharedInstance = nil;
 }
 
 // 修改用户资料
--(void) updateUserProfile : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID{
-    UserProfileOperation *operation = [[UserProfileOperation alloc] initUpdateUserProfile:self.userAccount.UserID withNickName:nickName withRole:role withCityID:cityID];
+-(void) updateUserProfile : (NSString *) nickName withRole : (NSString *) role withCityID : (int) cityID withBirthday : (NSString *) birthday{
+    UserProfileOperation *operation = [[UserProfileOperation alloc] initUpdateUserProfile:self.userAccount.UserID withNickName:nickName withRole:role withCityID:cityID withBirthday:birthday];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 
