@@ -239,6 +239,11 @@
             [_rightItem setTitle:@"提交" forState:UIControlStateNormal];
             break;
         }
+        case UINavBarBtnTypeConfirm:{
+            [_rightItem setBackgroundImage:[UIImage imageNamed:@"navbar_confirm"] forState:UIControlStateNormal];
+            [_rightItem setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_press"] forState:UIControlStateHighlighted];
+            [_rightItem setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_unuseful"] forState:UIControlStateDisabled];
+        }
 
     }
 }

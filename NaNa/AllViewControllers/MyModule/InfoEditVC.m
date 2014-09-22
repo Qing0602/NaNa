@@ -108,7 +108,7 @@ typedef enum {
     self.title = STRING(@"info");
     _defaultView.backgroundColor = [UIColor whiteColor];
 
-    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
+    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UINavBarBtnTypeConfirm];
     
     NSString *recordTime = [UStaticData getObjectForKey:kInfoRecoderTimeKey];
     if (recordTime && ![recordTime isEqualToString:@"00:00"])

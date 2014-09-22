@@ -20,6 +20,7 @@ typedef enum {
     UNavBarBtnTypeTa,       // 首页的右菜单-她们
     UNavBarBtnTypeNext,     // 下一步样式
     UNavBarBtnTypeSubmit,
+    UINavBarBtnTypeConfirm,//对号
 } UNavBarBtnType;
 
 typedef enum {
