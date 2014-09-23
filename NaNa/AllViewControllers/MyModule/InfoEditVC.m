@@ -85,6 +85,8 @@ typedef enum {
     }
     
     _infoData = infoData;
+    
+    [self checkItems];
 }
 -(NSString *)transformIntToAge:(int)birthday
 {
@@ -505,7 +507,24 @@ typedef enum {
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)checkItems
+{
+    // 判断昵称是否填写
+    if ([_nameTextField.text length] == 0) {
+        [self setRightItemStatus:YES];
+        return;
+    }
+    
+    
+    // 判断城市是否选择
+    if (_city.cityID == 0 && [_city.cityName isEqualToString:@""]) {
+        // 城市未选择，Alert报错
+        [self setRightItemStatus:YES];
+        return;
+    }
+    
+    [self setRightItemStatus:NO];
+}
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
@@ -638,10 +657,12 @@ typedef enum {
     if (_nameTextField.becomeFirstResponder) {
         [_nameTextField resignFirstResponder];
     }
+    [self checkItems];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
+    [self checkItems];
 	return YES;
 }
 
@@ -785,6 +806,7 @@ typedef enum {
         ULog(@"City.CityID is %d", _city.cityID);
         ULog(@"City.CityName is %@", _city.cityName);
     }
+    [self checkItems];
 }
 - (void)uGetCityNameFinished:(NSNotification *)notify {
     if (notify.object) {

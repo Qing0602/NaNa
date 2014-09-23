@@ -249,6 +249,17 @@
 }
 
 #pragma mark - PushPage
+-(void)setRightItemStatus:(BOOL)isDisabled
+{
+    if (isDisabled){
+        if (_rightItem.enabled) _rightItem.enabled = NO;
+            
+        
+    }
+    else{
+        if (!_rightItem.enabled) _rightItem.enabled = YES;
+    }
+}
 - (void)pushPage:(UBasicViewController *)controller {
     [(UINavigationController *)self.mm_drawerController.centerViewController popToRootViewControllerAnimated:NO];
     [(UINavigationController *)self.mm_drawerController.centerViewController pushViewController:controller animated:NO];
