@@ -135,4 +135,9 @@ static NaNaUIManagement *sharedInstance = nil;
     SystemOperation *operation = [[SystemOperation alloc] initPostSystemDriverToken:[NaNaUIManagement sharedInstance].userAccount.UserID withDriverToken:pushToken];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
+
+// 退出登录
+-(void) quit{
+    [NaNaUIModelCoding clearCache:@"NaNaUserAccount"];
+}
 @end

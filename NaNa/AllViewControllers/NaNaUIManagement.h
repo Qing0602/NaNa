@@ -137,4 +137,7 @@ typedef enum{
 
 //发送push token
 -(void) postPushToken : (NSString *) pushToken;
+
+// 退出登录
+-(void) quit;
 @end
