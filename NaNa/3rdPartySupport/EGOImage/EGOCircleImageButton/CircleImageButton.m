@@ -163,7 +163,7 @@
 //	self.imageURL = nil;
 //	self.placeholderImage = nil;
 //    self.networkImage = nil;
-    [super dealloc];
+    //[super dealloc];
 }
 
 @end

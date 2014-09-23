@@ -12,6 +12,8 @@
 #import "SuggestVC.h"
 #import "PasswordLockVC.h"
 #import "RedeemcodeVC.h"
+
+#import "AppDelegate.h"
 @interface SettingVC()
 @end
 #define kSettingEditCellHeight         40.0
@@ -85,6 +87,7 @@ typedef enum {
         [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_normal.png"] forState:UIControlStateNormal];
         [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_pressed.png"] forState:UIControlStateHighlighted];
         [_logoutButton setTitle:STRING(@"logout") forState:UIControlStateNormal];
+        [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     }
     [_defaultView addSubview:_logoutButton];
 }
@@ -103,7 +106,12 @@ typedef enum {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)logout
+{
+    [[NaNaUIManagement sharedInstance] quit];
+     [APP_DELEGATE loadLoginView];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+}
 - (void)dealloc {
 //    SAFERELEASE(_activityView)
     SAFERELEASE(_tableView)

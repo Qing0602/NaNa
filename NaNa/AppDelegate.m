@@ -72,8 +72,16 @@ NSInteger K_WAKE_UP_ID = 0;
 //    }
 
 }
-
--(void)LoadSignView
+-(void)loadLoginView
+{
+    UINavigationController * _navRootController = [UINavigationController alloc];
+    LoginVC * loginVc=[[LoginVC alloc] init];
+    _navRootController=[_navRootController initWithRootViewController:loginVc];
+    _navRootController.navigationBarHidden = YES;
+    [self.window setRootViewController:_navRootController];
+    SAFERELEASE(_navRootController);
+}
+-(void)loadSignView
 {
     UINavigationController * _navRootController = [UINavigationController alloc];
     if(![[NaNaUIManagement sharedInstance].userAccount.seckey isEqualToString:@""] && [NaNaUIManagement sharedInstance].userAccount)
@@ -107,7 +115,7 @@ NSInteger K_WAKE_UP_ID = 0;
     
     [[UIApplication sharedApplication] setStatusBarStyle:1];
     
-    [self LoadSignView];
+    [self loadSignView];
     self.window.backgroundColor = windowColor;
     [self.window makeKeyAndVisible];
     

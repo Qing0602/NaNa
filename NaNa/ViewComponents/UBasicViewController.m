@@ -422,22 +422,5 @@
 	self.progressHUD = nil;
 }
 
--(NSString *)getAccountValueByKey : (ACCOUNT_INFO_TYPE)type
-{
-    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] valueForKey:accountInfoKey];
-    if (dic) {
-        switch (type) {
-            case ACCOUNT_INFO_TYPE_USERID:
-                    return dic[@"user_id"];
-                break;
-                
-            default:
-                return @"";
-                break;
-        }
-        
-    }
-    
-    return @"";
-}
+
 @end

@@ -54,7 +54,6 @@ typedef enum {
 - (void)setSideMenuController;
 - (void)removeSideMenuController;
 
--(NSString *)getAccountValueByKey : (ACCOUNT_INFO_TYPE)type;
 
 -(void)setRightItemStatus:(BOOL)isDisabled;
 /*! @brief 判断字符串是否是nil或者是@“”
