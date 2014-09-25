@@ -13,7 +13,7 @@
 @end
 
 @implementation UploadOperation
--(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID  withDesc : (NSString *) desc{
+-(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID  withDesc : (NSString *) desc withVoiceTime : (NSUInteger) time{
     self = [super initOperation];
     
     if (nil != self) {
@@ -41,6 +41,7 @@
                                          [NSNumber numberWithInt:userID],@"userId",
                                          type,@"bucket",
                                          desc,@"description",
+                                         [NSNumber numberWithInt:time],
                                          nil]
                             imgDataDict:[NSDictionary dictionaryWithObjectsAndKeys:
                                          data,@"file",

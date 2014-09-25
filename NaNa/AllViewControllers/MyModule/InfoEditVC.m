@@ -721,7 +721,7 @@ typedef enum {
 
 #pragma mark - HeadCartoonDelegate
 - (void)currentHeadImage:(NSString *)headName {
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation([UIImage imageNamed:headName], 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation([UIImage imageNamed:headName], 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:0];
     [_headButton setBackgroundImage:[UIImage imageNamed:headName]
                            forState:UIControlStateNormal];
 }
@@ -794,7 +794,7 @@ typedef enum {
                   editingInfo:(NSDictionary *)editingInfo {
     
     [_headButton setBackgroundImage:image forState:UIControlStateNormal];
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:0];
     [picker dismissModalViewControllerAnimated:YES];
 }
 

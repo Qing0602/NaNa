@@ -27,8 +27,8 @@ static NaNaUIManagement *sharedInstance = nil;
 }
 
 
--(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc{
-    UploadOperation * operation = [[UploadOperation alloc] initUpload:data withUploadType:uploadType withUserID:userID withDesc:desc];
+-(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc withVoiceTime : (NSUInteger) time{
+    UploadOperation * operation = [[UploadOperation alloc] initUpload:data withUploadType:uploadType withUserID:userID withDesc:desc withVoiceTime:time];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 

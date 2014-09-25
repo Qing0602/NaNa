@@ -237,6 +237,7 @@
                     msg.content = model.content;
                     msg.creattime = [data[@"creattime"] integerValue];
                     msg.createmicrotime = [data[@"createmicrotime"] longLongValue];
+                    msg.avatar = data[@"avatar"];
                     msg.isBlongMe = model.isBlongMe;
                     msg.height = model.height;
                     msg.state = kSend;

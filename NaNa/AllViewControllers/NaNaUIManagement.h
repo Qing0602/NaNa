@@ -93,7 +93,7 @@ typedef enum{
 @property(nonatomic,strong) NSString *imServerIP;
 
 // 上传文件
--(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc;
+-(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc withVoiceTime : (NSUInteger) time;
 // 获取用户资料
 -(void) getUserProfile:(int) userID;
 // 获取用户隐私设置

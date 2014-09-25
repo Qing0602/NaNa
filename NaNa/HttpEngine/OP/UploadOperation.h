@@ -11,5 +11,6 @@
 
 
 @interface UploadOperation : NaNaOperation
--(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc;
+-(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc
+                  withVoiceTime : (NSUInteger) time;
 @end
