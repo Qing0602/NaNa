@@ -34,7 +34,7 @@
         self.userBackGroundURL = json[@"background"];
     }
     if (json[@"birthday"] != [NSNull null]) {
-        self.userBirthday = [json[@"birthday"] integerValue];
+        self.userBirthday = json[@"birthday"];
     }
     if (json[@"charm"] != [NSNull null]) {
         self.userCharm = [json[@"charm"] integerValue];
