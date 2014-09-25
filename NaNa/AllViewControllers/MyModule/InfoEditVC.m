@@ -125,8 +125,8 @@ typedef enum {
     if (!_headButton) {
         // 圆形按钮
         //_headButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
-        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"DefineHeader.png"] withFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
-        [_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
+        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_cartoon_1.png"] withFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
+        //[_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
         [_headButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [_headButton addTarget:self
                         action:@selector(uRoundButtonTouchUpInside)

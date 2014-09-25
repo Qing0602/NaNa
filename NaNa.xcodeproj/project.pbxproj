@@ -17,7 +17,7 @@
 		196D3F6619C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 196D3F6419C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.m */; };
 		19A609321993B7BA00F77AA2 /* GiftOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609311993B7BA00F77AA2 /* GiftOperation.m */; };
 		19A609351993C19400F77AA2 /* MessageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A609341993C19400F77AA2 /* MessageOperation.m */; };
-		19A79146199F514700074E89 /* CircleImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A79143199F514700074E89 /* CircleImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		19A79146199F514700074E89 /* CircleImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A79143199F514700074E89 /* CircleImageButton.m */; };
 		19A79147199F514700074E89 /* RoundRectEGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A79145199F514700074E89 /* RoundRectEGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7914A199F53B300074E89 /* MBProgressHUD.m */; };
 		19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */; };

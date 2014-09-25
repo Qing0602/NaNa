@@ -28,6 +28,6 @@
 @property (readonly, nonatomic) MMDrawerController *rootViewController; // 根视图（侧边栏 + 中间视图）
 //@property (readonly, nonatomic) UINavigationController * navRootController ; // 根导航器
 
-
+-(void)loadLoginView;
 - (void)loadMainView;
 @end
