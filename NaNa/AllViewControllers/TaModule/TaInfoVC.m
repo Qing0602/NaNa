@@ -83,7 +83,7 @@
     if (!_playButton)
     {
         _playButton = [[UIButton alloc] initWithFrame:CGRectMake(105.0, CGRectGetMaxY(_headButton.frame) + 10.0, 110.0, 30.0)];
-        [_playButton setBackgroundImage:[UIImage imageNamed:@"record_light blue_btn_lan.png"] forState:UIControlStateNormal];
+        [_playButton setBackgroundImage:[UIImage imageNamed:@"record_btn.png"] forState:UIControlStateNormal];
         [_playButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(playTaSound) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -92,7 +92,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:default_font_size_14];
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"播放她的声音";
+    label.text = @"她的声音";
     [_playButton addSubview:label];
     [label release];
     

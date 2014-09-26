@@ -167,7 +167,8 @@ typedef enum {
     _recordImageView.hidden = !_isExistRecord;
     [_defaultView addSubview:_recordImageView];
     
-    NSString *normalBagNa = _isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
+    NSString *normalBagNa = @"record_btn.png";
+    //_isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
     NSString *touchDownBagNa = @"record_light blue_btn_lan.png";
     // 录音按钮
     if (!_recordButton) {
