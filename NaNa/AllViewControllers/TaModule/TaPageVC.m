@@ -164,7 +164,7 @@
             NSLog(@"%@",dictionary);
             NSString *tempNickName = dictionary[@"nickname"];
             if (![tempNickName isEqualToString:@""]) {
-                _taNickName = [[tempNickName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] autorelease];
+                _taNickName = [[tempNickName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
             }
         }
     return YES;
