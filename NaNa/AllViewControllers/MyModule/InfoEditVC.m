@@ -946,7 +946,9 @@ typedef enum {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
     NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
-
+    if (!url || [[url absoluteString] isEqualToString:@""]) {
+        url = [NSURL URLWithString:_voiceUrl];
+    }
     NSError *audioPlayerError = nil;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&audioPlayerError];
     _audioPlayer.numberOfLoops = 0;
