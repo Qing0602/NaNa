@@ -81,6 +81,7 @@
         NSArray *citiesInfo = [allArray objectAtIndex:i];
         NSInteger administrativeCityID = [[citiesInfo objectAtIndex:0] integerValue];
         NSString *administrativeCityName = [[citiesInfo objectAtIndex:1] description];
+        NSLog(@"id:%d,name:%@\n",administrativeCityID,administrativeCityName);
         
         if (administrativeCityID < 5) {
             str = [NSMutableString stringWithString:@""];
@@ -110,6 +111,7 @@
                 NSArray *cityInfo = [cities objectAtIndex:j];
                 city.cityID = [[cityInfo objectAtIndex:0] integerValue];
                 city.cityName = [[cityInfo objectAtIndex:1] description];
+                NSLog(@"city id:%d,city name:%@\n",city.cityID,city.cityName);
                 [str appendFormat:@"%c",pinyinFirstLetter([city.cityName characterAtIndex:0])];
                 
                 for (char c = 'a';c<='z';c++) {

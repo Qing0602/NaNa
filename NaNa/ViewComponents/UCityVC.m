@@ -58,7 +58,7 @@
     
     
     if (!_searchCity) {
-        _searchCity = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 45, 320, 45)];
+        _searchCity = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 55, 320, 45)];
         _searchCity.placeholder = STRING(@"inputCitySearch");
         _searchCity.delegate = self;
         
@@ -70,18 +70,18 @@
     
     UIView *segment = [_searchCity.subviews objectAtIndex:0];
     UIImageView *bgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar.png"]];
-    bgImage.frame = CGRectMake(0,0,320,45);
+    bgImage.frame = CGRectMake(0,10,320,45);
     [segment addSubview: bgImage];
     [bgImage release];
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 45, 320, 45)];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, 320, 45)];
     [btn addTarget:self action:@selector(toSearchVC) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     [btn release];
     
     if (!_cityTable) {
         _cityTable = [[UITableView alloc] init];
-        _cityTable.frame = CGRectMake(0, 90, 320, [UIScreen mainScreen].bounds.size.height -20 -90);
+        _cityTable.frame = CGRectMake(0, 100, 320, [UIScreen mainScreen].bounds.size.height -100);
         _cityTable.separatorStyle = UITableViewCellSeparatorStyleNone;
         _cityTable.delegate = self;
         _cityTable.dataSource = self;

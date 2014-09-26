@@ -76,6 +76,7 @@ typedef enum {
         _city.cityID = model.userCityID;
         _city.cityName = model.userCityName;
         _cityLabel.text = model.userCityName;
+        _voiceUrl = model.voiceURL;
         if ([model.userCityName isEqualToString:@""]) {
             [_city getCurrentCity];
         }
@@ -88,10 +89,16 @@ typedef enum {
     
     [self checkItems];
 }
--(NSString *)transformIntToAge:(int)birthday
+-(NSString *)transformIntToAge:(NSString *)birthday
 {
-    _sinceNowTime = birthday;
-    int age = trunc(birthday / (60 * 60 * 24)) / 365 * (-1);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *dateBirthday = [formatter dateFromString:birthday];
+    NSDate *dateNow = [NSDate date];
+    NSTimeInterval timeNow = [dateNow timeIntervalSince1970];
+    NSTimeInterval birthdayTime = [dateBirthday timeIntervalSince1970];
+    _sinceNowTime = birthdayTime - timeNow;
+    int age = trunc(_sinceNowTime / (60 * 60 * 24)) / 365 * (-1);
 
     
     return  [NSString stringWithFormat:@"%d", age];
@@ -420,6 +427,7 @@ typedef enum {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         [_birthday setString:[dateFormatter stringFromDate:[NSDate date]]];
+        
         ULog(@"_birthday ======= %@", _birthday);
     }
     [_ageBottomView addSubview:_ageDatePicker];
@@ -629,6 +637,7 @@ typedef enum {
             ULog(@"age");
             [self textFieldResignFirstResponder];
             [_ageDatePicker setDate:[NSDate dateWithTimeIntervalSinceNow:_sinceNowTime]];
+            
             _defaultView.userInteractionEnabled = NO;
             [UIView animateWithDuration:default_duration
                              animations:^{
@@ -706,6 +715,7 @@ typedef enum {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     self.birthdayPicker = [dateFormatter stringFromDate:picker.date];
+    
     ULog(@"agePickerValueChanged ========= %d", age);
 }
 
@@ -936,6 +946,7 @@ typedef enum {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
     NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
+
     NSError *audioPlayerError = nil;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&audioPlayerError];
     _audioPlayer.numberOfLoops = 0;
@@ -974,6 +985,9 @@ typedef enum {
     NSString *normalBagNa = _isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
     [btn setBackgroundImage:[[UIImage imageNamed:normalBagNa] stretchableImageWithLeftCapWidth:5 topCapHeight:5] forState:UIControlStateNormal];
     [_recorder stop];
+    
+        NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
+    [[NaNaUIManagement sharedInstance] uploadFile:[NSData dataWithContentsOfURL:url] withUploadType:UploadVoice withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:[time integerValue]];
 }
 
 - (void)beginRecord:(UIButton *)btn

@@ -88,6 +88,8 @@ typedef enum
       
     NSInteger enterPathType;
     NSTimeInterval _sinceNowTime;
+      
+    NSString *_voiceUrl;
 }
 
 @property (nonatomic, retain) UIButton *headButton;
