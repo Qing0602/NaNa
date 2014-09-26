@@ -100,7 +100,7 @@ typedef enum {
         }else{
             cell.unReaderImage.hidden = YES;
         }
-        
+        cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
     } else if(indexPath.row == 1) {
         cell.iconImageView.image = [UIImage imageNamed:@"icon_like_normal.png"];
         cell.nameLabel.text = STRING(@"like");
@@ -112,6 +112,7 @@ typedef enum {
         }else{
             cell.unReaderImage.hidden = YES;
         }
+        cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
     } else {
         cell.iconImageView.image = [UIImage imageNamed:@"icon_friend_normal.png"];
         cell.nameLabel.text = STRING(@"friend");
@@ -123,12 +124,13 @@ typedef enum {
         }else{
             cell.unReaderImage.hidden = YES;
         }
+        cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44.0;
+    return 49.0;
 }
 
 #pragma mark - Table view delegate

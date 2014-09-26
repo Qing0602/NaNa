@@ -75,7 +75,7 @@
 // 定义常用字体大小
 #define default_font_size_18        18
 #define default_font_size_15        15
-#define default_font_size_14        14
+#define default_font_size_14        15
 #define default_font_size_12        12
 #define default_font_size_10        10
 
