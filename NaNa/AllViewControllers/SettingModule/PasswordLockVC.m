@@ -70,7 +70,7 @@ UITextField * hiddenInput;
                              initWithFrame:CGRectMake(23.0,
                                                       25,
                                                       61.0, 61.0)];
-    [hiddenInput setHidden:YES];
+    [hiddenInput setHidden:NO];
     hiddenInput.keyboardType = UIKeyboardTypeNumberPad;
     hiddenInput.delegate=self;
     [hiddenInput addTarget:self action:@selector(textChange:)forControlEvents:UIControlEventEditingChanged];

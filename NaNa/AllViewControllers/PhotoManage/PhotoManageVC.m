@@ -77,8 +77,8 @@
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     _gridView = [[KKGridView alloc] initWithFrame:_defaultView.bounds];
     _gridView.backgroundColor = [UIColor clearColor];
-    _gridView.cellSize = CGSizeMake(100, 100);
-    _gridView.cellPadding = CGSizeMake(5, 5);
+    _gridView.cellSize = CGSizeMake(104, 104);
+    _gridView.cellPadding = CGSizeMake(2, 2);
     _gridView.delegate = self;
     _gridView.dataSource = self;
     [_defaultView addSubview:_gridView];
@@ -204,7 +204,8 @@
     [chooseVC setChoosedImageBlock:^(NSString *imageDes){
         self.completeImageDes = imageDes;
         
-        [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadPhoto withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:imageDes];
+        //[[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadPhoto withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:imageDes];
+        [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 1.f) withUploadType:UploadPhoto withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:imageDes withVoiceTime:0];
 //        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:image,@"image",imageDes,@"imageDes", nil];
 //        [_photosArray insertObject:dic atIndex:0];
 //        [_gridView reloadData];
@@ -225,7 +226,7 @@
     MyPhotoCell *cell = (MyPhotoCell *)[gridView dequeueReusableCellWithIdentifier:identifier];
     if (!cell)
     {
-        cell = [[[MyPhotoCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100) reuseIdentifier:identifier] autorelease];
+        cell = [[[MyPhotoCell alloc] initWithFrame:CGRectMake(0, 0, 104, 104) reuseIdentifier:identifier] autorelease];
     }
     
     //cell.contentView.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
@@ -242,11 +243,11 @@
         label.hidden = YES;
        
         if (!addLabel) {
-            addLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 20, 100, 60)] autorelease];
+            addLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 30, 100, 40)] autorelease];
             addLabel.text = @"+";
-            addLabel.font = [UIFont boldSystemFontOfSize:80];
+            addLabel.font = [UIFont boldSystemFontOfSize:40];
             addLabel.textAlignment = NSTextAlignmentCenter;
-            addLabel.textColor = [UIColor whiteColor];
+            addLabel.textColor = [UIColor lightGrayColor];
             addLabel.backgroundColor = [UIColor clearColor];
             addLabel.tag = 0xfd2;
             [cell.contentView addSubview:addLabel];
@@ -283,6 +284,7 @@
             label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 80, 100, 20)] autorelease];
             label.tag =  0xfd1;
             label.font = [UIFont systemFontOfSize:12];
+            label.textAlignment = NSTextAlignmentCenter;
             //label.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
             label.backgroundColor = [UIColor blackColor];
             label.textColor = [UIColor whiteColor];

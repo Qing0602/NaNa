@@ -74,4 +74,6 @@ typedef enum {
 // 针对于大数据处理、视频处理、及一些及其消耗时间的本地处理等情况
 -(void) showWhileExecuting : (SEL) sel withText : (NSString *) text withDetailText : (NSString *) detailText;
 -(void) closeProgress;
+
+-(UIColor *)colorWithHexString:(NSString *)stringToConvert;
 @end

@@ -12,6 +12,7 @@
 #import "SuggestVC.h"
 #import "PasswordLockVC.h"
 #import "RedeemcodeVC.h"
+#import "PasswordLockViewController.h"
 
 #import "AppDelegate.h"
 @interface SettingVC()
@@ -234,11 +235,11 @@ typedef enum {
 
         case SettingEditRowLock: {
             ULog(@"lock");
-            PasswordLockVC *controller = [[[PasswordLockVC alloc] init] autorelease];
+            //PasswordLockVC *controller = [[[PasswordLockVC alloc] init] autorelease];
 //            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
 //            navController.navigationBarHidden = YES;
-            
-            [self.navigationController pushViewController:controller animated:YES];
+            PasswordLockViewController *pwdLock = [[[PasswordLockViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:pwdLock animated:YES];
             break;
 
         }
