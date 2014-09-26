@@ -84,6 +84,7 @@
 		747F2D8F19CFFB31003C53DF /* navbar_confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F2D8C19CFFB31003C53DF /* navbar_confirm@2x.png */; };
 		747F2D9019CFFB31003C53DF /* navbar_confirm_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F2D8D19CFFB31003C53DF /* navbar_confirm_press@2x.png */; };
 		747F2D9119CFFB31003C53DF /* navbar_confirm_unuseful@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F2D8E19CFFB31003C53DF /* navbar_confirm_unuseful@2x.png */; };
+		74BA30E419D5A28D00686AF4 /* PasswordLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BA30E319D5A28D00686AF4 /* PasswordLockViewController.m */; };
 		74F9852A198FCFA400C86A41 /* photoDetailManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */; };
 		74F9852D198FD03800C86A41 /* PhotosModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F9852C198FD03800C86A41 /* PhotosModel.m */; };
 		87165D10187EA7A70025B6DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87165D0F187EA7A70025B6DF /* AVFoundation.framework */; };
@@ -611,6 +612,8 @@
 		747F2D8C19CFFB31003C53DF /* navbar_confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_confirm@2x.png"; sourceTree = "<group>"; };
 		747F2D8D19CFFB31003C53DF /* navbar_confirm_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_confirm_press@2x.png"; sourceTree = "<group>"; };
 		747F2D8E19CFFB31003C53DF /* navbar_confirm_unuseful@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_confirm_unuseful@2x.png"; sourceTree = "<group>"; };
+		74BA30E219D5A28D00686AF4 /* PasswordLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordLockViewController.h; sourceTree = "<group>"; };
+		74BA30E319D5A28D00686AF4 /* PasswordLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordLockViewController.m; sourceTree = "<group>"; };
 		74F98528198FCFA400C86A41 /* photoDetailManagementVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoDetailManagementVC.h; sourceTree = "<group>"; };
 		74F98529198FCFA400C86A41 /* photoDetailManagementVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoDetailManagementVC.m; sourceTree = "<group>"; };
 		74F9852B198FD03800C86A41 /* PhotosModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosModel.h; sourceTree = "<group>"; };
@@ -2191,6 +2194,8 @@
 				363591ED18228F1000F7AB67 /* SuggestVC.m */,
 				366F4BF518267BA8002AD7B5 /* PasswordLockVC.h */,
 				366F4BF618267BA8002AD7B5 /* PasswordLockVC.m */,
+				74BA30E219D5A28D00686AF4 /* PasswordLockViewController.h */,
+				74BA30E319D5A28D00686AF4 /* PasswordLockViewController.m */,
 				36F00880184F36E000ED43BB /* RedeemcodeVC.h */,
 				36F00881184F36E000ED43BB /* RedeemcodeVC.m */,
 			);
@@ -2847,6 +2852,7 @@
 				36412411184720CF002C4329 /* WebLoginVC.m in Sources */,
 				3604BFF41856EAD600009BC2 /* GuideVC.m in Sources */,
 				3635920518229A3000F7AB67 /* FriendVC.m in Sources */,
+				74BA30E419D5A28D00686AF4 /* PasswordLockViewController.m in Sources */,
 				3635920818229A4F00F7AB67 /* LikeVC.m in Sources */,
 				366F4BF418264B13002AD7B5 /* UWebViewController.m in Sources */,
 				8766C7821890F7D800D83863 /* UTabbar.m in Sources */,
