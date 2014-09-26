@@ -16,7 +16,7 @@
 #import "NaNaUserProfileModel.h"
 #import "ChatVC.h"
 
-#define MENU_ROW_HEIGHT     44.0
+#define MENU_ROW_HEIGHT     49.0f
 #define MSG_ROW_HEIGHT      80.0
 #define ONE_DAY_TIMEINTERVAL 24*60*60
 
@@ -98,6 +98,7 @@
                 cell.nameLabel.text = STRING(@"rank");
                 [cell.nameLabel setTextColor:[UIColor whiteColor]];
                 cell.unReaderImage.hidden = YES;
+                cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
                 break;
             }
             case MenuLeftRowMyPage: {
@@ -105,6 +106,7 @@
                 [cell.nameLabel setTextColor:[UIColor whiteColor]];
                 cell.nameLabel.text = STRING(@"myPage");
                 cell.unReaderImage.hidden = YES;
+                cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
                 break;
             }
             case MenuLeftRowSetting: {
@@ -112,6 +114,7 @@
                 [cell.nameLabel setTextColor:[UIColor whiteColor]];
                 cell.nameLabel.text = STRING(@"setting");
                 cell.unReaderImage.hidden = YES;
+                cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
                 break;
             }
         }
@@ -193,7 +196,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return MENU_ROW_HEIGHT;
+        return 49.0f;
     } else {
         MessageInfoData *msg = self.messages[indexPath.row];
         CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:default_font_size_14]];

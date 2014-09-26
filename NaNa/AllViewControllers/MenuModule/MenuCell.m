@@ -20,19 +20,19 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         // icon
         _iconImageView = [[UIImageView alloc] init];
-        float iconHeight = self.frame.size.height - 20;
-        _iconImageView.frame = CGRectMake(10, 10, iconHeight, iconHeight);
+//        float iconHeight = self.frame.size.height - 20;
+        _iconImageView.frame = CGRectMake(10.0f, 9.0f, 30.0f, 30.0f);
         [self addSubview:_iconImageView];
         
         // 名称
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(_iconImageView.frame.origin.x + _iconImageView.frame.size.width + 10,
-                                      0,
+                                      2.0f,
                                       self.frame.size.width - _nameLabel.frame.origin.x,
                                       self.frame.size.height);
         _nameLabel.backgroundColor = [UIColor clearColor];
-        _nameLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-        _nameLabel.textColor = default_color_light_dark;
+        _nameLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+        _nameLabel.textColor = [UIColor whiteColor];
         [self addSubview:_nameLabel];
         
         
