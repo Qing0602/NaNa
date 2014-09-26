@@ -164,14 +164,9 @@
             NSLog(@"%@",dictionary);
             NSString *tempNickName = dictionary[@"nickname"];
             if (![tempNickName isEqualToString:@""]) {
-                _taNickName = tempNickName;
+                _taNickName = [[tempNickName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] autorelease];
             }
-            
         }
-
-
-
-
     return YES;
 }
 - (UIView * )viewForZoomingInScrollView:(UIScrollView *)scrollView{
