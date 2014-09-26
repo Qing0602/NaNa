@@ -33,7 +33,7 @@ typedef enum{
 
 @property (nonatomic,strong) NSString *userAvatarURL;
 @property (nonatomic,strong) NSString *userBackGroundURL;
-@property (nonatomic) NSString *userBirthday;
+@property (nonatomic,strong) NSString *userBirthday;
 @property (nonatomic) int userCharm;
 @property (nonatomic) int userCityID;
 @property (nonatomic,strong) NSString *userCityName;
