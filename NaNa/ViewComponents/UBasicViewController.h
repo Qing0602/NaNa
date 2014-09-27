@@ -5,6 +5,8 @@
 //  Created by dengfang on 13-7-8.
 //  Copyright (c) 2013年 dengfang. All rights reserved.
 //
+#define PWD_LOCK_STATUS @"lockStatus"
+#define PWD_LOCK_DATA @"lockData"
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+MMDrawerController.h"

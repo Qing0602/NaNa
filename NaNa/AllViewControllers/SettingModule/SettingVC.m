@@ -12,8 +12,8 @@
 #import "SuggestVC.h"
 #import "PasswordLockVC.h"
 #import "RedeemcodeVC.h"
+#import "PasswordLockManagementViewController.h"
 #import "PasswordLockViewController.h"
-
 #import "AppDelegate.h"
 @interface SettingVC()
 @end
@@ -50,6 +50,8 @@ typedef enum {
 {
     [super viewWillAppear:animated];
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    
+    [_tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -164,6 +166,23 @@ typedef enum {
         }
         case SettingEditRowLock: {
             [titleLabel setText:STRING(@"lock")];
+            UILabel *pwdLockStatus = [[UILabel alloc] init];
+            NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+            if (![lockData[PWD_LOCK_STATUS] boolValue]) {
+                pwdLockStatus.backgroundColor = [UIColor clearColor];
+                pwdLockStatus.frame = CGRectMake(kSettingEditCellShowWidth-48.f, 0.0, 30, kSettingEditCellShowHeight);
+                pwdLockStatus.textColor = default_color_empty_gray;
+                pwdLockStatus.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+                pwdLockStatus.text = @"关闭";
+                [cell.contentView addSubview:pwdLockStatus];
+            }else
+            {
+                if ([cell.contentView.subviews containsObject:pwdLockStatus]) {
+                    [pwdLockStatus removeFromSuperview];
+                }
+            }
+
+            
             [cell.contentView addSubview:titleLabel];
             break;
         }
@@ -238,8 +257,16 @@ typedef enum {
             //PasswordLockVC *controller = [[[PasswordLockVC alloc] init] autorelease];
 //            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
 //            navController.navigationBarHidden = YES;
-            PasswordLockViewController *pwdLock = [[[PasswordLockViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:pwdLock animated:YES];
+            NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+            if (lockData) {
+                PasswordLockManagementViewController *management = [[PasswordLockManagementViewController alloc] init];
+                [self.navigationController pushViewController:management animated:YES];
+            }else
+            {
+                PasswordLockViewController *passwordLock = [[PasswordLockViewController alloc] initWithType:VERIFY_TYPE_SETTING];
+                [self.navigationController pushViewController:passwordLock animated:YES];
+            }
+
             break;
 
         }

@@ -7,12 +7,14 @@
 //
 
 #import "PasswordLockViewController.h"
-
+#import "AppDelegate.h"
 @interface PasswordLockViewController ()
 {
     NSInteger verifyType;
     
     NSInteger pwdNumbers;
+    
+    UILabel *title;
     UILabel *numberOfEnter;
     
     UITextField *hiddenInput;
@@ -35,7 +37,21 @@
     }
     return self;
 }
-
+-(id)initWithType:(VERIFY_TYPE)type
+{
+    self = [super init];
+    if (self) {
+        verifyType = type;
+    }
+    return self;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSDictionary *pwdInfo = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+    if (pwdInfo && verifyType != VERIFY_TYPE_SETTING) {
+        cachePwd = pwdInfo[PWD_LOCK_DATA];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,17 +61,16 @@
     cachePwd = @"";
     pwdNumbers = 0;
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 120, 16.f)];
+    
+    title = [[UILabel alloc] initWithFrame:CGRectMake(100, 25, 120, 16.f)];
     title.textColor = [self colorWithHexString:@"#1e1e1e"];
     title.font = [UIFont boldSystemFontOfSize:15.f];
-    title.text = @"请输入密码";
     title.textAlignment = NSTextAlignmentCenter;
     [self.defaultView addSubview:title];
     
     numberOfEnter = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 120, 16.f)];
     numberOfEnter.textColor = [self colorWithHexString:@"#1e1e1e"];
     numberOfEnter.font = [UIFont boldSystemFontOfSize:15.f];
-    numberOfEnter.text = @"第一次输入";
     numberOfEnter.textAlignment = NSTextAlignmentCenter;
     [self.defaultView addSubview:numberOfEnter];
     
@@ -105,6 +120,22 @@
         }
     
     [hiddenInput becomeFirstResponder];
+    
+    switch (verifyType) {
+        case VERIFY_TYPE_SETTING:
+        {
+            title.text = @"请输入密码";
+            numberOfEnter.text = @"第一次输入";
+        }
+            break;
+            
+        default:
+        {
+            numberOfEnter.text = @"请输入当前密码";
+        }
+            break;
+    }
+    
     // Do any additional setup after loading the view.
 }
 - (void)textChange:(UITextField *)textField
@@ -130,6 +161,37 @@
             }else
             {
                 //验证2次密码;
+                if ([textField.text isEqualToString:cachePwd]) {
+                    switch (verifyType) {
+                        case VERIFY_TYPE_CHANGE:
+                        {
+                            [self clearText];
+                        }
+                            break;
+                        case VERIFY_TYPE_SETTING:
+                        {
+                            [self saveNewPwd];
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                            break;
+                        case VERIFY_TYPE_VERIFY:
+                        {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:VERIFYSUCCESS_KEY object:nil];
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                }else
+                {
+                    NSLog(@"wrong pwd");
+                    [self clearWhenPwdWrong];
+                }
+                
+
+                    
             }
             
         }
@@ -153,7 +215,56 @@
     for (UITextField *pwdInput in self.pwdTextFields) {
         pwdInput.text = @"";
     }
-    numberOfEnter.text = @"再次输入";
+    
+    if (verifyType == VERIFY_TYPE_CHANGE) {
+        cachePwd = @"";
+        title.text = @"设置新密码";
+        numberOfEnter.text = @"第一次输入";
+        verifyType = VERIFY_TYPE_SETTING;
+    }else
+    {
+        numberOfEnter.text = @"再次输入";
+    }
+}
+-(void)clearWhenPwdWrong
+{
+    pwdNumbers = 0;
+    cachePwd = @"";
+    hiddenInput.text = @"";
+    for (UITextField *pwdInput in self.pwdTextFields) {
+        pwdInput.text = @"";
+    }
+    
+    switch (verifyType) {
+        case VERIFY_TYPE_SETTING:
+        {
+            title.text = @"请输入密码";
+            numberOfEnter.text = @"第一次输入";
+        }
+            break;
+            
+        default:
+        {
+            numberOfEnter.text = @"请输入当前密码";
+        }
+            break;
+    }
+}
+-(void)saveNewPwd
+{
+    NSDictionary *pwdInfo = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+    if (pwdInfo) {
+        NSMutableDictionary *tempPwd = [NSMutableDictionary dictionaryWithDictionary:pwdInfo];
+        [tempPwd setValue:cachePwd forKey:PWD_LOCK_DATA];
+        pwdInfo = [NSDictionary dictionaryWithDictionary:tempPwd];
+    }else
+    {
+        pwdInfo = [[NSDictionary alloc] initWithObjectsAndKeys:cachePwd,PWD_LOCK_DATA,[NSNumber numberWithBool:YES],PWD_LOCK_STATUS, nil];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:pwdInfo forKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+    
+    NSDictionary *pwdInfos = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+    NSLog(@"%@",pwdInfos);
 }
 - (void)didReceiveMemoryWarning
 {

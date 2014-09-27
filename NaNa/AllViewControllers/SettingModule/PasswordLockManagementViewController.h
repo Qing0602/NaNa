@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 dengfang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UBasicViewController.h"
 
-@interface PasswordLockManagementViewController : UIViewController
+@interface PasswordLockManagementViewController : UBasicViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end
