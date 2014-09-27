@@ -908,6 +908,11 @@ typedef enum {
     [URequestManager addCommonRequest:request];
     [request release];
      */
+    
+    if (self.birthdayPicker == nil || [self.birthdayPicker isEqualToString:@""]) {
+        self.birthdayPicker = self.infoData[@"birthday"];
+    }
+    
     [self showProgressWithText:@"正在提交"];
     NSString *nickName = _nameTextField.text;
     [[NaNaUIManagement sharedInstance] updateUserProfile:nickName withRole:_roleLabel.text withCityID:cityId withBirthday:self.birthdayPicker];

@@ -35,7 +35,6 @@
     if (!_leftButton) {
         _leftButton = [[UIButton alloc] init];
         _leftButton.frame = CGRectMake(tabX, 0, tabWidth, tabHeight);
-        _leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_15];
         _leftButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:15.0f];
         [_leftButton setBackgroundColor:[UIColor clearColor]];
         [_leftButton setTitle:STRING(@"city") forState:UIControlStateNormal];
@@ -49,8 +48,7 @@
     if (!_centerButton) {
         _centerButton = [[UIButton alloc] init];
         _centerButton.frame = CGRectMake(tabX + tabWidth, 0, tabWidth, tabHeight);
-        _centerButton.titleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_15];
-        _centerButton.titleLabel.font = [UIFont fontWithName:@"Geeza Pro" size:15.0f];
+        _centerButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:15.0f];
         [_centerButton setBackgroundColor:[UIColor clearColor]];
         [_centerButton setTitle:STRING(@"near") forState:UIControlStateNormal];
         [_centerButton addTarget:self
@@ -63,7 +61,7 @@
     if (!_rightButton) {
         _rightButton = [[UIButton alloc] init];
         _rightButton.frame = CGRectMake(tabX + tabWidth * 2, 0, tabWidth, tabHeight);
-        _rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_15];
+        _rightButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:15.0f];
         [_rightButton setBackgroundColor:[UIColor clearColor]];
         [_rightButton setTitle:STRING(@"all") forState:UIControlStateNormal];
         [_rightButton addTarget:self
