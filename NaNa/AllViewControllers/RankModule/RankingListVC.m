@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "TTTAttributedLabel.h"
 #import "TaPageVC.h"
+#import "MyPageVC.h"
 
 @implementation RankingListVC
 
@@ -197,7 +198,8 @@
         [_defaultView addSubview:_leftWebview];
         [_centerWebview removeFromSuperview];
         [_rightWebview removeFromSuperview];
-        [_leftWebview loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_CITY,@"userId=5")];
+        NSString *temp = [NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+        [_leftWebview loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_CITY,temp)];
         [_leftActivityView startAnimating];
     }
     // 周边
@@ -216,7 +218,8 @@
         [_leftWebview removeFromSuperview];
         [_defaultView addSubview:_centerWebview];
         [_rightWebview removeFromSuperview];
-        [_centerWebview  loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_NEAR,@"userId=5")];
+        NSString *temp = [NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+        [_centerWebview  loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_NEAR,temp)];
     }
     // 全部
     else {
@@ -234,7 +237,8 @@
         [_leftWebview removeFromSuperview];
         [_centerWebview removeFromSuperview];
         [_defaultView addSubview:_rightWebview];
-        [_rightWebview loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_ALL,@"userId=5")];
+        NSString *temp = [NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+        [_rightWebview loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_ALL,temp)];
     }
 }
 
@@ -281,15 +285,45 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *url = [request.URL absoluteString];
-    if([url rangeOfString:@"/user/show"].location != NSNotFound) {
-        // 跳转新页面：TA
-        TaPageVC *controller = [[[TaPageVC alloc] initWithURL:url] autorelease];
-        [self.navigationController pushViewController:controller animated:YES];
+    NSRange range = [url rangeOfString:@"/user/show"];
+    if(range.location != NSNotFound) {
+        
+        NSString *temp = [url substringFromIndex:range.location + range.length + 1];
+        NSDictionary *dic = [self dictionaryFromQuery:temp usingEncoding:NSUTF8StringEncoding];
+        if ([dic[@"userId"] integerValue] == [dic[@"targetId"] integerValue]) {
+            MyPageVC *controller = [[[MyPageVC alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        }else{
+            // 跳转新页面：TA
+            TaPageVC *controller = [[[TaPageVC alloc] initWithURL:url] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
         
         // 移除左右菜单栏
         [self removeSideMenuController];
         return NO;
     }
     return YES;
+}
+
+- (NSDictionary*)dictionaryFromQuery:(NSString*)query usingEncoding:(NSStringEncoding)encoding {
+    NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
+    NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
+    NSScanner* scanner = [[[NSScanner alloc] initWithString:query] autorelease];
+    while (![scanner isAtEnd]) {
+        NSString* pairString = nil;
+        [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];
+        [scanner scanCharactersFromSet:delimiterSet intoString:NULL];
+        NSArray* kvPair = [pairString componentsSeparatedByString:@"="];
+        if (kvPair.count == 2) {
+            NSString* key = [[kvPair objectAtIndex:0]
+                             stringByReplacingPercentEscapesUsingEncoding:encoding];
+            NSString* value = [[kvPair objectAtIndex:1]
+                               stringByReplacingPercentEscapesUsingEncoding:encoding];
+            [pairs setObject:value forKey:key];
+        }
+    }
+    
+    return [NSDictionary dictionaryWithDictionary:pairs];
 }
 @end
