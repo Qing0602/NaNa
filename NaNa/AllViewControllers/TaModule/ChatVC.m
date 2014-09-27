@@ -68,12 +68,16 @@
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"messagesDic" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sendMessageResult" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"historyMessage" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"touchHeadDic" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"giveKey" options:0 context:nil];
 }
 
 -(void) dealloc{
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"messagesDic"];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"sendMessageResult"];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"historyMessage"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"touchHeadDic"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"giveKey"];
 }
 
 - (void)move:(BOOL)isMove toolbarHeight:(float)height
@@ -278,6 +282,20 @@
         if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
             self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
             [self.chatTableView.pullToRefreshView stopAnimating];
+        }
+    }else if ([keyPath isEqualToString:@"touchHeadDic"]){
+        if (![[NaNaUIManagement sharedInstance].touchHeadDic[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSString *message = [NaNaUIManagement sharedInstance].touchHeadDic[@"data"][@"message"];
+            [self showProgressOnwindowsWithText:message withDelayTime:2.0f];
+        }else{
+            [self showProgressOnwindowsWithText:[NaNaUIManagement sharedInstance].touchHeadDic[ASI_REQUEST_ERROR_MESSAGE] withDelayTime:2.0f];
+        }
+    }else if ([keyPath isEqualToString:@"giveKey"]){
+        if (![[NaNaUIManagement sharedInstance].giveKey[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSString *message = [NaNaUIManagement sharedInstance].giveKey[@"data"][@"message"];
+            [self showProgressOnwindowsWithText:message withDelayTime:2.0f];
+        }else{
+            [self showProgressOnwindowsWithText:[NaNaUIManagement sharedInstance].giveKey[ASI_REQUEST_ERROR_MESSAGE] withDelayTime:2.0f];
         }
     }
 }
@@ -519,12 +537,16 @@
             [self.navigationController pushViewController:presentGift animated:YES];
             break;
         }
-        case OptionsOnThings:
+        case OptionsOnThings:{
             ULog(@"摸头");
+            [[NaNaUIManagement sharedInstance] touchHead:self.otherProfile.userID];
             break;
-        case OptionsKey:
+        }
+        case OptionsKey:{
             ULog(@"钥匙");
+            [[NaNaUIManagement sharedInstance] giveKey:self.otherProfile.userID];
             break;
+        }
         default:
             break;
     }

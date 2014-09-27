@@ -12,6 +12,8 @@ typedef enum{
     kGetNewMessage,
     kGetSideMessageList,
     kGetHistoryMessage,
+    kPostTouchHead,
+    kPostGiveKey,
 }MessageType;
 
 @interface MessageOperation : NaNaOperation
@@ -20,4 +22,7 @@ typedef enum{
 -(MessageOperation *) initGetSideMessageList : (int) userID;
 
 -(MessageOperation *) initGetHistoryMessageWithTargetID : (int) targetID withTimeStemp : (long long) timeStemp;
+
+-(MessageOperation *) initTouchHead : (int) userID withTargetID : (int) targetID;
+-(MessageOperation *) initGiveKey : (int) userID withTargetID : (int) targetID;
 @end

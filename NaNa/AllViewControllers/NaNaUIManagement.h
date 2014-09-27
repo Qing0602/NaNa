@@ -88,6 +88,11 @@ typedef enum{
 // 用户购买背景结果
 @property(nonatomic,strong) NSDictionary *buyBackGroundDic;
 
+// 摸头
+@property(nonatomic,strong) NSDictionary *touchHeadDic;
+// 给钥匙
+@property(nonatomic,strong) NSDictionary *giveKey;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
@@ -137,6 +142,11 @@ typedef enum{
 
 //发送push token
 -(void) postPushToken : (NSString *) pushToken;
+
+// 摸头
+-(void) touchHead : (int) targetID;
+// 钥匙
+-(void) giveKey : (int) targetID;
 
 // 退出登录
 -(void) quit;

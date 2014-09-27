@@ -16,6 +16,8 @@
 -(void) getSideMessageList;
 -(void) getNewMessage;
 -(void) getHistoryMessage;
+-(void) postTouchHead;
+-(void) postGiveKey;
 @end
 
 @implementation MessageOperation
@@ -62,6 +64,26 @@
     return self;
 }
 
+-(MessageOperation *) initTouchHead : (int) userID withTargetID : (int) targetID{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = kPostTouchHead;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/interactive/touchhead?userId=%d&targetId=%d",userID,targetID];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+}
+
+-(MessageOperation *) initGiveKey : (int) userID withTargetID : (int) targetID{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = kPostGiveKey;
+        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/interactive/sendkey?userId=%d&targetId=%d",userID,targetID];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+}
+
 -(void) sendMessage{
     [self.dataRequest setRequestCompleted:^(NSDictionary *data){
         dispatch_block_t updateTagBlock = ^{
@@ -102,6 +124,26 @@
     [self startAsynchronous];
 }
 
+-(void) postTouchHead{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].touchHeadDic = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
+-(void) postGiveKey{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].giveKey = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
 -(void) main{
     @autoreleasepool {
         switch (self.type) {
@@ -116,6 +158,12 @@
                 break;
             case kGetNewMessage:
                 [self getNewMessage];
+                break;
+            case kPostTouchHead:
+                [self postTouchHead];
+                break;
+            case kPostGiveKey:
+                [self postGiveKey];
                 break;
             default:
                 break;

@@ -136,6 +136,18 @@ static NaNaUIManagement *sharedInstance = nil;
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 
+// 摸头
+-(void) touchHead : (int) targetID{
+    MessageOperation *operation = [[MessageOperation alloc] initTouchHead:[NaNaUIManagement sharedInstance].userAccount.UserID withTargetID:targetID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 钥匙
+-(void) giveKey : (int) targetID{
+    MessageOperation *operation = [[MessageOperation alloc] initGiveKey:[NaNaUIManagement sharedInstance].userAccount.UserID withTargetID:targetID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
 // 退出登录
 -(void) quit{
     [NaNaUIModelCoding clearCache:@"NaNaUserAccount"];
