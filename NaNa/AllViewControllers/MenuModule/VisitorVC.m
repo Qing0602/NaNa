@@ -43,7 +43,8 @@
     }
     [self.defaultView addSubview:_myWebView];
     _myWebView.scalesPageToFit = YES;
-    [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_FOLLOW,@"userId=5")];
+    NSString *temp = [NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+    [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_FOLLOW,temp)];
     
 }
 #pragma mark - ButtonPressed

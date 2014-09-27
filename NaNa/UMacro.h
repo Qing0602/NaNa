@@ -168,11 +168,11 @@ extern NSInteger K_WAKE_UP_ID;
 #define K_WEBVIEW_URL_RANK_NEAR         @"/nanatop/around"      // 美拉榜-周边
 #define K_WEBVIEW_URL_RANK_ALL          @"/nanatop/all"         // 美拉榜-全部
 #define K_WEBVIEW_URL_MY_PAGE           @"/user/show"           // 我的主页
-#define K_WEBVIEW_URL_FOLLOW            @"/follow"              // 关注的人
+#define K_WEBVIEW_URL_FOLLOW            @"/visitor"             // 关注的人
 #define K_WEBVIEW_URL_INTERACTIVE       @"/interactive"         // 互动
 #define K_WEBVIEW_URL_MY_LOVE           @"/love"                // 我喜欢的人
 #define K_WEBVIEW_URL_LOVE              @"/love"                // TA-喜欢
-#define K_WEBVIEW_URL_FRIEND            @"/love"                // 好友
+#define K_WEBVIEW_URL_FRIEND            @"/follow"              // 好友
 #define K_WEBVIEW_URL_MY_BLACK_LIST     @"/user/blacklist"      // 我的黑名单
 #define K_WEBVIEW_URL_SUGGEST           @"/user/suggest"        // 意见反馈
 //http://api.local.ishenran.cn/interactive?userId=5&targetId=7
