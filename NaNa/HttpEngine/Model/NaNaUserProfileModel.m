@@ -54,6 +54,9 @@
     if (json[@"voice"] != [NSNull null] && json[@"voice"] != nil) {
         self.voiceURL = json[@"voice"];
     }
+    if (json[@"role"] != [NSNull null] && json[@"role"] != nil) {
+        self.role = [json[@"role"] integerValue];
+    }
     return self;
 }
 @end

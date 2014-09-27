@@ -36,13 +36,14 @@
             desc = @"";
         }
         NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/upload"];
+        NSDictionary *params =[NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSNumber numberWithInt:userID],@"userId",
+                               type,@"bucket",
+                               desc,@"description",
+                               [NSNumber numberWithInt:time],@"long",
+                               nil];
         [self setHttpRequestPostWithUrl:urlStr
-                                 params:[NSDictionary dictionaryWithObjectsAndKeys:
-                                         [NSNumber numberWithInt:userID],@"userId",
-                                         type,@"bucket",
-                                         desc,@"description",
-                                         [NSNumber numberWithInt:time],
-                                         nil]
+                                 params:params
                             imgDataDict:[NSDictionary dictionaryWithObjectsAndKeys:
                                          data,@"file",
                                          nil]];
