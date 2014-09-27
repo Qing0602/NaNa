@@ -13,6 +13,7 @@
 #import "NaNaUIManagement.h"
 #import "SVPullToRefresh.h"
 #import "RoundRectEGOImageButton.h"
+#import "PresentGiftViewController.h"
 
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
@@ -302,6 +303,13 @@
 	[self.chatTableView reloadData];
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.messageTextField resignFirstResponder];
+    self.messageTextField.inputView = nil;
+    [self move:YES toolbarHeight:0];
+}
+
 - (void)leftItemPressed:(UIButton *)btn
 {
     [self.timer invalidate];
@@ -506,9 +514,11 @@
         case OptionsPhotograph:
             ULog(@"拍照");
             break;
-        case OptionsGift:
-            ULog(@"礼物");
+        case OptionsGift:{
+            PresentGiftViewController *presentGift = [[PresentGiftViewController alloc] initWithUserID:self.otherProfile.userID];
+            [self.navigationController pushViewController:presentGift animated:YES];
             break;
+        }
         case OptionsOnThings:
             ULog(@"摸头");
             break;

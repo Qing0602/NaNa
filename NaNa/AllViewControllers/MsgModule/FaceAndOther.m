@@ -54,31 +54,26 @@
     return self;
 }
 
-- (void)otherViewAddOther
-{
-    NSArray *btnNo1 = [NSArray arrayWithObjects:@"album_normal",@"photo_normal",@"gift_normal",nil];
-    NSArray *btnSe1 = [NSArray arrayWithObjects:@"album_pressed",@"photo_pressed",@"gift_pressed",nil];
-   
-    NSArray *btnNo2 = [NSArray arrayWithObjects:@"on_things_normal",@"key_normal", nil];
-    NSArray *btnSe2 = [NSArray arrayWithObjects:@"on_things_pressed",@"key_pressed", nil];
-    for (int i = 0; i < 3; i ++)
-    {
+- (void)otherViewAddOther{
+    NSArray *btnNo1 = [NSArray arrayWithObjects:@"gift_normal",@"on_things_normal",@"key_normal",nil];
+    NSArray *btnSe1 = [NSArray arrayWithObjects:@"gift_pressed",@"on_things_pressed",@"key_pressed",nil];
+    NSArray *str = [NSArray arrayWithObjects:@"礼物",@"摇头",@"钥匙", nil];
+    
+    for (int i = 0; i < 3; i ++){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(30 + (70 + 25)*i, 30, 70, 70);
         [btn setBackgroundImage:[UIImage imageNamed:[btnNo1 objectAtIndex:i]] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:[btnSe1 objectAtIndex:i]] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(otherAction:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = 10000+i;
-        [_otherView addSubview:btn];
-    }
-    for (int i = 0; i < 2; i ++)
-    {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(30 + (70 + 25)*i, 130, 70, 70);
-        [btn setBackgroundImage:[UIImage imageNamed:[btnNo2 objectAtIndex:i]] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:[btnSe2 objectAtIndex:i]] forState:UIControlStateHighlighted];
-        [btn addTarget:self action:@selector(otherAction:) forControlEvents:UIControlEventTouchUpInside];
-        btn.tag = 10003+i;
+        btn.tag = 10002+i;
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.frame = CGRectMake(0.0f, 40.0f, 70.0f, 30.0f);
+        label.text = str[i];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor blackColor];
+        label.font = [UIFont boldSystemFontOfSize:11.0f];
+        [btn addSubview:label];
         [_otherView addSubview:btn];
     }
 }

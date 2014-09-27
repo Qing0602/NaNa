@@ -41,6 +41,7 @@
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].presentGift];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            [self showProgressOnwindowsWithText:@"赠送成功" withDelayTime:2.5f];
             [self.navigationController popViewControllerAnimated:YES];
         }else
         {
