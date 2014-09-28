@@ -15,6 +15,12 @@ typedef enum{
     kFail,
 }MessageState;
 
+typedef enum{
+    kToday,
+    kYesterday,
+    kOtherDay,
+}MessageDayType;
+
 @interface NaNaMessageModel : NaNaUIModelCoding
 /*
  "content": "\u4f60\u597d",//string会话内容
@@ -25,11 +31,16 @@ typedef enum{
  */
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong) NSString *avatar;
-@property (nonatomic) int creattime;
+@property (nonatomic) long long creattime;
 @property (nonatomic) BOOL isBlongMe;
 @property (nonatomic) int height;
 @property (nonatomic) int state;
 @property (nonatomic) long long createmicrotime;
 
 -(void) coverJson : (NSDictionary *) json;
+@end
+
+@interface NaNaMessageDateModel : NaNaUIModelCoding
+@property(nonatomic) int date;
+@property(nonatomic) MessageDayType type;
 @end

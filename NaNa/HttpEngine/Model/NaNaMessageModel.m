@@ -22,7 +22,7 @@
     }
     
     if (json[@"createtime"] != [NSNull null] || json[@"createtime"] != nil) {
-        self.creattime = [json[@"createtime"] integerValue];
+        self.creattime = [json[@"createtime"] longLongValue];
     }
     
     if (json[@"source"] != [NSNull null] && json[@"source"] != nil) {
@@ -49,7 +49,7 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder{
     [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.content forKey:@"content"];
-    [aCoder encodeInteger:self.creattime forKey:@"creattime"];
+    [aCoder encodeInt64:self.creattime forKey:@"creattime"];
     [aCoder encodeBool:self.isBlongMe forKey:@"isBlongMe"];
     [aCoder encodeInteger:self.height forKey:@"height"];
     [aCoder encodeInt64:self.createmicrotime forKey:@"createmicrotime"];
@@ -60,7 +60,7 @@
     self = [super initWithCoder:aDecoder];
     if (nil != self) {
         self.content = [aDecoder decodeObjectForKey:@"content"];
-        self.creattime = [aDecoder decodeIntegerForKey:@"creattime"];
+        self.creattime = [aDecoder decodeInt64ForKey:@"creattime"];
         self.isBlongMe = [aDecoder decodeBoolForKey:@"isBlongMe"];
         self.height = [aDecoder decodeIntegerForKey:@"height"];
         self.createmicrotime = [aDecoder decodeInt64ForKey:@"createmicrotime"];
@@ -68,5 +68,11 @@
     }
     return self;
 }
+
+@end
+
+@implementation NaNaMessageDateModel
+
+
 
 @end

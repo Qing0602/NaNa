@@ -28,11 +28,13 @@
 @interface ChatVC ()
 @property (nonatomic,strong) NaNaUserProfileModel *otherProfile;
 @property (nonatomic,strong) NSArray *messageArray;
+@property (nonatomic,strong) NSArray *meesageAndDate;
 @property (nonatomic,strong) NSArray *sendingMessageArray;
 @property (nonatomic) BOOL isMore;
 @property (nonatomic,strong) NSTimer *timer;
 -(void) handleTimerGetNewMessage :(NSTimer *)theTimer;
 -(void) messageBuffer;
+-(void) messageDate;
 @end
 
 @implementation ChatVC
@@ -111,9 +113,12 @@
     
     self.title = self.otherProfile.userNickName;
     self.isMore = YES;
+    self.meesageAndDate = [[NSArray alloc] init];
     self.messageArray = [[NSArray alloc] init];
     self.messageArray = [NaNaMessageModel deserializeModel:[NSString stringWithFormat: @"%d.msg",self.otherProfile.userID]];
     self.sendingMessageArray = [[NSArray alloc] init];
+    [self messageDate];
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(handleTimerGetNewMessage:) userInfo:nil repeats:YES];
     [self.timer fire];
     _defaultView.backgroundColor = [UIColor colorWithRed:240/255.0 green:245/255.0 blue:255/255.0 alpha:1.0f];
@@ -226,6 +231,7 @@
                 [msgArray addObject:msg];
             }
             self.messageArray = [[NSArray alloc] initWithArray:msgArray];
+            [self messageDate];
             [self.chatTableView reloadData];
             [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
                                       atScrollPosition:UITableViewScrollPositionBottom
@@ -240,7 +246,7 @@
                 if ([model.content isEqualToString:data[@"content"]]) {
                     NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                     msg.content = model.content;
-                    msg.creattime = [data[@"creattime"] integerValue];
+                    msg.creattime = [data[@"createtime"] longLongValue];
                     msg.createmicrotime = [data[@"createmicrotime"] longLongValue];
                     msg.avatar = data[@"avatar"];
                     msg.isBlongMe = model.isBlongMe;
@@ -255,9 +261,10 @@
             NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:self.sendingMessageArray];
             [temp removeObject:removeModel];
             self.sendingMessageArray = [[NSArray alloc] initWithArray:temp];
+            [self messageDate];
             
             [self.chatTableView reloadData];
-            [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+            [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.meesageAndDate count]-1 inSection:0]
                                       atScrollPosition:UITableViewScrollPositionBottom
                                               animated:YES];
             [self messageBuffer];
@@ -277,6 +284,7 @@
             [temp addObjectsFromArray:self.messageArray];
             self.messageArray = [[NSArray alloc] initWithArray:temp];
             self.isMore = [dic[@"more"] boolValue];
+            [self messageDate];
             [self.chatTableView reloadData];
         }
         if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
@@ -313,6 +321,95 @@
             }
             [NaNaMessageModel serializeModel:buffer withFileName:[NSString stringWithFormat:@"%d.msg",self.otherProfile.userID]];
         }
+    }
+}
+
+-(void) messageDate{
+    if (nil != self.messageArray && [self.messageArray count] != 0) {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:self.messageArray];
+        NSDate *today = [NSDate date];
+        NSDate *yesterday = [NSDate dateWithTimeIntervalSinceNow:-86400];
+        NSString *todayString = [[today description] substringToIndex:10];
+        NSString *yesterdayString = [[yesterday description] substringToIndex:10];
+        int five = 300;
+
+        for (int i = 0; i<[self.messageArray count]; i++) {
+            NaNaMessageModel *model = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
+            NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:model.creattime];
+            NSString *currentDate = [[messageDate description] substringToIndex:10];
+            i+=1;
+            NaNaMessageModel *next;
+            while (i<[self.messageArray count]) {
+                next = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
+                if (next.creattime - model.creattime >= five) {
+                    break;
+                }else{
+                    i++;
+                }
+            }
+            
+            NaNaMessageDateModel *dateModel = [[NaNaMessageDateModel alloc] init];
+            dateModel.date = model.creattime;
+            if([currentDate isEqualToString:todayString]){
+                dateModel.type = kToday;
+            }else if ([currentDate isEqualToString:yesterdayString]){
+                dateModel.type = kYesterday;
+            }else{
+                dateModel.type = kOtherDay;
+            }
+            NSUInteger row = [tempArray indexOfObject:model];
+            [tempArray insertObject:dateModel atIndex:row];
+        }
+//        int i = [self.messageArray count] - 1;
+//        for (; i>=0; i--) {
+//            if ( i == 0) {
+//                NaNaMessageModel *model = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
+//                NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:model.creattime];
+//                NSString *currentDate = [[messageDate description] substringToIndex:10];
+//                NaNaMessageDateModel *dateModel = [[NaNaMessageDateModel alloc] init];
+//                dateModel.date = model.creattime;
+//                if([currentDate isEqualToString:todayString]){
+//                    dateModel.type = kToday;
+//                }else if ([currentDate isEqualToString:yesterdayString]){
+//                    dateModel.type = kYesterday;
+//                }else{
+//                    dateModel.type = kOtherDay;
+//                }
+//                [tempArray insertObject:dateModel atIndex:0];
+//            }else{
+//                NaNaMessageModel *model = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
+//                NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:model.creattime];
+//                NSString *currentDate = [[messageDate description] substringToIndex:10];
+//                i-=1;
+//                NaNaMessageModel *pre;
+//                while (i>=0) {
+//                    pre = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
+//                    if (model.creattime - pre.creattime >= five) {
+//                        break;
+//                    }else{
+//                        i--;
+//                    }
+//                }
+//                
+//                NaNaMessageDateModel *dateModel = [[NaNaMessageDateModel alloc] init];
+//                dateModel.date = pre.creattime;
+//                if([currentDate isEqualToString:todayString]){
+//                    dateModel.type = kToday;
+//                }else if ([currentDate isEqualToString:yesterdayString]){
+//                    dateModel.type = kYesterday;
+//                }else{
+//                    dateModel.type = kOtherDay;
+//                }
+//                
+//                if (i>=0) {
+//                    [tempArray insertObject:dateModel atIndex:i];
+//                }else{
+//                    [tempArray insertObject:dateModel atIndex:0];
+//                    break;
+//                }
+//            }
+//        }
+        self.meesageAndDate = [NSArray arrayWithArray:tempArray];
     }
 }
 
@@ -445,44 +542,6 @@
     NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:self.sendingMessageArray];
     [temp addObject:model];
     self.sendingMessageArray = [[NSArray alloc] initWithArray:temp];
-    /*
-	NSDate *nowTime = [NSDate date];
-	NSMutableString *sendString=[NSMutableString stringWithCapacity:100];
-	[sendString appendString:message];
-	//开始发送
-	BOOL res = [self.udpSocket sendData:[sendString dataUsingEncoding:NSUTF8StringEncoding]
-								 toHost:@"224.0.0.1"
-								   port:4333
-							withTimeout:-1
-                                    tag:0];
-    
-   	if (!res)
-    {
-        [UAlertView showAlertViewWithMessage:@"发送失败" delegate:nil cancelButton:@"确定" defaultButton:nil];
-        return;
-	}
-	
-	if ([self.chatArray lastObject] == nil)
-    {
-		self.lastTime = nowTime;
-		[self.chatArray addObject:nowTime];
-	}
-	// 发送后生成泡泡显示出来
-	NSTimeInterval timeInterval = [nowTime timeIntervalSinceDate:self.lastTime];
-	if (timeInterval > 60*5)
-    {
-		self.lastTime = nowTime;
-		[self.chatArray addObject:nowTime];
-	}
-    UIView *chatView = [self bubbleView:[NSString stringWithFormat:@"%@:%@", NSLocalizedString(@"陆小凤",nil), message]
-								   from:YES];
-	[self.chatArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:message, @"text", @"self", @"speaker", chatView, @"view", nil]];
-    
-	[self.chatTableView reloadData];
-	[self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatArray count]-1 inSection:0]
-							  atScrollPosition:UITableViewScrollPositionBottom
-									  animated:YES];
-     */
 }
 
 - (void)didSelectSendMessage
@@ -560,26 +619,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    int i = 0;
-//    for (NaNaMessageModel *model in self.messageArray) {
-//        if (model.state == kSend) {
-//            i++;
-//        }
-//    }
-    return [self.messageArray count];
+    return [self.meesageAndDate count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	
-	if ([[self.messageArray objectAtIndex:[indexPath row]] isKindOfClass:[NSDate class]]){
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	if ([[self.meesageAndDate objectAtIndex:[indexPath row]] isMemberOfClass:[NaNaMessageDateModel class]]){
 		return 30;
-	}
-    else{
-        NaNaMessageModel *model = self.messageArray[indexPath.row];
+	}else{
+        NaNaMessageModel *model = self.meesageAndDate[indexPath.row];
         return model.height + 10.0f;
-//		UIView *chatView = [[self.chatArray objectAtIndex:[indexPath row]] objectForKey:@"view"];
-//		return chatView.frame.size.height + 10;
 	}
 }
 
@@ -591,7 +639,8 @@
     UITableViewCell *dateCell = [tableView dequeueReusableCellWithIdentifier:dateCellIdentifier];
     UITableViewCell *cell = nil;
     
-    if ([[self.messageArray objectAtIndex:[indexPath row]] isKindOfClass:[NSDate class]]){
+    if ([[self.meesageAndDate objectAtIndex:[indexPath row]] isMemberOfClass:[NaNaMessageDateModel class]]){
+        NaNaMessageDateModel *date = [self.meesageAndDate objectAtIndex:[indexPath row]];
         if (!dateCell){
             dateCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:dateCellIdentifier];
             dateCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -608,9 +657,19 @@
             dateL.tag = 0xFB;
             [cell.contentView addSubview:dateL];
         }
-		NSDateFormatter  *formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-		NSMutableString *timeString = [NSMutableString stringWithFormat:@"%@",[formatter stringFromDate:[self.chatArray objectAtIndex:[indexPath row]]]];
+        NSMutableString *timeString;
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:date.date];
+        if (date.type == kToday) {
+            [formatter setDateFormat:@"HH:mm"];
+            timeString = [NSMutableString stringWithFormat:@"%@",[formatter stringFromDate:currentDate]];
+        }else if(date.type == kYesterday){
+            [formatter setDateFormat:@"HH:mm"];
+            timeString = [NSMutableString stringWithFormat:@"昨天 %@",[formatter stringFromDate:currentDate]];
+        }else{
+            [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+            timeString = [NSMutableString stringWithFormat:@"%@",[formatter stringFromDate:currentDate]];
+        }
         [dateL setText:timeString];
         dateL.frame = CGRectMake((320-[timeString sizeWithFont:dateL.font].width)/2-5, 5, [timeString sizeWithFont:dateL.font].width+10, 20);
         dateL.layer.cornerRadius = 5;
@@ -633,7 +692,7 @@
         }
         
 		// Set up the cell...
-        NaNaMessageModel *model = self.messageArray[indexPath.row];
+        NaNaMessageModel *model = self.meesageAndDate[indexPath.row];
 		UIView *chatV = [self bubbleView:model];
         [chatView setFrame:CGRectMake(0, 0, 320, CGRectGetHeight(chatV.frame))];
         [chatView addSubview:chatV];
