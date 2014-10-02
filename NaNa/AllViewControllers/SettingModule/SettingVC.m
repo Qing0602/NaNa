@@ -70,8 +70,8 @@ typedef enum {
     
     // 填充资料的tableView
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 25.0f,
-                                                                   _defaultView.frame.size.width,
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0, 25.0f,
+                                                                   _defaultView.frame.size.width-10.f,
                                                                    kSettingEditCellHeight * kSettingEditCellNumber)
                                                   style:UITableViewStylePlain];
         _tableView.delegate = self;
@@ -79,7 +79,7 @@ typedef enum {
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.backgroundView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _tableView.separatorColor = [UIColor clearColor];
+        //_tableView.separatorColor = [UIColor clearColor];
         _tableView.scrollEnabled = NO;
     }
     [_defaultView addSubview:_tableView];
@@ -136,25 +136,25 @@ typedef enum {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
         cell.contentView.backgroundColor = [UIColor clearColor];
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
         //被选中cell容器
         cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
         [cell autorelease];
     }
     
     // 背景
-    UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
-    bgImageView.backgroundColor = [UIColor clearColor];
-    bgImageView.frame = CGRectMake(kSettingEditCellSildWidth, 0.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
-    bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
-    [cell.contentView addSubview:bgImageView];
-    bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
+//    UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
+//    bgImageView.backgroundColor = [UIColor clearColor];
+//    bgImageView.frame = CGRectMake(kSettingEditCellSildWidth, 0.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
+//    bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
+//    [cell.contentView addSubview:bgImageView];
+//    bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
     
     
     // 名称
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.frame = CGRectMake(20.0, 0.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
+    titleLabel.frame = CGRectMake(20.0, 5.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
     titleLabel.textColor = default_color_dark;
     titleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
     
@@ -170,7 +170,7 @@ typedef enum {
             NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
             if (![lockData[PWD_LOCK_STATUS] boolValue]) {
                 pwdLockStatus.backgroundColor = [UIColor clearColor];
-                pwdLockStatus.frame = CGRectMake(kSettingEditCellShowWidth-48.f, 0.0, 30, kSettingEditCellShowHeight);
+                pwdLockStatus.frame = CGRectMake(kSettingEditCellShowWidth-48.f, 5.0, 30, kSettingEditCellShowHeight);
                 pwdLockStatus.textColor = default_color_empty_gray;
                 pwdLockStatus.font = [UIFont boldSystemFontOfSize:default_font_size_14];
                 pwdLockStatus.text = @"关闭";
@@ -212,10 +212,11 @@ typedef enum {
     [titleLabel release];
     
     // 箭头
-    UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-    arrow.frame = CGRectMake(kSettingEditCellShowWidth-14.0, (kSettingEditCellShowHeight - 14.0) / 2, 14.0, 14.0);
-    [cell.contentView addSubview:arrow];
-    [arrow release];
+//    UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+//    arrow.frame = CGRectMake(kSettingEditCellShowWidth-14.0, (kSettingEditCellShowHeight - 14.0) / 2, 14.0, 14.0);
+//    [cell.contentView addSubview:arrow];
+//    [arrow release];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

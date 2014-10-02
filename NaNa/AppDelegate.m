@@ -159,15 +159,15 @@ NSInteger K_WAKE_UP_ID = 0;
     // 清除未读消息数目
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     // 注册当前的token
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
-//        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
-//                                                                             settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
-//                                                                             categories:nil]];
-//        [[UIApplication sharedApplication] registerForRemoteNotifications];
-//    }else{
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-//         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
-//    }
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
+                                                                             settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+                                                                             categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
     
     // 初始化HttpManager
     [URequestManager defaultRequestManager];

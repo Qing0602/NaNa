@@ -136,7 +136,7 @@ typedef enum {
     }
     // 填充资料的tableView
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0,
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0,
                                                                    20.0f,
                                                                    self.defaultView.frame.size.width-10.f,
                                                                    self.defaultView.frame.size.height)
@@ -217,7 +217,7 @@ typedef enum {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
         cell.contentView.backgroundColor = [UIColor clearColor];
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //被选中cell容器
         cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
@@ -225,12 +225,12 @@ typedef enum {
         [cell autorelease];
         
         // 背景
-        UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
-        bgImageView.backgroundColor = [UIColor clearColor];
-        bgImageView.frame = CGRectMake(kSettingEditCellSildWidth-5, 0.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
-        bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
-        [cell.contentView addSubview:bgImageView];
-        bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
+//        UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
+//        bgImageView.backgroundColor = [UIColor clearColor];
+//        bgImageView.frame = CGRectMake(kSettingEditCellSildWidth-5, 0.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
+//        bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
+//        [cell.contentView addSubview:bgImageView];
+//        bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
     }
     
     if (![cell.contentView viewWithTag:100+indexPath.row])

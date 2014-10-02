@@ -117,7 +117,8 @@
 #define default_color_light_gray    @"#e7e7e7".color
 #define default_color_empty_gray    @"#cccccc".color
 #define default_color_placeholder   @"#f7f7f7".color
-#define default_color_cyan          @"#ffff00".color
+//#define default_color_cyan          @"#ffff00".color
+#define default_color_cyan           [UIColor colorWithPatternImage:[UIImage imageNamed:@"category_focus_bg.png"]]
 
 #define KFontColorA                 @"#333333".color
 #define KFontColorB                 @"#FFFFFF".color

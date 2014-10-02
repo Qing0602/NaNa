@@ -73,6 +73,7 @@
     
     if (!_lineImageView) {
         _lineImageView = [[UIImageView alloc] init];
+
         _lineImageView.image = [UIImage imageNamed:@"category_focus_bg.png"];
     }
     [_navBarView addSubview:_lineImageView];
@@ -180,6 +181,8 @@
         if (_currentType == RankTypeCity) {
             return;
         }
+        
+        
         [_leftButton setTitleColor:default_color_cyan forState:UIControlStateNormal];
         [_centerButton setTitleColor:default_color_white forState:UIControlStateNormal];
         [_rightButton setTitleColor:default_color_white forState:UIControlStateNormal];

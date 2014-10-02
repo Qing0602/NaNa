@@ -115,7 +115,7 @@ typedef enum {
 - (void)loadView {
     [super loadView];
     self.title = STRING(@"info");
-    _defaultView.backgroundColor = [UIColor whiteColor];
+    _defaultView.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:255/255.f alpha:1.f];
 
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UINavBarBtnTypeConfirm];
     
@@ -220,7 +220,7 @@ typedef enum {
                                         _recordButton.frame.origin.y + _recordButton.frame.size.height + margin_micro,
                                         _recordButton.frame.size.width, 45);
         _remarkLabel.textColor = default_color_dark;
-        _remarkLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _remarkLabel.font = [UIFont boldSystemFontOfSize:13];
         _remarkLabel.backgroundColor = [UIColor clearColor];
         _remarkLabel.text = STRING(@"recordRemark");
         _remarkLabel.numberOfLines = 2;
@@ -231,9 +231,9 @@ typedef enum {
     
     // 填充资料的tableView
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0,
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0,
                                                                    _headButton.frame.origin.y * 2 + _headButton.frame.size.height,
-                                                                   self.defaultView.frame.size.width,
+                                                                   self.defaultView.frame.size.width-10,
                                                                    kInfoEditCellHeight * kInfoEditCellNumber)
                                                   style:UITableViewStylePlain];
         _tableView.delegate = self;
@@ -241,14 +241,14 @@ typedef enum {
         
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _tableView.separatorColor = [UIColor clearColor];
+        //_tableView.separatorColor = [UIColor clearColor];
         _tableView.scrollEnabled = NO;
     }
     [_defaultView addSubview:_tableView];
     
     // 修改内容 for cell -------------------------------------------------------------------
     // 计算Cell内变动文字的坐标
-    CGRect cellFrame = CGRectMake(70.0, 0.0, 200.0, kInfoEditCellShowHeight);
+    CGRect cellFrame = CGRectMake(70.0, 5.0, 200.0, kInfoEditCellShowHeight);
     
     // nikeName
     if (!_nameTextField) {
@@ -547,19 +547,20 @@ typedef enum {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
         cell.contentView.backgroundColor = [UIColor clearColor];
-        
+        cell.backgroundColor = [UIColor whiteColor];
         //被选中cell容器
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15.f];
     }
 
     // 背景
-    UIImageView *bgImageView = [[UIImageView alloc] init];
-    bgImageView.backgroundColor = [UIColor clearColor];
-    bgImageView.frame = CGRectMake(kInfoEditCellSildWidth, 0.0, kInfoEditCellShowWidth, kInfoEditCellShowHeight);
-    bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
-    [cell.contentView addSubview:bgImageView];
-    bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
+//    UIImageView *bgImageView = [[UIImageView alloc] init];
+//    bgImageView.backgroundColor = [UIColor clearColor];
+//    bgImageView.frame = CGRectMake(kInfoEditCellSildWidth, 0.0, kInfoEditCellShowWidth, kInfoEditCellShowHeight);
+//    bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
+//    [cell.contentView addSubview:bgImageView];
+//    bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
     
     
     // 名称
@@ -591,16 +592,18 @@ typedef enum {
             break;
         }
     }
-    [cell.contentView addSubview:titleLabel];
+    //[cell.contentView addSubview:titleLabel];
+    cell.textLabel.text = titleLabel.text;
     
     // 箭头
     if (indexPath.row != 0) {
-        UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-        arrow.frame = CGRectMake(_nameTextField.frame.origin.x + _nameTextField.frame.size.width + margin_small,
-                                 (kInfoEditCellShowHeight - 14.0) / 2,
-                                 14.0, 14.0);
-        
-        [cell.contentView addSubview:arrow];
+//        UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+//        arrow.frame = CGRectMake(_nameTextField.frame.origin.x + _nameTextField.frame.size.width + margin_small,
+//                                 (kInfoEditCellShowHeight - 14.0) / 2,
+//                                 14.0, 14.0);
+//        
+//        [cell.contentView addSubview:arrow];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
     
