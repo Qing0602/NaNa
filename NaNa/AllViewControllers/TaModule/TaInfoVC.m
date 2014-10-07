@@ -66,14 +66,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.title = @"她得资料";
+    
     _defaultView.backgroundColor = [UIColor whiteColor];
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     // 头像
     if (!_headButton) {
         // 圆形按钮
         //_headButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
-        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"DefineHeader.png"] withFrame:CGRectMake(105.0, 15.0, 110.0, 110.0)];
-        [_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
+        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_cartoon_1.png"] withFrame:CGRectMake(105.0, 15.0, 110.0, 110.0)];
+        //[_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
         [_headButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         _headButton.layer.cornerRadius = 55;
         _headButton.clipsToBounds = YES;
@@ -92,6 +94,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:default_font_size_14];
     label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
     label.text = @"她的声音";
     [_playButton addSubview:label];
     [label release];
@@ -107,7 +110,7 @@
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _tableView.separatorColor = [UIColor clearColor];
+       // _tableView.separatorColor = [UIColor clearColor];
         _tableView.scrollEnabled = NO;
         _tableView.userInteractionEnabled = NO;
     }
@@ -115,7 +118,7 @@
     
     // 修改内容 for cell -------------------------------------------------------------------
     // 计算Cell内变动文字的坐标
-    CGRect cellFrame = CGRectMake(70.0, 0.0, 200.0, kInfoEditCellShowHeight);
+    CGRect cellFrame = CGRectMake(70.0, 5.0, 200.0, kInfoEditCellShowHeight);
     
     // nikeName
     if (!_nameTextField) {
@@ -183,18 +186,18 @@
     }
     
     // 背景
-    UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
-    bgImageView.backgroundColor = [UIColor clearColor];
-    bgImageView.frame = CGRectMake(kInfoEditCellSildWidth, 0.0, kInfoEditCellShowWidth, kInfoEditCellShowHeight);
-    bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
-    [cell.contentView addSubview:bgImageView];
-    bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
+//    UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
+//    bgImageView.backgroundColor = [UIColor clearColor];
+//    bgImageView.frame = CGRectMake(kInfoEditCellSildWidth, 0.0, kInfoEditCellShowWidth, kInfoEditCellShowHeight);
+//    bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
+//    [cell.contentView addSubview:bgImageView];
+//    bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
     
     
     // 名称
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.frame = CGRectMake(30.0, 0.0, 30.0, kInfoEditCellShowHeight);
+    titleLabel.frame = CGRectMake(30.0, 5.0, 30.0, kInfoEditCellShowHeight);
     titleLabel.textColor = default_color_dark;
     titleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
     
@@ -242,9 +245,15 @@
     _infoData = infoData;
     
 }
--(NSString *)transformIntToAge:(int)birthday
+-(NSString *)transformIntToAge:(NSString *)birthday
 {
-    int age = trunc(birthday / (60 * 60 * 24)) / 365 * (-1);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *dateBirthday = [formatter dateFromString:birthday];
+    NSDate *dateNow = [NSDate date];
+    NSTimeInterval timeNow = [dateNow timeIntervalSince1970];
+    NSTimeInterval birthdayTime = [dateBirthday timeIntervalSince1970];
+    int age = trunc((birthdayTime - timeNow) / (60 * 60 * 24)) / 365 * (-1);
     
     
     return  [NSString stringWithFormat:@"%d", age];

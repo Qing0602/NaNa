@@ -109,6 +109,9 @@ typedef enum {
     self = [super init];
     if (self) {
         enterPathType = type;
+        if (enterPathType == TYPE_LOGIN) {
+            [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
+        }else [self setNavLeftType:UNavBarBtnTypeBack navRightType:UINavBarBtnTypeConfirm];
     }
     return self;
 }
@@ -117,7 +120,7 @@ typedef enum {
     self.title = STRING(@"info");
     _defaultView.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:255/255.f alpha:1.f];
 
-    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UINavBarBtnTypeConfirm];
+    
     
     NSString *recordTime = [UStaticData getObjectForKey:kInfoRecoderTimeKey];
     if (recordTime && ![recordTime isEqualToString:@"00:00"])
