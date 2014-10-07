@@ -65,6 +65,81 @@
     return returnedArray;
 }
 
++(UCity *)getCityByCityName:(NSString *)gpsCityName
+{
+    NSMutableArray *allArray = [NSMutableArray array];
+    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"citys" ofType:@"json"];
+    NSString *string = [NSString stringWithContentsOfFile:sourcePath
+                                                 encoding:NSUTF8StringEncoding
+                                                    error:nil];
+    NSDictionary *rootDic = [string objectFromJSONString];
+    allArray = [rootDic objectForKey:@"citys"];
+    
+    NSMutableString *str = [NSMutableString stringWithString:@""];
+    
+    NSString *tempCityName = [gpsCityName substringFromIndex:gpsCityName.length-1];
+    if ([tempCityName isEqualToString:@"市"]) {
+        gpsCityName = [gpsCityName substringToIndex:gpsCityName.length-1];
+    }
+    
+    for (int i = 0; i < allArray.count; i++) {
+        NSArray *citiesInfo = [allArray objectAtIndex:i];
+        NSInteger administrativeCityID = [[citiesInfo objectAtIndex:0] integerValue];
+        NSString *administrativeCityName = [[citiesInfo objectAtIndex:1] description];
+        NSLog(@"id:%d,name:%@\n",administrativeCityID,administrativeCityName);
+        
+
+        
+            if (administrativeCityID < 5){
+                if ([administrativeCityName isEqualToString:gpsCityName]) {
+                    UCity *city = [[[UCity alloc] init] autorelease];
+                    str = [NSMutableString stringWithString:@""];
+                    
+                    city.cityID = administrativeCityID;
+                    city.cityName = administrativeCityName;
+                    [str appendFormat:@"%c", pinyinFirstLetter([city.cityName characterAtIndex:0])];
+                    
+                    for (char c = 'a';c<='z';c++) {
+                        if ([str isEqualToString:[NSString stringWithFormat:@"%c",c]]) {
+                            if ([str isEqualToString:@"z"]) {
+                                city.cityType = @"c";
+                            }
+                            else {
+                                city.cityType = [NSString stringWithFormat:@"%c",c];
+                            }
+                        }
+                    }
+                    return city;
+                }
+            }
+            else {
+                NSArray *cities = [citiesInfo objectAtIndex:2];
+                for(int j = 0; j < cities.count; j++) {
+                    NSArray *cityInfo = [cities objectAtIndex:j];
+                    if ([[[cityInfo objectAtIndex:1] description] isEqualToString:gpsCityName]) {
+                        UCity *city = [[[UCity alloc] init] autorelease];
+                        str = [NSMutableString stringWithString:@""];
+                        city.cityID = [[cityInfo objectAtIndex:0] integerValue];
+                        city.cityName = [[cityInfo objectAtIndex:1] description];
+                        NSLog(@"city id:%d,city name:%@\n",city.cityID,city.cityName);
+                        [str appendFormat:@"%c",pinyinFirstLetter([city.cityName characterAtIndex:0])];
+                        
+                        for (char c = 'a';c<='z';c++) {
+                            if ([str isEqualToString:[NSString stringWithFormat:@"%c",c]]) {
+                                city.cityType = [NSString stringWithFormat:@"%c",c];
+                            }
+                        }
+                        return city;
+                    }
+                    
+                }
+            }
+
+
+    }
+    return nil;
+}
+
 - (NSMutableArray *)getAllCities {
     NSMutableArray *allArray = [NSMutableArray array];
     NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"citys" ofType:@"json"];

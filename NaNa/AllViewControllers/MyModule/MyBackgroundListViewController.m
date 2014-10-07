@@ -61,10 +61,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"更换背景";
+    
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
-    _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 60.f, 320.f, [UIScreen mainScreen].bounds.size.height-60.f)];
-    // _gridView.cellMargin = 5;
+    _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 65.f, 320.f, [UIScreen mainScreen].bounds.size.height-65.f)];
+     _gridView.cellMargin = 1;
     _gridView.numberOfRows = 4;
     _gridView.numberOfColumns = 3;
     _gridView.layoutStyle = VerticalLayout;
@@ -118,7 +120,8 @@
 {
     MMGridViewDefaultCell *cell = [[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull];
     NSDictionary *data = self.gridviewData[index];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", data[@"price"]];
+    cell.textLabel.textColor = [UIColor colorWithRed:31/255.f green:208/255.f blue:189/255.f alpha:1.f];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@分", data[@"price"]];
     [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];
     return cell;
 }

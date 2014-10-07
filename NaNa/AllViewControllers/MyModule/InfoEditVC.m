@@ -43,10 +43,10 @@ typedef enum {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             self.infoData = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
-            
         }else
         {
-
+            [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }else if([keyPath isEqualToString:@"updateUserProfile"])
     {
@@ -84,6 +84,20 @@ typedef enum {
         
         [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
     }
+    //录音
+    NSString *recordTime = [UStaticData getObjectForKey:kInfoRecoderTimeKey];
+    if (recordTime && ![recordTime isEqualToString:@"00:00"])
+    {
+        _isExistRecord = YES;
+    }
+    else
+    {
+        _isExistRecord = NO;
+    }
+    
+    _timeLabel.text = recordTime.length ? recordTime :@"";
+    _recordImageView.hidden = !_isExistRecord;
+    _timeLabel.hidden = !_isExistRecord;
     
     _infoData = infoData;
     
@@ -109,28 +123,32 @@ typedef enum {
     self = [super init];
     if (self) {
         enterPathType = type;
-        if (enterPathType == TYPE_LOGIN) {
-            [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
-        }else [self setNavLeftType:UNavBarBtnTypeBack navRightType:UINavBarBtnTypeConfirm];
+
     }
     return self;
 }
 - (void)loadView {
     [super loadView];
     self.title = STRING(@"info");
-    _defaultView.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:255/255.f alpha:1.f];
+    //_defaultView.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:255/255.f alpha:1.f];
 
-    
-    
-    NSString *recordTime = [UStaticData getObjectForKey:kInfoRecoderTimeKey];
-    if (recordTime && ![recordTime isEqualToString:@"00:00"])
-    {
-        _isExistRecord = YES;
+    if (enterPathType == TYPE_LOGIN) {
+        [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
+    }else{
+        [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
+     
+        
+        _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _confirmBtn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 35, 10, 25, 25);
+        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm"] forState:UIControlStateNormal];
+        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_press"] forState:UIControlStateHighlighted];
+        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_unuseful"] forState:UIControlStateDisabled];
+        _confirmBtn.enabled = NO;
+        [_confirmBtn addTarget:self action:@selector(completeAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.navBarView addSubview:_confirmBtn];
     }
-    else
-    {
-        _isExistRecord = NO;
-    }
+    
+
     // 头像
     if (!_headButton) {
         // 圆形按钮
@@ -156,8 +174,6 @@ typedef enum {
         _timeLabel.backgroundColor = [UIColor clearColor];
         _timeLabel.textAlignment = NSTextAlignmentCenter;
     }
-    _timeLabel.text = recordTime.length ? recordTime :@"";
-    _timeLabel.hidden = !_isExistRecord;
     [_defaultView addSubview:_timeLabel];
     
     // 录音图标
@@ -167,7 +183,7 @@ typedef enum {
         _recordImageView.frame = CGRectMake(240.0, 15.0, 30.0, 30.0);
         [_recordImageView addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
     }
-    _recordImageView.hidden = !_isExistRecord;
+    
     [_defaultView addSubview:_recordImageView];
     
     NSString *normalBagNa = @"record_btn.png";
@@ -523,7 +539,7 @@ typedef enum {
 {
     // 判断昵称是否填写
     if ([_nameTextField.text length] == 0) {
-        [self setRightItemStatus:YES];
+        [self setRightBtnStatus:YES];
         return;
     }
     
@@ -531,11 +547,25 @@ typedef enum {
     // 判断城市是否选择
     if (_city.cityID == 0 && [_city.cityName isEqualToString:@""]) {
         // 城市未选择，Alert报错
-        [self setRightItemStatus:YES];
+        [self setRightBtnStatus:YES];
         return;
     }
     
-    [self setRightItemStatus:NO];
+    [self setRightBtnStatus:NO];
+}
+-(void)setRightBtnStatus:(BOOL)isDisabled
+{
+    if (!_confirmBtn) {
+        return;
+    }
+    if (isDisabled){
+        if (_confirmBtn.enabled) _confirmBtn.enabled = NO;
+        
+        
+    }
+    else{
+        if (!_confirmBtn.enabled) _confirmBtn.enabled = YES;
+    }
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -863,8 +893,8 @@ typedef enum {
     }
     
 }
-
-- (void)rightItemPressed:(UIButton *)btn {
+-(void)completeAction:(UIButton *)btn
+{
     // 判断昵称是否填写
     if ([_nameTextField.text length] == 0) {
         // 未填写昵称，Alert报错
@@ -892,27 +922,27 @@ typedef enum {
         return;
     }
     
-//    //判断用户协议是否勾选
-//    if (!_isAgree) {
-//        [UAlertView showAlertViewWithMessage:@"请勾选已阅读并同意用户协议" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
-//        return;
-//    }
-
+    //    //判断用户协议是否勾选
+    //    if (!_isAgree) {
+    //        [UAlertView showAlertViewWithMessage:@"请勾选已阅读并同意用户协议" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+    //        return;
+    //    }
+    
     
     
     /*
-    // 提交request请求
-
-    
-    NSString *param = [NSString stringWithFormat:@"userId=%d&nickname=%@&role=%d&birthday=%@&city_id=%d", [NaNaUIManagement sharedInstance].userAccount.UserID,_nameTextField.text, roleInt, _birthday, cityId];
-    URequest *request = [[URequest alloc] initWithDomain:K_DOMAIN_NANA
-                                                withPath:k_URL_USER_UPDATE_INFO
-                                               withParam:param];
-    request.allowedAlert = NO;
-    request.allowedToast = NO;
-    request.delegate = self;
-    [URequestManager addCommonRequest:request];
-    [request release];
+     // 提交request请求
+     
+     
+     NSString *param = [NSString stringWithFormat:@"userId=%d&nickname=%@&role=%d&birthday=%@&city_id=%d", [NaNaUIManagement sharedInstance].userAccount.UserID,_nameTextField.text, roleInt, _birthday, cityId];
+     URequest *request = [[URequest alloc] initWithDomain:K_DOMAIN_NANA
+     withPath:k_URL_USER_UPDATE_INFO
+     withParam:param];
+     request.allowedAlert = NO;
+     request.allowedToast = NO;
+     request.delegate = self;
+     [URequestManager addCommonRequest:request];
+     [request release];
      */
     
     if (self.birthdayPicker == nil || [self.birthdayPicker isEqualToString:@""]) {
@@ -922,7 +952,9 @@ typedef enum {
     [self showProgressWithText:@"正在提交"];
     NSString *nickName = _nameTextField.text;
     [[NaNaUIManagement sharedInstance] updateUserProfile:nickName withRole:_roleLabel.text withCityID:cityId withBirthday:self.birthdayPicker];
+
 }
+
 
 - (NSString *)getMinutes:(double)second
 {
@@ -996,8 +1028,8 @@ typedef enum {
     _recordButtonLabel.text = normalTitle;
     _recordImageView.hidden = !_isExistRecord;
     _timeLabel.hidden = !_isExistRecord;
-    NSString *normalBagNa = _isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
-    [btn setBackgroundImage:[[UIImage imageNamed:normalBagNa] stretchableImageWithLeftCapWidth:5 topCapHeight:5] forState:UIControlStateNormal];
+    //NSString *normalBagNa = _isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
+    //[btn setBackgroundImage:[[UIImage imageNamed:normalBagNa] stretchableImageWithLeftCapWidth:5 topCapHeight:5] forState:UIControlStateNormal];
     [_recorder stop];
     
         NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
@@ -1011,8 +1043,9 @@ typedef enum {
     
     NSError *audioSessionError = nil;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryRecord error:&audioSessionError];
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&audioSessionError];
     NSMutableDictionary *recordSettings = [[NSMutableDictionary alloc] initWithCapacity:10];
+
     [recordSettings setObject:[NSNumber numberWithInt: kAudioFormatMPEG4AAC] forKey: AVFormatIDKey];//ID
     [recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];//采样率
     [recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];//通道的数目,1单声道,2立体声

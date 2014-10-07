@@ -63,7 +63,7 @@ typedef enum {
 - (void)loadView {
     [super loadView];
     
-    _defaultView.backgroundColor = [UIColor colorWithRed:240/225.0 green:245/255.0 blue:255/255.0 alpha:1.0];
+    //_defaultView.backgroundColor = [UIColor colorWithRed:240/225.0 green:245/255.0 blue:255/255.0 alpha:1.0];
     // title
     self.title = STRING(@"setting");
     [self setNavLeftType:UNavBarBtnTypeMenu navRightType:UNavBarBtnTypeTa];

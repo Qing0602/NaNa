@@ -111,12 +111,14 @@
     // 内容视图
     if (!_defaultView) {
         _defaultView = [[UIView alloc] initWithFrame:CGRectZero];
-        _defaultView.backgroundColor = [UIColor colorWithRed:240/225.0 green:245/255.0 blue:255/255.0 alpha:1.0];
+        //_defaultView.backgroundColor = [UIColor colorWithRed:240/225.0 green:245/255.0 blue:255/255.0 alpha:1.0];
+        _defaultView.backgroundColor = [self colorWithHexString:@"ffffff"];
     }
     _defaultView.frame = CGRectMake(0,
                                     CGRectGetMaxY(_navBarView.frame),
                                     screenWidth,
                                     CGRectGetHeight(self.view.frame) - CGRectGetMaxY(_navBarView.frame));
+    
     [self.view insertSubview:_defaultView belowSubview:_navBarView];
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "UCityVC.h"
-
+#import "UAlertView.h"
 #define kTagBackButton  1024
 
 @interface UCityVC ()
@@ -70,7 +70,7 @@
     
     UIView *segment = [_searchCity.subviews objectAtIndex:0];
     UIImageView *bgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar.png"]];
-    bgImage.frame = CGRectMake(0,10,320,45);
+    bgImage.frame = CGRectMake(0,0,320,45);
     [segment addSubview: bgImage];
     [bgImage release];
     
@@ -131,7 +131,9 @@
     [self.view addSubview:_indexBar];
     _indexBar.delegate = self;
     _indexBar.hidden = YES;
-    [_indexBar setIndexes:[NSArray arrayWithArray:self.allArray]];
+    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:self.allArray];
+    [tempArray removeObjectAtIndex:0];
+    [_indexBar setIndexes:[NSArray arrayWithArray:tempArray]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -338,12 +340,16 @@
     UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
     cityLabel.backgroundColor = [UIColor clearColor];
     cityLabel.font = [UIFont systemFontOfSize:default_font_size_14];
+    cityLabel.textColor = [UIColor whiteColor];
     if (section > 0) {
         NSString *key = [[self.allArray objectAtIndex:section-1] objectForKey:@"cityType"];
         cityLabel.text = [key uppercaseString];
     }
     [view addSubview:cityLabel];
+
     [cityLabel release];
+    
+    
     return view;
 }
 
@@ -368,7 +374,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
-    UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 320, 30)];
+    UILabel *cityLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, 30)];
     cityLabel.backgroundColor = [UIColor clearColor];
     cityLabel.font = [UIFont systemFontOfSize:default_font_size_14];
     if (isSearchState) {
@@ -380,6 +386,16 @@
         _indexBar.hidden = NO;
         if (indexPath.section == 0) {
             cityLabel.text = GPSInfo;
+            if (![cityLabel.text isEqualToString:@"正在定位您所在的城市"] && ![cityLabel.text isEqualToString:@""]) {
+                CGSize textSize = [GPSInfo sizeWithFont:[UIFont systemFontOfSize:default_font_size_14]];
+                UILabel *gpsTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(textSize.width+30, 0, 100.f, 30)];
+                gpsTitleLabel.backgroundColor = [UIColor clearColor];
+                gpsTitleLabel.font = [UIFont systemFontOfSize:default_font_size_14];
+                gpsTitleLabel.text = @"GPS定位";
+                gpsTitleLabel.textColor = [UIColor lightGrayColor];
+                [cell addSubview:gpsTitleLabel];
+                [gpsTitleLabel release];
+            }
         }
         else {
             NSDictionary *dict = [self.allArray objectAtIndex:indexPath.section-1];
@@ -416,6 +432,18 @@
             NSArray *cityArray = [dict objectForKey:key];
             UCity *city = [cityArray objectAtIndex:indexPath.row];
             [self ULogCityID:city];
+        }else
+        {
+            if (![GPSInfo isEqualToString:@"正在定位您所在的城市"]) {
+                UCity *city = [UCity getCityByCityName:GPSInfo];
+                if (city) {
+                    [self ULogCityID:city];
+                }else
+                {
+                    [UAlertView showAlertViewWithTitle:@"错误" message:@"你所定位的城市未找到对应信息,请从列表中选择" delegate:nil cancelButton:@"确认" defaultButton:nil];
+                }
+            }
+           
         }
     }
 }
@@ -441,7 +469,7 @@
 }
 
 - (void)indexSelectionDidChange:(CMIndexBar *)IndexBar :(int)index :(NSString*)title {
-    [self.cityTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index]
+    [self.cityTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index+1]
                           atScrollPosition:UITableViewScrollPositionNone
                                   animated:NO];
 }

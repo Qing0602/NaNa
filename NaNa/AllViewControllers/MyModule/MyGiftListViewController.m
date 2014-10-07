@@ -50,10 +50,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"我的礼物";
+    
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
-    _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 60.f, 320.f, [UIScreen mainScreen].bounds.size.height-60.f)];
-   // _gridView.cellMargin = 5;
+    _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 65.f, 320.f, [UIScreen mainScreen].bounds.size.height-65.f)];
+    _gridView.cellMargin = 1;
     _gridView.numberOfRows = 4;
     _gridView.numberOfColumns = 3;
     _gridView.layoutStyle = VerticalLayout;
@@ -106,6 +108,7 @@
 - (MMGridViewCell *)gridView:(MMGridView *)gridView cellAtIndex:(NSUInteger)index
 {
     MMGridViewDefaultCell *cell = [[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull];
+    
     NSDictionary *data = self.gridviewData[index];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", data[@"source_user_nickname"]];
     [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];

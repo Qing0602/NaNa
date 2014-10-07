@@ -19,7 +19,7 @@
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#define K_DEFAULT_LABEL_HEIGHT  20
+#define K_DEFAULT_LABEL_HEIGHT  16
 #define K_DEFAULT_LABEL_INSET   0
 
 #import "MMGridViewDefaultCell.h"

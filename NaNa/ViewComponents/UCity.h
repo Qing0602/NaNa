@@ -26,5 +26,5 @@
 - (NSMutableArray *)getHotCities;
 - (NSMutableArray *)getAllCities;
 - (NSMutableArray *)getSearchedCities;
-
++(UCity *)getCityByCityName:(NSString *)gpsCityName;
 @end

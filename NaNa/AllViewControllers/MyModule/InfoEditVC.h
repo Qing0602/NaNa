@@ -90,6 +90,8 @@ typedef enum
     NSTimeInterval _sinceNowTime;
       
     NSString *_voiceUrl;
+      
+    UIButton *_confirmBtn;
 }
 
 @property (nonatomic, retain) UIButton *headButton;

@@ -68,7 +68,7 @@
 	// Do any additional setup after loading the view.
     self.title = @"她得资料";
     
-    _defaultView.backgroundColor = [UIColor whiteColor];
+    //_defaultView.backgroundColor = [UIColor whiteColor];
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     // 头像
     if (!_headButton) {

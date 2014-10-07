@@ -256,6 +256,8 @@
     }
     else
     {
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        
         PhotosModel *model = [_photosArray objectAtIndex:indexPath.index-1];
         
         image.hidden = NO;
@@ -266,7 +268,7 @@
         //NSInteger index = indexPath.index - 1;
         //NSDictionary *dic = [_photosArray objectAtIndex:index];
         if (!image) {
-            image = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
+            image = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 104, 104)] autorelease];
             image.tag = 0xfd0;
             [cell.contentView addSubview:image];
         }
@@ -281,7 +283,7 @@
         //SAFERELEASE(tempImage);
         
         if (!label) {
-            label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 80, 100, 20)] autorelease];
+            label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 88, 104, 16)] autorelease];
             label.tag =  0xfd1;
             label.font = [UIFont systemFontOfSize:12];
             label.textAlignment = NSTextAlignmentCenter;
