@@ -8,16 +8,18 @@
 
 #import "TaInfoVC.h"
 #import "NaNaUserProfileModel.h"
+#import <AVFoundation/AVFoundation.h>
 #define kInfoEditCellHeight         40.0
 #define kInfoEditCellShowHeight     30.0
 #define kInfoEditCellSildWidth      15.0
 #define kInfoEditCellShowWidth      290.0
 #define kInfoEditCellNumber         4
 
-@interface TaInfoVC ()
+@interface TaInfoVC ()<AVAudioPlayerDelegate>
 {
     NSInteger targetID;
     NSString *_voiceUrl;
+    AVAudioPlayer *_audioPlayer;
 }
 @end
 
@@ -87,15 +89,17 @@
     {
         _playButton = [[UIButton alloc] initWithFrame:CGRectMake(105.0, CGRectGetMaxY(_headButton.frame) + 10.0, 110.0, 30.0)];
         [_playButton setBackgroundImage:[UIImage imageNamed:@"record_btn.png"] forState:UIControlStateNormal];
-        [_playButton setImage:[UIImage imageNamed:@"btn_voice_play.png"] forState:UIControlStateNormal];
+        [_playButton setImage:[UIImage imageNamed:@"btn_voice_play"] forState:UIControlStateNormal];
+        _playButton.tag = 1;
+        [_playButton setImageEdgeInsets:UIEdgeInsetsMake(7.f, 75.f, 7.f, 20.f)];
         [_playButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [_playButton addTarget:self action:@selector(playTaSound) forControlEvents:UIControlEventTouchUpInside];
+        [_playButton addTarget:self action:@selector(playTaSound:) forControlEvents:UIControlEventTouchUpInside];
     }
     [_defaultView addSubview:_playButton];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 5.0, 110.0, 20.0)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 5.0, 70.0, 20.0)];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-    label.textAlignment = NSTextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentRight;
     label.textColor = [UIColor whiteColor];
     label.text = @"她的声音";
     [_playButton addSubview:label];
@@ -262,11 +266,49 @@
     return  [NSString stringWithFormat:@"%d", age];
     
 }
-- (void)playTaSound
+- (void)playTaSound:(UIButton *)sender
 {
-    ULog(@"播放");
-}
 
+    if (sender.tag == 1) {
+        ULog(@"播放");
+        [_playButton setImage:[UIImage imageNamed:@"btn_voice_stop"] forState:UIControlStateNormal];
+        
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+        
+        NSURL *url = [NSURL URLWithString:_voiceUrl];
+        
+        NSError *audioPlayerError = nil;
+        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&audioPlayerError];
+        _audioPlayer.numberOfLoops = 0;
+        _audioPlayer.volume = 1.0f;
+        _audioPlayer.delegate = self;
+        if (_audioPlayer.prepareToPlay)
+        {
+            [_audioPlayer play];
+            ULog(@"playing");
+        }
+        else
+        {
+            int errorCode = CFSwapInt32HostToBig ([audioPlayerError code]);
+            ULog(@"Error: %@ [%4.4s])" , [audioPlayerError localizedDescription], (char*)&errorCode);
+        }
+        sender.tag = 2;
+    }else
+    {
+        ULog(@"停止");
+        [_playButton setImage:[UIImage imageNamed:@"btn_voice_play"] forState:UIControlStateNormal];
+        [_audioPlayer stop];
+        sender.tag = 1;
+    }
+    
+
+    
+}
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [_playButton setImage:[UIImage imageNamed:@"btn_voice_play"] forState:UIControlStateNormal];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
