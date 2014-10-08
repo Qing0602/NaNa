@@ -305,6 +305,8 @@
         
         if (![model.imageDes isEqualToString:@""]) {
             label.text = model.imageDes;
+            label.hidden = NO;
+            labelBG.hidden = NO;
         }else
         {
             label.hidden = YES;
