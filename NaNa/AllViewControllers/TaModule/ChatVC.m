@@ -14,6 +14,7 @@
 #import "SVPullToRefresh.h"
 #import "RoundRectEGOImageButton.h"
 #import "PresentGiftViewController.h"
+#import "CircleImageButton.h"
 
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
@@ -227,7 +228,7 @@
                 NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                 [msg coverJson:messagesOfJson[i]];
                 UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
-                msg.height = returnView.frame.size.height + 80.0f;
+                msg.height = returnView.frame.size.height + 50.0f;
                 [msgArray addObject:msg];
             }
             self.messageArray = [[NSArray alloc] initWithArray:msgArray];
@@ -278,7 +279,7 @@
                 NaNaMessageModel *model = [[NaNaMessageModel alloc] init];
                 [model coverJson:m];
                 UIView *returnView =  [self assembleMessageAtIndex:model.content from:model.isBlongMe];
-                model.height = returnView.frame.size.height + 80.0f;
+                model.height = returnView.frame.size.height + 50.0f;
                 [temp addObject:model];
             }
             [temp addObjectsFromArray:self.messageArray];
@@ -538,7 +539,7 @@
     model.isBlongMe = YES;
     model.state = kSending;
     UIView *returnView =  [self assembleMessageAtIndex:message from:YES];
-    model.height = returnView.frame.size.height + 80.0f;
+    model.height = returnView.frame.size.height + 50.0f;
     NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:self.sendingMessageArray];
     [temp addObject:model];
     self.sendingMessageArray = [[NSArray alloc] initWithArray:temp];
@@ -627,7 +628,7 @@
 		return 30;
 	}else{
         NaNaMessageModel *model = self.meesageAndDate[indexPath.row];
-        return model.height + 10.0f;
+        return model.height;
 	}
 }
 
@@ -750,10 +751,10 @@
     UIView *cellView = [[UIView alloc] initWithFrame:CGRectZero];
     cellView.backgroundColor = [UIColor clearColor];
     // 气泡
-	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"bubble_self":@"bubble_friend" ofType:@"png"]];
+	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"bubble_self2":@"bubble_friend2" ofType:@"png"]];
 	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:20 topCapHeight:14]];
     // 头像
-    RoundRectEGOImageButton *headImageView = [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"]];
+    CircleImageButton *headImageView = [[CircleImageButton alloc] init];//[[CircleImageButton alloc]  initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"]];
 //    [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];
     
     if(fromSelf){
@@ -764,7 +765,7 @@
         // 所有内容
         cellView.frame = CGRectMake(265.0f-bubbleImageView.frame.size.width, 0.0f,bubbleImageView.frame.size.width + 50.0f, bubbleImageView.frame.size.height+30.0f);
         // 头像
-        headImageView.frame = CGRectMake(bubbleImageView.frame.size.width, 0.0f, 50.0f, 50.0f);
+        headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(bubbleImageView.frame.size.width, 0.0f, 50.0f, 50.0f)];
         [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
     }else{
         // 内容
@@ -774,7 +775,7 @@
 		// 所有内容
         cellView.frame = CGRectMake(0.0f, 0.0f, bubbleImageView.frame.size.width + 50.0f,bubbleImageView.frame.size.height + 30.0f);
         // 头像
-        headImageView.frame = CGRectMake(0.0f,0.0f, 50.0f, 50.0f);
+        headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(0.0f,0.0f, 50.0f, 50.0f)];
         [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
     }
     
