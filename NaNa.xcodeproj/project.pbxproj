@@ -2627,11 +2627,6 @@
 				8729E95C18840034005CAB4F /* 47@2x.png in Resources */,
 				8729E9A418840034005CAB4F /* 8.png in Resources */,
 				8729E99D18840034005CAB4F /* 77.png in Resources */,
-<<<<<<< HEAD
-=======
-				747F2D9019CFFB31003C53DF /* navbar_confirm_press@2x.png in Resources */,
-				19825C5219E458FF00005090 /* bubble_friend2.png in Resources */,
->>>>>>> 716c5f3489fe2fc8992a1563fb29f74c29fabe58
 				8729E9BC18840034005CAB4F /* 90@2x.png in Resources */,
 				8729E96D18840034005CAB4F /* 55.png in Resources */,
 				8729E97F18840034005CAB4F /* 63.png in Resources */,
