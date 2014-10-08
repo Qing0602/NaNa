@@ -252,7 +252,7 @@ typedef enum {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0,
                                                                    _headButton.frame.origin.y * 2 + _headButton.frame.size.height,
-                                                                   self.defaultView.frame.size.width-10,
+                                                                   self.defaultView.frame.size.width-5,
                                                                    kInfoEditCellHeight * kInfoEditCellNumber)
                                                   style:UITableViewStylePlain];
         _tableView.delegate = self;

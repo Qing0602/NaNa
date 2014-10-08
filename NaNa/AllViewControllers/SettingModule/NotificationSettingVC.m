@@ -138,7 +138,7 @@ typedef enum {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0,
                                                                    20.0f,
-                                                                   self.defaultView.frame.size.width-10.f,
+                                                                   self.defaultView.frame.size.width-5.f,
                                                                    self.defaultView.frame.size.height)
                                                   style:UITableViewStylePlain];
         _tableView.delegate = self;

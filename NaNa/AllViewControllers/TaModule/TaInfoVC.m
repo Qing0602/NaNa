@@ -17,6 +17,7 @@
 @interface TaInfoVC ()
 {
     NSInteger targetID;
+    NSString *_voiceUrl;
 }
 @end
 
@@ -86,6 +87,7 @@
     {
         _playButton = [[UIButton alloc] initWithFrame:CGRectMake(105.0, CGRectGetMaxY(_headButton.frame) + 10.0, 110.0, 30.0)];
         [_playButton setBackgroundImage:[UIImage imageNamed:@"record_btn.png"] forState:UIControlStateNormal];
+        [_playButton setImage:[UIImage imageNamed:@"btn_voice_play.png"] forState:UIControlStateNormal];
         [_playButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(playTaSound) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -238,6 +240,7 @@
         //_city.cityID = model.userCityID;
         _cityLabel.text = model.userCityName;
         _ageLabel.text = [self transformIntToAge:model.userBirthday];
+        _voiceUrl = model.voiceURL;
         [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
         [roleArray release];
     }

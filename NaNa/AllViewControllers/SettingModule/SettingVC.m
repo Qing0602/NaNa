@@ -71,7 +71,7 @@ typedef enum {
     // 填充资料的tableView
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0, 25.0f,
-                                                                   _defaultView.frame.size.width-10.f,
+                                                                   _defaultView.frame.size.width-5.f,
                                                                    kSettingEditCellHeight * kSettingEditCellNumber)
                                                   style:UITableViewStylePlain];
         _tableView.delegate = self;
