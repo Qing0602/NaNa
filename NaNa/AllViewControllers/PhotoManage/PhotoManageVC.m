@@ -234,6 +234,7 @@
     UIImageView *image = (UIImageView *)[cell.contentView viewWithTag:0xfd0];
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:0xfd1];
     UILabel *addLabel = (UILabel *)[cell.contentView viewWithTag:0xfd2];
+    UIView *labelBG = (UIView *)[cell.contentView viewWithTag:0xfd3];
     if (indexPath.index == 0) {
         cell.contentView.backgroundColor = [UIColor blackColor];
         
@@ -281,6 +282,13 @@
         }
         
         //SAFERELEASE(tempImage);
+        if (!labelBG) {
+            labelBG = [[[UIView alloc] initWithFrame:CGRectMake(0, 88, 104, 16)] autorelease];
+            labelBG.alpha = 0.7;
+            labelBG.backgroundColor = [UIColor blackColor];
+            labelBG.tag = 0xfd3;
+            [cell.contentView addSubview:labelBG];
+        }
         
         if (!label) {
             label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 88, 104, 16)] autorelease];
@@ -288,12 +296,23 @@
             label.font = [UIFont systemFontOfSize:12];
             label.textAlignment = NSTextAlignmentCenter;
             //label.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1.0];
-            label.backgroundColor = [UIColor blackColor];
+            label.backgroundColor = [UIColor clearColor];
             label.textColor = [UIColor whiteColor];
+            [cell.contentView addSubview:label];
         }
-        [cell.contentView addSubview:label];
+        
+       
+        
+        if (![model.imageDes isEqualToString:@""]) {
+            label.text = model.imageDes;
+        }else
+        {
+            label.hidden = YES;
+            labelBG.hidden = YES;
+        }
+        
 //        label.text = [NSString stringWithFormat:@"你好,这是第%d照片",indexPath.index];
-        label.text = model.imageDes;
+        
     }
     return cell;
 }

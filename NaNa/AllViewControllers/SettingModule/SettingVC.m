@@ -166,20 +166,21 @@ typedef enum {
         }
         case SettingEditRowLock: {
             [titleLabel setText:STRING(@"lock")];
-            UILabel *pwdLockStatus = [[UILabel alloc] init];
+            
             NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
             if (![lockData[PWD_LOCK_STATUS] boolValue]) {
+                UILabel *pwdLockStatus = [[[UILabel alloc] init] autorelease];
                 pwdLockStatus.backgroundColor = [UIColor clearColor];
                 pwdLockStatus.frame = CGRectMake(kSettingEditCellShowWidth-48.f, 5.0, 30, kSettingEditCellShowHeight);
                 pwdLockStatus.textColor = default_color_empty_gray;
+                pwdLockStatus.tag = 1001;
                 pwdLockStatus.font = [UIFont boldSystemFontOfSize:default_font_size_14];
                 pwdLockStatus.text = @"关闭";
                 [cell.contentView addSubview:pwdLockStatus];
             }else
             {
-                if ([cell.contentView.subviews containsObject:pwdLockStatus]) {
-                    [pwdLockStatus removeFromSuperview];
-                }
+                UILabel *tempPwdLockLabel = (UILabel *)[cell.contentView viewWithTag:1001];
+                if (tempPwdLockLabel) [tempPwdLockLabel removeFromSuperview];
             }
 
             

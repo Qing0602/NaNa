@@ -52,6 +52,10 @@
         cachePwd = pwdInfo[PWD_LOCK_DATA];
     }
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [hiddenInput becomeFirstResponder];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -119,7 +123,7 @@
         [self.defaultView addSubview:passInput];
         }
     
-    [hiddenInput becomeFirstResponder];
+    
     
     switch (verifyType) {
         case VERIFY_TYPE_SETTING:
@@ -259,9 +263,10 @@
         pwdInfo = [NSDictionary dictionaryWithDictionary:tempPwd];
     }else
     {
-        pwdInfo = [[NSDictionary alloc] initWithObjectsAndKeys:cachePwd,PWD_LOCK_DATA,[NSNumber numberWithBool:YES],PWD_LOCK_STATUS, nil];
+        pwdInfo = [[NSDictionary alloc] initWithObjectsAndKeys:cachePwd,PWD_LOCK_DATA,[NSNumber numberWithBool:NO],PWD_LOCK_STATUS, nil];
     }
     [[NSUserDefaults standardUserDefaults] setObject:pwdInfo forKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     NSDictionary *pwdInfos = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
     NSLog(@"%@",pwdInfos);
