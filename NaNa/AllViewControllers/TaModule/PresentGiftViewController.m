@@ -68,6 +68,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"赠送礼物";
+    
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
     _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 60.f, 320.f, [UIScreen mainScreen].bounds.size.height-60.f)];
@@ -126,6 +128,7 @@
     MMGridViewDefaultCell *cell = [[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull];
     NSDictionary *data = self.gridviewData[index];
     cell.textLabel.text = [NSString stringWithFormat:@"%@       %@", data[@"title"],data[@"price"]];
+    
     [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];
     return cell;
 }

@@ -110,6 +110,7 @@
     MMGridViewDefaultCell *cell = [[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull];
     
     NSDictionary *data = self.gridviewData[index];
+    cell.textLabel.textColor = [UIColor colorWithRed:31/255.f green:208/255.f blue:189/255.f alpha:1.f];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", data[@"source_user_nickname"]];
     [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];
     return cell;

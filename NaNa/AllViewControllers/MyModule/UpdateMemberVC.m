@@ -7,7 +7,7 @@
 //
 
 #import "UpdateMemberVC.h"
-
+#import "UAlertView.h"
 @interface UpdateMemberVC ()
 
 @end
@@ -186,6 +186,7 @@
 #pragma mark - button
 - (void)okButtonClick:(UIButton *)btn {
     ULog(@"okButtonClick");
+    [UAlertView showAlertViewWithTitle:nil message:@"该服务即将上线" delegate:nil cancelButton:@"确定" defaultButton:nil];
 }
 
 - (void)leftItemPressed:(UIButton *)btn {
