@@ -674,7 +674,8 @@
         [dateL setText:timeString];
         dateL.frame = CGRectMake((320-[timeString sizeWithFont:dateL.font].width)/2-5, 5, [timeString sizeWithFont:dateL.font].width+10, 20);
         dateL.layer.cornerRadius = 5;
-
+        dateL.layer.masksToBounds = YES;
+        dateL.textColor = [UIColor whiteColor];
 	}else{
         if (!chatCell){
             chatCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier];
