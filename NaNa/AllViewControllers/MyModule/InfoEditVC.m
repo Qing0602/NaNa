@@ -893,6 +893,10 @@ typedef enum {
     }
     
 }
+- (void)rightItemPressed:(UIButton *)btn
+{
+    [self completeAction:btn];
+}
 -(void)completeAction:(UIButton *)btn
 {
     // 判断昵称是否填写
