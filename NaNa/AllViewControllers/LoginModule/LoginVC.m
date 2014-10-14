@@ -95,7 +95,7 @@
     UIView * buttonView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 110)];
     UIButton * button=[UIButton buttonWithType:UIButtonTypeCustom];
     button.frame =CGRectMake(20, 10, 60, 60);;
-    [button setTitle:mTitle forState:UIControlStateNormal];
+//    [button setTitle:mTitle forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:selectedImage] forState:UIControlStateSelected];
     button.tag=tag;
