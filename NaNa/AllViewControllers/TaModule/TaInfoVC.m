@@ -69,7 +69,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"她得资料";
+    self.title = @"她的资料";
     
     //_defaultView.backgroundColor = [UIColor whiteColor];
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
