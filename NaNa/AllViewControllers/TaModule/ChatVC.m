@@ -674,7 +674,8 @@
         [dateL setText:timeString];
         dateL.frame = CGRectMake((320-[timeString sizeWithFont:dateL.font].width)/2-5, 5, [timeString sizeWithFont:dateL.font].width+10, 20);
         dateL.layer.cornerRadius = 5;
-
+        dateL.layer.masksToBounds = YES;
+        dateL.textColor = [UIColor whiteColor];
 	}else{
         if (!chatCell){
             chatCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier];
@@ -752,7 +753,7 @@
     cellView.backgroundColor = [UIColor clearColor];
     // 气泡
 	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"bubble_self2":@"bubble_friend2" ofType:@"png"]];
-	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:20 topCapHeight:14]];
+	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:15.0f topCapHeight:20.0f]];
     // 头像
     CircleImageButton *headImageView = [[CircleImageButton alloc] init];//[[CircleImageButton alloc]  initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"]];
 //    [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];

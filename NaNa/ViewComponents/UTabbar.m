@@ -64,6 +64,7 @@
         btn.bgImageView.image = [UIImage imageNamed:[imageArray objectAtIndex:i]];
         btn.bgImageView.highlightedImage = [UIImage imageNamed:[selectImageArray objectAtIndex:i]];
         btn.titleLabel.text = [titleArray objectAtIndex:i];
+        btn.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0f];
         [btn addTarget:self action:@selector(tabbuttonDidSelected:) forControlEvents:UIControlEventTouchUpInside];
         [btn setTag:i];
         [_tabbarBtnArray addObject:btn];
