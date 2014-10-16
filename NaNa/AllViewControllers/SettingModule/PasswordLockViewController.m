@@ -8,6 +8,7 @@
 
 #import "PasswordLockViewController.h"
 #import "AppDelegate.h"
+#import "UAlertView.h"
 @interface PasswordLockViewController ()
 {
     NSInteger verifyType;
@@ -180,8 +181,9 @@
                             break;
                         case VERIFY_TYPE_VERIFY:
                         {
-                            [[NSNotificationCenter defaultCenter] postNotificationName:VERIFYSUCCESS_KEY object:nil];
-                            [self.navigationController popViewControllerAnimated:YES];
+//                            [[NSNotificationCenter defaultCenter] postNotificationName:VERIFYSUCCESS_KEY object:nil];
+//                            [self.navigationController popViewControllerAnimated:YES];
+                            [APP_DELEGATE loadMainView];
                         }
                             break;
                             
@@ -192,6 +194,7 @@
                 {
                     NSLog(@"wrong pwd");
                     [self clearWhenPwdWrong];
+                    [UAlertView showAlertViewWithTitle:@"错误" message:@"密码输入错误" delegate:nil cancelButton:@"确定" defaultButton:nil];
                 }
                 
 
@@ -233,7 +236,7 @@
 -(void)clearWhenPwdWrong
 {
     pwdNumbers = 0;
-    cachePwd = @"";
+    
     hiddenInput.text = @"";
     for (UITextField *pwdInput in self.pwdTextFields) {
         pwdInput.text = @"";
@@ -244,9 +247,15 @@
         {
             title.text = @"请输入密码";
             numberOfEnter.text = @"第一次输入";
+            cachePwd = @"";
         }
             break;
-            
+        case VERIFY_TYPE_CHANGE:
+        {
+            numberOfEnter.text = @"请输入当前密码";
+            cachePwd = @"";
+        }
+            break;
         default:
         {
             numberOfEnter.text = @"请输入当前密码";
@@ -263,7 +272,7 @@
         pwdInfo = [NSDictionary dictionaryWithDictionary:tempPwd];
     }else
     {
-        pwdInfo = [[NSDictionary alloc] initWithObjectsAndKeys:cachePwd,PWD_LOCK_DATA,[NSNumber numberWithBool:NO],PWD_LOCK_STATUS, nil];
+        pwdInfo = [[NSDictionary alloc] initWithObjectsAndKeys:cachePwd,PWD_LOCK_DATA,[NSNumber numberWithBool:YES],PWD_LOCK_STATUS, nil];
     }
     [[NSUserDefaults standardUserDefaults] setObject:pwdInfo forKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -303,6 +312,9 @@
 }
 #pragma mark - Nav
 - (void)leftItemPressed:(UIButton *)btn {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (verifyType == VERIFY_TYPE_VERIFY) {
+        [APP_DELEGATE loadLoginView];
+    }else [self.navigationController popViewControllerAnimated:YES];
+    
 }
 @end
