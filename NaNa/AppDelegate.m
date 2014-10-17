@@ -99,6 +99,13 @@ NSInteger K_WAKE_UP_ID = 0;
                 
                 [pwdLock release];
             }else [self loadMainView];
+        }else
+        {
+            LoginVC * loginVc=[[LoginVC alloc] init];
+            _navRootController=[_navRootController initWithRootViewController:loginVc];
+            _navRootController.navigationBarHidden = YES;
+            [self.window setRootViewController:_navRootController];
+            SAFERELEASE(_navRootController);
         }
 
         //[self loadMainView];
