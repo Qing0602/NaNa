@@ -9,7 +9,7 @@
 #import "PasswordLockVC.h"
 
 @interface PasswordLockVC ()
-
+@property (nonatomic,strong)UITextView * textView2;
 @end
 
 @implementation PasswordLockVC
@@ -53,7 +53,7 @@ UITextField * hiddenInput;
     [textView setBackgroundColor:[UIColor clearColor]];
     [textView setText:@"请输入密码"];
     [textView setEditable:NO];
-    [textView setFont:BoldFont(15)];
+    [textView setFont:[UIFont fontWithName:@"AppleGothic" size:15.0f]];
     [self.defaultView addSubview:textView];
     [textView release];
     _statusTextView=[[UITextView alloc]  initWithFrame:CGRectMake(0, textView.frame.origin.y+
@@ -103,18 +103,18 @@ UITextField * hiddenInput;
     }
     self._passwordArray=[NSArray arrayWithArray:mpasswordInputs];
     
-    UITextView * textView2=[[UITextView alloc]
+    self.textView2=[[UITextView alloc]
                             initWithFrame:CGRectMake(0, _statusTextView.frame.origin.y+
                                                         _statusTextView.frame.size.height+
                                                                         50.0+61, 320,80)];
-    [textView2 setEditable:NO];
-    [textView2 setTextAlignment:NSTextAlignmentCenter];
-    [textView2 setBackgroundColor:[UIColor clearColor]];
-    [textView2 setTextColor:@"#d8d8d8".color];
-    [textView2 setText:@"设置密码锁，\n保护你在NANA的小秘密"];
-    [textView2 setFont:NormalFont(13)];
-    [self.defaultView addSubview:textView2];
-    [textView2 release];
+    [self.textView2 setEditable:NO];
+    [self.textView2 setTextAlignment:NSTextAlignmentCenter];
+    [self.textView2 setBackgroundColor:[UIColor clearColor]];
+    [self.textView2 setTextColor:@"#d8d8d8".color];
+    [self.textView2 setText:@"设置密码锁，\n保护你在NANA的小秘密"];
+    [self.textView2 setFont:[UIFont fontWithName:@"AppleGothic" size:13.0f]];
+    [self.defaultView addSubview:self.textView2];
+    [self.textView2 release];
 
     
        
@@ -142,6 +142,7 @@ UITextField * hiddenInput;
 {
     UITextField * textField=(UITextField *)sender;
     NSString * passwd=textField.text;
+    self.textView2.hidden = NO;
     for (int pos=0;pos<4; pos++) {
         UITextField * passField=[self._passwordArray objectAtIndex:pos];
         if(pos<textField.text.length)
@@ -153,6 +154,7 @@ UITextField * hiddenInput;
     {
         [self Verify:passwd];
         _statusTextView.text = @"再次输入";
+        self.textView2.hidden = YES;
         for (int i =0; i < self._passwordArray.count; i++) {
             UITextField *inputTextfield = [self._passwordArray objectAtIndex:i];
             inputTextfield.text = @"";
