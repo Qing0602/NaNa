@@ -91,7 +91,7 @@
         [NSURLConnection sendSynchronousRequest: neededRequest returningResponse: &response error: nil];
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             NSDictionary *dictionary = [response allHeaderFields];
-            NSString *userID = [dictionary objectForKey:@"user_id"];
+            //NSString *userID = [dictionary objectForKey:@"user_id"];
 #warning 登录成功后缓存数据
             [APP_DELEGATE loadMainView];
         }

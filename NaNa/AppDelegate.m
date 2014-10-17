@@ -86,7 +86,7 @@ NSInteger K_WAKE_UP_ID = 0;
 -(void)loadSignView
 {
     UINavigationController * _navRootController = [UINavigationController alloc];
-    if(![[NaNaUIManagement sharedInstance].userAccount.seckey isEqualToString:@""] && [NaNaUIManagement sharedInstance].userAccount)
+    if(![[NaNaUIManagement sharedInstance].userAccount.seckey isEqualToString:@""] && [NaNaUIManagement sharedInstance].userAccount.UserID)
     {
         NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
         if (lockData) {
@@ -101,11 +101,7 @@ NSInteger K_WAKE_UP_ID = 0;
             }else [self loadMainView];
         }else
         {
-            LoginVC * loginVc=[[LoginVC alloc] init];
-            _navRootController=[_navRootController initWithRootViewController:loginVc];
-            _navRootController.navigationBarHidden = YES;
-            [self.window setRootViewController:_navRootController];
-            SAFERELEASE(_navRootController);
+            [self loadMainView];
         }
 
         //[self loadMainView];
