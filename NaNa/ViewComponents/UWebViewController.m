@@ -81,21 +81,21 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (webView != _myWebView) { return YES; }
-    NSString* rurl=[[request URL] absoluteString];
-    NSRange containStrRange = [rurl rangeOfString:@"?code=" options:NSCaseInsensitiveSearch];
-    if (containStrRange.length > 0) {
-        //有当前关键字结果
-        NSURL *url = [NSURL URLWithString:rurl];
-        NSURLRequest *neededRequest = [NSURLRequest requestWithURL: url];
-        NSHTTPURLResponse *response;
-        [NSURLConnection sendSynchronousRequest: neededRequest returningResponse: &response error: nil];
-        if ([response respondsToSelector:@selector(allHeaderFields)]) {
-            NSDictionary *dictionary = [response allHeaderFields];
-            NSString *userID = [dictionary objectForKey:@"user_id"];
-#warning 登录成功后缓存数据
-            [APP_DELEGATE loadMainView];
-        }
-    }
+//    NSString* rurl=[[request URL] absoluteString];
+//    NSRange containStrRange = [rurl rangeOfString:@"?code=" options:NSCaseInsensitiveSearch];
+//    if (containStrRange.length > 0) {
+//        //有当前关键字结果
+//        NSURL *url = [NSURL URLWithString:rurl];
+//        NSURLRequest *neededRequest = [NSURLRequest requestWithURL: url];
+//        NSHTTPURLResponse *response;
+//        [NSURLConnection sendSynchronousRequest: neededRequest returningResponse: &response error: nil];
+//        if ([response respondsToSelector:@selector(allHeaderFields)]) {
+//            NSDictionary *dictionary = [response allHeaderFields];
+//            NSString *userID = [dictionary objectForKey:@"user_id"];
+//#warning 登录成功后缓存数据
+//            [APP_DELEGATE loadMainView];
+//        }
+//    }
     if ([rurl hasPrefix:@"pageTo://"]) {
         //如果是自己定义的协议, 再截取协议中的方法和参数, 判断无误后在这里手动调用oc方法
         UWebViewController *controller = [[[UWebViewController alloc] init] autorelease];
