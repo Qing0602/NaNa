@@ -81,7 +81,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (webView != _myWebView) { return YES; }
-//    NSString* rurl=[[request URL] absoluteString];
+    NSString* rurl=[[request URL] absoluteString];
 //    NSRange containStrRange = [rurl rangeOfString:@"?code=" options:NSCaseInsensitiveSearch];
 //    if (containStrRange.length > 0) {
 //        //有当前关键字结果
