@@ -72,8 +72,8 @@
     
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
-    _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 60.f, 320.f, [UIScreen mainScreen].bounds.size.height-60.f)];
-    // _gridView.cellMargin = 5;
+    _gridView = [[MMGridView alloc] initWithFrame:CGRectMake(0.f, 64.f, 320.f, [UIScreen mainScreen].bounds.size.height-64.f)];
+    _gridView.cellMargin = 1;
     _gridView.numberOfRows = 4;
     _gridView.numberOfColumns = 3;
     _gridView.layoutStyle = VerticalLayout;
@@ -83,7 +83,7 @@
     
     [[NaNaUIManagement sharedInstance] getGiftStoreList];
     
-    
+
     // Do any additional setup after loading the view.
 }
 
@@ -128,7 +128,7 @@
     MMGridViewDefaultCell *cell = [[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull];
     NSDictionary *data = self.gridviewData[index];
     cell.textLabel.text = [NSString stringWithFormat:@"%@       %@", data[@"title"],data[@"price"]];
-    
+    cell.textLabel.textColor = [UIColor colorWithRed:31/255.f green:208/255.f blue:189/255.f alpha:1.f];
     [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];
     return cell;
 }

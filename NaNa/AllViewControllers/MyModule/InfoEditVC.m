@@ -858,6 +858,7 @@ typedef enum {
 - (void)uGetCityNameFinished:(NSNotification *)notify {
     if (notify.object) {
         _cityLabel.text = notify.object;
+        _city = [UCity getCityByCityName:notify.object];
     }
 }
 #pragma mark - Resquest

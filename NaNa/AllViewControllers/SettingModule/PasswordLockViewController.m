@@ -88,7 +88,7 @@
     [textViewPwdLock setTextAlignment:NSTextAlignmentCenter];
     [textViewPwdLock setBackgroundColor:[UIColor clearColor]];
     [textViewPwdLock setTextColor:@"#d8d8d8".color];
-    [textViewPwdLock setText:@"设置密码锁，\n保护你在NANA的小秘密"];
+    [textViewPwdLock setText:@"设置密码锁，保护你在\nNANA的小秘密"];
     [textViewPwdLock setFont:NormalFont(13)];
     [self.defaultView addSubview:textViewPwdLock];
     
@@ -129,7 +129,7 @@
     switch (verifyType) {
         case VERIFY_TYPE_SETTING:
         {
-            title.text = @"请输入密码";
+            title.text = @"请设置密码";
             numberOfEnter.text = @"第一次输入";
         }
             break;
