@@ -138,18 +138,21 @@ typedef enum {
     switch (indexPath.row) {
         case SettingEditRowVisitor: {
             ULog(@"SettingEditRowVisitor");
+            [NaNaUIManagement sharedInstance].visitorOfNew = [NSNumber numberWithInt:0];
             VisitorVC  *controller = [[[VisitorVC alloc] init] autorelease];
             [self pushPage:controller];
             break;
         }
         case SettingEditRowLove: {
             ULog(@"SettingEditRowLove");
+            [NaNaUIManagement sharedInstance].lovedOfNew = [NSNumber numberWithInt:0];
             LikeVC *controller = [[[LikeVC alloc] init] autorelease];
             [self pushPage:controller];
             break;
         }
         case SettingEditRowFriend: {
             ULog(@"SettingEditRowFriend");
+            [NaNaUIManagement sharedInstance].friendsOfNew = [NSNumber numberWithInt:0];
             FriendVC *controller = [[[FriendVC alloc] init] autorelease];
             [self pushPage:controller];
             break;
