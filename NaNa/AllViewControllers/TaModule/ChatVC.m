@@ -766,17 +766,17 @@
         // 所有内容
         cellView.frame = CGRectMake(265.0f-bubbleImageView.frame.size.width, 0.0f,bubbleImageView.frame.size.width + 50.0f, bubbleImageView.frame.size.height+30.0f);
         // 头像
-        headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(bubbleImageView.frame.size.width, 0.0f, 50.0f, 50.0f)];
+        headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(bubbleImageView.frame.size.width, 0.0f, 57.0f, 57.0f)];
         [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
     }else{
         // 内容
-        returnView.frame= CGRectMake(65.0f, 15.0f, returnView.frame.size.width, returnView.frame.size.height);
+        returnView.frame= CGRectMake(72.0f, 22.0f, returnView.frame.size.width, returnView.frame.size.height);
         // 气泡
-        bubbleImageView.frame = CGRectMake(50.0f, 10.0f, returnView.frame.size.width + 30.0f, returnView.frame.size.height+10.0f);
+        bubbleImageView.frame = CGRectMake(57.0f, 17.0f, returnView.frame.size.width + 37.0f, returnView.frame.size.height+10.0f);
 		// 所有内容
         cellView.frame = CGRectMake(0.0f, 0.0f, bubbleImageView.frame.size.width + 50.0f,bubbleImageView.frame.size.height + 30.0f);
         // 头像
-        headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(0.0f,0.0f, 50.0f, 50.0f)];
+        headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(0.0f,0.0f, 57.0f, 57.0f)];
         [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
     }
     
