@@ -44,6 +44,7 @@
         [temdic setValue:[NSNumber numberWithBool:tempLockStatus] forKey:PWD_LOCK_STATUS];
         lockData = [NSDictionary dictionaryWithDictionary:temdic];
         [[NSUserDefaults standardUserDefaults] setObject:lockData forKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }else
     {
         NSLog(@"something worng");
