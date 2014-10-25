@@ -103,9 +103,10 @@
     [buttonView addSubview:button];
     
     
-    UILabel * btnLable=[[UILabel alloc] initWithFrame:CGRectMake(0, 80, 100, 20)];
+    UILabel * btnLable=[[UILabel alloc] initWithFrame:CGRectMake(0, 70, 100, 20)];
     [btnLable setBackgroundColor:[UIColor clearColor]];
     btnLable.textAlignment=UITextAlignmentCenter;
+    btnLable.font = [UIFont fontWithName:@"AppleGothic" size:14.0f];
     btnLable.text=mTitle;
     [btnLable setTextColor:[UIColor grayColor]];
     [buttonView addSubview:btnLable];
