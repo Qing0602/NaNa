@@ -755,14 +755,13 @@
 	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"bubble_self2":@"bubble_friend2" ofType:@"png"]];
 	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:15.0f topCapHeight:20.0f]];
     // 头像
-    CircleImageButton *headImageView = [[CircleImageButton alloc] init];//[[CircleImageButton alloc]  initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"]];
-//    [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];
+    CircleImageButton *headImageView = [[CircleImageButton alloc] init];
     
     if(fromSelf){
         // 内容
-        returnView.frame= CGRectMake(15.0f, 15.0f, returnView.frame.size.width, returnView.frame.size.height);
+        returnView.frame= CGRectMake(8.0f, 20.0f, returnView.frame.size.width, returnView.frame.size.height);
         // 气泡
-        bubbleImageView.frame = CGRectMake(0.0f, 10.0f, returnView.frame.size.width + 30.0f, returnView.frame.size.height + 10.0f);
+        bubbleImageView.frame = CGRectMake(-7.0f, 15.0f, returnView.frame.size.width + 30.0f, returnView.frame.size.height + 10.0f);
         // 所有内容
         cellView.frame = CGRectMake(265.0f-bubbleImageView.frame.size.width, 0.0f,bubbleImageView.frame.size.width + 50.0f, bubbleImageView.frame.size.height+30.0f);
         // 头像
@@ -770,9 +769,9 @@
         [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
     }else{
         // 内容
-        returnView.frame= CGRectMake(72.0f, 22.0f, returnView.frame.size.width, returnView.frame.size.height);
+        returnView.frame= CGRectMake(79.0f, 22.0f, returnView.frame.size.width, returnView.frame.size.height);
         // 气泡
-        bubbleImageView.frame = CGRectMake(57.0f, 17.0f, returnView.frame.size.width + 37.0f, returnView.frame.size.height+10.0f);
+        bubbleImageView.frame = CGRectMake(64.0f, 17.0f, returnView.frame.size.width + 30.0f, returnView.frame.size.height+10.0f);
 		// 所有内容
         cellView.frame = CGRectMake(0.0f, 0.0f, bubbleImageView.frame.size.width + 50.0f,bubbleImageView.frame.size.height + 30.0f);
         // 头像
