@@ -70,8 +70,8 @@
     
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, 320.0f, self.screenHeight - 64.0f)];
-    self.scrollView.minimumZoomScale = .1;
-    self.scrollView.maximumZoomScale = 3.0;
+    self.scrollView.minimumZoomScale = 1.0;
+    self.scrollView.maximumZoomScale = 2.0;
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
     
@@ -134,8 +134,8 @@
 
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
-{
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale{
+    self.imageview.center = CGPointMake(self.scrollView.contentSize.width /2, self.scrollView.contentSize.height/2);
 }
 
 
