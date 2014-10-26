@@ -10,6 +10,8 @@
 #import "TTTAttributedLabel.h"
 #import "AppDelegate.h"
 
+#define isIPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
 @interface UBasicViewController ()
 #pragma mark -
 #pragma mark private MBProgressHUD Methods
@@ -29,6 +31,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        if (isIPhone5) {
+            self.screenHeight = 568.0f;
+        }else{
+            self.screenHeight = 480.0f;
+        }
     }
     return self;
 }

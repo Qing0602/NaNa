@@ -57,6 +57,11 @@ typedef enum {
 - (void)removeSideMenuController;
 
 
+/*! @brief 获取当前设备的屏幕高度
+ *
+ */
+@property CGFloat screenHeight;
+
 -(void)setRightItemStatus:(BOOL)isDisabled;
 /*! @brief 判断字符串是否是nil或者是@“”
  *

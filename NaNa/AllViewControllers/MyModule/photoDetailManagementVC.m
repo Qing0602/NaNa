@@ -9,8 +9,10 @@
 #import "photoDetailManagementVC.h"
 #import "NaNaUIManagement.h"
 #import "UAlertView.h"
-@interface photoDetailManagementVC ()
+@interface photoDetailManagementVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong)PhotosModel *photoModel;
+@property (nonatomic, strong)UIScrollView *scrollView;
+@property (nonatomic, strong)EGOImageView *imageview;
 @end
 
 @implementation photoDetailManagementVC
@@ -61,10 +63,17 @@
     }
 
 //
-    EGOImageView  *imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, CGRectGetHeight(self.navBarView.frame), 320.f, ScreenHeight-CGRectGetHeight(self.navBarView.frame))];
-    imageview.delegate = self;
-    [imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
-    [self.view addSubview:imageview];
+    self.imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, CGRectGetHeight(self.navBarView.frame), 320.f, ScreenHeight-CGRectGetHeight(self.navBarView.frame))];
+    self.imageview.delegate = self;
+    [self.imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
+    [self.view addSubview:self.imageview];
+    
+    
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, 320.0f, self.screenHeight - 64.0f)];
+    self.scrollView.minimumZoomScale = .1;
+    self.scrollView.maximumZoomScale = 3.0;
+    self.scrollView.delegate = self;
+    [self.view addSubview:self.scrollView];
     
     
     // Do any additional setup after loading the view.
@@ -109,11 +118,27 @@
     }
 }
 #pragma mark - EGOImageview
--(void)imageViewLoadedImage:(EGOImageView *)imageView
-{
+-(void)imageViewLoadedImage:(EGOImageView *)imageView{
     CGSize imageSize = CGSizeMake(imageView.image.size.width/2, imageView.image.size.height/2);
-    [imageView setFrame:CGRectMake((320-imageSize.width)/2, CGRectGetHeight(self.navBarView.frame)+(ScreenHeight-CGRectGetHeight(self.navBarView.frame)-imageSize.height)/2, imageSize.width, imageSize.height)];
+    [self.imageview setFrame:CGRectMake((320-imageSize.width)/2, (self.scrollView.frame.size.height - imageSize.height)/2, imageSize.width, imageSize.height)];
+    self.scrollView.contentSize = self.scrollView.bounds.size;
+    [self.scrollView addSubview:imageView];
 }
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return self.imageview;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+{
+}
+
+
 /*
 #pragma mark - Navigation
 
