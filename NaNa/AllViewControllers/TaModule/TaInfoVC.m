@@ -245,6 +245,7 @@
         _cityLabel.text = model.userCityName;
         _ageLabel.text = [self transformIntToAge:model.userBirthday];
         _voiceUrl = model.voiceURL;
+        [_playButton setEnabled:[_voiceUrl isEqualToString:@""]?NO:YES];
         [_headButton setImageURL:[NSURL URLWithString:model.userAvatarURL]];
         [roleArray release];
     }
