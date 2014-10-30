@@ -73,6 +73,7 @@
     self.scrollView.minimumZoomScale = 1.0;
     self.scrollView.maximumZoomScale = 2.0;
     self.scrollView.delegate = self;
+    self.scrollView.contentSize = CGSizeMake(320.0f, self.screenHeight - 64.0f);
     [self.view addSubview:self.scrollView];
     
     
@@ -120,8 +121,7 @@
 #pragma mark - EGOImageview
 -(void)imageViewLoadedImage:(EGOImageView *)imageView{
     CGSize imageSize = CGSizeMake(imageView.image.size.width/2, imageView.image.size.height/2);
-    [self.imageview setFrame:CGRectMake((320-imageSize.width)/2, (self.scrollView.frame.size.height - imageSize.height)/2, imageSize.width, imageSize.height)];
-    self.scrollView.contentSize = self.scrollView.bounds.size;
+    [self.imageview setFrame:CGRectMake((320-imageSize.width)/2, (self.screenHeight - 64.0f - imageSize.height)/2, imageSize.width, imageSize.height)];
     [self.scrollView addSubview:imageView];
 }
 
