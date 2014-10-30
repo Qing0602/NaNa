@@ -672,7 +672,8 @@
             timeString = [NSMutableString stringWithFormat:@"%@",[formatter stringFromDate:currentDate]];
         }
         [dateL setText:timeString];
-        dateL.frame = CGRectMake((320-[timeString sizeWithFont:dateL.font].width)/2-5, 5, [timeString sizeWithFont:dateL.font].width+10, 20);
+        dateL.frame = CGRectMake((320-[timeString sizeWithFont:dateL.font].width)/2-5, 10, [timeString sizeWithFont:dateL.font].width+10, 20);
+        dateL.alpha = 0.7f;
         dateL.layer.cornerRadius = 5;
         dateL.layer.masksToBounds = YES;
         dateL.textColor = [UIColor whiteColor];
@@ -763,7 +764,7 @@
         // 气泡
         bubbleImageView.frame = CGRectMake(-7.0f, 15.0f, returnView.frame.size.width + 30.0f, returnView.frame.size.height + 10.0f);
         // 所有内容
-        cellView.frame = CGRectMake(265.0f-bubbleImageView.frame.size.width, 0.0f,bubbleImageView.frame.size.width + 50.0f, bubbleImageView.frame.size.height+30.0f);
+        cellView.frame = CGRectMake(265.0f-bubbleImageView.frame.size.width - 10.0f, 0.0f,bubbleImageView.frame.size.width + 50.0f, bubbleImageView.frame.size.height+30.0f);
         // 头像
         headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(bubbleImageView.frame.size.width, 0.0f, 57.0f, 57.0f)];
         [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];
@@ -773,7 +774,7 @@
         // 气泡
         bubbleImageView.frame = CGRectMake(64.0f, 17.0f, returnView.frame.size.width + 30.0f, returnView.frame.size.height+10.0f);
 		// 所有内容
-        cellView.frame = CGRectMake(0.0f, 0.0f, bubbleImageView.frame.size.width + 50.0f,bubbleImageView.frame.size.height + 30.0f);
+        cellView.frame = CGRectMake(10.0f, 0.0f, bubbleImageView.frame.size.width + 50.0f,bubbleImageView.frame.size.height + 30.0f);
         // 头像
         headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(0.0f,0.0f, 57.0f, 57.0f)];
         [headImageView setImageURL:[NSURL URLWithString:messageModel.avatar]];

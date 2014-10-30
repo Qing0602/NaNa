@@ -45,7 +45,8 @@
 - (void)loadView {
     [super loadView];
     // title
-    self.title = STRING(@"login");
+    self.title = @"NaNa";
+    
     //定义UIScrollView
     //NSArray * imageArray=[NSArray arrayWithArray:_imageList];
     _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480-_navBarView.frame.size.height)];
@@ -67,12 +68,12 @@
                                                              self.defaultView.frame.size.width, 122)];
     [tabbar setBackgroundColor:[UIColor blackColor]];
     UIView * qqLogin=[self AddTabbutton:STRING(@"QQ") NormalImage:@"qq.png" SelectedImage:@"qq_press.png" TAG:1];
-    qqLogin.frame=CGRectMake(40, 0, 100, 110);
+    qqLogin.frame=CGRectMake(40, 10, 100, 110);
     [tabbar addSubview:qqLogin];
     SAFERELEASE(qqLogin);
     
     UIView * weiboLogin=[self AddTabbutton:STRING(@"weibo") NormalImage:@"weibo.png" SelectedImage:@"weibo_press.png" TAG:2];
-    weiboLogin.frame=CGRectMake(170, 0, 100, 110);
+    weiboLogin.frame=CGRectMake(170, 10, 100, 110);
     [tabbar addSubview:weiboLogin];
     SAFERELEASE(weiboLogin);
     
