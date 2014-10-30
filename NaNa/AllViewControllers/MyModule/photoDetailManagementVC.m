@@ -61,21 +61,18 @@
         [btn addTarget:self action:@selector(imageAction) forControlEvents:UIControlEventTouchUpInside];
         [self.navBarView addSubview:btn];
     }
-
-//
-    self.imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, CGRectGetHeight(self.navBarView.frame), 320.f, ScreenHeight-CGRectGetHeight(self.navBarView.frame))];
-    self.imageview.delegate = self;
-    [self.imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
-    [self.view addSubview:self.imageview];
-    
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, 320.0f, self.screenHeight - 64.0f)];
     self.scrollView.minimumZoomScale = 1.0;
     self.scrollView.maximumZoomScale = 2.0;
     self.scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(320.0f, self.screenHeight - 64.0f);
+    self.scrollView.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.scrollView];
     
+    self.imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, CGRectGetHeight(self.navBarView.frame), 320.f, ScreenHeight-CGRectGetHeight(self.navBarView.frame))];
+    self.imageview.delegate = self;
+    [self.imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
+    [self.view addSubview:self.imageview];
     
     // Do any additional setup after loading the view.
 }
@@ -121,7 +118,8 @@
 #pragma mark - EGOImageview
 -(void)imageViewLoadedImage:(EGOImageView *)imageView{
     CGSize imageSize = CGSizeMake(imageView.image.size.width/2, imageView.image.size.height/2);
-    [self.imageview setFrame:CGRectMake((320-imageSize.width)/2, (self.screenHeight - 64.0f - imageSize.height)/2, imageSize.width, imageSize.height)];
+    self.scrollView.contentSize = imageSize;
+    [self.imageview setFrame:CGRectMake((320-imageSize.width)/2, 64.0f, imageSize.width, imageSize.height)];
     [self.scrollView addSubview:imageView];
 }
 
@@ -135,7 +133,7 @@
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale{
-    self.imageview.center = CGPointMake(self.scrollView.contentSize.width /2, self.scrollView.contentSize.height/2);
+//    self.imageview.center = CGPointMake(self.scrollView.contentSize.width /2, self.scrollView.contentSize.height/2);
 }
 
 
