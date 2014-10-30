@@ -68,11 +68,11 @@
     self.scrollView.delegate = self;
     self.scrollView.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.scrollView];
-    
-    self.imageview = [[EGOImageView alloc] initWithFrame:CGRectMake(0.f, CGRectGetHeight(self.navBarView.frame), 320.f, ScreenHeight-CGRectGetHeight(self.navBarView.frame))];
+    //CGRectMake(0.f, CGRectGetHeight(self.navBarView.frame), 320.f, ScreenHeight-CGRectGetHeight(self.navBarView.frame))
+    self.imageview = [[EGOImageView alloc] initWithFrame:CGRectZero];
     self.imageview.delegate = self;
     [self.imageview setImageURL:[NSURL URLWithString:self.photoModel.imagePath]];
-    [self.view addSubview:self.imageview];
+    [self.scrollView addSubview:self.imageview];
     
     // Do any additional setup after loading the view.
 }
@@ -119,8 +119,8 @@
 -(void)imageViewLoadedImage:(EGOImageView *)imageView{
     CGSize imageSize = CGSizeMake(imageView.image.size.width/2, imageView.image.size.height/2);
     self.scrollView.contentSize = imageSize;
-    [self.imageview setFrame:CGRectMake((320-imageSize.width)/2, 64.0f, imageSize.width, imageSize.height)];
-    [self.scrollView addSubview:imageView];
+    [self.imageview setFrame:CGRectMake((320-imageSize.width)/2, (self.scrollView.frame.size.height-imageSize.height)/2, imageSize.width, imageSize.height)];
+    //[self.scrollView addSubview:imageView];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
