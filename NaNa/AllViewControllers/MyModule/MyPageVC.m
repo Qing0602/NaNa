@@ -304,6 +304,11 @@
         PhotoManageVC *controller = [[[PhotoManageVC alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
+    }else if ([rurl rangeOfString:@"set_voice" options:NSCaseInsensitiveSearch].length > 0)
+    {
+        InfoEditVC *controller = [[[InfoEditVC alloc] initWithType:TYPE_NORMAL] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+        return NO;
     }
     
     return YES;
