@@ -963,9 +963,7 @@ typedef enum {
 
 - (NSString *)getMinutes:(NSInteger)second
 {
-    if (second < 1) {
-        second = 1;
-    }
+    
     double m = 0; NSInteger s = 0; NSString *sStr = @"00"; NSString *mStr = @"00";
     if (second > 0)
     {
@@ -1023,6 +1021,9 @@ typedef enum {
     
     [_recordingView removeFromSuperview];
     NSLog(@"%f",recorderLength);
+    if (recorderLength < 1) {
+        recorderLength = 1;
+    }
     NSString *time = [self getMinutes:recorderLength];
     if (![time isEqualToString:@"00:00"])
     {
@@ -1043,7 +1044,7 @@ typedef enum {
     [_recorder stop];
     
         NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
-    [[NaNaUIManagement sharedInstance] uploadFile:[NSData dataWithContentsOfURL:url] withUploadType:UploadVoice withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:[time integerValue]];
+    [[NaNaUIManagement sharedInstance] uploadFile:[NSData dataWithContentsOfURL:url] withUploadType:UploadVoice withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:recorderLength];
 }
 
 - (void)beginRecord:(UIButton *)btn
