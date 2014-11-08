@@ -92,6 +92,9 @@ typedef enum
     NSString *_voiceUrl;
       
     UIButton *_confirmBtn;
+      
+      NSTimer *_timer;
+      double recorderLength;
 }
 
 @property (nonatomic, retain) UIButton *headButton;

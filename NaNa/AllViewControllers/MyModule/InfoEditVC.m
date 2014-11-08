@@ -961,8 +961,11 @@ typedef enum {
 }
 
 
-- (NSString *)getMinutes:(double)second
+- (NSString *)getMinutes:(NSInteger)second
 {
+    if (second < 1) {
+        second = 1;
+    }
     double m = 0; NSInteger s = 0; NSString *sStr = @"00"; NSString *mStr = @"00";
     if (second > 0)
     {
@@ -1017,8 +1020,10 @@ typedef enum {
 
 - (void)endRecord:(UIButton *)btn {
     ULog(@"currentTime = %.f",_recorder.currentTime);
+    
     [_recordingView removeFromSuperview];
-    NSString *time = [self getMinutes:_recorder.currentTime];
+    NSLog(@"%f",recorderLength);
+    NSString *time = [self getMinutes:recorderLength];
     if (![time isEqualToString:@"00:00"])
     {
         _isExistRecord = YES;
@@ -1063,6 +1068,16 @@ typedef enum {
     _recorder.delegate = self;
     if ([_recorder prepareToRecord])
     {
+        if (_timer) {
+            recorderLength = 0;
+            [_timer invalidate];
+            _timer = nil;
+        }
+        _timer = [NSTimer scheduledTimerWithTimeInterval: 0.1
+                                                  target: self
+                                                selector: @selector(handleTimer:)
+                                                userInfo: nil
+                                                 repeats: YES];
         [_recorder record];
         [_defaultView addSubview:_recordingView];
         ULog(@"recording");
@@ -1071,6 +1086,11 @@ typedef enum {
         int errorCode = CFSwapInt32HostToBig ([audioRecorderError code]);
         ULog(@"Error: %@ [%4.4s])" , [audioRecorderError localizedDescription], (char*)&errorCode);
     }
+}
+
+- (void)handleTimer:(NSTimer *)timer
+{
+    recorderLength += 0.10;
 }
 
 - (void)agreeCheckButtonClick:(UIButton *)btn {
