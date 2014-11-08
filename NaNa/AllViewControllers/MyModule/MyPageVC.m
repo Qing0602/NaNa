@@ -238,14 +238,13 @@
 		didFinishPickingImage:(UIImage *)image
                   editingInfo:(NSDictionary *)editingInfo {
     //[_headButton setBackgroundImage:image forState:UIControlStateNormal];
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 0.5f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
+    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation(image, 0.5f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:0];
     [picker dismissModalViewControllerAnimated:YES];
     
     [_myWebView reload];
 }
 - (void)currentHeadImage:(NSString *)headName {
-    [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation([UIImage imageNamed:headName], 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@""];
-    
+        [[NaNaUIManagement sharedInstance] uploadFile:UIImageJPEGRepresentation([UIImage imageNamed:headName], 1.f) withUploadType:UploadAvatar withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:0];
 }
 #pragma mark- TapGestureRecognizer
 -(void)addTapOnWebView
