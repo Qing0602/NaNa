@@ -12,6 +12,7 @@
 		191427A5198A8D2200F6C1FF /* NaNaUserAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */; };
 		1922418A199D03C30067C5BA /* NaNaCellLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19224189199D03C30067C5BA /* NaNaCellLine@2x.png */; };
 		1922418C199D094A0067C5BA /* NaNaUnReaderCountBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922418B199D094A0067C5BA /* NaNaUnReaderCountBG@2x.png */; };
+		192EC7911A0FAB7900FAC85B /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 192EC7901A0FAB7900FAC85B /* MoreVC.m */; };
 		194121DF19C16124000C2ABD /* NaNaUserProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 194121DE19C16124000C2ABD /* NaNaUserProfileModel.m */; };
 		196D3F6519C3FACF001B7E09 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 196D3F6219C3FACF001B7E09 /* UIScrollView+SVInfiniteScrolling.m */; };
 		196D3F6619C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 196D3F6419C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.m */; };
@@ -494,6 +495,8 @@
 		191427A4198A8D2200F6C1FF /* NaNaUserAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUserAccountModel.m; sourceTree = "<group>"; };
 		19224189199D03C30067C5BA /* NaNaCellLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NaNaCellLine@2x.png"; path = "LeftMenu/NaNaCellLine@2x.png"; sourceTree = "<group>"; };
 		1922418B199D094A0067C5BA /* NaNaUnReaderCountBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "NaNaUnReaderCountBG@2x.png"; path = "LeftMenu/NaNaUnReaderCountBG@2x.png"; sourceTree = "<group>"; };
+		192EC78F1A0FAB7900FAC85B /* MoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVC.h; sourceTree = "<group>"; };
+		192EC7901A0FAB7900FAC85B /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 		194121DD19C16124000C2ABD /* NaNaUserProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUserProfileModel.h; sourceTree = "<group>"; };
 		194121DE19C16124000C2ABD /* NaNaUserProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUserProfileModel.m; sourceTree = "<group>"; };
 		196D3F6019C3FACF001B7E09 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
@@ -2280,6 +2283,8 @@
 				3635920418229A3000F7AB67 /* FriendVC.m */,
 				3635920618229A4E00F7AB67 /* LikeVC.h */,
 				3635920718229A4F00F7AB67 /* LikeVC.m */,
+				192EC78F1A0FAB7900FAC85B /* MoreVC.h */,
+				192EC7901A0FAB7900FAC85B /* MoreVC.m */,
 			);
 			name = "右侧菜单";
 			sourceTree = "<group>";
@@ -2805,6 +2810,7 @@
 				36A45EB018549E1100439944 /* SetPrivateVC.m in Sources */,
 				97416E2F178015ED00865342 /* URequestManager.m in Sources */,
 				19CB82EF196CC79800DBCBAB /* NaNaOperation.m in Sources */,
+				192EC7911A0FAB7900FAC85B /* MoreVC.m in Sources */,
 				19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */,
 				97416E30178015ED00865342 /* MD5.m in Sources */,
 				97416E31178015ED00865342 /* NSData+Base64.m in Sources */,

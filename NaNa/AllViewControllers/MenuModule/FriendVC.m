@@ -73,6 +73,15 @@
 #pragma mark - Webview
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *url = [request.URL absoluteString];
+    NSRange follow1 = [url rangeOfString:@"/follow/list1"];
+    NSRange visitor1 = [url rangeOfString:@"/visitor/list1"];
+    NSRange interactive1 = [url rangeOfString:@"/interactive/list1"];
+    
+    NSRange follow2 = [url rangeOfString:@"/follow/list2"];
+    NSRange visitor2 = [url rangeOfString:@"/visitor/list2"];
+    NSRange interactive2 = [url rangeOfString:@"/interactive/list2"];
+    
+    NSString *title = @"";
     if([url rangeOfString:@"/user/show"].location != NSNotFound) {
         // 跳转新页面：TA
         TaPageVC *controller = [[[TaPageVC alloc] initWithURL:url] autorelease];
@@ -80,6 +89,24 @@
         
         // 移除左右菜单栏
         [self removeSideMenuController];
+        return NO;
+    }else if (follow1.location != NSNotFound){
+        title = @"";
+        return NO;
+    }else if (visitor1.location != NSNotFound){
+        title = @"";
+        return NO;
+    }else if (interactive1.location != NSNotFound){
+        title = @"";
+        return NO;
+    }else if (follow2.location != NSNotFound){
+        title = @"";
+        return NO;
+    }else if (visitor2.location != NSNotFound){
+        title = @"";
+        return NO;
+    }else if (interactive2.location != NSNotFound){
+        title = @"";
         return NO;
     }
     return YES;
