@@ -38,6 +38,8 @@
         _myWebView.frame = CGRectMake(0, 0, _defaultView.frame.size.width, _defaultView.frame.size.height);
         _myWebView.backgroundColor = [UIColor clearColor];
         _myWebView.delegate = self;
+        _myWebView.scrollView.showsHorizontalScrollIndicator = NO;
+        _myWebView.scrollView.showsVerticalScrollIndicator = NO;
     }
     [_defaultView addSubview:_myWebView];
     _myWebView.scalesPageToFit = YES;

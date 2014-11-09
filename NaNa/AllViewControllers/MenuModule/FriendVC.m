@@ -37,9 +37,11 @@
         _myWebView.frame = CGRectMake(0,
                                       0,
                                       self.defaultView.frame.size.width,
-                                      self.defaultView.frame.size.height - tabBarHeight);
+                                      self.defaultView.frame.size.height);
         _myWebView.backgroundColor = [UIColor clearColor];
         _myWebView.delegate = self;
+        _myWebView.scrollView.showsHorizontalScrollIndicator = NO;
+        _myWebView.scrollView.showsVerticalScrollIndicator = NO;
     }
     [_defaultView addSubview:_myWebView];
     
