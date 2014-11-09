@@ -8,6 +8,9 @@
 
 #import "UBasicViewController.h"
 
-@interface MoreVC : UBasicViewController
-
+@interface MoreVC : UBasicViewController<UIWebViewDelegate>{
+    UIWebView                   *_myWebView;
+    UIActivityIndicatorView     *_activityView;
+}
+-(id) initMore : (NSURL *) url withTitle : (NSString *) title;
 @end
