@@ -40,6 +40,8 @@
                                       self.defaultView.frame.size.height);
         _myWebView.backgroundColor = [UIColor clearColor];
         _myWebView.delegate = self;
+        _myWebView.scrollView.showsHorizontalScrollIndicator = NO;
+        _myWebView.scrollView.showsVerticalScrollIndicator = NO;
     }
     [self.defaultView addSubview:_myWebView];
     _myWebView.scalesPageToFit = YES;
