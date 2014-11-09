@@ -10,7 +10,7 @@
 #import "TaPageVC.h"
 
 @interface MoreVC ()
-@property (nonatomic,strong) NSString *title;
+@property (nonatomic,strong) NSString *navTitle;
 @property (nonatomic,strong) NSURL *url;
 @end
 
@@ -19,7 +19,7 @@
 -(id) initMore : (NSURL *) url withTitle : (NSString *) title{
     self = [super init];
     if (nil != self) {
-        self.title = title;
+        self.navTitle = title;
         self.url = url;
     }
     return self;
@@ -38,8 +38,8 @@
 - (void)loadView {
     [super loadView];
     // title
-    self.title = self.title;
-//    [self setNavLeftType:UNavBarBtnTypeMenu navRightType:UNavBarBtnTypeTa];
+    self.title = self.navTitle;
+    [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
     // webview
     if (!_myWebView) {
@@ -47,7 +47,7 @@
         _myWebView.frame = CGRectMake(0,
                                       0,
                                       self.defaultView.frame.size.width,
-                                      self.defaultView.frame.size.height - tabBarHeight);
+                                      self.defaultView.frame.size.height);
         _myWebView.backgroundColor = [UIColor clearColor];
         _myWebView.delegate = self;
     }
@@ -60,6 +60,8 @@
     }
     [_myWebView addSubview:_activityView];
     _myWebView.scalesPageToFit = YES;
+    _myWebView.scrollView.showsHorizontalScrollIndicator = NO;
+    _myWebView.scrollView.showsVerticalScrollIndicator = NO;
 //    [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_FRIEND,temp)];
     [_myWebView loadRequest:[NSURLRequest requestWithURL:self.url]];
     [_defaultView addSubview:_myWebView];
@@ -67,11 +69,7 @@
 
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-}
-
-- (void)rightItemPressed:(UIButton *)btn {
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Webview

@@ -8,6 +8,7 @@
 
 #import "FriendVC.h"
 #import "TaPageVC.h"
+#import "MoreVC.h"
 @interface FriendVC ()
 
 @end
@@ -93,22 +94,34 @@
         [self removeSideMenuController];
         return NO;
     }else if (follow1.location != NSNotFound){
-        title = @"";
+        title = @"我关注的";
+        MoreVC *controller = [[[MoreVC alloc] initMore:[NSURL URLWithString:url] withTitle:title] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }else if (visitor1.location != NSNotFound){
-        title = @"";
+        title = @"我访问的";
+        MoreVC *controller = [[[MoreVC alloc] initMore:[NSURL URLWithString:url] withTitle:title] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }else if (interactive1.location != NSNotFound){
-        title = @"";
+        title = @"我发起的互动";
+        MoreVC *controller = [[[MoreVC alloc] initMore:[NSURL URLWithString:url] withTitle:title] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }else if (follow2.location != NSNotFound){
-        title = @"";
+        title = @"关注我的";
+        MoreVC *controller = [[[MoreVC alloc] initMore:[NSURL URLWithString:url] withTitle:title] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }else if (visitor2.location != NSNotFound){
-        title = @"";
+        title = @"访问我的";
+        MoreVC *controller = [[[MoreVC alloc] initMore:[NSURL URLWithString:url] withTitle:title] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }else if (interactive2.location != NSNotFound){
-        title = @"";
+        title = @"她发起的互动";
+        MoreVC *controller = [[[MoreVC alloc] initMore:[NSURL URLWithString:url] withTitle:title] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }
     return YES;
