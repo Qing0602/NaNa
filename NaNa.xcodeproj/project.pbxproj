@@ -24,6 +24,7 @@
 		19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7914A199F53B300074E89 /* MBProgressHUD.m */; };
 		19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
+		19C66D1A1A18AF7B00437EA8 /* bubble_friend2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C66D191A18AF7B00437EA8 /* bubble_friend2.png */; };
 		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
 		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
 		19CB82EC196CC79800DBCBAB /* NaNaNetWorkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E1196CC79800DBCBAB /* NaNaNetWorkService.m */; };
@@ -504,7 +505,6 @@
 		196D3F6219C3FACF001B7E09 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		196D3F6319C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		196D3F6419C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
-		19825C5019E458FF00005090 /* bubble_friend2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_friend2.png; sourceTree = "<group>"; };
 		19825C5119E458FF00005090 /* bubble_self2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_self2.png; sourceTree = "<group>"; };
 		19A609301993B7BA00F77AA2 /* GiftOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftOperation.h; sourceTree = "<group>"; };
 		19A609311993B7BA00F77AA2 /* GiftOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftOperation.m; sourceTree = "<group>"; };
@@ -520,6 +520,7 @@
 		19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaMessageModel.m; sourceTree = "<group>"; };
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
+		19C66D191A18AF7B00437EA8 /* bubble_friend2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_friend2.png; sourceTree = "<group>"; };
 		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
 		19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsiGetRequestModel.m; sourceTree = "<group>"; };
 		19CB82DE196CC79800DBCBAB /* NaNaHttpEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaHttpEngine.h; sourceTree = "<group>"; };
@@ -1363,7 +1364,7 @@
 		8729E82B18840033005CAB4F /* Face */ = {
 			isa = PBXGroup;
 			children = (
-				19825C5019E458FF00005090 /* bubble_friend2.png */,
+				19C66D191A18AF7B00437EA8 /* bubble_friend2.png */,
 				19825C5119E458FF00005090 /* bubble_self2.png */,
 				871AEE831887E225002D9320 /* chat_face.png */,
 				871AEE841887E225002D9320 /* chat_keyboard.png */,
@@ -2752,6 +2753,7 @@
 				8729E9AC18840034005CAB4F /* 83@2X.png in Resources */,
 				363591FE1822983A00F7AB67 /* icon_visitor_normal.png in Resources */,
 				363591FF1822983A00F7AB67 /* icon_visitor_pressed.png in Resources */,
+				19C66D1A1A18AF7B00437EA8 /* bubble_friend2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
