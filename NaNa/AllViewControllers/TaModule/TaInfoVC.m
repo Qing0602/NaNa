@@ -9,6 +9,7 @@
 #import "TaInfoVC.h"
 #import "NaNaUserProfileModel.h"
 #import <AVFoundation/AVFoundation.h>
+
 #define kInfoEditCellHeight         40.0
 #define kInfoEditCellShowHeight     30.0
 #define kInfoEditCellSildWidth      15.0
@@ -20,6 +21,7 @@
     NSInteger targetID;
     NSString *_voiceUrl;
     AVAudioPlayer *_audioPlayer;
+    NSString *_filePath;
 }
 @end
 
@@ -28,12 +30,14 @@
 {
     [super viewWillAppear:animated];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"downloadVoiceResult" options:0 context:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userProfile"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"downloadVoiceResult"];
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -43,9 +47,25 @@
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             self.infoData = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
             
-        }else
-        {
+        }
+    }else if ([keyPath isEqualToString:@"downloadVoiceResult"]){
+        if ([[NSFileManager defaultManager] fileExistsAtPath:_filePath]) {
+            [self closeProgress];
+            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+            [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
             
+            NSURL *url = [NSURL URLWithString:_filePath];
+            
+            NSError *audioPlayerError = nil;
+            _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&audioPlayerError];
+            _audioPlayer.numberOfLoops = 0;
+            _audioPlayer.volume = 1.0f;
+            _audioPlayer.delegate = self;
+            if (_audioPlayer.prepareToPlay){
+                [_audioPlayer play];
+            }
+        }else{
+            [self showProgressWithText:@"声音下载失败，请重试" withDelayTime:1.5f];
         }
     }
 }
@@ -169,6 +189,9 @@
 }
 
 - (void)leftItemPressed:(UIButton *)btn {
+    if (_audioPlayer != nil) {
+        [_audioPlayer stop];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - Table view data source
@@ -234,8 +257,7 @@
     
     return cell;
 }
--(void)setInfoData:(NSDictionary *)infoData
-{
+-(void)setInfoData:(NSDictionary *)infoData{
     if (infoData && infoData.allKeys.count > 0) {
         NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] converJson:infoData];
         _nameTextField.text = model.userNickName;
@@ -262,62 +284,43 @@
     NSTimeInterval timeNow = [dateNow timeIntervalSince1970];
     NSTimeInterval birthdayTime = [dateBirthday timeIntervalSince1970];
     int age = trunc((birthdayTime - timeNow) / (60 * 60 * 24)) / 365 * (-1);
-    
-    
     return  [NSString stringWithFormat:@"%d", age];
     
 }
-- (void)playTaSound:(UIButton *)sender
-{
-
+- (void)playTaSound:(UIButton *)sender{
     if (sender.tag == 1) {
         ULog(@"播放");
+        [self showProgressWithText:@"声音加载中..."];
         [_playButton setImage:[UIImage imageNamed:@"btn_voice_stop"] forState:UIControlStateNormal];
         
-        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-        [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-        
-        NSURL *url = [NSURL URLWithString:_voiceUrl];
-        
-        NSError *audioPlayerError = nil;
-        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&audioPlayerError];
-        _audioPlayer.numberOfLoops = 0;
-        _audioPlayer.volume = 1.0f;
-        _audioPlayer.delegate = self;
-        if (_audioPlayer.prepareToPlay)
-        {
-            [_audioPlayer play];
-            ULog(@"playing");
-        }
-        else
-        {
-            int errorCode = CFSwapInt32HostToBig ([audioPlayerError code]);
-            ULog(@"Error: %@ [%4.4s])" , [audioPlayerError localizedDescription], (char*)&errorCode);
-        }
+        NSString *writeFileName = [NSString stringWithFormat:@"temp%@",@".mp3"];
+        NSString *fileDir = [NSString stringWithFormat:@"/Voice/"];
+        [NaNaUIManagement createPath:fileDir];
+        NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentPath = [paths objectAtIndex:0];
+        _filePath = [NSString stringWithFormat:@"%@/%@%@",documentPath,fileDir,writeFileName];
+        [[NSFileManager defaultManager] removeItemAtPath:_filePath error:nil];
+        [[NaNaUIManagement sharedInstance] downLoadUserVoiceFile:_voiceUrl withFilePath:_filePath];
         sender.tag = 2;
-    }else
-    {
+    }else{
         ULog(@"停止");
         [_playButton setImage:[UIImage imageNamed:@"btn_voice_play"] forState:UIControlStateNormal];
         [_audioPlayer stop];
         sender.tag = 1;
     }
-    
-
-    
 }
+
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     [_playButton setImage:[UIImage imageNamed:@"btn_voice_play"] forState:UIControlStateNormal];
 }
-- (void)didReceiveMemoryWarning
-{
+
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
+- (void)dealloc{
     SAFERELEASE(_headButton)
     SAFERELEASE(_playButton)
     SAFERELEASE(_tableView)

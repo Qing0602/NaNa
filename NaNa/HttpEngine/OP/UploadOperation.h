@@ -9,8 +9,13 @@
 #import "NaNaOperation.h"
 #import "NaNaUIManagement.h"
 
+typedef enum{
+    kUpload,
+    kDownload,
+}UpAndDownLoadType;
 
 @interface UploadOperation : NaNaOperation
 -(UploadOperation *) initUpload : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc
                   withVoiceTime : (NSUInteger) time;
+-(UploadOperation *) initDownLoadUserVoiceFile : (NSString *) videoUrl withFilePath : (NSString *) filePath;
 @end

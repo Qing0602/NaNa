@@ -28,13 +28,13 @@
     UILabel *textLabel;
     UIView *textLabelBackgroundView;
     UIView *backgroundView;
-    
-    
+    UILabel *textPrice;
     NSUInteger  labelHeight;
     NSUInteger  labelInset;
 }
 
 @property (nonatomic, retain) UILabel *textLabel;
+@property (nonatomic, retain) UILabel *textPrice;
 @property (nonatomic, retain) UIView *textLabelBackgroundView;
 @property (nonatomic, retain) UIView *backgroundView;
 @property (nonatomic, retain) EGOImageView *imageview;

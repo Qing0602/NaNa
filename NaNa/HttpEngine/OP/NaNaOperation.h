@@ -46,4 +46,5 @@
 -(void) startSynchronous;
 
 -(NSString *) getToken;
+
 @end

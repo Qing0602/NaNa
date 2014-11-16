@@ -17,11 +17,13 @@
 #import "NaNaUIManagement.h"
 #import "NaNaUserAccountModel.h"
 #import "MyBackgroundListViewController.h"
-@interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+@interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AVAudioPlayerDelegate>
 {
     PhotoMenuView *_photoMenuView;
     CGRect              _photoMenuHideRect;     // 头像Menu不显示时的位置
     CGRect              _photoMenuShowRect;     // 头像Menu显示时的位置
+    AVAudioPlayer *_audioPlayer;
 }
 @end
 
@@ -302,23 +304,29 @@
 #pragma mark - WebView
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSString* rurl=[[request URL] absoluteString];
-    if ([rurl rangeOfString:@"my-background" options:NSCaseInsensitiveSearch].length > 0) {
+    NSString* url=[[request URL] absoluteString];
+    if ([url rangeOfString:@"my-background" options:NSCaseInsensitiveSearch].length > 0) {
         return NO;
-    }else if ([rurl rangeOfString:@"my-photos" options:NSCaseInsensitiveSearch].length > 0)
-    {
+    }else if ([url rangeOfString:@"my-photos" options:NSCaseInsensitiveSearch].length > 0){
         PhotoManageVC *controller = [[[PhotoManageVC alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
-    }else if ([rurl rangeOfString:@"set_voice" options:NSCaseInsensitiveSearch].length > 0)
-    {
+    }else if ([url rangeOfString:@"set_voice" options:NSCaseInsensitiveSearch].length > 0){
+        InfoEditVC *controller = [[[InfoEditVC alloc] initWithType:TYPE_NORMAL] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+        return NO;
+    }else if ([url rangeOfString:@"myvoice" options:NSCaseInsensitiveSearch].length > 0){
         InfoEditVC *controller = [[[InfoEditVC alloc] initWithType:TYPE_NORMAL] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }
-    
     return YES;
 }
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+
+}
+
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [_activityView startAnimating];
 }

@@ -43,7 +43,7 @@
         self.unReaderCount.backgroundColor = [UIColor clearColor];
         
         self.unReaderImage = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaUnReaderCountBG"] stretchableImageWithLeftCapWidth:16.0f topCapHeight:16.0f]];
-        self.unReaderImage.frame = CGRectMake(250.0f, 8.0f, 16.0f, 16.0f);
+        self.unReaderImage.frame = CGRectMake(250.0f, (49.0f - 16.0f)/2.0f, 16.0f, 16.0f);
         [self.unReaderImage addSubview:self.unReaderCount];
         self.unReaderImage.hidden = NO;
         [self addSubview:self.unReaderImage];

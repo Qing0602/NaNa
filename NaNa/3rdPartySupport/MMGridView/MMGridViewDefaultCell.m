@@ -19,7 +19,7 @@
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#define K_DEFAULT_LABEL_HEIGHT  16
+#define K_DEFAULT_LABEL_HEIGHT  31
 #define K_DEFAULT_LABEL_INSET   0
 
 #import "MMGridViewDefaultCell.h"
@@ -35,6 +35,7 @@
     [textLabel release];
     [textLabelBackgroundView release];
     [backgroundView release];
+    [textPrice release];
     [super dealloc];
 }
 
@@ -56,12 +57,19 @@
         self.textLabelBackgroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
         
         self.textLabel = [[[UILabel alloc] initWithFrame:CGRectNull] autorelease];
-        self.textLabel.textAlignment = UITextAlignmentRight;
+        self.textLabel.textAlignment = UITextAlignmentLeft;
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.textColor = [UIColor whiteColor];
-        self.textLabel.font = [UIFont systemFontOfSize:12];
+        self.textLabel.font = [UIFont boldSystemFontOfSize:12];
+        
+        self.textPrice = [[[UILabel alloc] initWithFrame:CGRectNull] autorelease];
+        self.textPrice.textAlignment = UITextAlignmentLeft;
+        self.textPrice.backgroundColor = [UIColor clearColor];
+        self.textPrice.textColor = [UIColor whiteColor];
+        self.textPrice.font = [UIFont boldSystemFontOfSize:12.0f];
         
         [self.textLabelBackgroundView addSubview:self.textLabel];
+        [self.textLabelBackgroundView addSubview:self.textPrice];
         [self addSubview:self.textLabelBackgroundView];
     }
     
@@ -94,9 +102,11 @@
     CGRect f = CGRectMake(0, 
                           0, 
                           self.textLabel.superview.bounds.size.width,
-                          self.textLabel.superview.bounds.size.height);
+                          16.0f);
     self.textLabel.frame = CGRectInset(f, labelInset, 0);
     self.textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    self.textPrice.frame = CGRectMake(0.0f, 16.0f, self.textLabel.superview.bounds.size.width, 15.0f);
 }
 
 @end

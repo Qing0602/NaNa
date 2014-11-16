@@ -96,6 +96,9 @@ typedef enum{
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
+@property(nonatomic,strong) NSDictionary *downloadVoiceResult;
+
++(BOOL)createPath:(NSString *)path;
 
 // 上传文件
 -(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc withVoiceTime : (NSUInteger) time;
@@ -147,6 +150,8 @@ typedef enum{
 -(void) touchHead : (int) targetID;
 // 钥匙
 -(void) giveKey : (int) targetID;
+
+-(void) downLoadUserVoiceFile : (NSString *) videoUrl withFilePath : (NSString *) filePath;
 
 // 退出登录
 -(void) quit;

@@ -26,6 +26,20 @@ static NaNaUIManagement *sharedInstance = nil;
     return sharedInstance;
 }
 
++(BOOL)createPath:(NSString *)path{
+    BOOL isSucess = NO;
+    NSError *error;
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [NSString stringWithFormat:@"%@",path];
+    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:filePath];
+    
+    BOOL success = [fm createDirectoryAtPath:writableDBPath withIntermediateDirectories:YES attributes:nil error:&error];
+    if(!success){
+    }
+    return isSucess;
+}
 
 -(void) uploadFile : (NSData *) data withUploadType : (UploadType) uploadType withUserID : (int) userID withDesc : (NSString *) desc withVoiceTime : (NSUInteger) time{
     UploadOperation * operation = [[UploadOperation alloc] initUpload:data withUploadType:uploadType withUserID:userID withDesc:desc withVoiceTime:time];
@@ -145,6 +159,11 @@ static NaNaUIManagement *sharedInstance = nil;
 // 钥匙
 -(void) giveKey : (int) targetID{
     MessageOperation *operation = [[MessageOperation alloc] initGiveKey:[NaNaUIManagement sharedInstance].userAccount.UserID withTargetID:targetID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+-(void) downLoadUserVoiceFile : (NSString *) videoUrl withFilePath : (NSString *) filePath{
+    UploadOperation *operation = [[UploadOperation alloc] initDownLoadUserVoiceFile:videoUrl withFilePath:filePath];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 

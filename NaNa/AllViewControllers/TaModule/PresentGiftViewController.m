@@ -43,8 +43,7 @@
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             [self showProgressOnwindowsWithText:@"赠送成功" withDelayTime:2.5f];
             [self.navigationController popViewControllerAnimated:YES];
-        }else
-        {
+        }else{
             [UAlertView showAlertViewWithMessage:tempData[ASI_REQUEST_ERROR_MESSAGE] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
     }
@@ -83,6 +82,7 @@
     
     [[NaNaUIManagement sharedInstance] getGiftStoreList];
     
+    self.view.backgroundColor = [UIColor blackColor];
 
     // Do any additional setup after loading the view.
 }
@@ -127,8 +127,13 @@
 {
     MMGridViewDefaultCell *cell = [[MMGridViewDefaultCell alloc] initWithFrame:CGRectNull];
     NSDictionary *data = self.gridviewData[index];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@       %@", data[@"title"],data[@"price"]];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@       %@", data[@"title"],data[@"price"]];
+    cell.textLabel.text = [NSString stringWithFormat:@" %@", data[@"title"]];
     cell.textLabel.textColor = [UIColor colorWithRed:31/255.f green:208/255.f blue:189/255.f alpha:1.f];
+    
+    cell.textPrice.text = [NSString stringWithFormat:@" %@", data[@"price"]];
+    cell.textPrice.textColor = [UIColor colorWithRed:31/255.f green:208/255.f blue:189/255.f alpha:1.f];
+    
     [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];
     return cell;
 }

@@ -2970,8 +2970,8 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ran shen (L5DD52DL4P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -2998,8 +2998,8 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ran shen (L5DD52DL4P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -3013,8 +3013,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "99affef5-898d-4208-8540-abff8811055d";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99affef5-898d-4208-8540-abff8811055d";
+				PROVISIONING_PROFILE = "56a3c31e-f302-4e03-b1d7-a7476bac2080";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56a3c31e-f302-4e03-b1d7-a7476bac2080";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
