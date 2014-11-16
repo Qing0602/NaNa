@@ -31,24 +31,28 @@
         tempLockStatus = [lockData[PWD_LOCK_STATUS] boolValue];
     }else
     {
-        NSLog(@"something worng");
+
+
     }
     
     
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
-    if (lockData) {
-        NSMutableDictionary *temdic = [NSMutableDictionary dictionaryWithDictionary:lockData];
-        [temdic setValue:[NSNumber numberWithBool:tempLockStatus] forKey:PWD_LOCK_STATUS];
-        lockData = [NSDictionary dictionaryWithDictionary:temdic];
-        [[NSUserDefaults standardUserDefaults] setObject:lockData forKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }else
-    {
-        NSLog(@"something worng");
+    if (tempLockStatus) {
+        NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+        if (lockData) {
+            NSMutableDictionary *temdic = [NSMutableDictionary dictionaryWithDictionary:lockData];
+            [temdic setValue:[NSNumber numberWithBool:tempLockStatus] forKey:PWD_LOCK_STATUS];
+            lockData = [NSDictionary dictionaryWithDictionary:temdic];
+            [[NSUserDefaults standardUserDefaults] setObject:lockData forKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }else
+        {
+            
+        }
     }
+
 }
 - (void)viewDidLoad
 {
@@ -86,13 +90,21 @@
     switch (indexPath.row) {
         case 0:
         {
+            if (tempLockStatus) {
+                PasswordLockViewController *passwordLock = [[PasswordLockViewController alloc] initWithType:VERIFY_TYPE_VERIFY];
+                [self.navigationController pushViewController:passwordLock animated:YES];
+            }
             tempLockStatus = !tempLockStatus;
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            cell.textLabel.text = tempLockStatus?@"关闭密码锁":@"打开密码锁";
+//            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//            cell.textLabel.text = tempLockStatus?@"关闭密码锁":@"打开密码锁";
+            [tableView reloadData];
         }
             break;
         case 1:
         {
+            if (!tempLockStatus) {
+                return;
+            }
             PasswordLockViewController *passwordLock = [[PasswordLockViewController alloc] initWithType:VERIFY_TYPE_CHANGE];
             [self.navigationController pushViewController:passwordLock animated:YES];
         }
@@ -120,6 +132,12 @@
         cell.textLabel.textColor = [self colorWithHexString:@"#1e1e1e"];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
+    if (indexPath.row == 1) {
+//        cell.contentView.backgroundColor = [UIColor clearColor];
+//        cell.backgroundColor = tempLockStatus ? [UIColor whiteColor] : [UIColor lightGrayColor];
+       cell.textLabel.textColor = tempLockStatus ? [self colorWithHexString:@"#1e1e1e"] : [UIColor lightGrayColor];
+    }
+    
     cell.textLabel.text = indexPath.row == 0?(tempLockStatus?@"关闭密码锁":@"打开密码锁"):@"修改密码";
 
     return cell;

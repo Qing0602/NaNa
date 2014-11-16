@@ -9,6 +9,8 @@
 #import "PasswordLockViewController.h"
 #import "AppDelegate.h"
 #import "UAlertView.h"
+
+#import "PasswordLockManagementViewController.h"
 @interface PasswordLockViewController ()
 {
     NSInteger verifyType;
@@ -80,17 +82,17 @@
     [self.defaultView addSubview:numberOfEnter];
     
     
-    UITextView * textViewPwdLock=[[UITextView alloc]
-                            initWithFrame:CGRectMake(0, numberOfEnter.frame.origin.y+
-                                                     numberOfEnter.frame.size.height+
-                                                     50.0+61, 320,80)];
-    [textViewPwdLock setEditable:NO];
-    [textViewPwdLock setTextAlignment:NSTextAlignmentCenter];
-    [textViewPwdLock setBackgroundColor:[UIColor clearColor]];
-    [textViewPwdLock setTextColor:@"#d8d8d8".color];
-    [textViewPwdLock setText:@"设置密码锁，保护你在\nNANA的小秘密"];
-    [textViewPwdLock setFont:NormalFont(13)];
-    [self.defaultView addSubview:textViewPwdLock];
+//    UITextView * textViewPwdLock=[[UITextView alloc]
+//                            initWithFrame:CGRectMake(0, numberOfEnter.frame.origin.y+
+//                                                     numberOfEnter.frame.size.height+
+//                                                     50.0+61, 320,80)];
+//    [textViewPwdLock setEditable:NO];
+//    [textViewPwdLock setTextAlignment:NSTextAlignmentCenter];
+//    [textViewPwdLock setBackgroundColor:[UIColor clearColor]];
+//    [textViewPwdLock setTextColor:@"#d8d8d8".color];
+//    [textViewPwdLock setText:@"设置密码锁，保护你在\nNANA的小秘密"];
+//    [textViewPwdLock setFont:NormalFont(13)];
+//    [self.defaultView addSubview:textViewPwdLock];
     
     hiddenInput=[[UITextField alloc]
                  initWithFrame:CGRectMake(23.0,
@@ -136,7 +138,7 @@
             
         default:
         {
-            numberOfEnter.text = @"请输入当前密码";
+            numberOfEnter.text = @"输入密码";
         }
             break;
     }
@@ -181,9 +183,17 @@
                             break;
                         case VERIFY_TYPE_VERIFY:
                         {
-//                            [[NSNotificationCenter defaultCenter] postNotificationName:VERIFYSUCCESS_KEY object:nil];
-//                            [self.navigationController popViewControllerAnimated:YES];
-                            [APP_DELEGATE loadMainView];
+                            if ([[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2] isKindOfClass:[PasswordLockManagementViewController class]]) {
+                                NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+                                NSMutableDictionary *temdic = [NSMutableDictionary dictionaryWithDictionary:lockData];
+                                [temdic setValue:[NSNumber numberWithBool:NO] forKey:PWD_LOCK_STATUS];
+                                lockData = [NSDictionary dictionaryWithDictionary:temdic];
+                                [[NSUserDefaults standardUserDefaults] setObject:lockData forKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
+                                [[NSUserDefaults standardUserDefaults] synchronize];
+                                
+                                [self.navigationController popViewControllerAnimated:YES];
+                            }else [APP_DELEGATE loadMainView];
+                
                         }
                             break;
                             
@@ -258,7 +268,7 @@
             break;
         default:
         {
-            numberOfEnter.text = @"请输入当前密码";
+            numberOfEnter.text = @"输入密码";
         }
             break;
     }
