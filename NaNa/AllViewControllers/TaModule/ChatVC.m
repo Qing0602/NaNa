@@ -111,8 +111,14 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 220.0f, 60.0f)];
+    name.text = @"1232313132131312312312321";//self.otherProfile.userNickName;
+    name.lineBreakMode = UILineBreakModeTailTruncation;
+    name.textAlignment = NSTextAlignmentCenter;
+    name.backgroundColor = [UIColor redColor];
+    self.navigationController.navigationItem.titleView = name;
     
-    self.title = self.otherProfile.userNickName;
+//    self.title = self.otherProfile.userNickName;
     self.isMore = YES;
     self.meesageAndDate = [[NSArray alloc] init];
     self.messageArray = [[NSArray alloc] init];
