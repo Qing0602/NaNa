@@ -107,10 +107,10 @@
     }
     _titleItem.font = [UIFont systemFontOfSize:default_font_size_14];
     _titleItem.textAlignment = UITextAlignmentCenter;
-    _titleItem.lineBreakMode = UILineBreakModeWordWrap;
+    _titleItem.lineBreakMode = UILineBreakModeTailTruncation;
     _titleItem.backgroundColor = [UIColor clearColor];
     _titleItem.textColor = default_color_white;
-    _titleItem.numberOfLines = 0;
+    _titleItem.numberOfLines = 1;
     _titleItem.leading = -10;
     _titleItem.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
     [_navBarView addSubview:_titleItem];
