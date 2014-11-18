@@ -147,6 +147,7 @@
 }
 - (void)textChange:(UITextField *)textField
 {
+
     if(textField.text.length == 0)
     {
         pwdNumbers = 0;
@@ -183,7 +184,7 @@
                             break;
                         case VERIFY_TYPE_VERIFY:
                         {
-                            if ([[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2] isKindOfClass:[PasswordLockManagementViewController class]]) {
+                            if (self.navigationController.viewControllers.count > 2 && [[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2] isKindOfClass:[PasswordLockManagementViewController class]]) {
                                 NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
                                 NSMutableDictionary *temdic = [NSMutableDictionary dictionaryWithDictionary:lockData];
                                 [temdic setValue:[NSNumber numberWithBool:NO] forKey:PWD_LOCK_STATUS];
