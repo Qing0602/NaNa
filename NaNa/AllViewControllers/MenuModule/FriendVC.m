@@ -18,6 +18,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    if (_myWebView != nil) {
+        [_myWebView reload];
+    }
     [self setSideMenuController];
 }
 
