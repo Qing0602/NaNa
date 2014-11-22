@@ -324,7 +324,10 @@
 #pragma mark - Nav
 - (void)leftItemPressed:(UIButton *)btn {
     if (verifyType == VERIFY_TYPE_VERIFY) {
-        [APP_DELEGATE loadLoginView];
+        if (self.navigationController.viewControllers.count > 2 && [[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count -2] isKindOfClass:[PasswordLockManagementViewController class]]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else [APP_DELEGATE loadLoginView];
+        
     }else [self.navigationController popViewControllerAnimated:YES];
     
 }

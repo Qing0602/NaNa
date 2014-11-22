@@ -20,9 +20,11 @@
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             NSDictionary *dic = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
             _userNameLabel.text = dic[@"nickname"];
+            _charmLabel.text = [dic[@"charm"] stringValue];
+            _scoreLabel.text = [dic[@"point"] stringValue];
         }else
         {
-            
+            [UAlertView showAlertViewWithMessage:@"获取失败,请返回重试" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
     }
 }
@@ -94,7 +96,6 @@
         _scoreLabel.textColor = default_color_dark;
         _scoreLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _scoreLabel.backgroundColor = [UIColor clearColor];
-        _scoreLabel.text = @"10000";
         _scoreLabel.textAlignment = NSTextAlignmentLeft;
     }
     [_defaultView addSubview:_scoreLabel];
@@ -128,7 +129,6 @@
         _charmLabel.textColor = default_color_dark;
         _charmLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
         _charmLabel.backgroundColor = [UIColor clearColor];
-        _charmLabel.text = @"20000";
         _charmLabel.textAlignment = NSTextAlignmentLeft;
     }
     [_defaultView addSubview:_charmLabel];
