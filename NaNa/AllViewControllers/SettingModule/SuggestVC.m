@@ -52,8 +52,8 @@
     }
     [self.defaultView addSubview:_myWebView];
     _myWebView.scalesPageToFit = YES;
-    [_myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:K_WEBVIEW_URL_SUGGEST]]];
-    
+    NSString *temp = [NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+    [_myWebView loadRequest:URLREQUEST(K_WEBVIEW_URL_SUGGEST,temp)];
 }
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
@@ -61,7 +61,6 @@
 }
 
 - (void)rightItemPressed:(UIButton *)btn {
-    
     [_myWebView stringByEvaluatingJavaScriptFromString:@"submitSuggest();"];
 }
 @end
