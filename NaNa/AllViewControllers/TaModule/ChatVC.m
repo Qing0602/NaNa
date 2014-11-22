@@ -204,14 +204,15 @@
 
     __weak ChatVC *weakSelf = self;
     // 如果有历史聊天数据，但是当前设备获取不到timestamp如何处理？
-    if (weakSelf.messageArray != nil && [weakSelf.messageArray count] != 0) {
+    if (weakSelf.messageArray != nil || [weakSelf.messageArray count] != 0) {
         NaNaMessageModel *model = weakSelf.messageArray[0];
         [[NaNaUIManagement sharedInstance] getHistoryMessageWithTargetID:weakSelf.otherProfile.userID withTimeStemp:model.createmicrotime];
     }else{
-        if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
-            self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
-            [self.chatTableView.pullToRefreshView stopAnimating];
-        }
+//        if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
+//            self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
+//            [self.chatTableView.pullToRefreshView stopAnimating];
+//        }
+        [[NaNaUIManagement sharedInstance] getHistoryMessageWithTargetID:weakSelf.otherProfile.userID withTimeStemp:0];
     }
 }
 
