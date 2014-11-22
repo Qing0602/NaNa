@@ -7,6 +7,7 @@
 //
 
 #import "MsgCell.h"
+#import "ColorUtil.h"
 
 @implementation MsgCell
 
@@ -15,14 +16,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = RGBA(45.0,46.0,50.0,1.0);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.frame = CGRectMake(0.0, 0.0, sideWidth, self.frame.size.height);
         self.contentView.backgroundColor = [UIColor grayColor];
         
         // icon
         float headHeight = self.frame.size.height - margin_middle;
-        _headImageView = [[RoundRectEGOImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];
+        _headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];
         [self.contentView addSubview:_headImageView];
         
         // 计算坐标
@@ -31,10 +32,10 @@
         
         // 名称 + 消息
         _msgLabel = [[UILabel alloc] init];
-        _msgLabel.frame = CGRectMake(offsetX, 0, offsetWidth - 20.0f, 45);
+        _msgLabel.frame = CGRectMake(offsetX, 3.0f, offsetWidth - 20.0f, 45);
         _msgLabel.backgroundColor = [UIColor clearColor];
-        _msgLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-        _msgLabel.textColor = default_color_light_dark;
+        _msgLabel.font = [UIFont boldSystemFontOfSize:13];
+        _msgLabel.textColor = [UIColor colorWithHexString:@"#cbccce"];
         _msgLabel.numberOfLines = 2;
         [self.contentView addSubview:_msgLabel];
         
@@ -46,8 +47,8 @@
         _timeLabel.frame = CGRectMake(_msgLabel.frame.origin.x, offsetY,
                                       _msgLabel.frame.size.width, 25);
         _timeLabel.backgroundColor = [UIColor clearColor];
-        _timeLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-        _timeLabel.textColor = default_color_light_dark;
+        _timeLabel.font = [UIFont boldSystemFontOfSize:11];
+        _timeLabel.textColor = [UIColor colorWithHexString:@"#919294"];
         [self.contentView addSubview:_timeLabel];
         
         

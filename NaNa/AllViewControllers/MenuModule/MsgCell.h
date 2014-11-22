@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MessageInfoData.h"
 #import "RoundRectEGOImageButton.h"
+#import "CircleImageButton.h"
 
 @interface MsgCell : UITableViewCell {
 }
 
-@property (nonatomic,strong) RoundRectEGOImageButton *headImageView;
+@property (nonatomic,strong) CircleImageButton *headImageView;
 @property (nonatomic,strong) UILabel *msgLabel;
 @property (nonatomic,strong) UILabel *timeLabel;
 

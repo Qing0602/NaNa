@@ -15,6 +15,7 @@
 #import "MsgCell.h"
 #import "NaNaUserProfileModel.h"
 #import "ChatVC.h"
+#import "ColorUtil.h"
 
 #define MENU_ROW_HEIGHT     49.0f
 #define MSG_ROW_HEIGHT      80.0
@@ -96,14 +97,14 @@
             case MenuLeftRowRanking: {
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_meila_normal.png"];
                 cell.nameLabel.text = STRING(@"rank");
-                [cell.nameLabel setTextColor:[UIColor whiteColor]];
+                [cell.nameLabel setTextColor:[UIColor colorWithHexString:@"#c9c9cb"]];
                 cell.unReaderImage.hidden = YES;
                 cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
                 break;
             }
             case MenuLeftRowMyPage: {
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_head_normal.png"];
-                [cell.nameLabel setTextColor:[UIColor whiteColor]];
+                [cell.nameLabel setTextColor:[UIColor colorWithHexString:@"#c9c9cb"]];
                 cell.nameLabel.text = STRING(@"myPage");
                 cell.unReaderImage.hidden = YES;
                 cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
@@ -111,13 +112,14 @@
             }
             case MenuLeftRowSetting: {
                 cell.iconImageView.image = [UIImage imageNamed:@"icon_setting_normal.png"];
-                [cell.nameLabel setTextColor:[UIColor whiteColor]];
+                [cell.nameLabel setTextColor:[UIColor colorWithHexString:@"#c9c9cb"]];
                 cell.nameLabel.text = STRING(@"setting");
                 cell.unReaderImage.hidden = YES;
                 cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
                 break;
             }
         }
+        
         return cell;
         
     } else {
@@ -133,21 +135,23 @@
         cell.msgLabel.text = [NSString stringWithFormat:@"%@: %@", msg.nickname, msg.content];
         cell.timeLabel.text = [self compareDate:msg.createtime];
         [cell setModel:msg];
-        cell.contentView.backgroundColor = RGBA(57.0,56.0,60.0,1.0);
+        cell.contentView.backgroundColor = RGBA(45.0,46.0,50.0,1.0);
         
-        CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:default_font_size_14]];
+        CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:13]];
         if (size.width < 201.0f) {
             cell.msgLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y, cell.msgLabel.frame.size.width, 25.0f);
-            float offsetY = cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + margin_small;
-            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, offsetY,
+            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + 4.0f,
                                           cell.msgLabel.frame.size.width, 25);
-            cell.cellLine.frame = CGRectMake(0.0f, 60.0f - 3.0f, 320.0f, 3.0f);
+            [cell.timeLabel sizeToFit];
+            cell.cellLine.frame = CGRectMake(0.0f, 54.0f - 3.0f, 320.0f, 3.0f);
         }else{
             cell.msgLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y, cell.msgLabel.frame.size.width, 45.0f);
-            float offsetY = cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + margin_small;
-            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, offsetY,
+            cell.msgLabel.backgroundColor = [UIColor clearColor];
+//            float offsetY = cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + margin_small;
+            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height,
                                               cell.msgLabel.frame.size.width, 25);
-            cell.cellLine.frame = CGRectMake(0.0f, 80.0f - 3.0f, 320.0f, 3.0f);
+            [cell.timeLabel sizeToFit];
+            cell.cellLine.frame = CGRectMake(0.0f, 68.5f - 3.0f, 320.0f, 3.0f);
         }
         
         return cell;
@@ -171,7 +175,7 @@
         [title setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
         title.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
         title.font = [UIFont boldSystemFontOfSize:13];
-        title.textColor = [UIColor whiteColor];
+        title.textColor = [UIColor colorWithHexString:@"#c9c9cb"];
         title.backgroundColor = [UIColor clearColor];
         
         UIButton * fresh=[[UIButton alloc] initWithFrame:CGRectMake(250, 3, 25, 25)];
@@ -199,12 +203,14 @@
         return 49.0f;
     } else {
         MessageInfoData *msg = self.messages[indexPath.row];
-        CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:default_font_size_14]];
+        CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:13]];
         int height = 20.0f;
         if (size.width > 201.0f) {
-            height = 40.0f;
+            height = 68.5f;
+        }else{
+            height = 54.0f;
         }
-        return height + 40.0f;
+        return height;
     }
 }
 
@@ -258,7 +264,7 @@
     }else if (timeNow - timeDate < ONE_DAY_TIMEINTERVAL*30.0 && timeNow - timeDate >= ONE_DAY_TIMEINTERVAL*7.0 ){
         return @"一月前";
     }else {
-        return @"好久不联系";
+        return @"很久以前";
     }
 }
 
