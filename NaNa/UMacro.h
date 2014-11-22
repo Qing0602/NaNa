@@ -165,9 +165,9 @@ extern NSInteger K_WAKE_UP_ID;
 #define URLREQUEST(pageURL,param)   [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@?%@", K_DOMAIN_NANA, pageURL, param]]]
 
 // WebView链接地址
-#define K_WEBVIEW_URL_RANK_CITY         @"/nanatop/city"        // 美拉榜-同城
-#define K_WEBVIEW_URL_RANK_NEAR         @"/nanatop/around"      // 美拉榜-周边
-#define K_WEBVIEW_URL_RANK_ALL          @"/nanatop/all"         // 美拉榜-全部
+#define K_WEBVIEW_URL_RANK_CITY         @"/nanatop/city"        // 那娜榜-同城
+#define K_WEBVIEW_URL_RANK_NEAR         @"/nanatop/around"      // 那娜榜-周边
+#define K_WEBVIEW_URL_RANK_ALL          @"/nanatop/all"         // 那娜榜-全部
 #define K_WEBVIEW_URL_MY_PAGE           @"/user/show"           // 我的主页
 #define K_WEBVIEW_URL_FOLLOW            @"/visitor"             // 关注的人
 #define K_WEBVIEW_URL_INTERACTIVE       @"/interactive"         // 互动

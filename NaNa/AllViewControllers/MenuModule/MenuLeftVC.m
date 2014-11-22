@@ -139,15 +139,15 @@
         
         CGSize size = [msg.content sizeWithFont:[UIFont boldSystemFontOfSize:13]];
         if (size.width < 201.0f) {
+            cell.headImageView.frame = CGRectMake(8.0f, 6.0f, cell.headImageView.frame.size.width, cell.headImageView.frame.size.height);
             cell.msgLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y, cell.msgLabel.frame.size.width, 25.0f);
-            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + 4.0f,
+            cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + 2.0f,
                                           cell.msgLabel.frame.size.width, 25);
             [cell.timeLabel sizeToFit];
             cell.cellLine.frame = CGRectMake(0.0f, 54.0f - 3.0f, 320.0f, 3.0f);
         }else{
             cell.msgLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y, cell.msgLabel.frame.size.width, 45.0f);
             cell.msgLabel.backgroundColor = [UIColor clearColor];
-//            float offsetY = cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height + margin_small;
             cell.timeLabel.frame = CGRectMake(cell.msgLabel.frame.origin.x, cell.msgLabel.frame.origin.y + cell.msgLabel.frame.size.height,
                                               cell.msgLabel.frame.size.width, 25);
             [cell.timeLabel sizeToFit];
@@ -178,7 +178,7 @@
         title.textColor = [UIColor colorWithHexString:@"#c9c9cb"];
         title.backgroundColor = [UIColor clearColor];
         
-        UIButton * fresh=[[UIButton alloc] initWithFrame:CGRectMake(250, 3, 25, 25)];
+        UIButton * fresh=[[UIButton alloc] initWithFrame:CGRectMake(250, 1, 25, 25)];
         fresh.backgroundColor = [UIColor clearColor];
         [fresh setBackgroundImage:[UIImage imageNamed:@"btn_fresh_normal.png"] forState:UIControlStateNormal];
         [fresh setBackgroundImage:[UIImage imageNamed:@"btn_fresh_pressed.png"] forState:UIControlStateHighlighted];
