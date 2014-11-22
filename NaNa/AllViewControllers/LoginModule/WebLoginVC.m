@@ -61,9 +61,14 @@
                 [NaNaUIManagement sharedInstance].userAccount = userAccount;
                 [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
             }
-
-            InfoEditVC *infoEdit = [[[InfoEditVC alloc] initWithType:TYPE_LOGIN] autorelease];
-            [self.navigationController pushViewController:infoEdit animated:YES];
+            
+            int isfirst = [[dictionary objectForKey:@"is_1st"] integerValue];
+            if (isfirst == 0) {
+                [APP_DELEGATE loadMainView];
+            }else{
+                InfoEditVC *infoEdit = [[[InfoEditVC alloc] initWithType:TYPE_LOGIN] autorelease];
+                [self.navigationController pushViewController:infoEdit animated:YES];
+            }
         }
     }
     return YES;
