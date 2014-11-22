@@ -186,6 +186,9 @@
         [fresh addTarget:self action:@selector(refreshMessage) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:title];
         [header addSubview:fresh];
+        UIImageView *cellLine = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaCellLine"] stretchableImageWithLeftCapWidth:1.0f topCapHeight:1.0f]];
+        cellLine.frame = CGRectMake(0.0f, 27.0f, 320.0f, 3.0f);
+        [header addSubview:cellLine];
         return header;
     }
     return nil;

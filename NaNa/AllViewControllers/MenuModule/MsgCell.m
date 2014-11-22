@@ -23,7 +23,7 @@
         
         // icon
         float headHeight = self.frame.size.height - margin_middle;
-        _headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(margin_middle, margin_middle, headHeight, headHeight)];
+        _headImageView = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_bg.png"] withFrame:CGRectMake(8.0f, margin_middle, headHeight, headHeight)];
         [self.contentView addSubview:_headImageView];
         
         // 计算坐标
@@ -32,7 +32,7 @@
         
         // 名称 + 消息
         _msgLabel = [[UILabel alloc] init];
-        _msgLabel.frame = CGRectMake(offsetX, 3.0f, offsetWidth - 20.0f, 45);
+        _msgLabel.frame = CGRectMake(offsetX - 2.0f, 3.0f, offsetWidth - 20.0f, 45);
         _msgLabel.backgroundColor = [UIColor clearColor];
         _msgLabel.font = [UIFont boldSystemFontOfSize:13];
         _msgLabel.textColor = [UIColor colorWithHexString:@"#cbccce"];
@@ -52,7 +52,7 @@
         [self.contentView addSubview:_timeLabel];
         
         
-        self.unReaderCount = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 16.0f, 16.0f)];
+        self.unReaderCount = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 4.0f, 16.0f, 16.0f)];
         self.unReaderCount.textAlignment = NSTextAlignmentCenter;
         self.unReaderCount.textColor = [UIColor whiteColor];
         self.unReaderCount.font = [UIFont boldSystemFontOfSize:11.0f];
@@ -73,8 +73,8 @@
     if (model.count != 0) {
         self.unReaderCount.text = [NSString stringWithFormat:@"%d",model.count];
         [self.unReaderCount sizeToFit];
-        self.unReaderCount.center = CGPointMake(16.0f/2.0f, 16.0f/2.0f);
-        self.unReaderImage.frame = CGRectMake(_msgLabel.frame.origin.x + _msgLabel.frame.size.width, 8.0f, 16.0f, 16.0f);
+        self.unReaderCount.center = CGPointMake(15.0f/2.0f, 15.0f/2.0f);
+        self.unReaderImage.frame = CGRectMake(_msgLabel.frame.origin.x + _msgLabel.frame.size.width, 10.0f, 15.0f, 15.0f);
         self.unReaderImage.hidden = NO;
     }else{
         self.unReaderImage.hidden = YES;
