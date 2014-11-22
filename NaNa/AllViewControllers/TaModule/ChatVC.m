@@ -33,6 +33,7 @@
 @property (nonatomic,strong) NSArray *sendingMessageArray;
 @property (nonatomic) BOOL isMore;
 @property (nonatomic,strong) NSTimer *timer;
+@property (nonatomic) BOOL isEmptyToGetHistroy;
 -(void) handleTimerGetNewMessage :(NSTimer *)theTimer;
 -(void) messageBuffer;
 -(void) messageDate;
@@ -109,8 +110,8 @@
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
+    self.isEmptyToGetHistroy = NO;
     self.title = self.otherProfile.userNickName;
     self.isMore = YES;
     self.meesageAndDate = [[NSArray alloc] init];
@@ -203,15 +204,11 @@
     }
 
     __weak ChatVC *weakSelf = self;
-    // 如果有历史聊天数据，但是当前设备获取不到timestamp如何处理？
     if (weakSelf.messageArray != nil || [weakSelf.messageArray count] != 0) {
         NaNaMessageModel *model = weakSelf.messageArray[0];
         [[NaNaUIManagement sharedInstance] getHistoryMessageWithTargetID:weakSelf.otherProfile.userID withTimeStemp:model.createmicrotime];
     }else{
-//        if (self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateLoading ||
-//            self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
-//            [self.chatTableView.pullToRefreshView stopAnimating];
-//        }
+        self.isEmptyToGetHistroy = YES;
         [[NaNaUIManagement sharedInstance] getHistoryMessageWithTargetID:weakSelf.otherProfile.userID withTimeStemp:0];
     }
 }
@@ -292,6 +289,12 @@
             self.chatTableView.pullToRefreshView.state == SVPullToRefreshStateTriggered) {
             [self.chatTableView.pullToRefreshView stopAnimating];
         }
+        
+        if (self.isEmptyToGetHistroy) {
+            [self messageBuffer];
+            self.isEmptyToGetHistroy = NO;
+        }
+        
     }else if ([keyPath isEqualToString:@"touchHeadDic"]){
         if (![[NaNaUIManagement sharedInstance].touchHeadDic[ASI_REQUEST_HAS_ERROR] boolValue]) {
             NSString *message = [NaNaUIManagement sharedInstance].touchHeadDic[@"data"][@"message"];
