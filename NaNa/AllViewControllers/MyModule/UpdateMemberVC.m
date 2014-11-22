@@ -55,11 +55,12 @@
     if (!_userNameLabel) {
         _userNameLabel = [[UILabel alloc] init];
         _userNameLabel.frame = CGRectMake(25.0, 25.0, screenWidth - 25 * 2, 30.0);
-        _userNameLabel.textColor = default_color_dark;
-        _userNameLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _userNameLabel.textColor = [UIColor blackColor];
+        _userNameLabel.font = [UIFont boldSystemFontOfSize:16];
         _userNameLabel.backgroundColor = [UIColor clearColor];
         //_userNameLabel.text = [NaNaUIManagement sharedInstance].userAccount.NaNaID;
         _userNameLabel.textAlignment = NSTextAlignmentLeft;
+        _userNameLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     }
     [_defaultView addSubview:_userNameLabel];
     
@@ -137,7 +138,7 @@
     cueLabel.frame = CGRectMake(0.0, charmBg.frame.origin.y + charmBg.frame.size.height + 25,
                                 _defaultView.frame.size.width, 30);
     cueLabel.textColor = default_color_dark;
-    cueLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+    cueLabel.font = [UIFont boldSystemFontOfSize:14];
     cueLabel.backgroundColor = [UIColor clearColor];
     cueLabel.text = STRING(@"updateCue");
     cueLabel.textAlignment = NSTextAlignmentCenter;
@@ -147,21 +148,29 @@
     if (!_okButton) {
         _okButton = [[UIButton alloc] init];
         _okButton.frame = CGRectMake(40.0,
-                                     cueLabel.frame.origin.y + cueLabel.frame.size.height + 15,
+                                     cueLabel.frame.origin.y + cueLabel.frame.size.height + 6,
                                      240.0, 40.0);
         _okButton.backgroundColor = [UIColor clearColor];
-        [_okButton setBackgroundImage:[UIImage imageNamed:@"btn_green_normal.png"] forState:UIControlStateNormal];
-        [_okButton setBackgroundImage:[UIImage imageNamed:@"btn_green_pressed.png"] forState:UIControlStateHighlighted];
+        [_okButton setBackgroundColor:[UIColor blackColor]];
         [_okButton setTitle:STRING(@"immediatelyUpdate") forState:UIControlStateNormal];
-        [_okButton setTitleColor:default_color_deep_dark forState:UIControlStateNormal];
+        [_okButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _okButton.titleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_18];
+        _okButton.layer.cornerRadius = 5;
+        _okButton.layer.borderWidth = 1;
+        _okButton.clipsToBounds = YES;
         [_okButton addTarget:self
                       action:@selector(okButtonClick:)
             forControlEvents:UIControlEventTouchUpInside];
     }
     [_defaultView addSubview:_okButton];
     
-    
+//    changeButton.frame = CGRectMake(40.0f, line1.frame.origin.y + 20.0f, 240.0f, 40.0f);
+//    [changeButton setBackgroundColor:[UIColor blackColor]];
+//    [changeButton setTitle:@"兑换" forState:UIControlStateNormal];
+//    [changeButton setTitle:@"兑换" forState:UIControlStateHighlighted];
+//    changeButton.layer.cornerRadius = 5;
+//    changeButton.layer.borderWidth = 1;
+//    changeButton.clipsToBounds = YES;
     
     
     [scoreBg release];

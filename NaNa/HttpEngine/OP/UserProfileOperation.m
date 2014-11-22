@@ -96,7 +96,6 @@
                                                       [NSNumber numberWithBool:canLovePush],@"lovePush",
                                                       [NSNumber numberWithBool:canFriendPush],@"friendPush",
                                                        nil]];
-        
     }
     return self;
 }

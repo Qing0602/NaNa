@@ -57,7 +57,7 @@
 - (void)otherViewAddOther{
     NSArray *btnNo1 = [NSArray arrayWithObjects:@"gift_normal",@"on_things_normal",@"key_normal",nil];
     NSArray *btnSe1 = [NSArray arrayWithObjects:@"gift_pressed",@"on_things_pressed",@"key_pressed",nil];
-    NSArray *str = [NSArray arrayWithObjects:@"礼物",@"摇头",@"钥匙", nil];
+    NSArray *str = [NSArray arrayWithObjects:@"礼物",@"摸头",@"钥匙", nil];
     
     for (int i = 0; i < 3; i ++){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

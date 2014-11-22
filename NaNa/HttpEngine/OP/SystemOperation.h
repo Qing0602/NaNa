@@ -10,9 +10,12 @@
 
 typedef enum{
     kPostDriverToken,
+    kPostChangeCode,
 }SysTemType;
 
 @interface SystemOperation : NaNaOperation
 
 -(SystemOperation *) initPostSystemDriverToken : (int) userID withDriverToken : (NSString *) token;
+
+-(SystemOperation *) initChangeCode : (NSString *) code withPassword : (NSString *)password;
 @end

@@ -93,6 +93,8 @@ typedef enum{
 // 给钥匙
 @property(nonatomic,strong) NSDictionary *giveKey;
 
+@property(nonatomic,strong) NSDictionary *changeCodeDic;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
@@ -155,4 +157,6 @@ typedef enum{
 
 // 退出登录
 -(void) quit;
+
+-(void) changeCode : (NSString *) code withPassword : (NSString *)password;
 @end

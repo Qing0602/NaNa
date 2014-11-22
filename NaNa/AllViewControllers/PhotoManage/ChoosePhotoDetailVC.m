@@ -30,6 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"发表";
+    
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

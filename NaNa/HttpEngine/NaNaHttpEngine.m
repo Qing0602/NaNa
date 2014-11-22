@@ -139,6 +139,8 @@
     if (!status) {
         self.hasError = YES;
         self.errorMessage = headers[@"message"];
+    }else{
+        self.errorMessage = headers[@"message"];
     }
     if (!self.hasError) {
         [self sendMsgToAutoCloseProgress:request.clazz];

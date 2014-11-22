@@ -171,4 +171,9 @@ static NaNaUIManagement *sharedInstance = nil;
 -(void) quit{
     [NaNaUIModelCoding clearCache:@"NaNaUserAccount"];
 }
+
+-(void) changeCode : (NSString *) code withPassword : (NSString *)password{
+    SystemOperation *operation = [[SystemOperation alloc] initChangeCode:code withPassword:password];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end
