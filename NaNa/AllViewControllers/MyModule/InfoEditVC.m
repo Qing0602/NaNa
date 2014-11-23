@@ -65,6 +65,16 @@ typedef enum {
             
             [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
+    }else if ([keyPath isEqualToString:@"uploadResult"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            //正确
+        }else
+        {
+            [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+        }
+
     }
 }
 -(void)setInfoData:(NSDictionary *)infoData
@@ -511,6 +521,8 @@ typedef enum {
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"updateUserProfile" options:0 context:nil];
+    //uploadResult
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"uploadResult" options:0 context:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -519,6 +531,7 @@ typedef enum {
     [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userProfile"];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"updateUserProfile"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"uploadResult"];
 }
 
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
