@@ -15,6 +15,8 @@
 #import "PasswordLockManagementViewController.h"
 #import "PasswordLockViewController.h"
 #import "AppDelegate.h"
+#import "ColorUtil.h"
+
 @interface SettingVC()
 @end
 #define kSettingEditCellHeight         40.0
@@ -85,11 +87,20 @@ typedef enum {
     [_defaultView addSubview:_tableView];
     
     if (!_logoutButton) {
-        _logoutButton = [[UIButton alloc] init];
-        _logoutButton.frame = CGRectMake(15.0, _tableView.frame.size.height+50.0, kSettingEditCellShowWidth, 50.0);
-        [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_normal.png"] forState:UIControlStateNormal];
-        [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_pressed.png"] forState:UIControlStateHighlighted];
+        _logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _logoutButton.frame = CGRectMake(15.0, _tableView.frame.size.height+50.0, kSettingEditCellShowWidth, 50.0);
+//        [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_normal.png"] forState:UIControlStateNormal];
+//        [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_pressed.png"] forState:UIControlStateHighlighted];
+//        [_logoutButton setTitle:STRING(@"logout") forState:UIControlStateNormal];
+        
+        
+        _logoutButton.frame = CGRectMake(15.0f, _tableView.frame.size.height+50.0, kSettingEditCellShowWidth, 40.0);
+        [_logoutButton setBackgroundColor:[UIColor colorWithHexString:@"#ff6633"]];
         [_logoutButton setTitle:STRING(@"logout") forState:UIControlStateNormal];
+        [_logoutButton setTitle:STRING(@"logout") forState:UIControlStateHighlighted];
+        _logoutButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        _logoutButton.layer.cornerRadius = 5;
+        _logoutButton.clipsToBounds = YES;
         [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     }
     [_defaultView addSubview:_logoutButton];
