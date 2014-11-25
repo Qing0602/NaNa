@@ -19,8 +19,8 @@
 #define TOOLBARTAG		200
 #define TABLEVIEWTAG	300
 
-#define KFacialSizeWidth  18
-#define KFacialSizeHeight 18
+#define KFacialSizeWidth  22
+#define KFacialSizeHeight 22
 #define MAX_WIDTH 150
 
 #define BEGIN_FLAG @"[/"
