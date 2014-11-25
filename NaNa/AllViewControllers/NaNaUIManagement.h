@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NaNaNetWorkService.h"
 #import "NaNaUserAccountModel.h"
+#import "NaNaUserProfileModel.h"
 
 #define TRANSFERVALUE @"TransferValue"
 #define TRANSFERVCFROMCLASS @"TransferFromVCClass"
@@ -26,6 +27,9 @@ typedef enum{
 
 // 用户登陆model
 @property(nonatomic,strong) NaNaUserAccountModel *userAccount;
+// 用户信息
+@property(nonatomic,strong) NaNaUserAccountModel *userProfileCache;
+
 
 // 新好友数量
 @property(nonatomic,strong) NSNumber *friendsOfNew;
