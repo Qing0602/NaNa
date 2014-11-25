@@ -137,6 +137,8 @@
 
 -(void) viewDidLoad{
     [[NaNaUIManagement sharedInstance] postPushToken:[UStaticData getObjectForKey:DEVICE_TOKEN]];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
+    
     [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
 }
 
