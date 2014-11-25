@@ -95,20 +95,23 @@
     [_phraseArray addObject:dicFace];
 
     CGFloat x = 0;CGFloat y = 0;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 5; i++)
     {
-        for (int j = 0; j< 4; j++)
+        for (int j = 0; j< 3; j++)
         {
-            for (int m = 0; m < 9; m ++)
+            for (int m = 0; m < 8; m ++)
             {
-                int index = m + 9*j +i*36;
-                x = i*320 + m * (10 + 24) + 10;
-                y = j*(18 + 24) + 18;
+                int index = m + 8 * j + i * 36;
+                x = i * 320 + m * (10 + 30) + 10;
+                y = j * (18 + 30) + 18;
                 UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                if ([_phraseArray count] <= index) {
+                    break;
+                }
                 NSMutableDictionary *tempdic = [_phraseArray objectAtIndex:index];
                 UIImage *tempImage = [tempdic valueForKey:[[tempdic allKeys] objectAtIndex:0]];
                 [btn setBackgroundImage:tempImage forState:UIControlStateNormal];
-                btn.frame = CGRectMake(x, y, 24, 24);
+                btn.frame = CGRectMake(x, y, 30, 30);
                 btn.tag = index;
                 [btn addTarget:self action:(index == 35 || index == 71 || index == 107) ? @selector(deleteAction:) : @selector(selectFaceAction:) forControlEvents:UIControlEventTouchUpInside];
                 [_scrollView addSubview:btn];

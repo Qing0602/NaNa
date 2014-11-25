@@ -170,7 +170,7 @@
 
     
     UIImageView *textFieldBg = [[UIImageView alloc] initWithFrame:CGRectMake(8, 7, 222, 30)];
-    textFieldBg.image = [UIImage imageNamed:@"chat_textfield_bg.png"];
+    textFieldBg.image = [[UIImage imageNamed:@"chat_textfield_bg.png"] stretchableImageWithLeftCapWidth:30.0f topCapHeight:15.0f];
     [_toolbar addSubview:textFieldBg];
     
     if (!_messageTextField)
