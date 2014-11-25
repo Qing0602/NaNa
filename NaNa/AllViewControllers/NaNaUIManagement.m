@@ -21,6 +21,7 @@ static NaNaUIManagement *sharedInstance = nil;
         if (nil == sharedInstance){
             sharedInstance = [[NaNaUIManagement alloc] init];
             sharedInstance.userAccount = [NaNaUIModelCoding deserializeModel:@"NaNaUserAccount"];
+            sharedInstance.userProfileCache = [NaNaUIModelCoding deserializeModel:@"userProfileCache"];
         }
     }
     return sharedInstance;
