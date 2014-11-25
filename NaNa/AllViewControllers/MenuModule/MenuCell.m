@@ -49,7 +49,7 @@
         [self addSubview:self.unReaderImage];
         
         self.cellLine = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaCellLine"] stretchableImageWithLeftCapWidth:1.0f topCapHeight:1.0f]];
-        self.cellLine.frame = CGRectMake(0.0f, self.frame.size.height - 3.0f, 320.0f, 3.0f);
+        self.cellLine.frame = CGRectMake(0.0f, self.frame.size.height - 3.0f, 320.0f, 2.0f);
         [self addSubview:self.cellLine];
     }
     return self;

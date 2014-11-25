@@ -11,6 +11,7 @@
 #import "VisitorVC.h"
 #import "FriendVC.h"
 #import "LikeVC.h"
+#import "ColorUtil.h"
 
 typedef enum {
     SettingEditRowVisitor     = 0,
@@ -126,6 +127,7 @@ typedef enum {
         }
         cell.cellLine.frame = CGRectMake(cell.frame.origin.x, 46.0f, cell.cellLine.frame.size.width, cell.cellLine.frame.size.height);
     }
+    [cell.nameLabel setTextColor:[UIColor colorWithHexString:@"#c9c9cb"]];
     return cell;
 }
 

@@ -168,7 +168,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        UIView * header=[[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 20.0f)];
+        UIView * header=[[UIView alloc] initWithFrame:CGRectMake(0, -1.0f, CGRectGetWidth(tableView.bounds), 20.0f)];
         header.backgroundColor = RGBA(70.0,71.0,75.0,1.0);
        
         UILabel * title =  [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 50, 20.0f)];
@@ -187,7 +187,7 @@
         [header addSubview:title];
         [header addSubview:fresh];
         UIImageView *cellLine = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"NaNaCellLine"] stretchableImageWithLeftCapWidth:1.0f topCapHeight:1.0f]];
-        cellLine.frame = CGRectMake(0.0f, 27.0f, 320.0f, 3.0f);
+        cellLine.frame = CGRectMake(0.0f, 28.0f, 320.0f, 2.0f);
         [header addSubview:cellLine];
         return header;
     }
