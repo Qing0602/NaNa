@@ -70,6 +70,10 @@ typedef enum {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             //正确
+            NSString  *avatarPath = tempData[ASI_REQUEST_DATA][@"avatar"];
+            if (avatarPath.length > 0) {
+                [NaNaUIManagement sharedInstance].userProfileCache.userAvatarURL = avatarPath;
+            }
         }else
         {
             [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
