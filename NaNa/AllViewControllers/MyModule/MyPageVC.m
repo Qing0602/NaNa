@@ -17,7 +17,7 @@
 #import "NaNaUIManagement.h"
 #import "NaNaUserAccountModel.h"
 #import "MyBackgroundListViewController.h"
-
+#import "UAlertView.h"
 @interface MyPageVC ()<UIGestureRecognizerDelegate,PhotoMenuDelegate,HeadCartoonDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,AVAudioPlayerDelegate>
 {
     PhotoMenuView *_photoMenuView;
@@ -112,11 +112,20 @@
     
 }
 
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"uploadResult"];
+}
+
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (_myWebView != nil) {
         [_myWebView reload];
     }
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"uploadResult" options:0 context:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,6 +138,25 @@
     SAFERELEASE(_activityView)
     SAFERELEASE(_tabBar)
     [super dealloc];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"uploadResult"])
+    {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            //正确
+            NSString  *avatarPath = tempData[ASI_REQUEST_DATA][@"avatar"];
+            if (avatarPath.length > 0) {
+                [NaNaUIManagement sharedInstance].userProfileCache.userAvatarURL = avatarPath;
+            }
+        }else
+        {
+            [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+        }
+        
+    }
 }
 
 #pragma mark - ButtonPressed

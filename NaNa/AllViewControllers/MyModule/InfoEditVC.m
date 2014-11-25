@@ -70,6 +70,10 @@ typedef enum {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             //正确
+            NSString  *avatarPath = tempData[ASI_REQUEST_DATA][@"avatar"];
+            if (avatarPath.length > 0) {
+                [NaNaUIManagement sharedInstance].userProfileCache.userAvatarURL = avatarPath;
+            }
         }else
         {
             [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
@@ -190,8 +194,10 @@ typedef enum {
     if (!_recordImageView) {
         _recordImageView = [[UIButton alloc] init];
         [_recordImageView setBackgroundImage:[UIImage imageNamed:@"speaker.png"] forState:UIControlStateNormal];
+        [_recordImageView setBackgroundImage:[UIImage imageNamed:@"btn_playing"] forState:UIControlStateSelected];
         _recordImageView.frame = CGRectMake(240.0, 15.0, 30.0, 30.0);
         [_recordImageView addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     
     [_defaultView addSubview:_recordImageView];
@@ -542,6 +548,7 @@ typedef enum {
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
     ULog(@"audioPlayerDidFinishPlaying successfully flag = %d",flag);
+        _recordImageView.selected = NO;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -1005,13 +1012,16 @@ typedef enum {
 
 - (void)playRecord:(UIButton *)btn
 {
+    
     _audioPlayer = nil;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
     NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
-    if (!url || [[url absoluteString] isEqualToString:@""]) {
+    if (!url || ![url absoluteString].length >0 ) {
         url = [NSURL URLWithString:_voiceUrl];
     }
+    
+    
     NSError *audioPlayerError = nil;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&audioPlayerError];
     _audioPlayer.numberOfLoops = 0;
@@ -1020,6 +1030,7 @@ typedef enum {
     if (_audioPlayer.prepareToPlay)
     {
         [_audioPlayer play];
+        btn.selected = !btn.selected;
          ULog(@"playing");
     }
     else
@@ -1031,6 +1042,7 @@ typedef enum {
 
 - (void)endRecord:(UIButton *)btn {
     ULog(@"currentTime = %.f",_recorder.currentTime);
+
     
     [_recordingView removeFromSuperview];
     NSLog(@"%f",recorderLength);

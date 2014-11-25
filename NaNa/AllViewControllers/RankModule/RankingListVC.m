@@ -137,6 +137,22 @@
 
 -(void) viewDidLoad{
     [[NaNaUIManagement sharedInstance] postPushToken:[UStaticData getObjectForKey:DEVICE_TOKEN]];
+    [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self closeProgress];
+    if ([keyPath isEqualToString:@"userProfile"]) {
+        NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
+        if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSDictionary *infoData = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
+            if (infoData && infoData.allKeys.count > 0) {
+                NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] converJson:infoData];
+                [NaNaUserProfileModel serializeModel:model withFileName:[NSString stringWithFormat:@"userProfileCache"]];
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
