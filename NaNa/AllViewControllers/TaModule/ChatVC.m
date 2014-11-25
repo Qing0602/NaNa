@@ -117,6 +117,14 @@
     self.meesageAndDate = [[NSArray alloc] init];
     self.messageArray = [[NSArray alloc] init];
     self.messageArray = [NaNaMessageModel deserializeModel:[NSString stringWithFormat: @"%d.msg",self.otherProfile.userID]];
+    for (NaNaMessageModel *model in self.messageArray) {
+        if (model != nil) {
+            if (model.isBlongMe) {
+                model.avatar = [NaNaUIManagement sharedInstance].userProfileCache.userAvatarURL;
+            }
+        }
+    }
+    
     self.sendingMessageArray = [[NSArray alloc] init];
     [self messageDate];
     
@@ -757,7 +765,7 @@
     cellView.backgroundColor = [UIColor clearColor];
     // 气泡
 	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"bubble_self2":@"bubble_friend2" ofType:@"png"]];
-	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:15.0f topCapHeight:20.0f]];
+	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:10.0f topCapHeight:22.0f]];
     // 头像
     CircleImageButton *headImageView = [[CircleImageButton alloc] init];
     
