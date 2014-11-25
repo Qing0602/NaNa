@@ -35,7 +35,7 @@
 "hot"           =   "热门城市";
 "location"      =   "正在定位您所在的城市";
 "inputCitySearch"  =   "输入城市名字或首字母查询";
-"inputCityCue"  =   "暂时未开通您要查找的城市\n请输入城市名或首字母";
+"inputCityCue"  =   "暂时未开通您要查找的城市\n\n请输入城市名或首字母";
 "score"         =   "积分";
 "charm"         =   "魅力";
 "updateMember"  =   "升级会员";

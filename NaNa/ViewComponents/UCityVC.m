@@ -44,6 +44,8 @@
     self.title = STRING(@"cityList");
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
     
+    self.view.backgroundColor = [self colorWithHexString:@"ffffff"];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(getcurrentCityFinishedNotify:)
                                                  name:UGetCurrentCityFinishedNotify
@@ -94,15 +96,15 @@
     self.searchedCity = [NSMutableArray array];
     
     if (!_sadFace) {
-        _sadFace = [[UIImageView alloc] initWithFrame:CGRectMake(136, 100, 48, 48)];
+        _sadFace = [[UIImageView alloc] initWithFrame:CGRectMake(136, 130, 48, 48)];
         _sadFace.image = [UIImage imageNamed:@"face_sad.png"];
         _sadFace.hidden = YES;
     }
     
     if (!_sadMessage) {
-        _sadMessage = [[UILabel alloc] initWithFrame:CGRectMake(50, 160, 220, 60)];
+        _sadMessage = [[UILabel alloc] initWithFrame:CGRectMake(40, 190, 240, 80)];
         _sadMessage.backgroundColor = [UIColor clearColor];
-        _sadMessage.numberOfLines = 2;
+        _sadMessage.numberOfLines = 40;
         _sadMessage.textAlignment = UITextAlignmentCenter;
         _sadMessage.textColor = [UIColor lightGrayColor];
         _sadMessage.text = STRING(@"inputCityCue");

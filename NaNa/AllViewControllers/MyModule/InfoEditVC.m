@@ -23,7 +23,7 @@
 #define kInfoEditCellSildWidth      15.0
 #define kInfoEditCellShowWidth      290.0
 #define kInfoEditCellNumber         4
-#define kInfoRecodingViewHeight     200.0
+#define kInfoRecodingViewHeight     120.0
 
 #define kInfoRecoderTimeKey @"kInfoRecoderTimeKey"
 
@@ -494,13 +494,13 @@ typedef enum {
                                                                   (CGRectGetHeight(_defaultView.frame)-kInfoRecodingViewHeight)/2,
                                                                   kInfoRecodingViewHeight,
                                                                   kInfoRecodingViewHeight)];
-        _recordingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+        _recordingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         _recordingView.layer.cornerRadius = 10;
-        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(75, 65, 50, 50)];
+        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 60, 60)];
         record.image = [UIImage imageNamed:@"record.png"];
         [_recordingView addSubview:record];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, 200, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, 200, 20)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
