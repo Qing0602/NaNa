@@ -34,7 +34,7 @@
         [_faceView addSubview:_scrollView];
         
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.bounds) - 50)/2, CGRectGetHeight(self.bounds) - 34, 50, 10)];
-        _pageControl.numberOfPages = 3;
+        _pageControl.numberOfPages = 5;
         _pageControl.currentPage = 0;
         [_faceView addSubview:_pageControl];
         
@@ -90,35 +90,35 @@
     UIImage *face = [UIImage imageNamed:[NSString stringWithFormat:@"chat_photo_btn.png"]];
     NSMutableDictionary *dicFace = [NSMutableDictionary dictionary];
     [dicFace setValue:face forKey:[NSString stringWithFormat:@"delete"]];
-    [_phraseArray insertObject:dicFace atIndex:35];
+    [_phraseArray insertObject:dicFace atIndex:23];
+    [_phraseArray insertObject:dicFace atIndex:47];
     [_phraseArray insertObject:dicFace atIndex:71];
+    [_phraseArray insertObject:dicFace atIndex:95];
     [_phraseArray addObject:dicFace];
 
     CGFloat x = 0;CGFloat y = 0;
-    for (int i = 0; i < 5; i++)
-    {
-        for (int j = 0; j< 3; j++)
-        {
-            for (int m = 0; m < 8; m ++)
-            {
-                int index = m + 8 * j + i * 36;
-                x = i * 320 + m * (10 + 30) + 10;
-                y = j * (18 + 30) + 18;
-                UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-                if ([_phraseArray count] <= index) {
+    int index = 0;
+    for (int i = 0; i < 5; i++){
+        for (int j = 0; j< 3; j++){
+            for (int m = 0; m < 8; m ++){
+                x = i * 320 + m * (10 + 28) + 10;
+                y = j * (20 + 28) + 28;
+                if (index>= [_phraseArray count]) {
                     break;
                 }
+                UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
                 NSMutableDictionary *tempdic = [_phraseArray objectAtIndex:index];
                 UIImage *tempImage = [tempdic valueForKey:[[tempdic allKeys] objectAtIndex:0]];
                 [btn setBackgroundImage:tempImage forState:UIControlStateNormal];
-                btn.frame = CGRectMake(x, y, 30, 30);
+                btn.frame = CGRectMake(x, y, 28, 28);
                 btn.tag = index;
-                [btn addTarget:self action:(index == 35 || index == 71 || index == 107) ? @selector(deleteAction:) : @selector(selectFaceAction:) forControlEvents:UIControlEventTouchUpInside];
+                [btn addTarget:self action:(index == 23 || index == 47 || index == 71 || index == 95 || index == 109) ? @selector(deleteAction:) : @selector(selectFaceAction:) forControlEvents:UIControlEventTouchUpInside];
                 [_scrollView addSubview:btn];
+                index += 1;
             }
         }
     }
-    _scrollView.contentSize = CGSizeMake(320 * 3, 216-34);
+    _scrollView.contentSize = CGSizeMake(320 * 5, 216-34);
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
