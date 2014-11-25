@@ -88,6 +88,7 @@
 		74779E0F19E4DDD5004D1902 /* btn_voice_stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74779E0D19E4DDD5004D1902 /* btn_voice_stop@2x.png */; };
 		74779E1019E4DDD5004D1902 /* btn_voice_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74779E0E19E4DDD5004D1902 /* btn_voice_play@2x.png */; };
 		747F2D9119CFFB31003C53DF /* navbar_confirm_unuseful@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F2D8E19CFFB31003C53DF /* navbar_confirm_unuseful@2x.png */; };
+		74955F8E1A246B2F00C74078 /* btn_playing.png in Resources */ = {isa = PBXBuildFile; fileRef = 74955F8D1A246B2F00C74078 /* btn_playing.png */; };
 		74BA30E419D5A28D00686AF4 /* PasswordLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BA30E319D5A28D00686AF4 /* PasswordLockViewController.m */; };
 		74BA30E719D5C68900686AF4 /* PasswordLockManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BA30E619D5C68900686AF4 /* PasswordLockManagementViewController.m */; };
 		74E173B919E41B0C00065459 /* navbar_confirm_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E173B719E41B0C00065459 /* navbar_confirm_press@2x.png */; };
@@ -625,6 +626,7 @@
 		74779E0D19E4DDD5004D1902 /* btn_voice_stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_voice_stop@2x.png"; sourceTree = "<group>"; };
 		74779E0E19E4DDD5004D1902 /* btn_voice_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_voice_play@2x.png"; sourceTree = "<group>"; };
 		747F2D8E19CFFB31003C53DF /* navbar_confirm_unuseful@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_confirm_unuseful@2x.png"; sourceTree = "<group>"; };
+		74955F8D1A246B2F00C74078 /* btn_playing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_playing.png; sourceTree = "<group>"; };
 		74BA30E219D5A28D00686AF4 /* PasswordLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordLockViewController.h; sourceTree = "<group>"; };
 		74BA30E319D5A28D00686AF4 /* PasswordLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordLockViewController.m; sourceTree = "<group>"; };
 		74BA30E519D5C68900686AF4 /* PasswordLockManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordLockManagementViewController.h; sourceTree = "<group>"; };
@@ -1996,6 +1998,7 @@
 			children = (
 				74779E0D19E4DDD5004D1902 /* btn_voice_stop@2x.png */,
 				74779E0E19E4DDD5004D1902 /* btn_voice_play@2x.png */,
+				74955F8D1A246B2F00C74078 /* btn_playing.png */,
 				87167D7D188E25EB00263AC6 /* record_light blue_btn_lan.png */,
 				8721DC1C188D2CAB00D18C40 /* btn_complete_bg.png */,
 				971F3EEC1839E445003E9161 /* btn_orange_normal.png */,
@@ -2465,6 +2468,7 @@
 				8729E95218840034005CAB4F /* 42@2x.png in Resources */,
 				97C7A10717BF924E00D69517 /* PhotoMenuView.xib in Resources */,
 				871AEE871887E225002D9320 /* chat_keyboard.png in Resources */,
+				74955F8E1A246B2F00C74078 /* btn_playing.png in Resources */,
 				8729E93118840034005CAB4F /* 28.png in Resources */,
 				8729E91318840034005CAB4F /* 14.png in Resources */,
 				97C7A13217BFAA9100D69517 /* UBottomView.xib in Resources */,
