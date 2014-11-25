@@ -28,7 +28,7 @@ typedef enum{
 // 用户登陆model
 @property(nonatomic,strong) NaNaUserAccountModel *userAccount;
 // 用户信息
-@property(nonatomic,strong) NaNaUserAccountModel *userProfileCache;
+@property(nonatomic,strong) NaNaUserProfileModel *userProfileCache;
 
 
 // 新好友数量
