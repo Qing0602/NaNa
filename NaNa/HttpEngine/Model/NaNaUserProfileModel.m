@@ -59,4 +59,35 @@
     }
     return self;
 }
+
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeObject:self.userAvatarURL forKey:@"userAvatarURL"];
+    [aCoder encodeObject:self.userBackGroundURL forKey:@"userBackGroundURL"];
+    [aCoder encodeObject:self.userBirthday forKey:@"userBirthday"];
+    [aCoder encodeInteger:self.userCharm forKey:@"userCharm"];
+    [aCoder encodeInteger:self.userCityID forKey:@"userCityID"];
+    [aCoder encodeObject:self.userCityName forKey:@"userCityName"];
+    [aCoder encodeInteger:self.userID forKey:@"userID"];
+    [aCoder encodeObject:self.userNickName forKey:@"userNickName"];
+    [aCoder encodeObject:self.voiceURL forKey:@"voiceURL"];
+    [aCoder encodeInteger:self.role forKey:@"role"];
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (nil != self) {
+        self.userAvatarURL = [aDecoder decodeObjectForKey:@"userAvatarURL"];
+        self.userBackGroundURL = [aDecoder decodeObjectForKey:@"userBackGroundURL"];
+        self.userBirthday = [aDecoder decodeObjectForKey:@"userBirthday"];
+        self.userCharm = [aDecoder decodeIntegerForKey:@"userCharm"];
+        self.userCityID = [aDecoder decodeIntegerForKey:@"userCityID"];
+        self.userCityName = [aDecoder decodeObjectForKey:@"userCityName"];
+        self.userID = [aDecoder decodeIntegerForKey:@"userID"];
+        self.userNickName = [aDecoder decodeObjectForKey:@"userNickName"];
+        self.voiceURL = [aDecoder decodeObjectForKey:@"voiceURL"];
+        self.role = [aDecoder decodeIntegerForKey:@"role"];
+    }
+    return self;
+}
 @end
