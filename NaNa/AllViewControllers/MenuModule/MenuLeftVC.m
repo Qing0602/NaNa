@@ -246,6 +246,7 @@
         NaNaUserProfileModel *model = [[NaNaUserProfileModel alloc] init];
         model.userID = msg.senderID;
         model.userNickName = msg.nickname;
+        model.userAvatarURL = msg.avatarUrl;
         ChatVC *chatVC  =[[ChatVC alloc] initChatVC:model];
         [self pushPage:chatVC];
     }

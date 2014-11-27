@@ -119,6 +119,7 @@
             NaNaUserProfileModel *model = [[[NaNaUserProfileModel alloc] init] autorelease];
             model.userID = targetID;
             model.userNickName = _taNickName;
+            model.userAvatarURL = _avatar;
             ChatVC *chatVC  =[[ChatVC alloc] initChatVC:model];
             [self.navigationController pushViewController:chatVC animated:YES];
             [chatVC release];
@@ -168,6 +169,11 @@
             NSString *tempNickName = dictionary[@"nickname"];
             if (![tempNickName isEqualToString:@""]) {
                 _taNickName = [[tempNickName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
+            }
+            
+            NSString *tempAvatar = dictionary[@"avatar"];
+            if (![tempAvatar isEqualToString:@""]) {
+                _avatar = [[tempAvatar stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
             }
         }
     return YES;

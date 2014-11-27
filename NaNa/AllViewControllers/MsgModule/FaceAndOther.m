@@ -102,7 +102,7 @@
         for (int j = 0; j< 3; j++){
             for (int m = 0; m < 8; m ++){
                 x = i * 320 + m * (10 + 28) + 10;
-                y = j * (20 + 28) + 28;
+                y = j * (20 + 28) + 36;
                 if (index>= [_phraseArray count]) {
                     break;
                 }

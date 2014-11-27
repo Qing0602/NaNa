@@ -121,6 +121,8 @@
         if (model != nil) {
             if (model.isBlongMe) {
                 model.avatar = [NaNaUIManagement sharedInstance].userProfileCache.userAvatarURL;
+            }else{
+                model.avatar = self.otherProfile.userAvatarURL;
             }
         }
     }

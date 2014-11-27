@@ -23,6 +23,7 @@ typedef enum {
     NSURL                       *_url;
     NSInteger targetID;
     NSString *_taNickName;
+    NSString *_avatar;
 }
 
 - (id)initWithURL:(NSString *)url;
