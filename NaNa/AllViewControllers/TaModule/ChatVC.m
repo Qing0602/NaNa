@@ -199,9 +199,9 @@
     [otherButton addTarget:self action:@selector(otherAction:) forControlEvents:UIControlEventTouchUpInside];
     [_toolbar addSubview:otherButton];
     
-    [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
-                              atScrollPosition:UITableViewScrollPositionBottom
-                                      animated:YES];
+//    [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+//                              atScrollPosition:UITableViewScrollPositionBottom
+//                                      animated:YES];
 }
 
 -(void) handleTimerGetNewMessage :(NSTimer *)theTimer{

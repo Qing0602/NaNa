@@ -25,6 +25,7 @@
 		19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7914A199F53B300074E89 /* MBProgressHUD.m */; };
 		19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
+		19B93F0C1A2754BB00FEF672 /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B93F0B1A2754BB00FEF672 /* DeleteButton.png */; };
 		19C66D1A1A18AF7B00437EA8 /* bubble_friend2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C66D191A18AF7B00437EA8 /* bubble_friend2.png */; };
 		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
 		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
@@ -524,6 +525,7 @@
 		19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaMessageModel.m; sourceTree = "<group>"; };
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
+		19B93F0B1A2754BB00FEF672 /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteButton.png; sourceTree = "<group>"; };
 		19C66D191A18AF7B00437EA8 /* bubble_friend2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_friend2.png; sourceTree = "<group>"; };
 		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
 		19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsiGetRequestModel.m; sourceTree = "<group>"; };
@@ -1369,6 +1371,7 @@
 		8729E82B18840033005CAB4F /* Face */ = {
 			isa = PBXGroup;
 			children = (
+				19B93F0B1A2754BB00FEF672 /* DeleteButton.png */,
 				19C66D191A18AF7B00437EA8 /* bubble_friend2.png */,
 				19825C5119E458FF00005090 /* bubble_self2.png */,
 				871AEE831887E225002D9320 /* chat_face.png */,
@@ -2458,6 +2461,7 @@
 				8729E98018840034005CAB4F /* 63@2x.png in Resources */,
 				8729E9AB18840034005CAB4F /* 83.png in Resources */,
 				871AEE801887B627002D9320 /* key_pressed.png in Resources */,
+				19B93F0C1A2754BB00FEF672 /* DeleteButton.png in Resources */,
 				8729E9B018840034005CAB4F /* 85@2x.png in Resources */,
 				8729E9AE18840034005CAB4F /* 84@2x.png in Resources */,
 				977E2DBF1785393B0058F285 /* InfoPlist.strings in Resources */,
