@@ -87,7 +87,7 @@
         [dicFace setValue:face forKey:[NSString stringWithFormat:@"[/%d]",i]];
         [_phraseArray addObject:dicFace];
     }
-    UIImage *face = [UIImage imageNamed:[NSString stringWithFormat:@"chat_photo_btn.png"]];
+    UIImage *face = [UIImage imageNamed:[NSString stringWithFormat:@"DeleteButton"]];
     NSMutableDictionary *dicFace = [NSMutableDictionary dictionary];
     [dicFace setValue:face forKey:[NSString stringWithFormat:@"delete"]];
     [_phraseArray insertObject:dicFace atIndex:23];
