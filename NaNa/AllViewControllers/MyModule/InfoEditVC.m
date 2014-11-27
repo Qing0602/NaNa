@@ -23,7 +23,7 @@
 #define kInfoEditCellSildWidth      15.0
 #define kInfoEditCellShowWidth      290.0
 #define kInfoEditCellNumber         4
-#define kInfoRecodingViewHeight     120.0
+#define kInfoRecodingViewHeight     140.0
 
 #define kInfoRecoderTimeKey @"kInfoRecoderTimeKey"
 
@@ -69,11 +69,14 @@ typedef enum {
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].uploadResult];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
-            //正确
-            NSString  *avatarPath = tempData[ASI_REQUEST_DATA][@"avatar"];
-            if (avatarPath.length > 0) {
-                [NaNaUIManagement sharedInstance].userProfileCache.userAvatarURL = avatarPath;
+            if ([tempData[ASI_REQUEST_DATA] isKindOfClass:[NSDictionary class]]) {
+                //正确
+                NSString  *avatarPath = tempData[ASI_REQUEST_DATA][@"avatar"];
+                if (avatarPath.length > 0) {
+                    [NaNaUIManagement sharedInstance].userProfileCache.userAvatarURL = avatarPath;
+                }
             }
+
         }else
         {
             [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
@@ -492,15 +495,15 @@ typedef enum {
     if (!_recordingView) {
         _recordingView = [[UIView alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-kInfoRecodingViewHeight)/2,
                                                                   (CGRectGetHeight(_defaultView.frame)-kInfoRecodingViewHeight)/2,
-                                                                  kInfoRecodingViewHeight-20,
+                                                                  kInfoRecodingViewHeight+20,
                                                                   kInfoRecodingViewHeight)];
-        _recordingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        _recordingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         _recordingView.layer.cornerRadius = 10;
-        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(26, 20, 47, 75)];
+        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(55, 20, 47, 75)];
         record.image = [UIImage imageNamed:@"record_img"];
         [_recordingView addSubview:record];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 200, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 160, 20)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
