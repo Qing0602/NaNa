@@ -492,15 +492,15 @@ typedef enum {
     if (!_recordingView) {
         _recordingView = [[UIView alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-kInfoRecodingViewHeight)/2,
                                                                   (CGRectGetHeight(_defaultView.frame)-kInfoRecodingViewHeight)/2,
-                                                                  kInfoRecodingViewHeight,
+                                                                  kInfoRecodingViewHeight-20,
                                                                   kInfoRecodingViewHeight)];
         _recordingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         _recordingView.layer.cornerRadius = 10;
-        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 60, 60)];
-        record.image = [UIImage imageNamed:@"record.png"];
+        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(26, 20, 47, 75)];
+        record.image = [UIImage imageNamed:@"record_img"];
         [_recordingView addSubview:record];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, 200, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 200, 20)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
@@ -1064,6 +1064,7 @@ typedef enum {
     _recordButtonLabel.text = normalTitle;
     _recordImageView.hidden = !_isExistRecord;
     _timeLabel.hidden = !_isExistRecord;
+    _recordButtonImageView.image = [UIImage imageNamed:@"record.png"];
     //NSString *normalBagNa = _isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
     //[btn setBackgroundImage:[[UIImage imageNamed:normalBagNa] stretchableImageWithLeftCapWidth:5 topCapHeight:5] forState:UIControlStateNormal];
     [_recorder stop];
@@ -1075,6 +1076,7 @@ typedef enum {
 - (void)beginRecord:(UIButton *)btn
 {
     _recordButtonLabel.text = @"松开完成";
+    _recordButtonImageView.image = [UIImage imageNamed:@"icon_Recording"];
     _recorder = nil;
     
     NSError *audioSessionError = nil;
