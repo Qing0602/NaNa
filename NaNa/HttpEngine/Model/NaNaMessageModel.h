@@ -36,6 +36,7 @@ typedef enum{
 @property (nonatomic) int height;
 @property (nonatomic) int state;
 @property (nonatomic) long long createmicrotime;
+@property (nonatomic,strong) NSString *type;
 
 -(void) coverJson : (NSDictionary *) json;
 @end

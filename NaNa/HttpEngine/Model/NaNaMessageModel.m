@@ -54,6 +54,7 @@
     [aCoder encodeInteger:self.height forKey:@"height"];
     [aCoder encodeInt64:self.createmicrotime forKey:@"createmicrotime"];
     [aCoder encodeObject:self.avatar forKey:@"avatar"];
+    [aCoder encodeObject:self.type forKey:@"type"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
@@ -65,6 +66,7 @@
         self.height = [aDecoder decodeIntegerForKey:@"height"];
         self.createmicrotime = [aDecoder decodeInt64ForKey:@"createmicrotime"];
         self.avatar = [aDecoder decodeObjectForKey:@"avatar"];
+        self.type = [aDecoder decodeObjectForKey:@"type"];
     }
     return self;
 }

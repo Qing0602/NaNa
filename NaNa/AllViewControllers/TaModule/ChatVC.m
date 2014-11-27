@@ -198,6 +198,10 @@
     otherButton.frame = CGRectMake(CGRectGetMaxX(facialButton.frame) + 10, 5, 34, 34);
     [otherButton addTarget:self action:@selector(otherAction:) forControlEvents:UIControlEventTouchUpInside];
     [_toolbar addSubview:otherButton];
+    
+    [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+                              atScrollPosition:UITableViewScrollPositionBottom
+                                      animated:YES];
 }
 
 -(void) handleTimerGetNewMessage :(NSTimer *)theTimer{
@@ -234,8 +238,10 @@
             for (int i = 0; i<[messagesOfJson count]; i++) {
                 NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                 [msg coverJson:messagesOfJson[i]];
-                UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
-                msg.height = returnView.frame.size.height + 50.0f;
+                if ([msg.type isEqualToString: @"文字消息"]) {
+                    UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
+                    msg.height = returnView.frame.size.height + 50.0f;
+                }
                 [msgArray addObject:msg];
             }
             self.messageArray = [[NSArray alloc] initWithArray:msgArray];
@@ -374,55 +380,6 @@
             NSUInteger row = [tempArray indexOfObject:model];
             [tempArray insertObject:dateModel atIndex:row];
         }
-//        int i = [self.messageArray count] - 1;
-//        for (; i>=0; i--) {
-//            if ( i == 0) {
-//                NaNaMessageModel *model = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
-//                NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:model.creattime];
-//                NSString *currentDate = [[messageDate description] substringToIndex:10];
-//                NaNaMessageDateModel *dateModel = [[NaNaMessageDateModel alloc] init];
-//                dateModel.date = model.creattime;
-//                if([currentDate isEqualToString:todayString]){
-//                    dateModel.type = kToday;
-//                }else if ([currentDate isEqualToString:yesterdayString]){
-//                    dateModel.type = kYesterday;
-//                }else{
-//                    dateModel.type = kOtherDay;
-//                }
-//                [tempArray insertObject:dateModel atIndex:0];
-//            }else{
-//                NaNaMessageModel *model = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
-//                NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:model.creattime];
-//                NSString *currentDate = [[messageDate description] substringToIndex:10];
-//                i-=1;
-//                NaNaMessageModel *pre;
-//                while (i>=0) {
-//                    pre = (NaNaMessageModel *)[self.messageArray objectAtIndex:i];
-//                    if (model.creattime - pre.creattime >= five) {
-//                        break;
-//                    }else{
-//                        i--;
-//                    }
-//                }
-//                
-//                NaNaMessageDateModel *dateModel = [[NaNaMessageDateModel alloc] init];
-//                dateModel.date = pre.creattime;
-//                if([currentDate isEqualToString:todayString]){
-//                    dateModel.type = kToday;
-//                }else if ([currentDate isEqualToString:yesterdayString]){
-//                    dateModel.type = kYesterday;
-//                }else{
-//                    dateModel.type = kOtherDay;
-//                }
-//                
-//                if (i>=0) {
-//                    [tempArray insertObject:dateModel atIndex:i];
-//                }else{
-//                    [tempArray insertObject:dateModel atIndex:0];
-//                    break;
-//                }
-//            }
-//        }
         self.meesageAndDate = [NSArray arrayWithArray:tempArray];
     }
 }
@@ -448,16 +405,12 @@
 }
 
 
-- (NSInteger )getCurrentKeyboardStatus
-{
+- (NSInteger )getCurrentKeyboardStatus{
     NSInteger tag = 0;
-    if (_messageTextField.inputView == _faceAndeOtherView)
-    {
+    if (_messageTextField.inputView == _faceAndeOtherView){
         if (_faceAndeOtherView.viewType == FaceType) {
             tag = 1;
-        }
-        else
-        {
+        }else{
             tag = 2;
         }
     }
@@ -641,7 +594,11 @@
 		return 30;
 	}else{
         NaNaMessageModel *model = self.meesageAndDate[indexPath.row];
-        return model.height;
+        if ([model.type isEqualToString:@"文字消息"]) {
+            return model.height;
+        }else{
+            return 30.0f;
+        }
 	}
 }
 
@@ -649,8 +606,10 @@
 	
     static NSString *chatCellIdentifier = @"chatCellIdentifier";
     static NSString *dateCellIdentifier = @"dateCellIdentifier";
+    static NSString *giftCellIdentifier = @"giftCellIdentifier";
 	UITableViewCell *chatCell = [tableView dequeueReusableCellWithIdentifier:chatCellIdentifier];
     UITableViewCell *dateCell = [tableView dequeueReusableCellWithIdentifier:dateCellIdentifier];
+    UITableViewCell *giftCell = [tableView dequeueReusableCellWithIdentifier:giftCellIdentifier];
     UITableViewCell *cell = nil;
     
     if ([[self.meesageAndDate objectAtIndex:[indexPath row]] isMemberOfClass:[NaNaMessageDateModel class]]){
@@ -691,27 +650,52 @@
         dateL.layer.masksToBounds = YES;
         dateL.textColor = [UIColor whiteColor];
 	}else{
-        if (!chatCell){
-            chatCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier];
-            chatCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            chatCell.backgroundColor = [UIColor clearColor];
-        }
-        cell = chatCell;
         
-        UIView *chatView = [cell.contentView viewWithTag:0xFD];
-        [chatView removeFromSuperview];
-        chatView = nil;
-        if (!chatView){
-            chatView = [[UIView alloc] initWithFrame:CGRectZero];
-            chatView.tag = 0xFD;
-            [cell.contentView addSubview:chatView];
-        }
-        
-		// Set up the cell...
         NaNaMessageModel *model = self.meesageAndDate[indexPath.row];
-		UIView *chatV = [self bubbleView:model];
-        [chatView setFrame:CGRectMake(0, 0, 320, CGRectGetHeight(chatV.frame))];
-        [chatView addSubview:chatV];
+        if ([model.type isEqualToString:@"文字消息"]) {
+            if (!chatCell){
+                chatCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier];
+                chatCell.selectionStyle = UITableViewCellSelectionStyleNone;
+                chatCell.backgroundColor = [UIColor clearColor];
+            }
+            cell = chatCell;
+            
+            UIView *chatView = [cell.contentView viewWithTag:0xFD];
+            [chatView removeFromSuperview];
+            chatView = nil;
+            if (!chatView){
+                chatView = [[UIView alloc] initWithFrame:CGRectZero];
+                chatView.tag = 0xFD;
+                [cell.contentView addSubview:chatView];
+            }
+            
+            // Set up the cell...
+            UIView *chatV = [self bubbleView:model];
+            [chatView setFrame:CGRectMake(0, 0, 320, CGRectGetHeight(chatV.frame))];
+            [chatView addSubview:chatV];
+        }else{
+            if (!giftCell) {
+                giftCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:giftCellIdentifier];
+                giftCell.selectionStyle = UITableViewCellSelectionStyleNone;
+                giftCell.backgroundColor = [UIColor clearColor];
+            }
+            cell = giftCell;
+            UILabel *giftLabel = (UILabel *)[cell.contentView viewWithTag:0xFE];
+            if (!giftLabel){
+                giftLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                giftLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
+                giftLabel.font = [UIFont systemFontOfSize:12];
+                giftLabel.textAlignment = NSTextAlignmentCenter;
+                giftLabel.tag = 0xFE;
+                [cell.contentView addSubview:giftLabel];
+            }
+            [giftLabel setText:model.content];
+            giftLabel.frame = CGRectMake((320-[model.content sizeWithFont:giftLabel.font].width)/2-5, 10, [model.content sizeWithFont:giftLabel.font].width+10, 20);
+            giftLabel.alpha = 0.7f;
+            giftLabel.layer.cornerRadius = 5;
+            giftLabel.layer.masksToBounds = YES;
+            giftLabel.textColor = [UIColor whiteColor];
+        }
 	}
     return cell;
 }
@@ -736,10 +720,8 @@
 #pragma mark -
 #pragma mark TextField Delegate Methods
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (textField.text.length)
-    {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField.text.length){
         [self sendMassage:textField.text];
     }
     _messageTextField.text = @"";
