@@ -79,21 +79,14 @@ typedef enum {
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
-        _tableView.backgroundView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+        _tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        //_tableView.separatorColor = [UIColor clearColor];
         _tableView.scrollEnabled = NO;
     }
     [_defaultView addSubview:_tableView];
     
     if (!_logoutButton) {
         _logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _logoutButton.frame = CGRectMake(15.0, _tableView.frame.size.height+50.0, kSettingEditCellShowWidth, 50.0);
-//        [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_normal.png"] forState:UIControlStateNormal];
-//        [_logoutButton setBackgroundImage:[UIImage imageNamed:@"btn_red_pressed.png"] forState:UIControlStateHighlighted];
-//        [_logoutButton setTitle:STRING(@"logout") forState:UIControlStateNormal];
-        
-        
         _logoutButton.frame = CGRectMake(15.0f, _tableView.frame.size.height+50.0, kSettingEditCellShowWidth, 40.0);
         [_logoutButton setBackgroundColor:[UIColor colorWithHexString:@"#ff6633"]];
         [_logoutButton setTitle:STRING(@"logout") forState:UIControlStateNormal];
@@ -126,13 +119,6 @@ typedef enum {
      [APP_DELEGATE loadLoginView];
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
-- (void)dealloc {
-//    SAFERELEASE(_activityView)
-    SAFERELEASE(_tableView)
-    SAFERELEASE(_logoutButton)
-    [super dealloc];
-    
-}
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -149,18 +135,8 @@ typedef enum {
         cell.contentView.backgroundColor = [UIColor clearColor];
         cell.backgroundColor = [UIColor whiteColor];
         //被选中cell容器
-        cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
-        [cell autorelease];
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
     }
-    
-    // 背景
-//    UIImageView *bgImageView = [[[UIImageView alloc] init] autorelease];
-//    bgImageView.backgroundColor = [UIColor clearColor];
-//    bgImageView.frame = CGRectMake(kSettingEditCellSildWidth, 0.0, kSettingEditCellShowWidth, kSettingEditCellShowHeight);
-//    bgImageView.image = [UIImage imageNamed:@"info_cell_bg_normal.png"];
-//    [cell.contentView addSubview:bgImageView];
-//    bgImageView.highlightedImage = [UIImage imageNamed:@"info_cell_bg_selected.png"];
-    
     
     // 名称
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -180,7 +156,7 @@ typedef enum {
             
             NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
             if (![lockData[PWD_LOCK_STATUS] boolValue]) {
-                UILabel *pwdLockStatus = [[[UILabel alloc] init] autorelease];
+                UILabel *pwdLockStatus = [[UILabel alloc] init];
                 pwdLockStatus.backgroundColor = [UIColor clearColor];
                 pwdLockStatus.frame = CGRectMake(kSettingEditCellShowWidth-48.f, 5.0, 30, kSettingEditCellShowHeight);
                 pwdLockStatus.textColor = default_color_empty_gray;
@@ -193,8 +169,6 @@ typedef enum {
                 UILabel *tempPwdLockLabel = (UILabel *)[cell.contentView viewWithTag:1001];
                 if (tempPwdLockLabel) [tempPwdLockLabel removeFromSuperview];
             }
-
-            
             [cell.contentView addSubview:titleLabel];
             break;
         }
@@ -221,13 +195,6 @@ typedef enum {
        
     }
     [cell.contentView addSubview:titleLabel];
-    [titleLabel release];
-    
-    // 箭头
-//    UIImageView *arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-//    arrow.frame = CGRectMake(kSettingEditCellShowWidth-14.0, (kSettingEditCellShowHeight - 14.0) / 2, 14.0, 14.0);
-//    [cell.contentView addSubview:arrow];
-//    [arrow release];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -244,10 +211,7 @@ typedef enum {
     switch (indexPath.row) {
         case SettingEditRowNontification: {
             ULog(@"notification");
-            NotificationSettingVC *controller = [[[NotificationSettingVC alloc] init] autorelease];
-//            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-//            navController.navigationBarHidden = YES;
-            
+            NotificationSettingVC *controller = [[NotificationSettingVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
 
 
@@ -255,21 +219,12 @@ typedef enum {
         }
         case SettingEditRowRedeem: {
             ULog(@"redeemcode");
-            RedeemcodeVC *controller = [[[RedeemcodeVC alloc] init] autorelease];
-//            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-//            navController.navigationBarHidden = YES;
-            
+            RedeemcodeVC *controller = [[RedeemcodeVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
-            
-            
             break;
         }
-
         case SettingEditRowLock: {
             ULog(@"lock");
-            //PasswordLockVC *controller = [[[PasswordLockVC alloc] init] autorelease];
-//            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-//            navController.navigationBarHidden = YES;
             NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];
             if (lockData) {
                 PasswordLockManagementViewController *management = [[PasswordLockManagementViewController alloc] init];
@@ -279,38 +234,26 @@ typedef enum {
                 PasswordLockViewController *passwordLock = [[PasswordLockViewController alloc] initWithType:VERIFY_TYPE_SETTING];
                 [self.navigationController pushViewController:passwordLock animated:YES];
             }
-
             break;
-
         }
         case SettingEditRowBlack: {
             ULog(@"black");
-            MyBlackListVC *controller = [[[MyBlackListVC alloc] init] autorelease];
-//            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-//            navController.navigationBarHidden = YES;
-            
+            MyBlackListVC *controller = [[MyBlackListVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             break;
-
         }
         case SettingEditRowSuggestion: {
             ULog(@"suggestion");
-            SuggestVC *controller = [[[SuggestVC alloc] init] autorelease];
-//            UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-//            navController.navigationBarHidden = YES;
-            
+            SuggestVC *controller = [[SuggestVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             // select city
             break;
         }
         case SettingEditRowGrade: {
             ULog(@"grade");
-            
-            
             // select city
             break;
         }
-
     }
 }
 

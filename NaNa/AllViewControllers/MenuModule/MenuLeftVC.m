@@ -44,15 +44,16 @@
         _tableView.separatorColor = [UIColor clearColor];
     }
     [_defaultView addSubview:_tableView];
-    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sideResult" options:0 context:nil];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sideResult" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] getSideMessage];
 }
 
--(void) dealloc{
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"sideResult"];
 }
 
@@ -168,8 +169,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        UIView * header=[[UIView alloc] initWithFrame:CGRectMake(0, -1.0f, CGRectGetWidth(tableView.bounds), 20.0f)];
+        UIView * header=[[UIView alloc] initWithFrame:CGRectMake(0, 0.0f, CGRectGetWidth(tableView.bounds), 20.0f)];
         header.backgroundColor = RGBA(70.0,71.0,75.0,1.0);
+//        header.backgroundColor = [UIColor whiteColor];
        
         UILabel * title =  [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 50, 20.0f)];
         [title setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];

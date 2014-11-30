@@ -37,6 +37,7 @@
         {
             
         }
+        [self closeProgress];
     }else if ([keyPath isEqualToString:@"presentGift"])
     {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].presentGift];
@@ -44,8 +45,10 @@
             [self showProgressOnwindowsWithText:@"赠送成功" withDelayTime:2.5f];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
+            
             [UAlertView showAlertViewWithMessage:tempData[ASI_REQUEST_ERROR_MESSAGE] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
+        [self closeProgress];
     }
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

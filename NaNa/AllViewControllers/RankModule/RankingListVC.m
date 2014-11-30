@@ -18,6 +18,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setSideMenuController];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"userProfile"];
 }
 
 - (void)loadView {
@@ -137,7 +143,7 @@
 
 -(void) viewDidLoad{
     [[NaNaUIManagement sharedInstance] postPushToken:[UStaticData getObjectForKey:DEVICE_TOKEN]];
-    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"userProfile" options:0 context:nil];
+    
     
     [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
 }
@@ -162,21 +168,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)dealloc {
-    SAFERELEASE(_leftButton)
-    SAFERELEASE(_centerButton)
-    SAFERELEASE(_rightButton)
-    
-    SAFERELEASE(_leftWebview)
-    SAFERELEASE(_centerWebview)
-    SAFERELEASE(_rightWebview)
-    
-    SAFERELEASE(_leftActivityView)
-    SAFERELEASE(_centerActivityView)
-    SAFERELEASE(_rightActivityView)
-    [super dealloc];
-}
 
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
@@ -310,11 +301,11 @@
         NSString *temp = [url substringFromIndex:range.location + range.length + 1];
         NSDictionary *dic = [self dictionaryFromQuery:temp usingEncoding:NSUTF8StringEncoding];
         if ([dic[@"userId"] integerValue] == [dic[@"targetId"] integerValue]) {
-            MyPageVC *controller = [[[MyPageVC alloc] init] autorelease];
+            MyPageVC *controller = [[MyPageVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
         }else{
             // 跳转新页面：TA
-            TaPageVC *controller = [[[TaPageVC alloc] initWithURL:url] autorelease];
+            TaPageVC *controller = [[TaPageVC alloc] initWithURL:url];
             [self.navigationController pushViewController:controller animated:YES];
         }
         
@@ -328,7 +319,7 @@
 - (NSDictionary*)dictionaryFromQuery:(NSString*)query usingEncoding:(NSStringEncoding)encoding {
     NSCharacterSet* delimiterSet = [NSCharacterSet characterSetWithCharactersInString:@"&;"];
     NSMutableDictionary* pairs = [NSMutableDictionary dictionary];
-    NSScanner* scanner = [[[NSScanner alloc] initWithString:query] autorelease];
+    NSScanner* scanner = [[NSScanner alloc] initWithString:query];
     while (![scanner isAtEnd]) {
         NSString* pairString = nil;
         [scanner scanUpToCharactersFromSet:delimiterSet intoString:&pairString];

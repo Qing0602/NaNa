@@ -28,6 +28,7 @@ typedef enum{
  "createtime": 1406646714,//int发送的时间戳
  "createmicrotime": 1406646714123,//int发送的时间戳,毫秒为单位，13位
  "source": "HER"//string发送消息者，如果是本人为MINE，如果为对方为HER
+ chat_type      '对话类别：0，文字 1，密钥 2，摸摸头 3，送礼物 4，关注'
  */
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong) NSString *avatar;
@@ -36,7 +37,7 @@ typedef enum{
 @property (nonatomic) int height;
 @property (nonatomic) int state;
 @property (nonatomic) long long createmicrotime;
-@property (nonatomic,strong) NSString *type;
+@property (nonatomic) int type;
 
 -(void) coverJson : (NSDictionary *) json;
 @end

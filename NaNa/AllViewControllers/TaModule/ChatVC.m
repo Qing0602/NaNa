@@ -238,7 +238,7 @@
             for (int i = 0; i<[messagesOfJson count]; i++) {
                 NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
                 [msg coverJson:messagesOfJson[i]];
-                if ([msg.type isEqualToString: @"文字消息"]) {
+                if (msg.type == 0) {
                     UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
                     msg.height = returnView.frame.size.height + 50.0f;
                 }
@@ -594,7 +594,7 @@
 		return 30;
 	}else{
         NaNaMessageModel *model = self.meesageAndDate[indexPath.row];
-        if ([model.type isEqualToString:@"文字消息"]) {
+        if (model.type == 0) {
             return model.height;
         }else{
             return 30.0f;
@@ -652,7 +652,7 @@
 	}else{
         
         NaNaMessageModel *model = self.meesageAndDate[indexPath.row];
-        if ([model.type isEqualToString:@"文字消息"]) {
+        if (model.type == 0) {
             if (!chatCell){
                 chatCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chatCellIdentifier];
                 chatCell.selectionStyle = UITableViewCellSelectionStyleNone;

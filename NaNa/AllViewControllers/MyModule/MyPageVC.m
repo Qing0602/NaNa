@@ -77,7 +77,7 @@
     
     if (!_photoMenuView) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PhotoMenuView" owner:self options:nil];
-        _photoMenuView = [[nib lastObject] retain];
+        _photoMenuView = [nib lastObject];
         
         _photoMenuHideRect = CGRectMake(0.0,
                                         self.view.frame.size.height,
@@ -106,10 +106,6 @@
     [tab setDidSelectTabBlock:^(NSInteger index){
         [self selectTabbar:index];
     }];
-    [tab release];
-    
-    
-    
 }
 
 
@@ -131,13 +127,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dealloc {
-    SAFERELEASE(_myWebView)
-    SAFERELEASE(_activityView)
-    SAFERELEASE(_tabBar)
-    [super dealloc];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -175,25 +164,25 @@
         case MyPageTabItemAlbum: {
             ULog(@"MyPageTabItemAlbum");
             
-            PhotoManageVC *controller = [[[PhotoManageVC alloc] init] autorelease];
+            PhotoManageVC *controller = [[PhotoManageVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             break;
         }
         case MyPageTabItemInfoEdit: {
             ULog(@"MyPageTabItemInfoEdit");
-            InfoEditVC *controller = [[[InfoEditVC alloc] initWithType:TYPE_NORMAL] autorelease];
+            InfoEditVC *controller = [[InfoEditVC alloc] initWithType:TYPE_NORMAL];
             [self.navigationController pushViewController:controller animated:YES];
             break;
         }
         case MyPageTabItemSetPrivate: {
             ULog(@"MyPageTabItemSetPrivate");
-            SetPrivateVC *controller = [[[SetPrivateVC alloc] init] autorelease];
+            SetPrivateVC *controller = [[SetPrivateVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             break;
         }
         case MyPageTabItemUpdateMember: {
             ULog(@"MyPageTabItemUpdateMember");
-            UpdateMemberVC *controller = [[[UpdateMemberVC alloc] init] autorelease];
+            UpdateMemberVC *controller = [[UpdateMemberVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             break;
         }
@@ -220,8 +209,6 @@
                              picker.allowsEditing = YES;
                              picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                              [self presentViewController:picker animated:YES completion:nil];
-                             
-                             [picker release];
                          }
                      }];
 }
@@ -241,7 +228,6 @@
                              picker.allowsEditing = YES;
                              picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                              [self presentViewController:picker animated:YES completion:nil];
-                             [picker release];
                          }
                      }];
 }
@@ -257,7 +243,6 @@
                          HeadCartoonVC *controller = [[HeadCartoonVC alloc] init];
                          controller.headCartoonDelegate = self;
                          [self.navigationController pushViewController:controller animated:YES];
-                         [controller release];
                      }];
 }
 
@@ -313,16 +298,11 @@
         NSLog(@"%@",_myWebView.request.URL);
         MyBackgroundListViewController *backgroundList = [[MyBackgroundListViewController alloc] init];
         [self.navigationController pushViewController:backgroundList animated:YES];
-        [backgroundList release];
     }else if ([tagName isEqualToString:@"IMG"] && [className isEqualToString:@"single_gift"])
     {
         MyGiftListViewController *giftList = [[MyGiftListViewController  alloc] init];
         [self.navigationController pushViewController:giftList animated:YES];
-        [giftList release];
     }
-    //    if (urlToSave.length > 0) {
-    //        [self showImageURL:urlToSave point:pt];
-    //    }
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
@@ -336,15 +316,15 @@
     if ([url rangeOfString:@"my-background" options:NSCaseInsensitiveSearch].length > 0) {
         return NO;
     }else if ([url rangeOfString:@"my-photos" options:NSCaseInsensitiveSearch].length > 0){
-        PhotoManageVC *controller = [[[PhotoManageVC alloc] init] autorelease];
+        PhotoManageVC *controller = [[PhotoManageVC alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }else if ([url rangeOfString:@"set_voice" options:NSCaseInsensitiveSearch].length > 0){
-        InfoEditVC *controller = [[[InfoEditVC alloc] initWithType:TYPE_NORMAL] autorelease];
+        InfoEditVC *controller = [[InfoEditVC alloc] initWithType:TYPE_NORMAL];
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }else if ([url rangeOfString:@"myvoice" options:NSCaseInsensitiveSearch].length > 0){
-        InfoEditVC *controller = [[[InfoEditVC alloc] initWithType:TYPE_NORMAL] autorelease];
+        InfoEditVC *controller = [[InfoEditVC alloc] initWithType:TYPE_NORMAL];
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }

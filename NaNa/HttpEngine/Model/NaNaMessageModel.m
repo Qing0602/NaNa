@@ -42,6 +42,10 @@
         self.avatar = json[@"avatar"];
     }
     
+    if (json[@"chat_type"] != [NSNull null] || json[@"chat_type"] != nil) {
+        self.type = [json[@"chat_type"] integerValue];
+    }
+    
     self.height = 0.0f;
     self.state = kNone;
 }
@@ -54,7 +58,7 @@
     [aCoder encodeInteger:self.height forKey:@"height"];
     [aCoder encodeInt64:self.createmicrotime forKey:@"createmicrotime"];
     [aCoder encodeObject:self.avatar forKey:@"avatar"];
-    [aCoder encodeObject:self.type forKey:@"type"];
+    [aCoder encodeInt64:self.type forKey:@"type"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
@@ -66,7 +70,7 @@
         self.height = [aDecoder decodeIntegerForKey:@"height"];
         self.createmicrotime = [aDecoder decodeInt64ForKey:@"createmicrotime"];
         self.avatar = [aDecoder decodeObjectForKey:@"avatar"];
-        self.type = [aDecoder decodeObjectForKey:@"type"];
+        self.type = [aDecoder decodeIntegerForKey:@"type"];
     }
     return self;
 }
