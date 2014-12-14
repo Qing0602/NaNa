@@ -50,8 +50,8 @@
 
 #pragma mark - getCity
 - (NSMutableArray *)getHotCities {
-    NSMutableArray *hotArray = [NSMutableArray arrayWithObjects:@"上海",@"北京",@"广州",@"深圳",@"成都",
-                                @"重庆",@"天津",@"杭州",@"南京",@"苏州",@"武汉",@"西安",nil];
+    NSMutableArray *hotArray = [NSMutableArray arrayWithObjects:@"上海",@"北京",@"广州",@"深圳市",@"成都市",
+                                @"重庆",@"天津",@"杭州市",@"南京市",@"苏州市",@"武汉市",@"西安市",nil];
     NSMutableArray *searchedArray = [[self getSearchedCities] mutableCopy];
     NSMutableArray *returnedArray = [NSMutableArray array];
     
@@ -158,7 +158,7 @@
         NSString *administrativeCityName = [[citiesInfo objectAtIndex:1] description];
         NSLog(@"id:%d,name:%@\n",administrativeCityID,administrativeCityName);
         
-        if (administrativeCityID < 5) {
+        if (administrativeCityID <= 6) {
             str = [NSMutableString stringWithString:@""];
             UCity *city = [[UCity alloc] init];
             city.cityID = administrativeCityID;
