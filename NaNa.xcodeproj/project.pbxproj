@@ -3009,8 +3009,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "99affef5-898d-4208-8540-abff8811055d";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "99affef5-898d-4208-8540-abff8811055d";
+				PROVISIONING_PROFILE = "bc80b7ab-5ef1-481d-aaa9-3896146845e6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "bc80b7ab-5ef1-481d-aaa9-3896146845e6";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
