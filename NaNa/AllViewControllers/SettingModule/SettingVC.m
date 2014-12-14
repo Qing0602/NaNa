@@ -252,6 +252,11 @@ typedef enum {
         case SettingEditRowGrade: {
             ULog(@"grade");
             // select city
+            //
+            //https://itunes.apple.com/us/app/na-nanana-la-lales-jiao-you/id942256934?l=zh&ls=1&mt=8
+            NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=942256934"];
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
             break;
         }
     }
