@@ -37,6 +37,7 @@
 -(void) handleTimerGetNewMessage :(NSTimer *)theTimer;
 -(void) messageBuffer;
 -(void) messageDate;
+-(void) presentGiftSucceed : (NSNotification *) notification;
 @end
 
 @implementation ChatVC
@@ -74,6 +75,7 @@
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"historyMessage" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"touchHeadDic" options:0 context:nil];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"giveKey" options:0 context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentGiftSucceed:) name:@"presentGiftSucceed" object:nil];
 }
 
 -(void) dealloc{
@@ -82,12 +84,11 @@
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"historyMessage"];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"touchHeadDic"];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"giveKey"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"presentGiftSucceed" object:nil];
 }
 
-- (void)move:(BOOL)isMove toolbarHeight:(float)height
-{
-    if (isMove)
-    {
+- (void)move:(BOOL)isMove toolbarHeight:(float)height{
+    if (isMove){
         [UIView animateWithDuration:0.2 animations:^{
             _toolbar.frame = CGRectMake(0.0f, (float)(CGRectGetHeight(_defaultView.frame) - height - 44.0f), 320.0f, 44.0f + 216);
             _chatTableView.frame = CGRectMake(0.0f, 0.0f, 320.0f,(float)(CGRectGetHeight(_defaultView.frame) - height - 44.0f));
@@ -96,16 +97,14 @@
 }
 
 #pragma mark - Responding to keyboard events
-- (void)keyboardWillShow:(NSNotification *)notification
-{
+- (void)keyboardWillShow:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [aValue CGRectValue];
     [self move:YES toolbarHeight:keyboardRect.size.height];
 }
 
-- (void)keyboardWillHide:(NSNotification *)notification
-{
+- (void)keyboardWillHide:(NSNotification *)notification{
     [self move:NO toolbarHeight:0];
 }
 
@@ -198,10 +197,6 @@
     otherButton.frame = CGRectMake(CGRectGetMaxX(facialButton.frame) + 10, 5, 34, 34);
     [otherButton addTarget:self action:@selector(otherAction:) forControlEvents:UIControlEventTouchUpInside];
     [_toolbar addSubview:otherButton];
-    
-//    [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
-//                              atScrollPosition:UITableViewScrollPositionBottom
-//                                      animated:YES];
 }
 
 -(void) handleTimerGetNewMessage :(NSTimer *)theTimer{
@@ -310,24 +305,87 @@
             [self messageBuffer];
             self.isEmptyToGetHistroy = NO;
         }
-        
     }else if ([keyPath isEqualToString:@"touchHeadDic"]){
-        if (![[NaNaUIManagement sharedInstance].touchHeadDic[ASI_REQUEST_HAS_ERROR] boolValue]) {
-            NSString *message = [NaNaUIManagement sharedInstance].touchHeadDic[@"data"][@"message"];
+        if ([[NaNaUIManagement sharedInstance].touchHeadDic[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSString *message = [NaNaUIManagement sharedInstance].touchHeadDic[@"message"];
             [self showProgressOnwindowsWithText:message withDelayTime:2.0f];
         }else{
-            [self showProgressOnwindowsWithText:[NaNaUIManagement sharedInstance].touchHeadDic[ASI_REQUEST_ERROR_MESSAGE] withDelayTime:2.0f];
+            NSArray *messagesOfJson = [NaNaUIManagement sharedInstance].touchHeadDic[ASI_REQUEST_DATA];
+            if ([messagesOfJson count] == 0) {
+                return;
+            }
+            NSMutableArray *msgArray = [[NSMutableArray alloc] initWithArray:self.messageArray];
+            for (int i = 0; i<[messagesOfJson count]; i++) {
+                NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
+                [msg coverJson:messagesOfJson[i]];
+                if (msg.type == 0) {
+                    UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
+                    msg.height = returnView.frame.size.height + 50.0f;
+                }
+                [msgArray addObject:msg];
+            }
+            self.messageArray = [[NSArray alloc] initWithArray:msgArray];
+            [self messageDate];
+            [self.chatTableView reloadData];
+            [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+                                      atScrollPosition:UITableViewScrollPositionBottom
+                                              animated:YES];
+            [self messageBuffer];
         }
     }else if ([keyPath isEqualToString:@"giveKey"]){
-        if (![[NaNaUIManagement sharedInstance].giveKey[ASI_REQUEST_HAS_ERROR] boolValue]) {
-            NSString *message = [NaNaUIManagement sharedInstance].giveKey[@"data"][@"message"];
+        if ([[NaNaUIManagement sharedInstance].giveKey[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            NSString *message = [NaNaUIManagement sharedInstance].giveKey[@"message"];
             [self showProgressOnwindowsWithText:message withDelayTime:2.0f];
         }else{
-            [self showProgressOnwindowsWithText:[NaNaUIManagement sharedInstance].giveKey[ASI_REQUEST_ERROR_MESSAGE] withDelayTime:2.0f];
+            NSArray *messagesOfJson = [NaNaUIManagement sharedInstance].giveKey[ASI_REQUEST_DATA];
+            if ([messagesOfJson count] == 0) {
+                return;
+            }
+            NSMutableArray *msgArray = [[NSMutableArray alloc] initWithArray:self.messageArray];
+            for (int i = 0; i<[messagesOfJson count]; i++) {
+                NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
+                [msg coverJson:messagesOfJson[i]];
+                if (msg.type == 0) {
+                    UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
+                    msg.height = returnView.frame.size.height + 50.0f;
+                }
+                [msgArray addObject:msg];
+            }
+            self.messageArray = [[NSArray alloc] initWithArray:msgArray];
+            [self messageDate];
+            [self.chatTableView reloadData];
+            [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+                                      atScrollPosition:UITableViewScrollPositionBottom
+                                              animated:YES];
+            [self messageBuffer];
         }
     }
 }
 
+-(void) presentGiftSucceed:(NSNotification *)notification{
+    NSLog(@"%@",notification);
+    NSArray *messagesOfJson = notification.object;
+    if ([messagesOfJson count] == 0) {
+        return;
+    }
+    NSMutableArray *msgArray = [[NSMutableArray alloc] initWithArray:self.messageArray];
+    for (int i = 0; i<[messagesOfJson count]; i++) {
+        NaNaMessageModel *msg = [[NaNaMessageModel alloc] init];
+        [msg coverJson:messagesOfJson[i]];
+        if (msg.type == 0) {
+            UIView *returnView =  [self assembleMessageAtIndex:msg.content from:msg.isBlongMe];
+            msg.height = returnView.frame.size.height + 50.0f;
+        }
+        [msgArray addObject:msg];
+    }
+    self.messageArray = [[NSArray alloc] initWithArray:msgArray];
+    [self messageDate];
+    [self.chatTableView reloadData];
+    [self.chatTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messageArray count]-1 inSection:0]
+                              atScrollPosition:UITableViewScrollPositionBottom
+                                      animated:YES];
+    [self messageBuffer];
+}
 
 -(void) messageBuffer{
     if (nil != self.messageArray && [self.messageArray count] != 0) {
@@ -450,9 +508,7 @@
     }
 }
 
--(void)faceAction:(UIButton *)sender
-{
-    
+-(void)faceAction:(UIButton *)sender{
     NSInteger keyboardStatus = [self getCurrentKeyboardStatus];
     switch (keyboardStatus)
     {
@@ -491,9 +547,8 @@
                 [self.messageTextField becomeFirstResponder];
             });
         }
-            break;
+        break;
     }
-
 }
 
 //通过UDP,发送消息
@@ -511,10 +566,8 @@
     self.sendingMessageArray = [[NSArray alloc] initWithArray:temp];
 }
 
-- (void)didSelectSendMessage
-{
-    if (_messageTextField.text.length)
-    {
+- (void)didSelectSendMessage{
+    if (_messageTextField.text.length){
         [self sendMassage:_messageTextField.text];
     }
 	self.messageTextField.text = @"";
@@ -549,8 +602,7 @@
     }
 }
 
-- (void)didSelectOtherOption:(OtherActionOptions)option
-{
+- (void)didSelectOtherOption:(OtherActionOptions)option{
     switch (option) {
         case OptionsPhoth:
             ULog(@"照片");

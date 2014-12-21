@@ -38,14 +38,13 @@
             
         }
         [self closeProgress];
-    }else if ([keyPath isEqualToString:@"presentGift"])
-    {
+    }else if ([keyPath isEqualToString:@"presentGift"]){
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].presentGift];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
             [self showProgressOnwindowsWithText:@"赠送成功" withDelayTime:2.5f];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"presentGiftSucceed" object:[tempData objectForKey:ASI_REQUEST_DATA]];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
-            
             [UAlertView showAlertViewWithMessage:tempData[ASI_REQUEST_ERROR_MESSAGE] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }
         [self closeProgress];
