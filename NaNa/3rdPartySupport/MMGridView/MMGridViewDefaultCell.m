@@ -45,7 +45,7 @@
     if ((self = [super initWithFrame:frame])) {
         // Background view
         self.backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
-        self.backgroundView.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.backgroundView];
         
         self.imageview = [[[EGOImageView alloc] initWithFrame:CGRectNull] autorelease];

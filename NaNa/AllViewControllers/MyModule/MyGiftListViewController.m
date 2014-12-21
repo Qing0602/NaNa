@@ -114,6 +114,7 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@", data[@"source_user_nickname"]];
     cell.textLabel.textAlignment = UITextAlignmentCenter;
     [cell.imageview setImageURL:[NSURL URLWithString:data[@"imageurl"]]];
+    cell.imageview.contentMode = UIViewContentModeScaleAspectFit;
     return cell;
 }
 
