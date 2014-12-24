@@ -38,7 +38,7 @@
         if (desc == nil) {
             desc = @"";
         }
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/upload"];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/upload",K_DOMAIN_NANA];
         NSDictionary *params =[NSDictionary dictionaryWithObjectsAndKeys:
                                [NSNumber numberWithInt:userID],@"userId",
                                type,@"bucket",

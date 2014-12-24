@@ -124,7 +124,7 @@
         {
             ULog(@"qq");
             WebLoginVC *webQQLogin =  [[WebLoginVC alloc] init];
-            [webQQLogin setURL:@"http://api.local.ishenran.cn/qqlogin/index.php"];
+            [webQQLogin setURL:[NSString stringWithFormat:@"%@/qqlogin/index.php",K_DOMAIN_NANA]];
             [self.navigationController pushViewController:webQQLogin animated:YES];
             //[APP_DELEGATE loadMainView];
         }
@@ -132,7 +132,7 @@
         case 2:
         {
             WebLoginVC *webWeiBoLogin =  [[WebLoginVC alloc] init];
-            [webWeiBoLogin setURL:@"http://api.local.ishenran.cn/wblogin/index.php"];
+            [webWeiBoLogin setURL:[NSString stringWithFormat:@"%@/wblogin/index.php",K_DOMAIN_NANA]];
             [self.navigationController pushViewController:webWeiBoLogin animated:YES];
             ULog(@"weibo");
         }

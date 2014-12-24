@@ -20,7 +20,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostDriverToken;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/index.php/device/token?token=%@&userId=%d",token,userID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/index.php/device/token?token=%@&userId=%d",K_DOMAIN_NANA,token,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -30,7 +30,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostChangeCode;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/rechargeCard"];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/user/rechargeCard",K_DOMAIN_NANA];
         [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [NSNumber numberWithInt:[NaNaUIManagement sharedInstance].userAccount.UserID],@"userId",
                                                        code,@"cardId",

@@ -26,7 +26,7 @@
 -(UserProfileOperation *) initGetUserProfile : (int) userID{
     if ((self = [self initOperation])) {
         self.type = kGetUserProfile;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/info?userId=%d",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/user/info?userId=%d",K_DOMAIN_NANA,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -35,7 +35,7 @@
 -(UserProfileOperation *) initGetUserPrivacySetting : (int) userID{
     if ((self = [self initOperation])) {
         self.type = kGetUserPrivacySetting;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPrivacySetting?userId=%d",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/user/getPrivacySetting?userId=%d",K_DOMAIN_NANA,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -44,7 +44,7 @@
 -(UserProfileOperation *) initGetUserPushSetting : (int) userID{
     if ((self = [self initOperation])) {
         self.type = kGetUserPushSetting;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/user/getPushSetting?userId=%d",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/user/getPushSetting?userId=%d",K_DOMAIN_NANA,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -53,7 +53,7 @@
 -(UserProfileOperation *) initGetUserBackGround : (int) userID{
     if ((self = [self initOperation])) {
         self.type = kGetBackGround;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/background/lists?userId=%d",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/background/lists?userId=%d",K_DOMAIN_NANA,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -62,7 +62,7 @@
 -(UserProfileOperation *) initBuyBackGround :(int) userID withBackGroundID : (int) backgroundID{
     if ((self = [self initOperation])) {
         self.type = kBuyBackGround;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/background/buyBackground?userId=%d&backgroundId=%d",userID,backgroundID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/background/buyBackground?userId=%d&backgroundId=%d",K_DOMAIN_NANA,userID,backgroundID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -72,7 +72,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostUserProfile;
-        NSString *urlStr  = @"http://api.local.ishenran.cn/user/updateInfo";
+        NSString *urlStr = [NSString stringWithFormat: @"%@/user/updateInfo",K_DOMAIN_NANA];
         [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
                                                       [NSNumber numberWithInt:userID],@"userId",
                                                       nickName,@"nickname",
@@ -88,7 +88,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostUserPushSetting;
-        NSString *urlStr = @"http://api.local.ishenran.cn/user/pushSetting";
+        NSString *urlStr = [NSString stringWithFormat:@"%@/user/pushSetting",K_DOMAIN_NANA];
         [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
                                                       [NSNumber numberWithInt:userID],@"userId",
                                                       [NSNumber numberWithBool:canMessagePush],@"messagePush",
@@ -105,7 +105,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostUserPrivacySetting;
-        NSString *urlStr = @"http://api.local.ishenran.cn/user/privacySetting";
+        NSString *urlStr = [NSString stringWithFormat:@"%@/user/privacySetting",K_DOMAIN_NANA];
         [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
                                                       [NSNumber numberWithInt:userID],@"userId",
                                                       [NSNumber numberWithBool:isShowPhotoes],@"showPhotos",
@@ -121,7 +121,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetUserPhotoesList;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/photo/getlist?userId=%d",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/photo/getlist?userId=%d",K_DOMAIN_NANA,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -131,7 +131,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kRemoveUserPhoto;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/photo/rm?userId=%d&id=%d",userID,photoID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/photo/rm?userId=%d&id=%d",K_DOMAIN_NANA,userID,photoID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;

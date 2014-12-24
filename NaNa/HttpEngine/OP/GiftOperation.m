@@ -22,7 +22,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetGiftStoreList;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/gift/list4Sell"];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/gift/list4Sell",K_DOMAIN_NANA];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -32,7 +32,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetUserGiftList;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/gift/getList?userId=%d",userID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/gift/getList?userId=%d",K_DOMAIN_NANA,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -42,7 +42,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostPresentGift;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/gift/send?userId=%d&targetId=%d&giftId=%d",userID,targetUserID,giftID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/gift/send?userId=%d&targetId=%d&giftId=%d",K_DOMAIN_NANA,userID,targetUserID,giftID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;

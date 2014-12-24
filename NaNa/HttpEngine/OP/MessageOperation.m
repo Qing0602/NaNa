@@ -25,7 +25,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kSendMessage;
-        NSString *urlStr = @"http://api.local.ishenran.cn/message/send";
+        NSString *urlStr = [NSString stringWithFormat:@"%@/message/send",K_DOMAIN_NANA];
         [self setHttpRequestPostWithUrl:urlStr params:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [NSNumber numberWithInt:[NaNaUIManagement sharedInstance].userAccount.UserID],@"userId",
                                                        [NSNumber numberWithInt:targetID],@"targetId",
@@ -38,7 +38,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetNewMessage;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/getNew?userId=%d&targetId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/message/getNew?userId=%d&targetId=%d",K_DOMAIN_NANA,[NaNaUIManagement sharedInstance].userAccount.UserID,targetID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -48,7 +48,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetSideMessageList;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/getList?userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/message/getList?userId=%d",K_DOMAIN_NANA,[NaNaUIManagement sharedInstance].userAccount.UserID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -58,7 +58,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kGetHistoryMessage;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/message/get?userId=%d&targetId=%d&time=%lld",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,timeStemp];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/message/get?userId=%d&targetId=%d&time=%lld",K_DOMAIN_NANA,[NaNaUIManagement sharedInstance].userAccount.UserID,targetID,timeStemp];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -68,7 +68,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostTouchHead;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/interactive/touchhead?userId=%d&targetId=%d",userID,targetID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/interactive/touchhead?userId=%d&targetId=%d",K_DOMAIN_NANA,userID,targetID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -78,7 +78,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = kPostGiveKey;
-        NSString *urlStr = [NSString stringWithFormat:@"http://api.local.ishenran.cn/interactive/sendkey?userId=%d&targetId=%d",userID,targetID];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/interactive/sendkey?userId=%d&targetId=%d",K_DOMAIN_NANA,userID,targetID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;

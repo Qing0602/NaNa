@@ -52,7 +52,7 @@
     [_myWebView addSubview:_activityView];
     _myWebView.scalesPageToFit = YES;
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.local.ishenran.cn/interactive?userId=%d&targetId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID,targetID]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/interactive?userId=%d&targetId=%d",K_DOMAIN_NANA,[NaNaUIManagement sharedInstance].userAccount.UserID,targetID]];
     //[_myWebView loadRequest:URLREQUEST(, );
     [_myWebView loadRequest:[NSURLRequest requestWithURL:url]];
     
