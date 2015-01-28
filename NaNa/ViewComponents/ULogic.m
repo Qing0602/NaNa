@@ -14,7 +14,7 @@
 - (void)dealloc {
     self.delegate = nil;
     [URequestManager removeURequestWithDelegate:self];
-    [super dealloc];
+//    [super dealloc];
 }
 
 - (id)init {

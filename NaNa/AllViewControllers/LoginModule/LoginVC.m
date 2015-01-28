@@ -16,30 +16,19 @@
 @implementation LoginVC
 
 @synthesize imageList=_imageList;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)dealloc
-{
-    [super dealloc];
 }
 
 - (void)loadView {
@@ -48,7 +37,6 @@
     self.title = @"NaNa";
     
     //定义UIScrollView
-    //NSArray * imageArray=[NSArray arrayWithArray:_imageList];
     _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480-_navBarView.frame.size.height)];
     _scrollview.backgroundColor=[UIColor redColor];
     _scrollview.contentSize = CGSizeMake(320, 1405);  //scrollview的滚动范围
@@ -70,33 +58,23 @@
     UIView * qqLogin=[self AddTabbutton:STRING(@"QQ") NormalImage:@"qq.png" SelectedImage:@"qq_press.png" TAG:1];
     qqLogin.frame=CGRectMake(40, 10, 100, 110);
     [tabbar addSubview:qqLogin];
-    SAFERELEASE(qqLogin);
     
     UIView * weiboLogin=[self AddTabbutton:STRING(@"weibo") NormalImage:@"weibo.png" SelectedImage:@"weibo_press.png" TAG:2];
     weiboLogin.frame=CGRectMake(170, 10, 100, 110);
     [tabbar addSubview:weiboLogin];
-    SAFERELEASE(weiboLogin);
     
-//    UIView * weixinLogin=[self AddTabbutton:STRING(@"weixin") NormalImage:@"weixin.png" SelectedImage:@"weixin_press.png" TAG:3];
-//    weixinLogin.frame=CGRectMake(210, 0, 100, 110);
-//    [tabbar addSubview:weixinLogin];
-//    SAFERELEASE(weixinLogin);
     [self.defaultView addSubview:_scrollview];
     [self.defaultView addSubview:tabbar];
-    
-
 }
 
 -(UIView*)AddTabbutton:(NSString*) mTitle
                         NormalImage:(NSString *)normalImage
                         SelectedImage:(NSString* )selectedImage
                         TAG:(int)tag{
-//UIView * AddTabbutton(NSString* mTitle,NSString * normalImage,NSString* selectedImage,int tag)
 
     UIView * buttonView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 110)];
     UIButton * button=[UIButton buttonWithType:UIButtonTypeCustom];
     button.frame =CGRectMake(20, 10, 60, 60);;
-//    [button setTitle:mTitle forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:selectedImage] forState:UIControlStateSelected];
     button.tag=tag;
@@ -111,34 +89,25 @@
     btnLable.text=mTitle;
     [btnLable setTextColor:[UIColor grayColor]];
     [buttonView addSubview:btnLable];
-    SAFERELEASE(btnLable);
     return buttonView;
-
 }
 
--(void)onClick:(UIButton *)sender
-{
+-(void)onClick:(UIButton *)sender{
     int TAG=sender.tag;
     switch (TAG) {
-        case 1:
-        {
-            ULog(@"qq");
+        case 1:{
             WebLoginVC *webQQLogin =  [[WebLoginVC alloc] init];
             [webQQLogin setURL:[NSString stringWithFormat:@"%@/qqlogin/index.php",K_DOMAIN_NANA]];
             [self.navigationController pushViewController:webQQLogin animated:YES];
-            //[APP_DELEGATE loadMainView];
         }
-            break;
-        case 2:
-        {
+        break;
+        case 2:{
             WebLoginVC *webWeiBoLogin =  [[WebLoginVC alloc] init];
             [webWeiBoLogin setURL:[NSString stringWithFormat:@"%@/wblogin/index.php",K_DOMAIN_NANA]];
             [self.navigationController pushViewController:webWeiBoLogin animated:YES];
-            ULog(@"weibo");
         }
-            break;
+        break;
         case 3:
-            ULog(@"weixin");
             break;
         default:
             break;

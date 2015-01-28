@@ -72,7 +72,7 @@
 		36A45EB018549E1100439944 /* SetPrivateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A45EAF18549E1100439944 /* SetPrivateVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36F00882184F36E000ED43BB /* RedeemcodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F00881184F36E000ED43BB /* RedeemcodeVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		36FD27DD1839DAC2004EBC51 /* TaPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DC1839DAC2004EBC51 /* TaPageVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		36FD27E0183A155C004EBC51 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DF183A155C004EBC51 /* LoginVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36FD27E0183A155C004EBC51 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DF183A155C004EBC51 /* LoginVC.m */; };
 		740DFBDE1A2755950006D355 /* icon_Recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 740DFBDD1A2755950006D355 /* icon_Recording.png */; };
 		740DFBE01A2756200006D355 /* record_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 740DFBDF1A2756200006D355 /* record_img.png */; };
 		74292D23199E42AD000C2FE6 /* MMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D1D199E42AD000C2FE6 /* MMGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -401,7 +401,7 @@
 		97416E33178015ED00865342 /* UAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97416DF7178015ED00865342 /* UAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		97416E34178015ED00865342 /* UIAlertView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 97416DF9178015ED00865342 /* UIAlertView+Block.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		97416E35178015ED00865342 /* UIImage+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 97416DFB178015ED00865342 /* UIImage+UIColor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		97416E3A178015ED00865342 /* ULogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 97416E06178015ED00865342 /* ULogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		97416E3A178015ED00865342 /* ULogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 97416E06178015ED00865342 /* ULogic.m */; };
 		97416E3F178015ED00865342 /* UWindowHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 97416E10178015ED00865342 /* UWindowHud.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		97416E411780248600865342 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97416E401780248600865342 /* SystemConfiguration.framework */; };
 		97416E43178024CE00865342 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97416E42178024CE00865342 /* MobileCoreServices.framework */; };
