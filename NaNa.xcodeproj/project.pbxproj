@@ -26,6 +26,13 @@
 		19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
 		19B93F0C1A2754BB00FEF672 /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B93F0B1A2754BB00FEF672 /* DeleteButton.png */; };
+		19C597231A7AB2620005BE0A /* PassWordText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971C1A7AB2620005BE0A /* PassWordText@2x.png */; };
+		19C597241A7AB2620005BE0A /* QQLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971D1A7AB2620005BE0A /* QQLogin@2x.png */; };
+		19C597251A7AB2620005BE0A /* QQLoginPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971E1A7AB2620005BE0A /* QQLoginPressed@2x.png */; };
+		19C597261A7AB2620005BE0A /* SinaLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971F1A7AB2620005BE0A /* SinaLogin@2x.png */; };
+		19C597271A7AB2620005BE0A /* SinaLoginPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C597201A7AB2620005BE0A /* SinaLoginPressed@2x.png */; };
+		19C597281A7AB2620005BE0A /* UserNameText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C597211A7AB2620005BE0A /* UserNameText@2x.png */; };
+		19C5972A1A7ABD170005BE0A /* LoginButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C597291A7ABD170005BE0A /* LoginButton@2x.png */; };
 		19C66D1A1A18AF7B00437EA8 /* bubble_friend2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C66D191A18AF7B00437EA8 /* bubble_friend2.png */; };
 		19CB82E9196CC79800DBCBAB /* AsiGetRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */; };
 		19CB82EB196CC79800DBCBAB /* NaNaHttpEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82DF196CC79800DBCBAB /* NaNaHttpEngine.m */; };
@@ -528,6 +535,13 @@
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
 		19B93F0B1A2754BB00FEF672 /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteButton.png; sourceTree = "<group>"; };
+		19C5971C1A7AB2620005BE0A /* PassWordText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PassWordText@2x.png"; path = "Login/PassWordText@2x.png"; sourceTree = "<group>"; };
+		19C5971D1A7AB2620005BE0A /* QQLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "QQLogin@2x.png"; path = "Login/QQLogin@2x.png"; sourceTree = "<group>"; };
+		19C5971E1A7AB2620005BE0A /* QQLoginPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "QQLoginPressed@2x.png"; path = "Login/QQLoginPressed@2x.png"; sourceTree = "<group>"; };
+		19C5971F1A7AB2620005BE0A /* SinaLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SinaLogin@2x.png"; path = "Login/SinaLogin@2x.png"; sourceTree = "<group>"; };
+		19C597201A7AB2620005BE0A /* SinaLoginPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SinaLoginPressed@2x.png"; path = "Login/SinaLoginPressed@2x.png"; sourceTree = "<group>"; };
+		19C597211A7AB2620005BE0A /* UserNameText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UserNameText@2x.png"; path = "Login/UserNameText@2x.png"; sourceTree = "<group>"; };
+		19C597291A7ABD170005BE0A /* LoginButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LoginButton@2x.png"; path = "Login/LoginButton@2x.png"; sourceTree = "<group>"; };
 		19C66D191A18AF7B00437EA8 /* bubble_friend2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble_friend2.png; sourceTree = "<group>"; };
 		19CB82DA196CC79800DBCBAB /* AsiGetRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsiGetRequestModel.h; sourceTree = "<group>"; };
 		19CB82DB196CC79800DBCBAB /* AsiGetRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsiGetRequestModel.m; sourceTree = "<group>"; };
@@ -1285,6 +1299,13 @@
 		36412412184737C5002C4329 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				19C597291A7ABD170005BE0A /* LoginButton@2x.png */,
+				19C5971C1A7AB2620005BE0A /* PassWordText@2x.png */,
+				19C5971D1A7AB2620005BE0A /* QQLogin@2x.png */,
+				19C5971E1A7AB2620005BE0A /* QQLoginPressed@2x.png */,
+				19C5971F1A7AB2620005BE0A /* SinaLogin@2x.png */,
+				19C597201A7AB2620005BE0A /* SinaLoginPressed@2x.png */,
+				19C597211A7AB2620005BE0A /* UserNameText@2x.png */,
 				36A45EA91850806200439944 /* login.png */,
 				36412413184737D4002C4329 /* qq_press.png */,
 				36412414184737D4002C4329 /* qq.png */,
@@ -2546,7 +2567,9 @@
 				8729E94A18840034005CAB4F /* 39@2x.png in Resources */,
 				8729E93D18840034005CAB4F /* 33.png in Resources */,
 				97AC1C5117D1C5F400233384 /* head_cartoon_3.png in Resources */,
+				19C597231A7AB2620005BE0A /* PassWordText@2x.png in Resources */,
 				8729E9AD18840034005CAB4F /* 84.png in Resources */,
+				19C597271A7AB2620005BE0A /* SinaLoginPressed@2x.png in Resources */,
 				8729E93818840034005CAB4F /* 30@2x.png in Resources */,
 				8729E9BD18840034005CAB4F /* 91.png in Resources */,
 				8729E96918840034005CAB4F /* 53.png in Resources */,
@@ -2593,6 +2616,7 @@
 				97AC1C5B17D1C5F400233384 /* navbar_menu_pressed.png in Resources */,
 				8729E91D18840034005CAB4F /* 19.png in Resources */,
 				97AC1C5C17D1C5F400233384 /* navbar_next.png in Resources */,
+				19C597281A7AB2620005BE0A /* UserNameText@2x.png in Resources */,
 				8729E9CD18840034005CAB4F /* 99.png in Resources */,
 				97AC1C5D17D1C5F400233384 /* navbar_next_pressed.png in Resources */,
 				8729E96718840034005CAB4F /* 52.png in Resources */,
@@ -2630,6 +2654,7 @@
 				8729E91A18840034005CAB4F /* 17@2x.png in Resources */,
 				8729E9C918840034005CAB4F /* 97.png in Resources */,
 				8729E91418840034005CAB4F /* 14@2x.png in Resources */,
+				19C597241A7AB2620005BE0A /* QQLogin@2x.png in Resources */,
 				8729E9BA18840034005CAB4F /* 9.png in Resources */,
 				97AC1C6517D1C5F400233384 /* photo_pressed.png in Resources */,
 				8729E98318840034005CAB4F /* 65.png in Resources */,
@@ -2666,6 +2691,7 @@
 				970109D617D34B4700B93248 /* tabbar_info_normal.png in Resources */,
 				8729E92818840034005CAB4F /* 23@2x.png in Resources */,
 				8729E95C18840034005CAB4F /* 47@2x.png in Resources */,
+				19C5972A1A7ABD170005BE0A /* LoginButton@2x.png in Resources */,
 				8729E9A418840034005CAB4F /* 8.png in Resources */,
 				8729E99D18840034005CAB4F /* 77.png in Resources */,
 				8729E9BC18840034005CAB4F /* 90@2x.png in Resources */,
@@ -2698,6 +2724,7 @@
 				8729E98C18840034005CAB4F /* 69@2x.png in Resources */,
 				979C09C217E2E6B8008E2F16 /* face_sad.png in Resources */,
 				979C09C517E2E6C8008E2F16 /* cell_line.png in Resources */,
+				19C597261A7AB2620005BE0A /* SinaLogin@2x.png in Resources */,
 				979C09C617E2E6C8008E2F16 /* section_banner.png in Resources */,
 				8729E97218840034005CAB4F /* 57@2x.png in Resources */,
 				979C09C917E2E6D6008E2F16 /* searchbar.png in Resources */,
@@ -2749,6 +2776,7 @@
 				8729E96118840034005CAB4F /* 4@2x.png in Resources */,
 				8729E93718840034005CAB4F /* 30.png in Resources */,
 				8729E97C18840034005CAB4F /* 61@2x.png in Resources */,
+				19C597251A7AB2620005BE0A /* QQLoginPressed@2x.png in Resources */,
 				87264C721885484900009F69 /* chat_photo_btn.png in Resources */,
 				8729E92918840034005CAB4F /* 24.png in Resources */,
 				8729E93918840034005CAB4F /* 31.png in Resources */,

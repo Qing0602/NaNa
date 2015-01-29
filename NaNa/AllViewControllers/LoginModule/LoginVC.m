@@ -9,7 +9,7 @@
 #import "LoginVC.h"
 #import "AppDelegate.h"
 #import "WebLoginVC.h"
-@interface LoginVC ()
+@interface LoginVC ()<UITextFieldDelegate>
 
 @end
 
@@ -25,14 +25,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
-}
-
-- (void)loadView {
-    [super loadView];
     // title
     self.title = @"NaNa";
     
@@ -44,9 +36,8 @@
     _scrollview.showsHorizontalScrollIndicator = NO;
     _scrollview.delegate = self;
     _scrollview.scrollEnabled = YES;
-    //_scrollview.pagingEnabled = YES; //使用翻页属性
     _scrollview.bounces = NO;
-   
+    
     UIImageView * image=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 1405)];
     image.image=[UIImage imageNamed:@"login.png"];
     [_scrollview addSubview:image];
@@ -55,41 +46,105 @@
                                                              self.defaultView.frame.size.height - 122,
                                                              self.defaultView.frame.size.width, 122)];
     [tabbar setBackgroundColor:[UIColor blackColor]];
-    UIView * qqLogin=[self AddTabbutton:STRING(@"QQ") NormalImage:@"qq.png" SelectedImage:@"qq_press.png" TAG:1];
-    qqLogin.frame=CGRectMake(40, 10, 100, 110);
-    [tabbar addSubview:qqLogin];
     
-    UIView * weiboLogin=[self AddTabbutton:STRING(@"weibo") NormalImage:@"weibo.png" SelectedImage:@"weibo_press.png" TAG:2];
-    weiboLogin.frame=CGRectMake(170, 10, 100, 110);
-    [tabbar addSubview:weiboLogin];
+    UITextField *userName = [[UITextField alloc] init];
+    [userName setBorderStyle:UITextBorderStyleRoundedRect];
+    userName.frame = CGRectMake(42, 11, 135, 24);
+    userName.placeholder = @"用户名";
+    userName.returnKeyType = UIReturnKeyDone;
+    userName.delegate = self;
+    [tabbar addSubview:userName];
+    
+    UITextField *password = [[UITextField alloc] init];
+    [password setBorderStyle:UITextBorderStyleRoundedRect];
+    password.frame = CGRectMake(42, 44, 135, 24);
+    password.secureTextEntry = YES;
+    password.placeholder = @"密码";
+    password.returnKeyType = UIReturnKeyDone;
+    password.delegate = self;
+    [tabbar addSubview:password];
+    
+    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loginButton setImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateNormal];
+    [loginButton setImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateSelected];
+    loginButton.tag=3;
+    [loginButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    loginButton.frame=CGRectMake(197, 11, 72.5f, 25);
+    [tabbar addSubview:loginButton];
+    
+    UIButton *qqButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [qqButton setImage:[UIImage imageNamed:@"QQLogin"] forState:UIControlStateNormal];
+    [qqButton setImage:[UIImage imageNamed:@"QQLoginPressed"] forState:UIControlStateSelected];
+    qqButton.tag=1;
+    [qqButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    qqButton.frame=CGRectMake(197, 69, 28, 27);
+    [tabbar addSubview:qqButton];
+    
+    UIButton *sinaButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    [sinaButton setImage:[UIImage imageNamed:@"SinaLogin"] forState:UIControlStateNormal];
+    [sinaButton setImage:[UIImage imageNamed:@"SinaLoginPressed"] forState:UIControlStateSelected];
+    sinaButton.tag=2;
+    [sinaButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    sinaButton.frame=CGRectMake(239, 69, 28, 27);
+    [tabbar addSubview:sinaButton];
     
     [self.defaultView addSubview:_scrollview];
     [self.defaultView addSubview:tabbar];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
--(UIView*)AddTabbutton:(NSString*) mTitle
-                        NormalImage:(NSString *)normalImage
-                        SelectedImage:(NSString* )selectedImage
-                        TAG:(int)tag{
+-(void) keyboardWillShow : (NSNotification *)not{
+    CGRect keyboardBounds;
+    [[not.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+    NSNumber *duration = [not.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [not.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
+    
+    // animations settings
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+    [self.view setFrame:CGRectMake(0, -260.f, self.view.frame.size.width, self.view.frame.size.height)];
+    [UIView commitAnimations];
+}
 
-    UIView * buttonView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 110)];
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame =CGRectMake(20, 10, 60, 60);;
-    [button setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:selectedImage] forState:UIControlStateSelected];
-    button.tag=tag;
-    [button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    [buttonView addSubview:button];
+-(void) keyboardWillHide : (NSNotification *)not{
+    NSNumber *duration = [not.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [not.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    // animations settings
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+    [self.view setFrame:CGRectMake(0, 0.f, self.view.frame.size.width, self.view.frame.size.height)];
+    [UIView commitAnimations];
+}
+
+
+- (void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+}
+
+
+//当开始点击textField会调用的方法
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
     
-    
-    UILabel * btnLable=[[UILabel alloc] initWithFrame:CGRectMake(0, 70, 100, 20)];
-    [btnLable setBackgroundColor:[UIColor clearColor]];
-    btnLable.textAlignment=UITextAlignmentCenter;
-    btnLable.font = [UIFont fontWithName:@"AppleGothic" size:14.0f];
-    btnLable.text=mTitle;
-    [btnLable setTextColor:[UIColor grayColor]];
-    [buttonView addSubview:btnLable];
-    return buttonView;
+}
+
+//按下Done按钮的调用方法，我们让键盘消失
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void)onClick:(UIButton *)sender{
