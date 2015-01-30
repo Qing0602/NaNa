@@ -99,6 +99,11 @@ typedef enum{
 
 @property(nonatomic,strong) NSDictionary *changeCodeDic;
 
+// 登陆
+@property(nonatomic,strong) NSDictionary *loginResult;
+// 注册
+@property(nonatomic,strong) NSDictionary *regResult;
+
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
 @property(nonatomic,strong) NSString *imServerIP;
@@ -163,4 +168,9 @@ typedef enum{
 -(void) quit;
 
 -(void) changeCode : (NSString *) code withPassword : (NSString *)password;
+
+// 登陆
+-(void) login : (NSString *) userName withPassword : (NSString *) password;
+// 注册
+-(void) postUserName : (NSString *) userName withPassword : (NSString *) password;
 @end

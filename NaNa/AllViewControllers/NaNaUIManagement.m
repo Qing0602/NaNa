@@ -12,6 +12,7 @@
 #import "GiftOperation.h"
 #import "MessageOperation.h"
 #import "SystemOperation.h"
+#import "LoginOperation.h"
 
 @implementation NaNaUIManagement
 static NaNaUIManagement *sharedInstance = nil;
@@ -175,6 +176,17 @@ static NaNaUIManagement *sharedInstance = nil;
 
 -(void) changeCode : (NSString *) code withPassword : (NSString *)password{
     SystemOperation *operation = [[SystemOperation alloc] initChangeCode:code withPassword:password];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+
+// 登陆
+-(void) login : (NSString *) userName withPassword : (NSString *) password{
+    LoginOperation *operation = [[LoginOperation alloc] initLogin:userName withPassword:password];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
+// 注册
+-(void) postUserName : (NSString *) userName withPassword : (NSString *) password{
+    LoginOperation *operation = [[LoginOperation alloc] initPostUserName:userName withPassword:password];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
 @end

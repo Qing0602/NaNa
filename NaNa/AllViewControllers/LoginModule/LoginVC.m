@@ -72,6 +72,14 @@
     loginButton.frame=CGRectMake(197, 11, 72.5f, 25);
     [tabbar addSubview:loginButton];
     
+    UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [registerButton setImage:[UIImage imageNamed:@"RegisterButton"] forState:UIControlStateNormal];
+    [registerButton setImage:[UIImage imageNamed:@"RegisterButton"] forState:UIControlStateSelected];
+    registerButton.tag=4;
+    [registerButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    registerButton.frame=CGRectMake(197, 41, 73, 23);
+    [tabbar addSubview:registerButton];
+    
     UIButton *qqButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [qqButton setImage:[UIImage imageNamed:@"QQLogin"] forState:UIControlStateNormal];
     [qqButton setImage:[UIImage imageNamed:@"QQLoginPressed"] forState:UIControlStateSelected];
