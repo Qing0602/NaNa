@@ -97,6 +97,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)leftItemPressed:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)rightItemPressed:(UIButton *)btn
 {
