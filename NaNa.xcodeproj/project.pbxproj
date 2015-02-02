@@ -84,6 +84,7 @@
 		36FD27E0183A155C004EBC51 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FD27DF183A155C004EBC51 /* LoginVC.m */; };
 		740DFBDE1A2755950006D355 /* icon_Recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 740DFBDD1A2755950006D355 /* icon_Recording.png */; };
 		740DFBE01A2756200006D355 /* record_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 740DFBDF1A2756200006D355 /* record_img.png */; };
+		741FAE271A7F6E8000ED18DE /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741FAE261A7F6E8000ED18DE /* RegisterViewController.m */; };
 		74292D23199E42AD000C2FE6 /* MMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D1D199E42AD000C2FE6 /* MMGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		74292D24199E42AD000C2FE6 /* MMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D1F199E42AD000C2FE6 /* MMGridViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		74292D25199E42AD000C2FE6 /* MMGridViewDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74292D22199E42AD000C2FE6 /* MMGridViewDefaultCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -621,6 +622,8 @@
 		36FD27DF183A155C004EBC51 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		740DFBDD1A2755950006D355 /* icon_Recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Recording.png; sourceTree = "<group>"; };
 		740DFBDF1A2756200006D355 /* record_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = record_img.png; sourceTree = "<group>"; };
+		741FAE251A7F6E8000ED18DE /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		741FAE261A7F6E8000ED18DE /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		74292D1C199E42AD000C2FE6 /* MMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGridView.h; sourceTree = "<group>"; };
 		74292D1D199E42AD000C2FE6 /* MMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGridView.m; sourceTree = "<group>"; };
 		74292D1E199E42AD000C2FE6 /* MMGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGridViewCell.h; sourceTree = "<group>"; };
@@ -2206,6 +2209,8 @@
 			children = (
 				36FD27DE183A155C004EBC51 /* LoginVC.h */,
 				36FD27DF183A155C004EBC51 /* LoginVC.m */,
+				741FAE251A7F6E8000ED18DE /* RegisterViewController.h */,
+				741FAE261A7F6E8000ED18DE /* RegisterViewController.m */,
 				3641240F184720CF002C4329 /* WebLoginVC.h */,
 				36412410184720CF002C4329 /* WebLoginVC.m */,
 			);
@@ -2925,6 +2930,7 @@
 				97E8435417E069740009B030 /* UCity.m in Sources */,
 				97E8435517E069740009B030 /* UCityVC.m in Sources */,
 				745EFE9619A23487009F1B4D /* PresentGiftViewController.m in Sources */,
+				741FAE271A7F6E8000ED18DE /* RegisterViewController.m in Sources */,
 				746719A719C1E92E005CF968 /* MyBackgroundListViewController.m in Sources */,
 				19CB82F5196D64C300DBCBAB /* UploadOperation.m in Sources */,
 				19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */,

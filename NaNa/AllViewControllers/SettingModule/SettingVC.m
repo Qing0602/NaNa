@@ -23,15 +23,15 @@
 #define kSettingEditCellShowHeight     30.0
 #define kSettingEditCellSildWidth      15.0
 #define kSettingEditCellShowWidth      290.0
-#define kSettingEditCellNumber         6
+#define kSettingEditCellNumber         5
 
 typedef enum {
     SettingEditRowNontification     = 0,
-    SettingEditRowLock              = 2,
-    SettingEditRowBlack             = 3,
-    SettingEditRowSuggestion        = 4,
-    SettingEditRowGrade             = 5,
-    SettingEditRowRedeem            = 1,
+    SettingEditRowLock              = 1,
+    SettingEditRowBlack             = 2,
+    SettingEditRowSuggestion        = 3,
+    SettingEditRowGrade             = 4,
+    SettingEditRowRedeem            = 5,
 } SettingEditRow;
 
 @implementation SettingVC 

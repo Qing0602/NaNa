@@ -9,6 +9,7 @@
 #import "LoginVC.h"
 #import "AppDelegate.h"
 #import "WebLoginVC.h"
+#import "RegisterViewController.h"
 @interface LoginVC ()<UITextFieldDelegate>
 
 @end
@@ -171,6 +172,12 @@
         }
         break;
         case 3:
+            break;
+        case 4:
+        {
+            RegisterViewController *registerVC = [[RegisterViewController alloc] init];
+            [self.navigationController pushViewController:registerVC animated:YES];
+        }
             break;
         default:
             break;
