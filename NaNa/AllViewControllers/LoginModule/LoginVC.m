@@ -10,8 +10,9 @@
 #import "AppDelegate.h"
 #import "WebLoginVC.h"
 #import "RegisterViewController.h"
-@interface LoginVC ()<UITextFieldDelegate>
-
+@interface LoginVC ()
+@property (nonatomic,strong) UITextField *userName;
+@property (nonatomic,strong) UITextField *password;
 @end
 
 @implementation LoginVC
@@ -47,6 +48,24 @@
                                                              self.defaultView.frame.size.height - 122,
                                                              self.defaultView.frame.size.width, 122)];
     [tabbar setBackgroundColor:[UIColor blackColor]];
+    
+    
+//    UITextField *userName = [[UITextField alloc] init];
+//    [userName setBorderStyle:UITextBorderStyleRoundedRect];
+//    userName.frame = CGRectMake(42, 11, 135, 24);
+//    userName.placeholder = @"用户名";
+//    userName.returnKeyType = UIReturnKeyDone;
+//    userName.delegate = self;
+//    [tabbar addSubview:userName];
+//    
+//    UITextField *password = [[UITextField alloc] init];
+//    [password setBorderStyle:UITextBorderStyleRoundedRect];
+//    password.frame = CGRectMake(42, 44, 135, 24);
+//    password.secureTextEntry = YES;
+//    password.placeholder = @"密码";
+//    password.returnKeyType = UIReturnKeyDone;
+//    password.delegate = self;
+//    [tabbar addSubview:password];
     
     self.userName = [[UITextField alloc] init];
     [self.userName setBorderStyle:UITextBorderStyleRoundedRect];
@@ -167,6 +186,7 @@
 
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"loginResult"]) {
+        NSDictionary *result = [NaNaUIManagement sharedInstance].loginResult;
         
     }
 }
