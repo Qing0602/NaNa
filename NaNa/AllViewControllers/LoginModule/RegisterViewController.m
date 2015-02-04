@@ -117,7 +117,7 @@
         return;
     }
     //-(void) postUserName : (NSString *) userName withPassword : (NSString *) password;
-    [self showProgressWithText:@"正在购买"];
+    [self showProgressWithText:@"正在注册"];
     [[NaNaUIManagement sharedInstance] postUserName:userName.text withPassword:password.text];
 }
 @end
