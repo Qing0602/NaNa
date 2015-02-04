@@ -944,12 +944,13 @@ typedef enum {
     
     // 判断城市是否选择
     int cityId = _city.cityID;
+    /*
     if (_city.cityID == 0 && [_city.cityName isEqualToString:@""]) {
         // 城市未选择，Alert报错
         [UAlertView showAlertViewWithMessage:@"请选择城市" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         return;
     }
-    
+    */
     //    //判断用户协议是否勾选
     //    if (!_isAgree) {
     //        [UAlertView showAlertViewWithMessage:@"请勾选已阅读并同意用户协议" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];

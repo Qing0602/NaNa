@@ -8,7 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "UAlertView.h"
-@interface RegisterViewController ()
+@interface RegisterViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITextField *userName;
     UITextField *password;
@@ -49,27 +49,21 @@
     [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeSubmit];
     self.title = @"注册";
     
-    userName = [[UITextField alloc] init];
-    [userName setBorderStyle:UITextBorderStyleRoundedRect];
-    userName.frame = CGRectMake(40, 100, 240, 24);
-    userName.placeholder = @"用户名";
-    [self.view addSubview:userName];
+    UITableView *_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0,
+                                                               80,
+                                                               self.view.frame.size.width,
+                                                                            200)
+                                              style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //_tableView.separatorColor = [UIColor clearColor];
+    _tableView.scrollEnabled = NO;
+    [self.view addSubview:_tableView];
     
-    password = [[UITextField alloc] init];
-    [password setBorderStyle:UITextBorderStyleRoundedRect];
-    password.frame = CGRectMake(40, 144, 240, 24);
-    password.secureTextEntry = YES;
-    password.placeholder = @"密码";
-    [self.view addSubview:password];
     
-    confirmPassword = [[UITextField alloc] init];
-    [confirmPassword setBorderStyle:UITextBorderStyleRoundedRect];
-    confirmPassword.frame = CGRectMake(40, 188, 240, 24);
-    confirmPassword.secureTextEntry = YES;
-    confirmPassword.placeholder = @"密码";
-    [self.view addSubview:confirmPassword];
-    
-    [userName becomeFirstResponder];
     /*
     UIButton *confirm = [UIButton buttonWithType:UIButtonTypeCustom];
     [confirm setImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateNormal];
@@ -97,6 +91,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 - (void)leftItemPressed:(UIButton *)btn {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -119,5 +114,82 @@
     //-(void) postUserName : (NSString *) userName withPassword : (NSString *) password;
     [self showProgressWithText:@"正在注册"];
     [[NaNaUIManagement sharedInstance] postUserName:userName.text withPassword:password.text];
+}
+
+#pragma mark - UITableview
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:CellIdentifier];
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //被选中cell容器
+        cell.selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+        cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15.f];
+    }
+    switch (indexPath.row) {
+        case 0:
+        {
+            cell.textLabel.text = @"用户名";
+            if (!userName) {
+                userName = [[UITextField alloc] init];
+                [userName setBorderStyle:UITextBorderStyleNone];
+                userName.frame = CGRectMake(90, 8, 220, 24);
+                //userName.placeholder = @"用户名";
+                [cell.contentView addSubview:userName];
+            }
+            [userName becomeFirstResponder];
+        }
+            break;
+        case 1:
+        {
+            cell.textLabel.text = @"密码";
+            if (!password) {
+                password = [[UITextField alloc] init];
+                [password setBorderStyle:UITextBorderStyleNone];
+                password.frame = CGRectMake(90, 8, 220, 24);
+                password.secureTextEntry = YES;
+                //password.placeholder = @"密码";
+                [cell.contentView addSubview:password];
+            }
+
+        }
+            break;
+        case 2:
+        {
+            cell.textLabel.text = @"确认密码";
+            if (!confirmPassword) {
+                confirmPassword = [[UITextField alloc] init];
+                [confirmPassword setBorderStyle:UITextBorderStyleNone];
+                confirmPassword.frame = CGRectMake(90, 8, 220, 24);
+                confirmPassword.secureTextEntry = YES;
+                //confirmPassword.placeholder = @"密码";
+                [cell.contentView addSubview:confirmPassword];
+            }
+        }
+            break;
+        default:
+            break;
+    }
+
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40;
 }
 @end
