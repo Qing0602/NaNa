@@ -107,7 +107,7 @@
         [UAlertView showAlertViewWithMessage:@"用户名必须大于6位" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         return;
     }
-    if (password.text.length < 5) {
+    if (password.text.length < 5 ) {
         [UAlertView showAlertViewWithMessage:@"密码必须大于6位" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         return;
     }
