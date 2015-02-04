@@ -10,8 +10,9 @@
 #import "AppDelegate.h"
 #import "WebLoginVC.h"
 #import "RegisterViewController.h"
-@interface LoginVC ()<UITextFieldDelegate>
-
+@interface LoginVC ()
+@property (nonatomic,strong) UITextField *userName;
+@property (nonatomic,strong) UITextField *password;
 @end
 
 @implementation LoginVC
@@ -48,22 +49,40 @@
                                                              self.defaultView.frame.size.width, 122)];
     [tabbar setBackgroundColor:[UIColor blackColor]];
     
-    UITextField *userName = [[UITextField alloc] init];
-    [userName setBorderStyle:UITextBorderStyleRoundedRect];
-    userName.frame = CGRectMake(42, 11, 135, 24);
-    userName.placeholder = @"用户名";
-    userName.returnKeyType = UIReturnKeyDone;
-    userName.delegate = self;
-    [tabbar addSubview:userName];
     
-    UITextField *password = [[UITextField alloc] init];
-    [password setBorderStyle:UITextBorderStyleRoundedRect];
-    password.frame = CGRectMake(42, 44, 135, 24);
-    password.secureTextEntry = YES;
-    password.placeholder = @"密码";
-    password.returnKeyType = UIReturnKeyDone;
-    password.delegate = self;
-    [tabbar addSubview:password];
+//    UITextField *userName = [[UITextField alloc] init];
+//    [userName setBorderStyle:UITextBorderStyleRoundedRect];
+//    userName.frame = CGRectMake(42, 11, 135, 24);
+//    userName.placeholder = @"用户名";
+//    userName.returnKeyType = UIReturnKeyDone;
+//    userName.delegate = self;
+//    [tabbar addSubview:userName];
+//    
+//    UITextField *password = [[UITextField alloc] init];
+//    [password setBorderStyle:UITextBorderStyleRoundedRect];
+//    password.frame = CGRectMake(42, 44, 135, 24);
+//    password.secureTextEntry = YES;
+//    password.placeholder = @"密码";
+//    password.returnKeyType = UIReturnKeyDone;
+//    password.delegate = self;
+//    [tabbar addSubview:password];
+    
+    self.userName = [[UITextField alloc] init];
+    [self.userName setBorderStyle:UITextBorderStyleRoundedRect];
+    self.userName.frame = CGRectMake(42, 11, 135, 24);
+    self.userName.placeholder = @"用户名";
+    self.userName.returnKeyType = UIReturnKeyDone;
+    self.userName.delegate = self;
+    [tabbar addSubview:self.userName];
+    
+    self.password = [[UITextField alloc] init];
+    [self.password setBorderStyle:UITextBorderStyleRoundedRect];
+    self.password.frame = CGRectMake(42, 44, 135, 24);
+    self.password.secureTextEntry = YES;
+    self.password.placeholder = @"密码";
+    self.password.returnKeyType = UIReturnKeyDone;
+    self.password.delegate = self;
+    [tabbar addSubview:self.password];
     
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginButton setImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateNormal];
@@ -144,6 +163,15 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"loginResult" options:0 context:nil];
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"loginResult"];
+}
 
 //当开始点击textField会调用的方法
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -154,6 +182,13 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"loginResult"]) {
+        NSDictionary *result = [NaNaUIManagement sharedInstance].loginResult;
+        
+    }
 }
 
 -(void)onClick:(UIButton *)sender{
@@ -171,8 +206,20 @@
             [self.navigationController pushViewController:webWeiBoLogin animated:YES];
         }
         break;
-        case 3:
+        case 3:{
+            NSString *uName = self.userName.text;
+            NSString *pWord = self.password.text;
+            if (uName == nil || [uName isEqualToString:@""]) {
+                [self showProgressWithText:@"请填写用户名" withDelayTime:2.0f];
+                break;
+            }
+            if (pWord == nil || [pWord isEqualToString:@""]) {
+                [self showProgressWithText:@"请填写密码" withDelayTime:2.0f];
+                break;
+            }
+            [[NaNaUIManagement sharedInstance] login:uName withPassword:pWord];
             break;
+        }
         case 4:
         {
             RegisterViewController *registerVC = [[RegisterViewController alloc] init];

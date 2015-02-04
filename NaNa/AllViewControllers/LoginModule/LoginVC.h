@@ -16,7 +16,7 @@ typedef enum {
     LoginTabItemWeixin      = 2,
 } LoginTabItem;
 
-@interface LoginVC : UBasicViewController <UIScrollViewDelegate,UITabBarDelegate >
+@interface LoginVC : UBasicViewController <UIScrollViewDelegate,UITabBarDelegate,UITextFieldDelegate>
 {
 
     UIScrollView    * _scrollview;
@@ -25,4 +25,5 @@ typedef enum {
 }
 
 @property(nonatomic,retain)NSMutableArray * imageList;
+
 @end
