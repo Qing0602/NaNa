@@ -92,11 +92,11 @@
     }
     [self.view addSubview:_photoMenuView];
     
-    
+
     NSArray *titleArray = [NSArray arrayWithObjects:@"相册",@"资料",@"隐私",@"会员", nil];
     NSArray *normalArray = [NSArray arrayWithObjects:@"tabbar_album_normal.png",@"tabbar_info_normal.png",@"tabbar_private_normal.png",@"tabbar_member_normal.png", nil];
     NSArray *selectArray = [NSArray arrayWithObjects:@"tabbar_album_pressed.png",@"tabbar_info_pressed.png",@"tabbar_private_pressed.png",@"tabbar_member_pressed.png", nil];
-    
+ 
     
     
     
@@ -182,8 +182,11 @@
         }
         case MyPageTabItemUpdateMember: {
             ULog(@"MyPageTabItemUpdateMember");
+            [UAlertView showAlertViewWithTitle:nil message:@"该服务即将上线" delegate:nil cancelButton:@"确定" defaultButton:nil];
+            /*
             UpdateMemberVC *controller = [[UpdateMemberVC alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
+             */
             break;
         }
     }
