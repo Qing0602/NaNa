@@ -25,4 +25,6 @@ typedef enum {
 }
 
 @property(nonatomic,retain)NSMutableArray * imageList;
+@property (nonatomic,strong) UITextField *userName;
+@property (nonatomic,strong) UITextField *password;
 @end
