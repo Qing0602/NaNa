@@ -146,381 +146,381 @@ typedef enum {
 }
 - (void)loadView {
     [super loadView];
-//    self.title = STRING(@"info");
-//    //_defaultView.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:255/255.f alpha:1.f];
-//
-//    if (enterPathType == TYPE_LOGIN) {
-//        [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
-//    }else{
-//        [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
-//     
-//        
-//        _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _confirmBtn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 35, 10, 25, 25);
-//        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm"] forState:UIControlStateNormal];
-//        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_press"] forState:UIControlStateHighlighted];
-//        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_unuseful"] forState:UIControlStateDisabled];
-//        _confirmBtn.enabled = NO;
-//        [_confirmBtn addTarget:self action:@selector(completeAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.navBarView addSubview:_confirmBtn];
-//    }
-//    
-//
-//    // 头像
-//    if (!_headButton) {
-//        // 圆形按钮
-//        //_headButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
-//        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_cartoon_1.png"] withFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
-//        //[_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
-//        [_headButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//        [_headButton addTarget:self
-//                        action:@selector(uRoundButtonTouchUpInside)
-//              forControlEvents:UIControlEventTouchUpInside];
-//        _headButton.layer.cornerRadius = 55;
-//        _headButton.clipsToBounds = YES;
-//    }
-//    [_defaultView addSubview:_headButton];
-//    
-//    
-//    // 录音时间
-//    if (!_timeLabel) {
-//        _timeLabel = [[UILabel alloc] init];
-//        _timeLabel.frame = CGRectMake(180.0, 20.0, 60.0, 25.0);
-//        _timeLabel.textColor = default_color_dark;
-//        _timeLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-//        _timeLabel.backgroundColor = [UIColor clearColor];
-//        _timeLabel.textAlignment = NSTextAlignmentCenter;
-//    }
-//    [_defaultView addSubview:_timeLabel];
-//    
-//    // 录音图标
-//    if (!_recordImageView) {
-//        _recordImageView = [[UIButton alloc] init];
-//        [_recordImageView setBackgroundImage:[UIImage imageNamed:@"speaker.png"] forState:UIControlStateNormal];
-//        [_recordImageView setBackgroundImage:[UIImage imageNamed:@"btn_playing"] forState:UIControlStateSelected];
-//        _recordImageView.frame = CGRectMake(240.0, 15.0, 30.0, 30.0);
-//        [_recordImageView addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//    }
-//    
-//    [_defaultView addSubview:_recordImageView];
-//    
-//    NSString *normalBagNa = @"record_btn.png";
-//    //_isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
-//    NSString *touchDownBagNa = @"record_light blue_btn_lan.png";
-//    // 录音按钮
-//    if (!_recordButton) {
-//        _recordButton = [[UIButton alloc] initWithFrame:CGRectMake(180.0, 50.0, 100.0, 30.0)];
-//        _recordButton.backgroundColor = [UIColor clearColor];
-//        _recordButton.layer.cornerRadius = 5;
-//        _recordButton.tag = 0xfc;
-//        [_recordButton setBackgroundImage:[UIImage imageNamed:normalBagNa]
-//                                  forState:UIControlStateNormal];
-//        [_recordButton setBackgroundImage:[UIImage imageNamed:touchDownBagNa]
-//                                  forState:UIControlStateHighlighted];
-//        [_recordButton addTarget:self action:@selector(beginRecord:) forControlEvents:UIControlEventTouchDown];
-//        [_recordButton addTarget:self action:@selector(endRecord:) forControlEvents:UIControlEventTouchUpInside];
-//        [_recordButton addTarget:self action:@selector(endRecord:) forControlEvents:UIControlEventTouchCancel];
-//
-//    }
-//    [_defaultView addSubview:_recordButton];
-//    
-//    NSString *normalTitle = _isExistRecord ? @"按住重录":@"按住录音";
-//    // 录音按钮上的文案
-//    if (!_recordButtonLabel) {
-//        _recordButtonLabel = [[UILabel alloc] init];
-//        _recordButtonLabel.frame = CGRectMake(_recordButton.frame.origin.x + margin_small,
-//                                              _recordButton.frame.origin.y,
-//                                              _recordButton.frame.size.width - 40,
-//                                              _recordButton.frame.size.height);
-//        _recordButtonLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-//        _recordButtonLabel.backgroundColor = [UIColor clearColor];
-//        _recordButtonLabel.textColor = default_color_white;
-//        _recordButtonLabel.text = normalTitle;
-//        _recordButtonLabel.textAlignment = NSTextAlignmentCenter;
-//    }
-//    [_defaultView addSubview:_recordButtonLabel];
-//    
-//    // 录音按钮上的图标
-//    if (!_recordButtonImageView) {
-//        _recordButtonImageView = [[UIImageView alloc] init];
-//        _recordButtonImageView.image = [UIImage imageNamed:@"record.png"];
-//        _recordButtonImageView.frame = CGRectMake(_recordButtonLabel.frame.origin.x + _recordButtonLabel.frame.size.width + margin_small,
-//                                                  _recordButtonLabel.frame.origin.y + 4.0,
-//                                                  25.0, 25.0);
-//    }
-//    [_defaultView addSubview:_recordButtonImageView];
-//    
-//    // 录音下面的备注文案
-//    if (!_remarkLabel) {
-//        _remarkLabel = [[UILabel alloc] init];
-//        _remarkLabel.frame = CGRectMake(_recordButton.frame.origin.x,
-//                                        _recordButton.frame.origin.y + _recordButton.frame.size.height + margin_micro,
-//                                        _recordButton.frame.size.width, 45);
-//        _remarkLabel.textColor = default_color_dark;
-//        _remarkLabel.font = [UIFont boldSystemFontOfSize:13];
-//        _remarkLabel.backgroundColor = [UIColor clearColor];
-//        _remarkLabel.text = STRING(@"recordRemark");
-//        _remarkLabel.numberOfLines = 2;
-//        _remarkLabel.textAlignment = NSTextAlignmentCenter;
-//    }
-//    [_defaultView addSubview:_remarkLabel];
-//    
-//    
-//    // 填充资料的tableView
-//    if (!_tableView) {
-//        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0,
-//                                                                   _headButton.frame.origin.y * 2 + _headButton.frame.size.height,
-//                                                                   self.defaultView.frame.size.width-5,
-//                                                                   kInfoEditCellHeight * kInfoEditCellNumber)
-//                                                  style:UITableViewStylePlain];
-//        _tableView.delegate = self;
-//        _tableView.dataSource = self;
-//        
-//        _tableView.backgroundColor = [UIColor clearColor];
-//        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//        //_tableView.separatorColor = [UIColor clearColor];
-//        _tableView.scrollEnabled = NO;
-//    }
-//    [_defaultView addSubview:_tableView];
-//    
-//    // 修改内容 for cell -------------------------------------------------------------------
-//    // 计算Cell内变动文字的坐标
-//    CGRect cellFrame = CGRectMake(70.0, 5.0, 200.0, kInfoEditCellShowHeight);
-//    
-//    // nikeName
-//    if (!_nameTextField) {
-//        _nameTextField = [[UITextField alloc] init];
-//        _nameTextField.frame = cellFrame;
-//        _nameTextField.backgroundColor = [UIColor clearColor];
-//        _nameTextField.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-//        _nameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//        _nameTextField.placeholder = STRING(@"nikeName");
-//        _nameTextField.keyboardType = UIKeyboardTypeNamePhonePad;
-//        _nameTextField.delegate = self;
-//        _nameTextField.returnKeyType = UIReturnKeyDone;
-//    }
-//    
-//    // 角色picker里的数据
-//    if (!_roleArray) {
-//        _roleArray = [[NSArray alloc] initWithObjects:@"P", @"T", @"H", nil];
-//    }
-//    
-//    // role
-//    if (!_roleLabel) {
-//        _roleLabel = [[UILabel alloc] init];
-//        _roleLabel.frame = cellFrame;
-//        _roleLabel.textColor = default_color_dark;
-//        _roleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-//        _roleLabel.backgroundColor = [UIColor clearColor];
-//        _roleLabel.text = _roleArray[0];
-//    }
-//    
-//    // age
-//    if (!_ageLabel) {
-//        _ageLabel = [[UILabel alloc] init];
-//        _ageLabel.frame = cellFrame;
-//        _ageLabel.textColor = default_color_dark;
-//        _ageLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-//        _ageLabel.backgroundColor = [UIColor clearColor];
-//        _ageLabel.text = STRING(@"age");
-//    }
-//    
-//    // _birthday
-//    _birthday = [[NSMutableString alloc] initWithString:@""];
-//    
-//    // city
-//    if (!_cityLabel) {
-//        _cityLabel = [[UILabel alloc] init];
-//        _cityLabel.frame = cellFrame;
-//        _cityLabel.textColor = default_color_dark;
-//        _cityLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-//        _cityLabel.backgroundColor = [UIColor clearColor];
-//        _cityLabel.text = @"未定位";
-//    }
-//    
-//    if (!_city) {
-//        _city = [[UCity alloc] init];
-//        _city.cityName = @"";
-//        _city.cityID = 0;
-//    }
-//    
-//    // 用户协议组件 --------------------------------------------------------------------------------
-//    // 是否显示用户协议
-//    _showAgree = NO;
-//    
-//    // 是否同意用户协议
-//    _isAgree = YES;
-//    
-//    // 是否同意用户协议的按钮
-//    if (!_agreeCheckButton) {
-//        _agreeCheckButton = [[UIButton alloc] init];
-//        _agreeCheckButton.frame = CGRectMake(kInfoEditCellSildWidth,
-//                                             _tableView.frame.origin.y + _tableView.frame.size.height + margin_middle,
-//                                             25.0, 25.0);
-//        _agreeCheckButton.backgroundColor = [UIColor clearColor];
-//        [_agreeCheckButton setBackgroundImage:[UIImage imageNamed:@"checkbox_checked.png"] forState:UIControlStateNormal];
-//        [_agreeCheckButton setBackgroundImage:[UIImage imageNamed:@"checkbox_checked.png"] forState:UIControlStateHighlighted];
-//        [_agreeCheckButton addTarget:self
-//                          action:@selector(agreeCheckButtonClick:)
-//                forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    //[_defaultView addSubview:_agreeCheckButton];
-//    
-//    // 同意用户协议文案
-//    if (!_agreeLabel) {
-//        _agreeLabel = [[TTTAttributedLabel alloc] init];
-//        _agreeLabel.frame = CGRectMake(_agreeCheckButton.frame.origin.x + _agreeCheckButton.frame.size.width + margin_small,
-//                                       _agreeCheckButton.frame.origin.y,
-//                                       _defaultView.frame.size.width - (_ageLabel.frame.origin.x),
-//                                       _agreeCheckButton.frame.size.height);
-//        _agreeLabel.userInteractionEnabled = NO;
-//        _agreeLabel.backgroundColor = [UIColor clearColor];
-//        _agreeLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
-//        _agreeLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
-//        [_agreeLabel setText:STRING(@"isAgreement") afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
-//            NSRange blackRange = NSMakeRange(0, 6);
-//            NSRange orangeRange = NSMakeRange(6, 4);
-//            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)default_color_dark range:blackRange];
-//            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)default_color_orange range:orangeRange];
-//            return mutableAttributedString;
-//        }];
-//    }
-//    //[_defaultView addSubview:_agreeLabel];
-//    
-//    // 进入用户协议按钮
-//    if (!_agreeButton) {
-//        _agreeButton = [[UIButton alloc] init];
-//        _agreeButton.frame = CGRectMake(_agreeLabel.frame.origin.x + 80,
-//                                        _agreeLabel.frame.origin.y,
-//                                        65,
-//                                        _agreeLabel.frame.size.height);
-//        _agreeButton.backgroundColor = [UIColor clearColor];
-//        [_agreeButton addTarget:self
-//                         action:@selector(agreeButtonClick:)
-//               forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    //[_defaultView addSubview:_agreeButton];
-//    
-//    // 更改角色、更改年龄的picker -------------------------------------------------------------------
-//    // 角色的底部VIEW
-//    if (!_roleBottomView) {
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UBottomView" owner:self options:nil];
-//        _roleBottomView = [nib lastObject];
-//        _roleBottomView.backgroundColor = [UIColor whiteColor];
-//        _roleBottomView.frame = CGRectMake(0.0,
-//                                           CGRectGetHeight(self.view.frame),
-//                                           CGRectGetWidth(_roleBottomView.frame),
-//                                           CGRectGetHeight(_roleBottomView.frame)-1);
-//        
-//        [_roleBottomView.finishButton addTarget:self
-//                                         action:@selector(roleFinishButtonPressed:)
-//                               forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    [self.view addSubview:_roleBottomView];
-//    
-//    // 修改角色picker
-//    if (!_rolePickerView) {
-//        _rolePickerView = [[UIPickerView alloc] init];
-//        _rolePickerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
-//        _rolePickerView.frame = CGRectMake(0.0, CGRectGetHeight(_roleBottomView.frame) - pickerViewHeight,
-//                                           pickerViewWidth, pickerViewHeight);
-//         _rolePickerView.showsSelectionIndicator = YES;
-//        _rolePickerView.dataSource = self;
-//        _rolePickerView.delegate = self;
-//    }
-//    [_roleBottomView addSubview:_rolePickerView];
-//    
-//    // 年龄的底部View
-//    if (!_ageBottomView) {
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UBottomView" owner:self options:nil];
-//        _ageBottomView = [nib lastObject];
-//        _ageBottomView.backgroundColor = [UIColor whiteColor];
-//        _ageBottomView.frame = CGRectMake(0.0,
-//                                          CGRectGetHeight(self.view.frame),
-//                                          CGRectGetWidth(_ageBottomView.frame),
-//                                          CGRectGetHeight(_ageBottomView.frame)-1);
-//        [_ageBottomView.finishButton addTarget:self
-//                                        action:@selector(ageFinishButtonPressed:)
-//                               forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    [self.view addSubview:_ageBottomView];
-//    
-//    // 修改年龄的picker
-//    if (!_ageDatePicker) {
-//        _ageDatePicker = [[UIDatePicker alloc] init];
-//        _ageDatePicker.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
-//        _ageDatePicker.frame = CGRectMake(0.0, CGRectGetHeight(_ageBottomView.frame) - pickerViewHeight,
-//                                          pickerViewWidth, pickerViewHeight);
-//        _ageDatePicker.datePickerMode = UIDatePickerModeDate;
-//        [_ageDatePicker setAccessibilityLanguage:@"cn-China"];  //设置时间选取器的语言
-//        [_ageDatePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];  // 设置时区
-//        [_ageDatePicker setDate:[NSDate date] animated:YES];    // 设置当前显示时间
-//        [_ageDatePicker setMaximumDate:[NSDate date]];  // 设置显示最大时间（此处为当前时间）
-//        [_ageDatePicker setDatePickerMode:UIDatePickerModeDate];    // 设置UIDatePicker的显示模式
-//        [_ageDatePicker addTarget:self
-//                           action:@selector(agePickerValueChanged:)
-//                 forControlEvents:UIControlEventValueChanged];
-//        
-//        // 设置生日参数
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//        [_birthday setString:[dateFormatter stringFromDate:[NSDate date]]];
-//        
-//        ULog(@"_birthday ======= %@", _birthday);
-//    }
-//    [_ageBottomView addSubview:_ageDatePicker];
-//    
-//
-//    
-//    // 修改头像的菜单视图
-//    if (!_photoMenuView) {
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PhotoMenuView" owner:self options:nil];
-//        _photoMenuView = [nib lastObject];
-//        
-//        _photoMenuHideRect = CGRectMake(0.0,
-//                                        self.view.frame.size.height,
-//                                        self.view.frame.size.width,
-//                                        _photoMenuView.frame.size.height);
-//        _photoMenuShowRect = CGRectMake(0.0,
-//                                        self.view.frame.size.height - _photoMenuView.frame.size.height,
-//                                        _photoMenuView.frame.size.width,
-//                                        _photoMenuView.frame.size.height);
-//        _photoMenuView.frame = _photoMenuHideRect;
-//        _photoMenuView.photoMenuDelegate = self;
-//    }
-//    [self.view addSubview:_photoMenuView];
-//    
-//    // 录音中图片
-//    if (!_recordingView) {
-//        _recordingView = [[UIView alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-kInfoRecodingViewHeight)/2,
-//                                                                  (CGRectGetHeight(_defaultView.frame)-kInfoRecodingViewHeight)/2,
-//                                                                  kInfoRecodingViewHeight+20,
-//                                                                  kInfoRecodingViewHeight)];
-//        _recordingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-//        _recordingView.layer.cornerRadius = 10;
-//        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(55, 20, 47, 75)];
-//        record.image = [UIImage imageNamed:@"record_img"];
-//        [_recordingView addSubview:record];
-//        
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 160, 20)];
-//        label.backgroundColor = [UIColor clearColor];
-//        label.textColor = [UIColor whiteColor];
-//        label.textAlignment = NSTextAlignmentCenter;
-//        label.text = @"录音中...";
-//        [_recordingView addSubview:label];
-//    }
-//    [self showProgressWithText:@"正在加载"];
-//    [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
-//    // 城市
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(uGetCityFinishedNotify:)
-//                                                 name:UGetSelectedCityFinishedNotify
-//                                               object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(uGetCityNameFinished:)
-//                                                 name:    UGetCurrentCityFinishedNotify
-//                                               object:nil];
+    self.title = STRING(@"info");
+    //_defaultView.backgroundColor = [UIColor colorWithRed:240/255.f green:245/255.f blue:255/255.f alpha:1.f];
+
+    if (enterPathType == TYPE_LOGIN) {
+        [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeNext];
+    }else{
+        [self setNavLeftType:UNavBarBtnTypeBack navRightType:UNavBarBtnTypeHide];
+     
+        
+        _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _confirmBtn.frame = CGRectMake(CGRectGetWidth(self.navBarView.frame) - 35, 10, 25, 25);
+        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm"] forState:UIControlStateNormal];
+        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_press"] forState:UIControlStateHighlighted];
+        [_confirmBtn setBackgroundImage:[UIImage imageNamed:@"navbar_confirm_unuseful"] forState:UIControlStateDisabled];
+        _confirmBtn.enabled = NO;
+        [_confirmBtn addTarget:self action:@selector(completeAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.navBarView addSubview:_confirmBtn];
+    }
+    
+
+    // 头像
+    if (!_headButton) {
+        // 圆形按钮
+        //_headButton = [[UIButton alloc] initWithFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
+        _headButton = [[CircleImageButton alloc] initWithPlaceholderImage:[UIImage imageNamed:@"head_cartoon_1.png"] withFrame:CGRectMake(20.0, 15.0, 110.0, 110.0)];
+        //[_headButton setBackgroundImage:[UIImage imageNamed:@"head_bg.png"] forState:UIControlStateNormal];
+        [_headButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [_headButton addTarget:self
+                        action:@selector(uRoundButtonTouchUpInside)
+              forControlEvents:UIControlEventTouchUpInside];
+        _headButton.layer.cornerRadius = 55;
+        _headButton.clipsToBounds = YES;
+    }
+    [_defaultView addSubview:_headButton];
+    
+    
+    // 录音时间
+    if (!_timeLabel) {
+        _timeLabel = [[UILabel alloc] init];
+        _timeLabel.frame = CGRectMake(180.0, 20.0, 60.0, 25.0);
+        _timeLabel.textColor = default_color_dark;
+        _timeLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _timeLabel.backgroundColor = [UIColor clearColor];
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    [_defaultView addSubview:_timeLabel];
+    
+    // 录音图标
+    if (!_recordImageView) {
+        _recordImageView = [[UIButton alloc] init];
+        [_recordImageView setBackgroundImage:[UIImage imageNamed:@"speaker.png"] forState:UIControlStateNormal];
+        [_recordImageView setBackgroundImage:[UIImage imageNamed:@"btn_playing"] forState:UIControlStateSelected];
+        _recordImageView.frame = CGRectMake(240.0, 15.0, 30.0, 30.0);
+        [_recordImageView addTarget:self action:@selector(playRecord:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    
+    [_defaultView addSubview:_recordImageView];
+    
+    NSString *normalBagNa = @"record_btn.png";
+    //_isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
+    NSString *touchDownBagNa = @"record_light blue_btn_lan.png";
+    // 录音按钮
+    if (!_recordButton) {
+        _recordButton = [[UIButton alloc] initWithFrame:CGRectMake(180.0, 50.0, 100.0, 30.0)];
+        _recordButton.backgroundColor = [UIColor clearColor];
+        _recordButton.layer.cornerRadius = 5;
+        _recordButton.tag = 0xfc;
+        [_recordButton setBackgroundImage:[UIImage imageNamed:normalBagNa]
+                                  forState:UIControlStateNormal];
+        [_recordButton setBackgroundImage:[UIImage imageNamed:touchDownBagNa]
+                                  forState:UIControlStateHighlighted];
+        [_recordButton addTarget:self action:@selector(beginRecord:) forControlEvents:UIControlEventTouchDown];
+        [_recordButton addTarget:self action:@selector(endRecord:) forControlEvents:UIControlEventTouchUpInside];
+        [_recordButton addTarget:self action:@selector(endRecord:) forControlEvents:UIControlEventTouchCancel];
+
+    }
+    [_defaultView addSubview:_recordButton];
+    
+    NSString *normalTitle = _isExistRecord ? @"按住重录":@"按住录音";
+    // 录音按钮上的文案
+    if (!_recordButtonLabel) {
+        _recordButtonLabel = [[UILabel alloc] init];
+        _recordButtonLabel.frame = CGRectMake(_recordButton.frame.origin.x + margin_small,
+                                              _recordButton.frame.origin.y,
+                                              _recordButton.frame.size.width - 40,
+                                              _recordButton.frame.size.height);
+        _recordButtonLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _recordButtonLabel.backgroundColor = [UIColor clearColor];
+        _recordButtonLabel.textColor = default_color_white;
+        _recordButtonLabel.text = normalTitle;
+        _recordButtonLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    [_defaultView addSubview:_recordButtonLabel];
+    
+    // 录音按钮上的图标
+    if (!_recordButtonImageView) {
+        _recordButtonImageView = [[UIImageView alloc] init];
+        _recordButtonImageView.image = [UIImage imageNamed:@"record.png"];
+        _recordButtonImageView.frame = CGRectMake(_recordButtonLabel.frame.origin.x + _recordButtonLabel.frame.size.width + margin_small,
+                                                  _recordButtonLabel.frame.origin.y + 4.0,
+                                                  25.0, 25.0);
+    }
+    [_defaultView addSubview:_recordButtonImageView];
+    
+    // 录音下面的备注文案
+    if (!_remarkLabel) {
+        _remarkLabel = [[UILabel alloc] init];
+        _remarkLabel.frame = CGRectMake(_recordButton.frame.origin.x,
+                                        _recordButton.frame.origin.y + _recordButton.frame.size.height + margin_micro,
+                                        _recordButton.frame.size.width, 45);
+        _remarkLabel.textColor = default_color_dark;
+        _remarkLabel.font = [UIFont boldSystemFontOfSize:13];
+        _remarkLabel.backgroundColor = [UIColor clearColor];
+        _remarkLabel.text = STRING(@"recordRemark");
+        _remarkLabel.numberOfLines = 2;
+        _remarkLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    [_defaultView addSubview:_remarkLabel];
+    
+    
+    // 填充资料的tableView
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5.0,
+                                                                   _headButton.frame.origin.y * 2 + _headButton.frame.size.height,
+                                                                   self.defaultView.frame.size.width-5,
+                                                                   kInfoEditCellHeight * kInfoEditCellNumber)
+                                                  style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        //_tableView.separatorColor = [UIColor clearColor];
+        _tableView.scrollEnabled = NO;
+    }
+    [_defaultView addSubview:_tableView];
+    
+    // 修改内容 for cell -------------------------------------------------------------------
+    // 计算Cell内变动文字的坐标
+    CGRect cellFrame = CGRectMake(70.0, 5.0, 200.0, kInfoEditCellShowHeight);
+    
+    // nikeName
+    if (!_nameTextField) {
+        _nameTextField = [[UITextField alloc] init];
+        _nameTextField.frame = cellFrame;
+        _nameTextField.backgroundColor = [UIColor clearColor];
+        _nameTextField.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _nameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        _nameTextField.placeholder = STRING(@"nikeName");
+        _nameTextField.keyboardType = UIKeyboardTypeNamePhonePad;
+        _nameTextField.delegate = self;
+        _nameTextField.returnKeyType = UIReturnKeyDone;
+    }
+    
+    // 角色picker里的数据
+    if (!_roleArray) {
+        _roleArray = [[NSArray alloc] initWithObjects:@"P", @"T", @"H", nil];
+    }
+    
+    // role
+    if (!_roleLabel) {
+        _roleLabel = [[UILabel alloc] init];
+        _roleLabel.frame = cellFrame;
+        _roleLabel.textColor = default_color_dark;
+        _roleLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _roleLabel.backgroundColor = [UIColor clearColor];
+        _roleLabel.text = _roleArray[0];
+    }
+    
+    // age
+    if (!_ageLabel) {
+        _ageLabel = [[UILabel alloc] init];
+        _ageLabel.frame = cellFrame;
+        _ageLabel.textColor = default_color_dark;
+        _ageLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _ageLabel.backgroundColor = [UIColor clearColor];
+        _ageLabel.text = STRING(@"age");
+    }
+    
+    // _birthday
+    _birthday = [[NSMutableString alloc] initWithString:@""];
+    
+    // city
+    if (!_cityLabel) {
+        _cityLabel = [[UILabel alloc] init];
+        _cityLabel.frame = cellFrame;
+        _cityLabel.textColor = default_color_dark;
+        _cityLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _cityLabel.backgroundColor = [UIColor clearColor];
+        _cityLabel.text = @"未定位";
+    }
+    
+    if (!_city) {
+        _city = [[UCity alloc] init];
+        _city.cityName = @"";
+        _city.cityID = 0;
+    }
+    
+    // 用户协议组件 --------------------------------------------------------------------------------
+    // 是否显示用户协议
+    _showAgree = NO;
+    
+    // 是否同意用户协议
+    _isAgree = YES;
+    
+    // 是否同意用户协议的按钮
+    if (!_agreeCheckButton) {
+        _agreeCheckButton = [[UIButton alloc] init];
+        _agreeCheckButton.frame = CGRectMake(kInfoEditCellSildWidth,
+                                             _tableView.frame.origin.y + _tableView.frame.size.height + margin_middle,
+                                             25.0, 25.0);
+        _agreeCheckButton.backgroundColor = [UIColor clearColor];
+        [_agreeCheckButton setBackgroundImage:[UIImage imageNamed:@"checkbox_checked.png"] forState:UIControlStateNormal];
+        [_agreeCheckButton setBackgroundImage:[UIImage imageNamed:@"checkbox_checked.png"] forState:UIControlStateHighlighted];
+        [_agreeCheckButton addTarget:self
+                          action:@selector(agreeCheckButtonClick:)
+                forControlEvents:UIControlEventTouchUpInside];
+    }
+    //[_defaultView addSubview:_agreeCheckButton];
+    
+    // 同意用户协议文案
+    if (!_agreeLabel) {
+        _agreeLabel = [[TTTAttributedLabel alloc] init];
+        _agreeLabel.frame = CGRectMake(_agreeCheckButton.frame.origin.x + _agreeCheckButton.frame.size.width + margin_small,
+                                       _agreeCheckButton.frame.origin.y,
+                                       _defaultView.frame.size.width - (_ageLabel.frame.origin.x),
+                                       _agreeCheckButton.frame.size.height);
+        _agreeLabel.userInteractionEnabled = NO;
+        _agreeLabel.backgroundColor = [UIColor clearColor];
+        _agreeLabel.font = [UIFont boldSystemFontOfSize:default_font_size_14];
+        _agreeLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
+        [_agreeLabel setText:STRING(@"isAgreement") afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+            NSRange blackRange = NSMakeRange(0, 6);
+            NSRange orangeRange = NSMakeRange(6, 4);
+            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)default_color_dark range:blackRange];
+            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)default_color_orange range:orangeRange];
+            return mutableAttributedString;
+        }];
+    }
+    //[_defaultView addSubview:_agreeLabel];
+    
+    // 进入用户协议按钮
+    if (!_agreeButton) {
+        _agreeButton = [[UIButton alloc] init];
+        _agreeButton.frame = CGRectMake(_agreeLabel.frame.origin.x + 80,
+                                        _agreeLabel.frame.origin.y,
+                                        65,
+                                        _agreeLabel.frame.size.height);
+        _agreeButton.backgroundColor = [UIColor clearColor];
+        [_agreeButton addTarget:self
+                         action:@selector(agreeButtonClick:)
+               forControlEvents:UIControlEventTouchUpInside];
+    }
+    //[_defaultView addSubview:_agreeButton];
+    
+    // 更改角色、更改年龄的picker -------------------------------------------------------------------
+    // 角色的底部VIEW
+    if (!_roleBottomView) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UBottomView" owner:self options:nil];
+        _roleBottomView = [nib lastObject];
+        _roleBottomView.backgroundColor = [UIColor whiteColor];
+        _roleBottomView.frame = CGRectMake(0.0,
+                                           CGRectGetHeight(self.view.frame),
+                                           CGRectGetWidth(_roleBottomView.frame),
+                                           CGRectGetHeight(_roleBottomView.frame)-1);
+        
+        [_roleBottomView.finishButton addTarget:self
+                                         action:@selector(roleFinishButtonPressed:)
+                               forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.view addSubview:_roleBottomView];
+    
+    // 修改角色picker
+    if (!_rolePickerView) {
+        _rolePickerView = [[UIPickerView alloc] init];
+        _rolePickerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
+        _rolePickerView.frame = CGRectMake(0.0, CGRectGetHeight(_roleBottomView.frame) - pickerViewHeight,
+                                           pickerViewWidth, pickerViewHeight);
+         _rolePickerView.showsSelectionIndicator = YES;
+        _rolePickerView.dataSource = self;
+        _rolePickerView.delegate = self;
+    }
+    [_roleBottomView addSubview:_rolePickerView];
+    
+    // 年龄的底部View
+    if (!_ageBottomView) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UBottomView" owner:self options:nil];
+        _ageBottomView = [nib lastObject];
+        _ageBottomView.backgroundColor = [UIColor whiteColor];
+        _ageBottomView.frame = CGRectMake(0.0,
+                                          CGRectGetHeight(self.view.frame),
+                                          CGRectGetWidth(_ageBottomView.frame),
+                                          CGRectGetHeight(_ageBottomView.frame)-1);
+        [_ageBottomView.finishButton addTarget:self
+                                        action:@selector(ageFinishButtonPressed:)
+                               forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.view addSubview:_ageBottomView];
+    
+    // 修改年龄的picker
+    if (!_ageDatePicker) {
+        _ageDatePicker = [[UIDatePicker alloc] init];
+        _ageDatePicker.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
+        _ageDatePicker.frame = CGRectMake(0.0, CGRectGetHeight(_ageBottomView.frame) - pickerViewHeight,
+                                          pickerViewWidth, pickerViewHeight);
+        _ageDatePicker.datePickerMode = UIDatePickerModeDate;
+        [_ageDatePicker setAccessibilityLanguage:@"cn-China"];  //设置时间选取器的语言
+        [_ageDatePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];  // 设置时区
+        [_ageDatePicker setDate:[NSDate date] animated:YES];    // 设置当前显示时间
+        [_ageDatePicker setMaximumDate:[NSDate date]];  // 设置显示最大时间（此处为当前时间）
+        [_ageDatePicker setDatePickerMode:UIDatePickerModeDate];    // 设置UIDatePicker的显示模式
+        [_ageDatePicker addTarget:self
+                           action:@selector(agePickerValueChanged:)
+                 forControlEvents:UIControlEventValueChanged];
+        
+        // 设置生日参数
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [_birthday setString:[dateFormatter stringFromDate:[NSDate date]]];
+        
+        ULog(@"_birthday ======= %@", _birthday);
+    }
+    [_ageBottomView addSubview:_ageDatePicker];
+    
+
+    
+    // 修改头像的菜单视图
+    if (!_photoMenuView) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PhotoMenuView" owner:self options:nil];
+        _photoMenuView = [nib lastObject];
+        
+        _photoMenuHideRect = CGRectMake(0.0,
+                                        self.view.frame.size.height,
+                                        self.view.frame.size.width,
+                                        _photoMenuView.frame.size.height);
+        _photoMenuShowRect = CGRectMake(0.0,
+                                        self.view.frame.size.height - _photoMenuView.frame.size.height,
+                                        _photoMenuView.frame.size.width,
+                                        _photoMenuView.frame.size.height);
+        _photoMenuView.frame = _photoMenuHideRect;
+        _photoMenuView.photoMenuDelegate = self;
+    }
+    [self.view addSubview:_photoMenuView];
+    
+    // 录音中图片
+    if (!_recordingView) {
+        _recordingView = [[UIView alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-kInfoRecodingViewHeight)/2,
+                                                                  (CGRectGetHeight(_defaultView.frame)-kInfoRecodingViewHeight)/2,
+                                                                  kInfoRecodingViewHeight+20,
+                                                                  kInfoRecodingViewHeight)];
+        _recordingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        _recordingView.layer.cornerRadius = 10;
+        UIImageView *record = [[UIImageView alloc] initWithFrame:CGRectMake(55, 20, 47, 75)];
+        record.image = [UIImage imageNamed:@"record_img"];
+        [_recordingView addSubview:record];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 160, 20)];
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = @"录音中...";
+        [_recordingView addSubview:label];
+    }
+    [self showProgressWithText:@"正在加载"];
+    [[NaNaUIManagement sharedInstance] getUserProfile:[NaNaUIManagement sharedInstance].userAccount.UserID];
+    // 城市
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uGetCityFinishedNotify:)
+                                                 name:UGetSelectedCityFinishedNotify
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uGetCityNameFinished:)
+                                                 name:    UGetCurrentCityFinishedNotify
+                                               object:nil];
 
 }
 
