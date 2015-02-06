@@ -23,7 +23,7 @@
     [self closeProgress];
     if ([keyPath isEqualToString:@"regResult"]) {
         NSDictionary *result = [NaNaUIManagement sharedInstance].regResult;
-        if (![result[@"hasError"] boolValue]) {
+        if ([result[@"hasError"] boolValue]) {
             [UAlertView showAlertViewWithMessage:result[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         }else
         {
