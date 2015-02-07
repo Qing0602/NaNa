@@ -27,6 +27,7 @@
 		19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7914A199F53B300074E89 /* MBProgressHUD.m */; };
 		19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
+		19B3A7841A85F9DF001C7564 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B3A7831A85F9DF001C7564 /* Icon-120.png */; };
 		19B93F0C1A2754BB00FEF672 /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B93F0B1A2754BB00FEF672 /* DeleteButton.png */; };
 		19C597231A7AB2620005BE0A /* PassWordText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971C1A7AB2620005BE0A /* PassWordText@2x.png */; };
 		19C597241A7AB2620005BE0A /* QQLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971D1A7AB2620005BE0A /* QQLogin@2x.png */; };
@@ -540,6 +541,7 @@
 		19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaMessageModel.m; sourceTree = "<group>"; };
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
+		19B3A7831A85F9DF001C7564 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		19B93F0B1A2754BB00FEF672 /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteButton.png; sourceTree = "<group>"; };
 		19C5971C1A7AB2620005BE0A /* PassWordText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PassWordText@2x.png"; path = "Login/PassWordText@2x.png"; sourceTree = "<group>"; };
 		19C5971D1A7AB2620005BE0A /* QQLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "QQLogin@2x.png"; path = "Login/QQLogin@2x.png"; sourceTree = "<group>"; };
@@ -1743,6 +1745,7 @@
 		97416C30177FFDB500865342 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				19B3A7831A85F9DF001C7564 /* Icon-120.png */,
 				97C5B2ED1786CDA300B81B45 /* Localizable.strings */,
 				977E2E931785427E0058F285 /* NaNa-Prefix.pch */,
 				977E2DBE1785393B0058F285 /* InfoPlist.strings */,
@@ -2566,6 +2569,7 @@
 				8721DC1D188D2CAB00D18C40 /* btn_complete_bg.png in Resources */,
 				8729E92518840034005CAB4F /* 22.png in Resources */,
 				871AEE7B1887B627002D9320 /* bubble_friend.png in Resources */,
+				19B3A7841A85F9DF001C7564 /* Icon-120.png in Resources */,
 				8729E9C818840034005CAB4F /* 96@2x.png in Resources */,
 				97AC1C4F17D1C5F400233384 /* head_cartoon_1.png in Resources */,
 				8729E94618840034005CAB4F /* 37@2x.png in Resources */,
@@ -3081,8 +3085,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e5182bc5-bd74-4377-938f-a04eb976349d";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "e5182bc5-bd74-4377-938f-a04eb976349d";
+				PROVISIONING_PROFILE = "56a3c31e-f302-4e03-b1d7-a7476bac2080";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "56a3c31e-f302-4e03-b1d7-a7476bac2080";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
