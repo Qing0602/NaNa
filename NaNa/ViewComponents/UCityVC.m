@@ -8,6 +8,7 @@
 
 #import "UCityVC.h"
 #import "UAlertView.h"
+#import "pinyin.h"
 #define kTagBackButton  1024
 
 @interface UCityVC ()

@@ -7,7 +7,7 @@
 //
 
 #import "UCity.h"
-
+#import "pinyin.h"
 @implementation UCity
 
 @synthesize cityID;
