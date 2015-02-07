@@ -16,8 +16,8 @@
 //#define USE_ULOG
 
 // 用于开关闭Release URL的宏（暂时不区分正式环境还是测试环境）
-#define K_DOMAIN_NANA       @"http://api.local.ishenran.cn"     //域名
-//#define K_DOMAIN_NANA       @"http://api.ishenran.cn"     //域名
+//#define K_DOMAIN_NANA       @"http://api.local.ishenran.cn"     //域名
+#define K_DOMAIN_NANA       @"http://api.ishenran.cn"     //域名
 
 #pragma mark - 工具类宏
 // =========================================== 工具类宏
