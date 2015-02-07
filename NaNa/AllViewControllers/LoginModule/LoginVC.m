@@ -10,6 +10,9 @@
 #import "AppDelegate.h"
 #import "WebLoginVC.h"
 #import "RegisterViewController.h"
+#import "InfoEditVC.h"
+#import "ColorUtil.h"
+
 @interface LoginVC ()
 @property (nonatomic,strong) UITextField *userName;
 @property (nonatomic,strong) UITextField *password;
@@ -68,7 +71,8 @@
 //    [tabbar addSubview:password];
     
     self.userName = [[UITextField alloc] init];
-    [self.userName setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.userName setBorderStyle:UITextBorderStyleNone];
+    self.userName.backgroundColor = [UIColor colorWithHexString:@"#d3d3d3"];
     self.userName.frame = CGRectMake(42, 11, 135, 24);
     self.userName.placeholder = @"用户名";
     self.userName.returnKeyType = UIReturnKeyDone;
@@ -76,7 +80,8 @@
     [tabbar addSubview:self.userName];
     
     self.password = [[UITextField alloc] init];
-    [self.password setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.password setBorderStyle:UITextBorderStyleNone];
+    self.password.backgroundColor = [UIColor colorWithHexString:@"#d3d3d3"];
     self.password.frame = CGRectMake(42, 44, 135, 24);
     self.password.secureTextEntry = YES;
     self.password.placeholder = @"密码";
@@ -187,7 +192,25 @@
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if ([keyPath isEqualToString:@"loginResult"]) {
         NSDictionary *result = [NaNaUIManagement sharedInstance].loginResult;
-        
+        if ([result[ASI_REQUEST_HAS_ERROR] boolValue]) {
+            [UAlertView showAlertViewWithMessage:result[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+        }else{
+            NaNaUserAccountModel *userAccount = [[NaNaUserAccountModel alloc] init];
+            if ([userAccount convertForDic:result[ASI_REQUEST_DATA]]) {
+                [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:userAccount.UserID] forKeyPath:@"UserID"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [NaNaUIManagement sharedInstance].userAccount = userAccount;
+                [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
+            }
+            
+            int isfirst = [[result[ASI_REQUEST_DATA] objectForKey:@"is_1st"] integerValue];
+            if (isfirst == 0) {
+                [APP_DELEGATE loadMainView];
+            }else{
+                InfoEditVC *infoEdit = [[InfoEditVC alloc] initWithType:TYPE_LOGIN];
+                [self.navigationController pushViewController:infoEdit animated:YES];
+            }
+        }
     }
 }
 

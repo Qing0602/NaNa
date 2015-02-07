@@ -31,7 +31,7 @@ typedef enum {
     SettingEditRowBlack             = 2,
     SettingEditRowSuggestion        = 3,
     SettingEditRowGrade             = 4,
-    SettingEditRowRedeem            = 5,
+//    SettingEditRowRedeem            = 5,
 } SettingEditRow;
 
 @implementation SettingVC 
@@ -187,11 +187,11 @@ typedef enum {
             [cell.contentView addSubview:titleLabel];
             break;
         }
-        case SettingEditRowRedeem: {
-            [titleLabel setText:STRING(@"redeemcode")];
-            [cell.contentView addSubview:titleLabel];
-            break;
-        }
+//        case SettingEditRowRedeem: {
+//            [titleLabel setText:STRING(@"redeemcode")];
+//            [cell.contentView addSubview:titleLabel];
+//            break;
+//        }
        
     }
     [cell.contentView addSubview:titleLabel];
@@ -217,12 +217,12 @@ typedef enum {
 
             break;
         }
-        case SettingEditRowRedeem: {
-            ULog(@"redeemcode");
-            RedeemcodeVC *controller = [[RedeemcodeVC alloc] init];
-            [self.navigationController pushViewController:controller animated:YES];
-            break;
-        }
+//        case SettingEditRowRedeem: {
+//            ULog(@"redeemcode");
+//            RedeemcodeVC *controller = [[RedeemcodeVC alloc] init];
+//            [self.navigationController pushViewController:controller animated:YES];
+//            break;
+//        }
         case SettingEditRowLock: {
             ULog(@"lock");
             NSDictionary *lockData = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%d",[NaNaUIManagement sharedInstance].userAccount.UserID]];

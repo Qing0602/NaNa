@@ -20,7 +20,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = NaNaLogin;
-        NSString *urlStr = [NSString stringWithFormat:@"%@/user/register?username=%@&password=%@",K_DOMAIN_NANA,userName,password];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/login/local?username=%@&password=%@",K_DOMAIN_NANA,userName,password];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -30,7 +30,7 @@
     self = [self initOperation];
     if (nil != self) {
         self.type = PostUserNameAndPassword;
-        NSString *urlStr = [NSString stringWithFormat:@"%@/login/local?username=%@&password=%@",K_DOMAIN_NANA,userName,password];
+        NSString *urlStr = [NSString stringWithFormat:@"%@/user/register?username=%@&password=%@",K_DOMAIN_NANA,userName,password];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
