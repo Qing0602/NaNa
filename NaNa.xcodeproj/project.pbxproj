@@ -2975,6 +2975,63 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		7475C6C11A86483D00C85502 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s armv64";
+			};
+			name = AppStore;
+		};
+		7475C6C21A86483D00C85502 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
+				INFOPLIST_FILE = "NaNa/NaNa-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/NaNa/3rdPartySupport/KKGridView\"",
+					"\"$(SRCROOT)/NaNa/Resource/lib\"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s arm64";
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStore;
+		};
 		97416C41177FFDB500865342 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3006,6 +3063,7 @@
 				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s armv64";
 			};
 			name = Debug;
 		};
@@ -3034,6 +3092,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s armv64";
 			};
 			name = Release;
 		};
@@ -3043,8 +3102,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ran shen (L5DD52DL4P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -3058,10 +3116,10 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
+				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 arm64 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3090,7 +3148,7 @@
 				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 arm64 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3103,18 +3161,20 @@
 			buildConfigurations = (
 				97416C41177FFDB500865342 /* Debug */,
 				97416C42177FFDB500865342 /* Release */,
+				7475C6C11A86483D00C85502 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 		97416C43177FFDB500865342 /* Build configuration list for PBXNativeTarget "NaNa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97416C44177FFDB500865342 /* Debug */,
 				97416C45177FFDB500865342 /* Release */,
+				7475C6C21A86483D00C85502 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AppStore;
 		};
 /* End XCConfigurationList section */
 	};
