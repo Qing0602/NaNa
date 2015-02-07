@@ -2987,8 +2987,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3003,8 +3003,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "61C6B9E3-5FD9-4549-98F5-F4B5589C9D06";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "61C6B9E3-5FD9-4549-98F5-F4B5589C9D06";
+				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3021,8 +3021,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3030,8 +3030,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "61C6B9E3-5FD9-4549-98F5-F4B5589C9D06";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "61C6B9E3-5FD9-4549-98F5-F4B5589C9D06";
+				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3042,8 +3042,8 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -3057,8 +3057,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
+
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -3070,7 +3071,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
