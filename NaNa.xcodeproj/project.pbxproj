@@ -14,6 +14,7 @@
 		1922418C199D094A0067C5BA /* NaNaUnReaderCountBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922418B199D094A0067C5BA /* NaNaUnReaderCountBG@2x.png */; };
 		192EC7911A0FAB7900FAC85B /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 192EC7901A0FAB7900FAC85B /* MoreVC.m */; };
 		194121DF19C16124000C2ABD /* NaNaUserProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 194121DE19C16124000C2ABD /* NaNaUserProfileModel.m */; };
+		1956D8BA1A865AF800700F11 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 1956D8B91A865AF800700F11 /* Icon-120.png */; };
 		196D3F6519C3FACF001B7E09 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 196D3F6219C3FACF001B7E09 /* UIScrollView+SVInfiniteScrolling.m */; };
 		196D3F6619C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 196D3F6419C3FACF001B7E09 /* UIScrollView+SVPullToRefresh.m */; };
 		19825C5319E458FF00005090 /* bubble_self2.png in Resources */ = {isa = PBXBuildFile; fileRef = 19825C5119E458FF00005090 /* bubble_self2.png */; };
@@ -27,7 +28,6 @@
 		19A7914B199F53B300074E89 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A7914A199F53B300074E89 /* MBProgressHUD.m */; };
 		19B07B4A19C1F0AC006ADEFA /* NaNaMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */; };
 		19B157F119912B6A00A979EF /* UserProfileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B157F019912B6A00A979EF /* UserProfileOperation.m */; };
-		19B3A7841A85F9DF001C7564 /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B3A7831A85F9DF001C7564 /* Icon-120.png */; };
 		19B93F0C1A2754BB00FEF672 /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 19B93F0B1A2754BB00FEF672 /* DeleteButton.png */; };
 		19C597231A7AB2620005BE0A /* PassWordText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971C1A7AB2620005BE0A /* PassWordText@2x.png */; };
 		19C597241A7AB2620005BE0A /* QQLogin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C5971D1A7AB2620005BE0A /* QQLogin@2x.png */; };
@@ -516,6 +516,7 @@
 		192EC7901A0FAB7900FAC85B /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 		194121DD19C16124000C2ABD /* NaNaUserProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaNaUserProfileModel.h; sourceTree = "<group>"; };
 		194121DE19C16124000C2ABD /* NaNaUserProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUserProfileModel.m; sourceTree = "<group>"; };
+		1956D8B91A865AF800700F11 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		196D3F6019C3FACF001B7E09 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		196D3F6119C3FACF001B7E09 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
 		196D3F6219C3FACF001B7E09 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
@@ -541,7 +542,6 @@
 		19B07B4919C1F0AC006ADEFA /* NaNaMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaMessageModel.m; sourceTree = "<group>"; };
 		19B157EF19912B6A00A979EF /* UserProfileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileOperation.h; sourceTree = "<group>"; };
 		19B157F019912B6A00A979EF /* UserProfileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileOperation.m; sourceTree = "<group>"; };
-		19B3A7831A85F9DF001C7564 /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-120.png"; sourceTree = "<group>"; };
 		19B93F0B1A2754BB00FEF672 /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteButton.png; sourceTree = "<group>"; };
 		19C5971C1A7AB2620005BE0A /* PassWordText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PassWordText@2x.png"; path = "Login/PassWordText@2x.png"; sourceTree = "<group>"; };
 		19C5971D1A7AB2620005BE0A /* QQLogin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "QQLogin@2x.png"; path = "Login/QQLogin@2x.png"; sourceTree = "<group>"; };
@@ -1162,6 +1162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97416E45178024FB00865342 /* libz.1.2.5.dylib in Frameworks */,
+				97416CE317800C8600865342 /* libxml2.dylib in Frameworks */,
 				87165D10187EA7A70025B6DF /* AVFoundation.framework in Frameworks */,
 				97F3426C17DD7ABC00A8D23F /* CoreLocation.framework in Frameworks */,
 				97B7F7561782B52F00E6086B /* ImageIO.framework in Frameworks */,
@@ -1175,8 +1177,6 @@
 				97416C2A177FFDB500865342 /* UIKit.framework in Frameworks */,
 				97416C2C177FFDB500865342 /* Foundation.framework in Frameworks */,
 				97416C2E177FFDB500865342 /* CoreGraphics.framework in Frameworks */,
-				97416CE317800C8600865342 /* libxml2.dylib in Frameworks */,
-				97416E45178024FB00865342 /* libz.1.2.5.dylib in Frameworks */,
 				874EE65617D848210025ACA6 /* libKKGridView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1745,7 +1745,7 @@
 		97416C30177FFDB500865342 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A7831A85F9DF001C7564 /* Icon-120.png */,
+				1956D8B91A865AF800700F11 /* Icon-120.png */,
 				97C5B2ED1786CDA300B81B45 /* Localizable.strings */,
 				977E2E931785427E0058F285 /* NaNa-Prefix.pch */,
 				977E2DBE1785393B0058F285 /* InfoPlist.strings */,
@@ -2569,7 +2569,7 @@
 				8721DC1D188D2CAB00D18C40 /* btn_complete_bg.png in Resources */,
 				8729E92518840034005CAB4F /* 22.png in Resources */,
 				871AEE7B1887B627002D9320 /* bubble_friend.png in Resources */,
-				19B3A7841A85F9DF001C7564 /* Icon-120.png in Resources */,
+				1956D8BA1A865AF800700F11 /* Icon-120.png in Resources */,
 				8729E9C818840034005CAB4F /* 96@2x.png in Resources */,
 				97AC1C4F17D1C5F400233384 /* head_cartoon_1.png in Resources */,
 				8729E94618840034005CAB4F /* 37@2x.png in Resources */,
@@ -3001,7 +3001,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
@@ -3028,7 +3028,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
@@ -3040,15 +3040,16 @@
 		97416C44177FFDB500865342 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ran shen (L5DD52DL4P)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NaNa/NaNa-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/NaNa/3rdPartySupport/KKGridView\"",
@@ -3060,7 +3061,7 @@
 				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3068,15 +3069,16 @@
 		97416C45177FFDB500865342 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "NaNa/NaNa-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/NaNa/3rdPartySupport/KKGridView\"",
@@ -3088,7 +3090,7 @@
 				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
