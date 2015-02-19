@@ -75,6 +75,7 @@
     self.userName.backgroundColor = [UIColor colorWithHexString:@"#d3d3d3"];
     self.userName.frame = CGRectMake(42, 11, 135, 24);
     self.userName.placeholder = @"用户名";
+    self.userName.font = [UIFont systemFontOfSize:12.0f];
     self.userName.returnKeyType = UIReturnKeyDone;
     self.userName.delegate = self;
     [tabbar addSubview:self.userName];
@@ -85,6 +86,7 @@
     self.password.frame = CGRectMake(42, 44, 135, 24);
     self.password.secureTextEntry = YES;
     self.password.placeholder = @"密码";
+    self.password.font = [UIFont systemFontOfSize:12.0f];
     self.password.returnKeyType = UIReturnKeyDone;
     self.password.delegate = self;
     [tabbar addSubview:self.password];

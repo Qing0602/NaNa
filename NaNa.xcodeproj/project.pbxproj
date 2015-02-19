@@ -3156,7 +3156,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wang shuo (HW95UAAVE4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang shuo (HW95UAAVE4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -3170,8 +3171,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;

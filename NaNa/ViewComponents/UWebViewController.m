@@ -27,8 +27,10 @@
 
 - (void)viewDidLoad
 {
+    _myWebView.delegate = self;
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,6 +129,11 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [_activityView stopAnimating];
+}
+
+- (void) dealloc{
+    _myWebView.delegate = nil;
+    [super dealloc];
 }
 
 @end

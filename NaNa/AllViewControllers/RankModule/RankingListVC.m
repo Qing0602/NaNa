@@ -229,6 +229,7 @@
         [_defaultView addSubview:_centerWebview];
         [_rightWebview removeFromSuperview];
         NSString *temp = [NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
+        NSLog(@"%@",URLREQUEST(K_WEBVIEW_URL_RANK_NEAR,temp));
         [_centerWebview  loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_NEAR,temp)];
     }
     // 全部
