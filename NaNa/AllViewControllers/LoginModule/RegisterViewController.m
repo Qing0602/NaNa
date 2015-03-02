@@ -98,8 +98,8 @@
 
 - (void)rightItemPressed:(UIButton *)btn
 {
-    if (userName.text.length < 5) {
-        [UAlertView showAlertViewWithMessage:@"用户名必须大于6位" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+    if (userName.text.length <= 0) {
+        [UAlertView showAlertViewWithMessage:@"用户名不能为空" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         return;
     }
     if (password.text.length < 5 ) {
