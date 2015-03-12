@@ -48,8 +48,8 @@
     [_scrollview addSubview:image];
     
     UIView * tabbar=[[UIView alloc] initWithFrame:CGRectMake(0,
-                                                             self.defaultView.frame.size.height - 122,
-                                                             self.defaultView.frame.size.width, 122)];
+                                                             self.defaultView.frame.size.height - 192,
+                                                             self.defaultView.frame.size.width, 192)];
     [tabbar setBackgroundColor:[UIColor blackColor]];
     
     
@@ -71,48 +71,70 @@
 //    [tabbar addSubview:password];
     
     self.userName = [[UITextField alloc] init];
-    [self.userName setBorderStyle:UITextBorderStyleNone];
-    self.userName.backgroundColor = [UIColor colorWithHexString:@"#d3d3d3"];
-    self.userName.frame = CGRectMake(42, 11, 135, 24);
-    self.userName.placeholder = @"用户名";
+    [self.userName setBorderStyle:UITextBorderStyleRoundedRect];
+    self.userName.backgroundColor = [UIColor colorWithHexString:@"#ffffff"];
+    self.userName.frame = CGRectMake(37, 41, 150, 30);
+    self.userName.placeholder = @"  用户名";
     self.userName.font = [UIFont systemFontOfSize:12.0f];
+    self.userName.textColor = [UIColor colorWithHexString:@"c8c7cf"];
+    [self.userName setValue:[UIColor colorWithHexString:@"#c8c7cf"] forKeyPath:@"_placeholderLabel.textColor"];
     self.userName.returnKeyType = UIReturnKeyDone;
     self.userName.delegate = self;
     [tabbar addSubview:self.userName];
     
     self.password = [[UITextField alloc] init];
-    [self.password setBorderStyle:UITextBorderStyleNone];
-    self.password.backgroundColor = [UIColor colorWithHexString:@"#d3d3d3"];
-    self.password.frame = CGRectMake(42, 44, 135, 24);
+    [self.password setBorderStyle:UITextBorderStyleRoundedRect];
+    self.password.backgroundColor = [UIColor colorWithHexString:@"#ffffff"];
+    self.password.frame = CGRectMake(37, 77, 150, 30);
     self.password.secureTextEntry = YES;
-    self.password.placeholder = @"密码";
+    self.password.placeholder = @"  密码";
+    [self.password setValue:[UIColor colorWithHexString:@"#c8c7cf"] forKeyPath:@"_placeholderLabel.textColor"];
     self.password.font = [UIFont systemFontOfSize:12.0f];
     self.password.returnKeyType = UIReturnKeyDone;
     self.password.delegate = self;
     [tabbar addSubview:self.password];
     
+    
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginButton setImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateNormal];
-    [loginButton setImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateSelected];
-    loginButton.tag=3;
+    [loginButton setBackgroundColor:[UIColor colorWithHexString:@"#ff6633"]];
+    [loginButton setTitle:@"登录" forState:UIControlStateNormal];
+    [loginButton setTitle:@"登录" forState:UIControlStateHighlighted];
+    loginButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    loginButton.layer.cornerRadius = 5;
+    loginButton.clipsToBounds = YES;
+    loginButton.tag =3;
+    loginButton.frame=CGRectMake(207, 41, 82.5f, 32);
     [loginButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    loginButton.frame=CGRectMake(197, 11, 72.5f, 25);
     [tabbar addSubview:loginButton];
     
     UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [registerButton setImage:[UIImage imageNamed:@"RegisterButton"] forState:UIControlStateNormal];
-    [registerButton setImage:[UIImage imageNamed:@"RegisterButton"] forState:UIControlStateSelected];
-    registerButton.tag=4;
+    [registerButton setBackgroundColor:[UIColor clearColor]];
+    [registerButton setTitle:@"注册新用户>" forState:UIControlStateNormal];
+    [registerButton setTitle:@"注册新用户>" forState:UIControlStateHighlighted];
+    [registerButton setTitleColor:[UIColor colorWithHexString:@"#118ede"] forState:UIControlStateNormal];
+    [registerButton setTitleColor:[UIColor colorWithHexString:@"#118ede"] forState:UIControlStateHighlighted];
+    registerButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    registerButton.tag = 4;
     [registerButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    registerButton.frame=CGRectMake(197, 41, 73, 23);
+    registerButton.frame=CGRectMake(212, 81, 73, 23);
     [tabbar addSubview:registerButton];
+    
+    UILabel *other = [[UILabel alloc] init];
+    other.text = @"其他登录:";
+    other.backgroundColor = [UIColor clearColor];
+    other.textColor = [UIColor grayColor];
+    other.font = [UIFont systemFontOfSize:12.0f];
+    [other sizeToFit];
+//    other.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2.0f, 117.0f);
+    other.frame = CGRectMake(37.0f, 140.0f, other.frame.size.width, other.frame.size.height);
+    [tabbar addSubview:other];
     
     UIButton *qqButton=[UIButton buttonWithType:UIButtonTypeCustom];
     [qqButton setImage:[UIImage imageNamed:@"QQLogin"] forState:UIControlStateNormal];
     [qqButton setImage:[UIImage imageNamed:@"QQLoginPressed"] forState:UIControlStateSelected];
     qqButton.tag=1;
     [qqButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    qqButton.frame=CGRectMake(197, 69, 28, 27);
+    qqButton.frame=CGRectMake(122, 129, 42, 40);
     [tabbar addSubview:qqButton];
     
     UIButton *sinaButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -120,7 +142,7 @@
     [sinaButton setImage:[UIImage imageNamed:@"SinaLoginPressed"] forState:UIControlStateSelected];
     sinaButton.tag=2;
     [sinaButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    sinaButton.frame=CGRectMake(239, 69, 28, 27);
+    sinaButton.frame=CGRectMake(177, 129, 42, 40);
     [tabbar addSubview:sinaButton];
     
     [self.defaultView addSubview:_scrollview];
@@ -205,7 +227,7 @@
                 [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
             }
             
-            int isfirst = [[result[ASI_REQUEST_DATA] objectForKey:@"is_1st"] integerValue];
+            NSInteger isfirst = [[result[ASI_REQUEST_DATA] objectForKey:@"is_1st"] integerValue];
             if (isfirst == 0) {
                 [APP_DELEGATE loadMainView];
             }else{
@@ -217,7 +239,7 @@
 }
 
 -(void)onClick:(UIButton *)sender{
-    int TAG=sender.tag;
+    NSInteger TAG=sender.tag;
     switch (TAG) {
         case 1:{
             WebLoginVC *webQQLogin =  [[WebLoginVC alloc] init];

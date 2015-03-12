@@ -52,7 +52,6 @@
         [NSURLConnection sendSynchronousRequest: neededRequest returningResponse: &response error: nil];
         if ([response respondsToSelector:@selector(allHeaderFields)]) {
             NSDictionary *dictionary = [response allHeaderFields];
-            //[[NSUserDefaults standardUserDefaults] setValue:dictionary forKey:accountInfoKey];
             
             NaNaUserAccountModel *userAccount = [[NaNaUserAccountModel alloc] init];
             if ([userAccount convertForDic:dictionary]) {
@@ -62,7 +61,7 @@
                 [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
             }
             
-            int isfirst = [[dictionary objectForKey:@"is_1st"] integerValue];
+            NSInteger isfirst = [[dictionary objectForKey:@"is_1st"] integerValue];
             if (isfirst == 0) {
                 [APP_DELEGATE loadMainView];
             }else{

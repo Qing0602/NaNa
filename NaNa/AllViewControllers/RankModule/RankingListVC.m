@@ -210,6 +210,7 @@
         [_rightWebview removeFromSuperview];
         NSString *temp = [NSString stringWithFormat:@"userId=%d",[NaNaUIManagement sharedInstance].userAccount.UserID];
         [_leftWebview loadRequest:URLREQUEST(K_WEBVIEW_URL_RANK_CITY,temp)];
+        NSLog(@"%@",URLREQUEST(K_WEBVIEW_URL_RANK_CITY,temp));
         [_leftActivityView startAnimating];
     }
     // 周边
