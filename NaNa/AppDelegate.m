@@ -118,7 +118,7 @@ NSInteger K_WAKE_UP_ID = 0;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    [WeiboSDK registerApp:kAppKey];
     // 首先创建Window
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
@@ -248,6 +248,14 @@ NSInteger K_WAKE_UP_ID = 0;
     // 保存当前用户的余额(如果用户登陆的情况下)
 //    [UStaticData saveUserBalance];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WeiboSDK handleOpenURL:url delegate:self ];
 }
 
 

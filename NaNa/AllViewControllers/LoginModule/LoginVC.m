@@ -85,7 +85,7 @@
     self.password = [[UITextField alloc] init];
     [self.password setBorderStyle:UITextBorderStyleRoundedRect];
     self.password.backgroundColor = [UIColor colorWithHexString:@"#ffffff"];
-    self.password.frame = CGRectMake(37, 77, 150, 30);
+    self.password.frame = CGRectMake(37, 79, 150, 30);
     self.password.secureTextEntry = YES;
     self.password.placeholder = @"  密码";
     [self.password setValue:[UIColor colorWithHexString:@"#c8c7cf"] forKeyPath:@"_placeholderLabel.textColor"];
@@ -116,7 +116,7 @@
     registerButton.titleLabel.font = [UIFont systemFontOfSize:12];
     registerButton.tag = 4;
     [registerButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
-    registerButton.frame=CGRectMake(212, 81, 73, 23);
+    registerButton.frame=CGRectMake(212, 83, 73, 23);
     [tabbar addSubview:registerButton];
     
     UILabel *other = [[UILabel alloc] init];

@@ -11,12 +11,13 @@
 #import "MMDrawerController.h"
 #import "MenuLeftVC.h"
 #import "MenuRightVC.h"
+#import "WeiboSDK.h"
 
 #define APP_DELEGATE    ((AppDelegate*)[[UIApplication sharedApplication] delegate])  // 当前AppDelegate实例
 #define MAIN_BOUNDS     APP_DELEGATE.mainWindowBounds  // 获取当前屏幕的Bounds大小
 #define windowHeight    APP_DELEGATE.screenHeight  // 获取当前屏幕的高度
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,UAlertViewDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,UAlertViewDelegate,WeiboSDKDelegate> {
     // 根视图
     MMDrawerController *_rootViewController;
     //UINavigationController * _navRootController ;
@@ -28,6 +29,6 @@
 @property (readonly, nonatomic) MMDrawerController *rootViewController; // 根视图（侧边栏 + 中间视图）
 //@property (readonly, nonatomic) UINavigationController * navRootController ; // 根导航器
 
--(void)loadLoginView;
+- (void)loadLoginView;
 - (void)loadMainView;
 @end
