@@ -27,6 +27,8 @@
 @property (assign, nonatomic) CGRect mainWindowBounds;  // 主屏幕大小
 @property (assign, nonatomic) CGFloat screenHeight;  // 主屏幕高度
 @property (readonly, nonatomic) MMDrawerController *rootViewController; // 根视图（侧边栏 + 中间视图）
+@property (strong, nonatomic) NSString *wbtoken;
+@property (strong, nonatomic) NSString *wbCurrentUserID;
 //@property (readonly, nonatomic) UINavigationController * navRootController ; // 根导航器
 
 - (void)loadLoginView;
