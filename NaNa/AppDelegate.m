@@ -28,9 +28,6 @@ BOOL isIPhone5Screen =  NO;
 // 唤醒的ID
 NSInteger K_WAKE_UP_ID = 0;
 
-#define kAppKey         @"2045436852"
-#define kRedirectURI    @"http://www.sina.com"
-
 #pragma mark - Implementation
 
 @implementation AppDelegate

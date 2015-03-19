@@ -17,5 +17,5 @@
 #import "UMacro.h"
 //#define NSLog(...)
 
-#define kAppKey         @"2045436852"
+#define kAppKey         @"3955546902"
 #define kRedirectURI    @"http://www.sina.com"
