@@ -13,6 +13,7 @@
 @property(nonatomic) LoginType type;
 -(void) login;
 -(void) postUserNameAndPassword;
+-(void) sinaLogin;
 @end
 
 @implementation LoginOperation
@@ -31,6 +32,16 @@
     if (nil != self) {
         self.type = PostUserNameAndPassword;
         NSString *urlStr = [NSString stringWithFormat:@"%@/user/register?username=%@&password=%@",K_DOMAIN_NANA,userName,password];
+        [self setHttpRequestGetWithUrl:urlStr];
+    }
+    return self;
+}
+
+-(LoginOperation *) initSinaLogin : (NSString *) userID{
+    self = [self initOperation];
+    if (nil != self) {
+        self.type = sinaLogin;
+        NSString *urlStr = [NSString stringWithFormat:@"%@/login/weibo_login?uid=%@",K_DOMAIN_NANA,userID];
         [self setHttpRequestGetWithUrl:urlStr];
     }
     return self;
@@ -56,6 +67,17 @@
     [self startAsynchronous];
 }
 
+-(void) sinaLogin{
+    [self.request setRequestCompleted:^(NSDictionary *data){
+        dispatch_block_t updateTagBlock = ^{
+            [NaNaUIManagement sharedInstance].sinaLoginResult = data;
+        };
+        dispatch_async(dispatch_get_main_queue(), updateTagBlock);
+    }];
+    [self startAsynchronous];
+}
+
+
 -(void) main{
     @autoreleasepool {
         switch (self.type) {
@@ -64,6 +86,9 @@
                 break;
             case PostUserNameAndPassword:
                 [self postUserNameAndPassword];
+                break;
+            case sinaLogin:
+                [self sinaLogin];
                 break;
             default:
                 break;

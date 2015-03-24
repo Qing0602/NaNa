@@ -189,4 +189,9 @@ static NaNaUIManagement *sharedInstance = nil;
     LoginOperation *operation = [[LoginOperation alloc] initPostUserName:userName withPassword:password];
     [[NaNaNetWorkService sharedInstance] networkEngine:operation];
 }
+
+-(void) sinaLogin : (NSString *) userID{
+    LoginOperation *operation = [[LoginOperation alloc] initSinaLogin:userID];
+    [[NaNaNetWorkService sharedInstance] networkEngine:operation];
+}
 @end

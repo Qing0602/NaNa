@@ -16,6 +16,7 @@
 @interface LoginVC ()
 @property (nonatomic,strong) UITextField *userName;
 @property (nonatomic,strong) UITextField *password;
+-(void) sinalogin : (NSNotification *) notification;
 @end
 
 @implementation LoginVC
@@ -52,6 +53,7 @@
                                                              self.defaultView.frame.size.width, 192)];
     [tabbar setBackgroundColor:[UIColor blackColor]];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sinaLogin:) name:@"sinaLogin" object:nil];
     
 //    UITextField *userName = [[UITextField alloc] init];
 //    [userName setBorderStyle:UITextBorderStyleRoundedRect];
@@ -192,14 +194,16 @@
     [super didReceiveMemoryWarning];
 }
 
--(void) viewDidAppear:(BOOL)animated{
+-(void) viewWillAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"loginResult" options:0 context:nil];
+    [[NaNaUIManagement sharedInstance] addObserver:self forKeyPath:@"sinaLoginResult" options:0 context:nil];
 }
 
--(void) viewDidDisappear:(BOOL)animated{
+-(void) viewWillDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"loginResult"];
+    [[NaNaUIManagement sharedInstance] removeObserver:self forKeyPath:@"sinaLoginResult"];
 }
 
 //当开始点击textField会调用的方法
@@ -234,6 +238,24 @@
                 InfoEditVC *infoEdit = [[InfoEditVC alloc] initWithType:TYPE_LOGIN];
                 [self.navigationController pushViewController:infoEdit animated:YES];
             }
+        }
+    }
+    if ([keyPath isEqualToString:@"sinaLoginResult"]) {
+        NaNaUserAccountModel *userAccount = [[NaNaUserAccountModel alloc] init];
+        NSDictionary *dictionary = [[NaNaUIManagement sharedInstance].sinaLoginResult objectForKey:@"data"];
+        if ([userAccount convertForDic:dictionary]) {
+            [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:userAccount.UserID] forKeyPath:@"UserID"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [NaNaUIManagement sharedInstance].userAccount = userAccount;
+            [NaNaUserAccountModel serializeModel:userAccount withFileName:@"NaNaUserAccount"];
+        }
+        
+        NSInteger isfirst = [[dictionary objectForKey:@"is_1st"] integerValue];
+        if (isfirst == 0) {
+            [APP_DELEGATE loadMainView];
+        }else{
+            InfoEditVC *infoEdit = [[InfoEditVC alloc] initWithType:TYPE_LOGIN];
+            [self.navigationController pushViewController:infoEdit animated:YES];
         }
     }
 }
@@ -285,6 +307,10 @@
         default:
             break;
     }
+}
+
+-(void) dealloc{
+    
 }
 
 @end

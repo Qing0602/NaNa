@@ -118,6 +118,7 @@ NSInteger K_WAKE_UP_ID = 0;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kAppKey];
     // 首先创建Window
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
@@ -139,6 +140,8 @@ NSInteger K_WAKE_UP_ID = 0;
     
     return YES;
 }
+
+
 
 // 用于初始化根视图等页面
 - (void)initRootViewController {
@@ -271,7 +274,7 @@ NSInteger K_WAKE_UP_ID = 0;
 //        
         self.wbtoken = [(WBAuthorizeResponse *)response accessToken];
         self.wbCurrentUserID = [(WBAuthorizeResponse *)response userID];
-
+        [[NaNaUIManagement sharedInstance] sinaLogin:self.wbCurrentUserID];
     }
 }
 

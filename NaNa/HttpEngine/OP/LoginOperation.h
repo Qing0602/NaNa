@@ -11,9 +11,12 @@
 typedef enum{
     NaNaLogin,
     PostUserNameAndPassword,
+    sinaLogin,
 }LoginType;
 
 @interface LoginOperation : NaNaOperation
 -(LoginOperation *) initLogin : (NSString *) userName withPassword : (NSString *) password;
 -(LoginOperation *) initPostUserName : (NSString *) userName withPassword : (NSString *) password;
+-(LoginOperation *) initSinaLogin : (NSString *) userID;
+
 @end

@@ -103,6 +103,9 @@ typedef enum{
 @property(nonatomic,strong) NSDictionary *loginResult;
 // 注册
 @property(nonatomic,strong) NSDictionary *regResult;
+// 新浪Login
+@property(nonatomic,strong) NSDictionary *sinaLoginResult;
+
 
 @property(nonatomic,strong) NSHTTPCookie *php;
 @property(nonatomic,strong) NSHTTPCookie *suid;
@@ -173,4 +176,5 @@ typedef enum{
 -(void) login : (NSString *) userName withPassword : (NSString *) password;
 // 注册
 -(void) postUserName : (NSString *) userName withPassword : (NSString *) password;
+-(void) sinaLogin : (NSString *) userID;
 @end
