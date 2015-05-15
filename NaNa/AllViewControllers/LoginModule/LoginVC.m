@@ -76,7 +76,7 @@
     [self.userName setBorderStyle:UITextBorderStyleRoundedRect];
     self.userName.backgroundColor = [UIColor colorWithHexString:@"#ffffff"];
     self.userName.frame = CGRectMake(37, 41, 150, 30);
-    self.userName.placeholder = @"  用户名";
+    self.userName.placeholder = @"  账号";
     self.userName.font = [UIFont systemFontOfSize:12.0f];
     self.userName.textColor = [UIColor colorWithHexString:@"c8c7cf"];
     [self.userName setValue:[UIColor colorWithHexString:@"#c8c7cf"] forKeyPath:@"_placeholderLabel.textColor"];

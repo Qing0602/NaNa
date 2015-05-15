@@ -293,7 +293,7 @@
         [self showProgressWithText:@"声音加载中..."];
         [_playButton setImage:[UIImage imageNamed:@"btn_voice_stop"] forState:UIControlStateNormal];
         
-        NSString *writeFileName = [NSString stringWithFormat:@"temp%@",@".mp3"];
+        NSString *writeFileName = [NSString stringWithFormat:@"temp%@",@".caf"];
         NSString *fileDir = [NSString stringWithFormat:@"/Voice/"];
         [NaNaUIManagement createPath:fileDir];
         NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

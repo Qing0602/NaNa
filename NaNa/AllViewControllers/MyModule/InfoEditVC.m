@@ -1047,7 +1047,7 @@ typedef enum {
 - (void)endRecord:(UIButton *)btn {
     ULog(@"currentTime = %.f",_recorder.currentTime);
 
-    
+    [_recorder stop];
     [_recordingView removeFromSuperview];
     NSLog(@"%f",recorderLength);
     if (recorderLength < 1) {
@@ -1071,7 +1071,7 @@ typedef enum {
     _recordButtonImageView.image = [UIImage imageNamed:@"record.png"];
     //NSString *normalBagNa = _isExistRecord ? @"record_btn.png" : @"record_light blue_btn_lan.png";
     //[btn setBackgroundImage:[[UIImage imageNamed:normalBagNa] stretchableImageWithLeftCapWidth:5 topCapHeight:5] forState:UIControlStateNormal];
-    [_recorder stop];
+    
     
         NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
     [[NaNaUIManagement sharedInstance] uploadFile:[NSData dataWithContentsOfURL:url] withUploadType:UploadVoice withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:recorderLength];
@@ -1094,7 +1094,7 @@ typedef enum {
     [recordSettings setObject:[NSNumber numberWithInt:12800] forKey:AVEncoderBitRateKey];//解码率
     [recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];//采样位
     [recordSettings setObject:[NSNumber numberWithInt: AVAudioQualityHigh] forKey: AVEncoderAudioQualityKey];
-    NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
+    NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa1",@"caf"]]];
     NSError *audioRecorderError = nil;
     _recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recordSettings error:&audioRecorderError];
     _recorder.delegate = self;

@@ -63,7 +63,6 @@
     _tableView.scrollEnabled = NO;
     [self.view addSubview:_tableView];
     
-    
     /*
     UIButton *confirm = [UIButton buttonWithType:UIButtonTypeCustom];
     [confirm setImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateNormal];
@@ -99,7 +98,7 @@
 - (void)rightItemPressed:(UIButton *)btn
 {
     if (userName.text.length <= 0) {
-        [UAlertView showAlertViewWithMessage:@"用户名不能为空" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+        [UAlertView showAlertViewWithMessage:@"账号不能为空" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
         return;
     }
     if (password.text.length < 5 ) {
@@ -139,11 +138,13 @@
     switch (indexPath.row) {
         case 0:
         {
-            cell.textLabel.text = @"用户名";
+            cell.textLabel.text = @"账号";
             if (!userName) {
                 userName = [[UITextField alloc] init];
                 [userName setBorderStyle:UITextBorderStyleNone];
                 userName.frame = CGRectMake(90, 8, 220, 24);
+                userName.placeholder = @"账号记得使用英文或数字哦~";
+                userName.font = [UIFont systemFontOfSize:13.0f];
                 //userName.placeholder = @"用户名";
                 [cell.contentView addSubview:userName];
             }
