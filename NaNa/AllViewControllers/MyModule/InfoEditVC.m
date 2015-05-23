@@ -1020,7 +1020,7 @@ typedef enum {
     _audioPlayer = nil;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
+    NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa1",@"caf"]]];
     if (!url || ![url absoluteString].length >0 ) {
         url = [NSURL URLWithString:_voiceUrl];
     }
@@ -1073,7 +1073,7 @@ typedef enum {
     //[btn setBackgroundImage:[[UIImage imageNamed:normalBagNa] stretchableImageWithLeftCapWidth:5 topCapHeight:5] forState:UIControlStateNormal];
     
     
-        NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa",@"caf"]]];
+    NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa1",@"caf"]]];
     [[NaNaUIManagement sharedInstance] uploadFile:[NSData dataWithContentsOfURL:url] withUploadType:UploadVoice withUserID:[NaNaUIManagement sharedInstance].userAccount.UserID withDesc:@"" withVoiceTime:recorderLength];
 }
 
@@ -1091,7 +1091,7 @@ typedef enum {
     [recordSettings setObject:[NSNumber numberWithInt: kAudioFormatMPEG4AAC] forKey: AVFormatIDKey];//ID
     [recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];//采样率
     [recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];//通道的数目,1单声道,2立体声
-    [recordSettings setObject:[NSNumber numberWithInt:12800] forKey:AVEncoderBitRateKey];//解码率
+//    [recordSettings setObject:[NSNumber numberWithInt:12800] forKey:AVEncoderBitRateKey];//解码率
     [recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];//采样位
     [recordSettings setObject:[NSNumber numberWithInt: AVAudioQualityHigh] forKey: AVEncoderAudioQualityKey];
     NSURL *url = [NSURL fileURLWithPath: [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.%@",@"record_NaNa1",@"caf"]]];

@@ -159,7 +159,7 @@
                 [password setBorderStyle:UITextBorderStyleNone];
                 password.frame = CGRectMake(90, 8, 220, 24);
                 password.secureTextEntry = YES;
-                //password.placeholder = @"密码";
+                password.font = [UIFont systemFontOfSize:13.0f];
                 [cell.contentView addSubview:password];
             }
 
@@ -173,7 +173,7 @@
                 [confirmPassword setBorderStyle:UITextBorderStyleNone];
                 confirmPassword.frame = CGRectMake(90, 8, 220, 24);
                 confirmPassword.secureTextEntry = YES;
-                //confirmPassword.placeholder = @"密码";
+                confirmPassword.font = [UIFont systemFontOfSize:13.0f];
                 [cell.contentView addSubview:confirmPassword];
             }
         }

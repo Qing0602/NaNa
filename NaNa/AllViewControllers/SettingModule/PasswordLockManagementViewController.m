@@ -138,7 +138,7 @@
        cell.textLabel.textColor = tempLockStatus ? [self colorWithHexString:@"#1e1e1e"] : [UIColor lightGrayColor];
     }
     
-    cell.textLabel.text = indexPath.row == 0?(tempLockStatus?@"关闭密码锁":@"打开密码锁"):@"修改密码";
+    cell.textLabel.text = indexPath.row == 0?(tempLockStatus?@"关闭密码锁":@"打开密码锁"):@"    修改密码";
 
     return cell;
 }
