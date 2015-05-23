@@ -87,6 +87,7 @@
 
 #pragma mark - ButtonPressed
 - (void)leftItemPressed:(UIButton *)btn {
+    [_myWebView stopLoading];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
