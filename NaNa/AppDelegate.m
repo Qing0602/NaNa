@@ -19,7 +19,7 @@
 #import "SignVC.h"
 #import "PasswordLockVC.h"
 #import "NaNaUIManagement.h"
-
+#import <Crashlytics/Crashlytics.h>
 #import "PasswordLockViewController.h"
 #pragma mark - Static Variable
 // 用于判断当前是否为iPhone5的屏幕设备
@@ -120,6 +120,7 @@ NSInteger K_WAKE_UP_ID = 0;
 {
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kAppKey];
+    [Crashlytics startWithAPIKey:@"fb92e12c5ee94966ce5c9aaaa0376675d7f4ca07"];
     // 首先创建Window
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     

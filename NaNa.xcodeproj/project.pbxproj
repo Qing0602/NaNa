@@ -59,6 +59,7 @@
 		19CB82EF196CC79800DBCBAB /* NaNaOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82E8196CC79800DBCBAB /* NaNaOperation.m */; };
 		19CB82F2196CCA9800DBCBAB /* NaNaUIManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82F1196CCA9800DBCBAB /* NaNaUIManagement.m */; };
 		19CB82F5196D64C300DBCBAB /* UploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CB82F4196D64C300DBCBAB /* UploadOperation.m */; };
+		19F111BF1B176A600001B78A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F111BE1B176A600001B78A /* Crashlytics.framework */; };
 		3604BFF41856EAD600009BC2 /* GuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3604BFF31856EAD600009BC2 /* GuideVC.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		363591DD18227F3800F7AB67 /* icon_head_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 363591D718227F3800F7AB67 /* icon_head_normal.png */; };
 		363591DE18227F3800F7AB67 /* icon_head_presser.png in Resources */ = {isa = PBXBuildFile; fileRef = 363591D818227F3800F7AB67 /* icon_head_presser.png */; };
@@ -610,6 +611,7 @@
 		19CB82F1196CCA9800DBCBAB /* NaNaUIManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaNaUIManagement.m; sourceTree = "<group>"; };
 		19CB82F3196D64C300DBCBAB /* UploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadOperation.h; sourceTree = "<group>"; };
 		19CB82F4196D64C300DBCBAB /* UploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadOperation.m; sourceTree = "<group>"; };
+		19F111BE1B176A600001B78A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3604BFF21856EAD600009BC2 /* GuideVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideVC.h; sourceTree = "<group>"; };
 		3604BFF31856EAD600009BC2 /* GuideVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideVC.m; sourceTree = "<group>"; };
 		363591D718227F3800F7AB67 /* icon_head_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_head_normal.png; path = LeftMenu/icon_head_normal.png; sourceTree = "<group>"; };
@@ -1214,6 +1216,7 @@
 				97B7F7521782B42800E6086B /* MapKit.framework in Frameworks */,
 				97B9949E1780272C0047B12B /* CoreTelephony.framework in Frameworks */,
 				97B9949A178025C40047B12B /* CoreText.framework in Frameworks */,
+				19F111BF1B176A600001B78A /* Crashlytics.framework in Frameworks */,
 				97416CE717800C9600865342 /* CFNetwork.framework in Frameworks */,
 				97416E43178024CE00865342 /* MobileCoreServices.framework in Frameworks */,
 				97416E411780248600865342 /* SystemConfiguration.framework in Frameworks */,
@@ -1769,6 +1772,7 @@
 		97416C2F177FFDB500865342 /* NaNa */ = {
 			isa = PBXGroup;
 			children = (
+				19F111BE1B176A600001B78A /* Crashlytics.framework */,
 				19CB82D8196CC79800DBCBAB /* HttpEngine */,
 				97416CAA1780052500865342 /* UMacro.h */,
 				97416DE8178015ED00865342 /* NetworkTools */,
@@ -2507,6 +2511,7 @@
 				97416C22177FFDB500865342 /* Sources */,
 				97416C23177FFDB500865342 /* Frameworks */,
 				97416C24177FFDB500865342 /* Resources */,
+				19F111BD1B176A120001B78A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2900,6 +2905,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19F111BD1B176A120001B78A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run fb92e12c5ee94966ce5c9aaaa0376675d7f4ca07 e804870cf4cbbac873d3854b98465730bd37f1381cf7433b9869112763784415";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		97416C22177FFDB500865342 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -3095,6 +3116,10 @@
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NaNa",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -3109,8 +3134,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				PROVISIONING_PROFILE = "55f9a621-7102-4176-8a4b-dae668299483";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "55f9a621-7102-4176-8a4b-dae668299483";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -3189,6 +3214,10 @@
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: ran shen (L5DD52DL4P)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ran shen (L5DD52DL4P)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NaNa",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -3203,8 +3232,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "b5cfaebb-66b4-479d-8d79-0ac5234110be";
+				PROVISIONING_PROFILE = "0d8759b4-7e82-4acc-8a98-7f42f327493c";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0d8759b4-7e82-4acc-8a98-7f42f327493c";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -3219,6 +3248,10 @@
 				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Fuchen technology Co., LTD (KR4L6ZGGM9)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NaNa",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NaNa/NaNa-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -3233,8 +3266,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a6a3c699-c402-4e26-a0a3-2add890ea969";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "a6a3c699-c402-4e26-a0a3-2add890ea969";
+				PROVISIONING_PROFILE = "55f9a621-7102-4176-8a4b-dae668299483";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "55f9a621-7102-4176-8a4b-dae668299483";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
