@@ -42,7 +42,13 @@ typedef enum {
     if ([keyPath isEqualToString:@"userProfile"]) {
         NSDictionary *tempData = [NSDictionary dictionaryWithDictionary:[NaNaUIManagement sharedInstance].userProfile];
         if (![[tempData objectForKey:ASI_REQUEST_HAS_ERROR] boolValue]) {
-            self.infoData = [[NSDictionary alloc] initWithDictionary:[tempData objectForKey:ASI_REQUEST_DATA]];
+            NSDictionary *dicData = [tempData objectForKey:ASI_REQUEST_DATA];
+            if (![dicData isKindOfClass:[NSNull class]]) {
+                self.infoData = [[NSDictionary alloc] initWithDictionary:dicData];
+            }else{
+                [UAlertView showAlertViewWithMessage:@"数据拉取失败" delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
+            }
+            
         }else
         {
             [UAlertView showAlertViewWithMessage:tempData[@"errorMessage"] delegate:nil cancelButton:STRING(@"ok") defaultButton:nil];
