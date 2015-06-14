@@ -275,7 +275,7 @@
         return @"二周前";
     }else if (timeNow - timeDate < ONE_DAY_TIMEINTERVAL*21.0 && timeNow - timeDate >= ONE_DAY_TIMEINTERVAL*14.0){
         return @"三周前";
-    }else if (timeNow - timeDate < ONE_DAY_TIMEINTERVAL*30.0 && timeNow - timeDate >= ONE_DAY_TIMEINTERVAL*7.0 ){
+    }else if (timeNow - timeDate < ONE_DAY_TIMEINTERVAL*30.0 && timeNow - timeDate >= ONE_DAY_TIMEINTERVAL*21.0 ){
         return @"一月前";
     }else {
         return @"很久以前";
